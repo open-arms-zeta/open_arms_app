@@ -1,0 +1,17 @@
+/*HEADER STYLING*/
+header{
+    height: 150px;
+    background-color: #eceae4;
+}
+
+.menu-title{
+    margin-top: 0px;
+}
+
+.side-nav{
+    float: left;
+    width: 200px;
+    background-color: #c2c0ba;
+    position:absolute;
+    height: 618px;
+}
