@@ -1,3 +1,3 @@
-myApp.controller('CreateMenuController', ["$scope", function($scope){
+myApp.controller('CreateMenuController', ["$scope", "DataService", function($scope, DataService){
     console.log("create menu Controller Online");
 }]);

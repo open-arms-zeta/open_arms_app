@@ -1,3 +1,3 @@
-myApp.controller('AdminWelcomeController', ["$scope", function($scope){
+myApp.controller('AdminWelcomeController', ["$scope", "DataService", function($scope, DataService){
     console.log("AdminWelcome Controller Online");
 }]);
