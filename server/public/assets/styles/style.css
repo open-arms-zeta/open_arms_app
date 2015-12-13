@@ -2,7 +2,6 @@
 header{
     height: 150px;
     background-color: #eceae4;
-    position: fixed;
 }
 
 .menu-title{
@@ -11,8 +10,13 @@ header{
 
 .side-nav{
     float: left;
-    width: 200px;
+    width: 14.5%;
     background-color: #c2c0ba;
     position:absolute;
     height: 618px;
+}
+
+.route{
+    float:right;
+    width: 85%;
 }
