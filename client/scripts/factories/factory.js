@@ -35,6 +35,10 @@ myApp.factory('DataService', ['$http', function($http){
         activeWeek = d;
     };
 
+    var getClientOrders = function(){
+
+    };
+
     //PUBLIC
     var publicApi = {
         retrieveCategories: function(){
@@ -52,6 +56,9 @@ myApp.factory('DataService', ['$http', function($http){
         },
         calculateActiveWeek: function(){
             return calculateActiveWeek();
+        },
+        getActiveWeek: function(){
+            return activeWeek;
         }
     };
 

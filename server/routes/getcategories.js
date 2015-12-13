@@ -4,7 +4,7 @@ var pg = require('pg');
 
 var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/open_arms_db';
 
-router.get('/data', function(req,res){
+router.get('/', function(req,res){
     var results = [];
 
     pg.connect(connectionString, function (err, client) {
