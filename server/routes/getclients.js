@@ -19,7 +19,7 @@ router.get('/data', function(req,res){
         ON client_orders.menu_id = menus.menu_id\
         JOIN categories\
         ON categories.category_id = client_orders.category_id\
-        WHERE menus.start_date = $1 AND menus.end_date = $2\
+        WHERE menus.start_date >= $1 AND menus.start_date <= $2\
         ORDER BY menus.start_date, clients.last_name ASC",
             [req.query.start_date, req.query.end_date]);
 

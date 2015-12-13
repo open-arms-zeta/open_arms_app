@@ -13,7 +13,7 @@ router.get('/data', function(req,res){
        JOIN menus ON menus.menu_id = meal_count.menu_id\
        JOIN meals ON meals.meal_id = meal_count.meal_id\
        JOIN categories ON categories.category_id = meal_count.category_id\
-       WHERE menus.start_date = $1 AND menus.end_date = $2",
+       WHERE menus.start_date >= $1 AND menus.start_date <= $2",
             [req.query.start_date, req.query.end_date]);
 
 
