@@ -5,4 +5,47 @@
         <p>Enter in the total number of 5 packs for each category to determine the total number of individual
             meals to be prepared</p>
     </div>
+    <form novalidate class="meal-form" name="mealCountForm" ng-submit="calculateMeals()">
+        <div class="form-group">
+            <label>Regular</label>
+            <input class='form-control' type="number" name='regular' ng-model="meal.regular">
+        </div>
+        <div class="form-group">
+            <label>Vegan</label>
+            <input class='form-control' type="number" name='vegan' ng-model="meal.vegan">
+        </div>
+        <div class="form-group">
+            <label>Latino</label>
+            <input class='form-control' type="number" name='latino' ng-model="meal.latino">
+        </div>
+        <div class="form-group">
+            <label>East-African</label>
+            <input class='form-control' type="number" name='eastAfrican' ng-model="meal.eastAfrican">
+        </div>
+        <div class="form-group">
+            <label>Gluten-Free</label>
+            <input class='form-control' type="number" name='glutenFree' ng-model="meal.glutenFree">
+        </div>
+        <div class="form-group">
+            <label>Heart Healthy</label>
+            <input class='form-control' type="number" name='heartHealthy' ng-model="meal.heartHealthy">
+        </div>
+        <div class="form-group">
+            <label>Cancer Friendly</label>
+            <input class='form-control' type="number" name='cancerFriendly' ng-model="meal.cancerFriendly">
+        </div>
+        <div class="form-group">
+            <label>Renal</label>
+            <input class='form-control' type="number" name='renal' ng-model="meal.renal">
+        </div>
+        <div class="form-group">
+            <label>Red</label>
+            <input class='form-control' type="number" name='red' ng-model="meal.red">
+        </div>
+        <div class="form-group">
+            <label>Nausea Care</label>
+            <input class='form-control' type="number" name='nauseaCare' ng-model="meal.nauseaCare">
+        </div>
+        <button type="submit">Submit</button>
+    </form>
 </div>
