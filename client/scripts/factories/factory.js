@@ -33,14 +33,19 @@ myApp.factory('DataService', ['$http', function($http){
         d.setDate(d.getDate()+daysToActiveWeek);
         console.log(d);
         activeWeek = d;
+        return d;
     };
 
-    var getClientOrders = function(){
-
+    var retrieveClientOrders = function(startDate, endDate){
+        return $http.get('/getclients', {params: {startDate: startDate, endDate: endDate}}).then(function(response){
+            console.log(response.data);
+            clientOrders = response.data;
+        })
     };
 
     //PUBLIC
     var publicApi = {
+        //retrieve and get categories
         retrieveCategories: function(){
             return retrieveCategories();
 
@@ -48,17 +53,29 @@ myApp.factory('DataService', ['$http', function($http){
         getCategories: function(){
             return categories;
         },
+
+        //retrieve menu by week
         retrieveMenuByWeek: function(date){
             return retrieveMenuByWeek(date);
         },
         getMenu: function(){
             return menu;
         },
+
+        //recalculate and assign active week (monday of active week)
         calculateActiveWeek: function(){
             return calculateActiveWeek();
         },
         getActiveWeek: function(){
             return activeWeek;
+        },
+
+        //get client orders
+        retrieveClientOrders: function(startDate, endDate){
+            return retrieveClientOrders(startDate, endDate);
+        },
+        getClientOrders: function(){
+            return clientOrders;
         }
     };
 
