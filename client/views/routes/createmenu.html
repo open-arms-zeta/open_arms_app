@@ -1,0 +1,41 @@
+<div>
+    <h1 class="admin-header">Create Menu</h1>
+    <div class="info">
+        <p>Instructions: </p>
+        <p>Select week and select meal from drop-down Menus for each category</p>
+    </div>
+
+    <form class="create-menu-form" name="createMenuForm" ng-submit="createMenu()">
+
+        <label for="startDate">Start Date</label>
+        <input type="date" name="startDate" id="startDate" ng-model="menu.startDate">
+
+        <label for="endDate">End Date</label>
+        <input type="date" name="endDate" id="endDate" ng-model="menu.endDate">
+
+        <div ng-repeat="category in categories">
+            <h2>{{category.category_name}}</h2>
+
+            <!--<div ng-repeat="meal in category.mealInfo">-->
+
+                <select name="selectOptions" id="selectOptions"
+                        ng-options="meal.entree for meal in category.mealInfo"
+                        ng-model="data.selectedOption">
+                </select>
+
+            <!--</div>-->
+
+        </div>
+
+        <button type="submit">Submit</button>
+
+    </form>
+
+    <!--<form class="create-menu-form" name="createMenuForm" ng-submit="createMenu()">-->
+        <!--<div class="" ng-repeat="category in categories">-->
+            <!--<label>{{category.category_name}}</label>-->
+            <!--<input class="form-control" type="number" name="{{category.category_name}}" ng-model="category.formCount">-->
+        <!--</div>-->
+        <!--<button type="submit">Submit</button>-->
+    <!--</form>-->
+</div>

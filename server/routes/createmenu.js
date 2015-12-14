@@ -4,6 +4,8 @@ var pg = require('pg');
 
 var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/open_arms_db';
 
+
+
 // GET call to populate drop-down menus by categories
 router.get('/', function(req,res){
     var results = [];
