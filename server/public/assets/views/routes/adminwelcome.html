@@ -1,0 +1,15 @@
+<div>
+    <h1>Welcome!</h1>
+    <p>Displaying information for the week of: {{selectedStartDate | date: 'fullDate'}}</p>
+    <button class="switch-week" ng-click="previousWeek()">Previous Week</button>
+    <button class="switch-week" ng-click="nextWeek()">Next Week</button>
+    <div>
+        <div ng-repeat="meal in selectedMealCount track by $index">
+            <h3>Meal {{$index+1}}: {{meal.entree}}</h3>
+            <p>Side 1: {{meal.side_1}}</p>
+            <p>Side 2: {{meal.side_2}}</p>
+            <p>Category: {{meal.category_name}}</p>
+            <p>Number of orders: {{meal.count}} order(s)</p>
+        </div>
+    </div>
+</div>
