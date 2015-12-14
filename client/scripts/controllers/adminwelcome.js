@@ -6,6 +6,7 @@ myApp.controller('AdminWelcomeController', ["$scope", "DataService", "$http", fu
     $scope.selectedStartDate = undefined;
     $scope.selectedEndDate = undefined;
     $scope.selectedMealCount = undefined;
+    $scope.clientOrders = undefined;
 
     $scope.initSelectedWeek = function(){
         $scope.selectedStartDate = $scope.activeWeek;
@@ -39,6 +40,23 @@ myApp.controller('AdminWelcomeController', ["$scope", "DataService", "$http", fu
         });
     };
 
+    $scope.getClientOrders = function(){
+        var startDate = new Date($scope.selectedStartDate);
+        var endDate = new Date($scope.selectedEndDate);
+        $scope.dataService.retrieveClientOrders(startDate, endDate).then(function(){
+           //console.log($scope.dataService.getClientOrders());
+            $scope.clientOrders = $scope.dataService.getClientOrders();
+            console.log($scope.clientOrders)
+        });
+    };
+
+    $scope.printMealCount = function(){
+        console.log($scope.selectedMealCount);
+    };
+
+    $scope.printClientOrders = function(){
+        $scope.getClientOrders();
+    };
 
     if ($scope.activeWeek == undefined) {
         $scope.dataService.calculateActiveWeek();

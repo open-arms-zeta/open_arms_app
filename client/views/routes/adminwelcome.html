@@ -4,6 +4,10 @@
     <button class="switch-week" ng-click="previousWeek()">Previous Week</button>
     <button class="switch-week" ng-click="nextWeek()">Next Week</button>
     <div>
+        <button class="print" ng-click="printMealCount()">Print Meal Count Quantity</button>
+        <button class="print" ng-click="printClientOrders()">Print Client Orders</button>
+    </div>
+    <div>
         <div ng-repeat="meal in selectedMealCount track by $index">
             <h3>Meal {{$index+1}}: {{meal.entree}}</h3>
             <p>Side 1: {{meal.side_1}}</p>
