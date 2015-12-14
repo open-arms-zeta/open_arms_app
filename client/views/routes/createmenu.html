@@ -16,18 +16,37 @@
         <div ng-repeat="category in categories">
             <h2>{{category.category_name}}</h2>
 
-            <!--<div ng-repeat="meal in category.mealInfo">-->
+            <select name="selectOptions1" id="selectOptions1"
+                    ng-model="currentMeal1"
+                    ng-options="meal.entree + ' with ' + meal.side_1 for meal in category.mealInfo"
+                    ng-change="saveMenu(currentMeal1)">
+                <!--<option ng-repeat="meal in category.mealInfo"-->
+                        <!--value={{meal}}>{{meal.entree}} with {{meal.side_1}}, {{meal.side_2}}-->
+                <!--</option>-->
+            </select><br>
 
-                <select name="selectOptions" id="selectOptions"
+            <select name="selectOptions2" id="selectOptions2"
+                    ng-model="currentMeal2"
+                    ng-options="meal.entree + ' with ' + meal.side_1 for meal in category.mealInfo"
+                    ng-change="saveMenu(currentMeal2)">
+                <!--<option ng-repeat="meal in category.mealInfo"-->
+                        <!--value={{meal}}>{{meal.entree}} with {{meal.side_1}}, {{meal.side_2}}-->
+                <!--</option>-->
+            </select><br>
+            <select name="selectOptions2" id="selectOptions2"
+                    ng-model="currentMeal2"
+                    ng-options="meal.entree + ' with ' + meal.side_1 for meal in category.mealInfo"
+                    ng-change="saveMenu(currentMeal2)">
+                <!--<option ng-repeat="meal in category.mealInfo"-->
+                <!--value={{meal}}>{{meal.entree}} with {{meal.side_1}}, {{meal.side_2}}-->
+                <!--</option>-->
+            </select><br>
 
-                        ng-model="data.selectedOption">
-                    <option ng-repeat="meal in category.mealInfo">{{meal.entree}} with {{meal.side_1}}, {{meal.side_2}}</option>
-                </select>
 
-            <!--</div>-->
 
         </div>
 
+        <!--<button type="submit">Submit</button>-->
         <button type="submit">Submit</button>
 
     </form>
