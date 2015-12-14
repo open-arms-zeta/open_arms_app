@@ -11,13 +11,10 @@ router.get('/', function(req,res){
     var results = [];
 
     pg.connect(connectionString, function (err, client) {
-        var query = client.query("SELECT meals.entree, meals.side_1, meals.side_2, categories.category_name, allergens.allergen_name, allergenspecific.specific_name\
+        var query = client.query("SELECT meals.entree, meals.side_1, meals.side_2, categories.category_name\
         FROM meals\
         JOIN meal_category ON meals.meal_id = meal_category.meal_id\
         JOIN categories ON categories.category_id = meal_category.category_id\
-        JOIN meal_allergen_allergenspecific ON meal_allergen_allergenspecific.meal_id = meals.meal_id\
-        JOIN allergens ON meal_allergen_allergenspecific.allergen_id = allergens.allergen_id\
-        JOIN allergenspecific ON meal_allergen_allergenspecific.allergenspecific_id = allergenspecific.specific_id\
         WHERE meals.status = true\
         ORDER BY categories.category_id ASC");
 

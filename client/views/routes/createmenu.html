@@ -19,8 +19,9 @@
             <!--<div ng-repeat="meal in category.mealInfo">-->
 
                 <select name="selectOptions" id="selectOptions"
-                        ng-options="meal.entree for meal in category.mealInfo"
+
                         ng-model="data.selectedOption">
+                    <option ng-repeat="meal in category.mealInfo">{{meal.entree}} with {{meal.side_1}}, {{meal.side_2}}</option>
                 </select>
 
             <!--</div>-->
