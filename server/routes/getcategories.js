@@ -8,7 +8,7 @@ router.get('/', function(req,res){
     var results = [];
 
     pg.connect(connectionString, function (err, client) {
-        var query = client.query("SELECT category_name FROM categories ORDER BY category_id ASC");
+        var query = client.query("SELECT category_name, category_id FROM categories ORDER BY category_id ASC");
 
         // Stream results back one row at a time, push into results array
         query.on('row', function (row) {

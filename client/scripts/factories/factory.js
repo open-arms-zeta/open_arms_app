@@ -14,16 +14,21 @@ myApp.factory('DataService', ['$http', function($http){
     var menu = undefined;
     //array
     var clientOrders = undefined;
-    //array
-    var mealCount = undefined;
 
 
     var retrieveCategories = function(){
         //some http call to get categories, and set it to categories variable
+        return $http.get('/getcategories').then(function(response){
+            categories = response.data;
+        })
     };
 
-    var retrieveMenuByWeek = function(date){
+    var retrieveMenuByWeek = function(startDate, endDate){
         //returns the http call to get a menu by date input, and sets menu variable to the returned result
+        return $http.get('/getmenu', {params: {startDate: startDate, endDate: endDate}}).then(function(response){
+
+            menu = response.data;
+        })
     };
 
     var calculateActiveWeek = function(){
@@ -55,8 +60,8 @@ myApp.factory('DataService', ['$http', function($http){
         },
 
         //retrieve menu by week
-        retrieveMenuByWeek: function(date){
-            return retrieveMenuByWeek(date);
+        retrieveMenuByWeek: function(startDate, endDate){
+            return retrieveMenuByWeek(startDate, endDate);
         },
         getMenu: function(){
             return menu;

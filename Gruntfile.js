@@ -38,6 +38,15 @@ module.exports = function(grunt){
                 ],
                 "dest": "server/public/vendors/"
             },
+            underscore: {
+                expand: true,
+                cwd: 'node_modules/underscore/',
+                src: [
+                    "underscore-min.js",
+                    "underscore-min.map"
+                ],
+                "dest": "server/public/vendors/"
+            },
             normalize: {
                 expand: true,
                 cwd: 'node_modules/normalize.css/',
