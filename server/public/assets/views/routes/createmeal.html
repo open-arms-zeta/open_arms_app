@@ -1,0 +1,69 @@
+
+
+<form>
+    <div class='categories' ng-repeat="category in categories">
+        <input type="checkbox"  checklist-value="category" checklist-model="meal.categories">
+        <label>{{category.category_name}}</label>
+    </div>
+
+
+    <input type="text" placeholder="Entree" ng-required="string" ng-model="meal.entree"><br/>
+
+    <input type="text" placeholder="Side #1" ng-required="side_1" ng-model="meal.side_1"><br/>
+
+    <input type="text" placeholder="Side #2" ng-required="side_2" ng-model="meal.side_2"><br/>
+
+
+    <div class='allergens' ng-repeat="allergen in allergens">
+        <input type="checkbox" checklist-value="allergen" checklist-model="meal.allergens">
+        <label>{{allergen.allergen_name}}</label>
+
+    </div>
+
+
+    <div class="allergenSpecific" ng-if="findAllergen('Tree Nuts')">
+        <input type="text" placeholder="Specific Tree Nut Allergen" ng-model="treeNutAllergen" ng-change="associate('Tree Nuts', treeNutAllergen)">
+        <!--<span ng-if=" !! Tree Nuts === TRUE" class="animate-if"></span>-->
+    </div>
+
+    <div class="allergenSpecific" ng-if="findAllergen('Shellfish')">
+        <input type="text" placeholder="Specific Shellfish Allergen" ng-model="shellfishAllergen" ng-change="associate('Shellfish', shellfishAllergen)">
+        <!--<span ng-if=" !! Tree Nuts, Shelfish, Fish === TRUE" class="animate-if"></span>-->
+    </div>
+
+    <div class="allergenSpecific" ng-if="findAllergen('Fish')">
+        <input type="text" placeholder="Specific Fish Allergen" ng-model="fishAllergen" ng-change="associate('Fish', fishAllergen)">
+        <!--<span ng-if=" !! Tree Nuts, Shelfish, Fish === TRUE" class="animate-if"></span>-->
+    </div>
+
+    <button ng-click="submit(form)" >Enter New Entree</button>
+    <!--<button ng-click="findAllergen('Fish')" >Enter New Entree</button>-->
+</form>
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<select  options="categorySelect" selected-model="data.categorySelect" type="checkbox"  checklist-value="category" checklist-model="mealtype.categories">-->
+    <!--<option value="">-&#45;&#45;Choose From Meal Categories-&#45;&#45;</option>-->
+    <!--<option value="{{category.category_name}}" ng-repeat="category in categories">{{category.category_name}}</option>-->
+
+<!--<select name="allergenSelect" id="allergenSelect" ng-model="data.allergenSelect">-->
+    <!--<option value="">-&#45;&#45;Allergens-&#45;&#45;</option>-->
+    <!--<option value="{{allergy.allergen_name}}" ng-repeat="allergy in allergens" >{{allergy.allergen_name}}</option>-->
+<!--</select><br>-->
+
+
+
+
+
+
+
+
