@@ -7,7 +7,7 @@ myApp.controller('CreateMenuController', ["$scope", "$http", "DataService", func
     $scope.mealByCategory = {};
     $scope.allergens = [];
     $scope.categories = $scope.dataService.getCategories();
-    $scope.currentMealArray = [];
+    $scope.selectedMealArray = [];
 
     //pull in categories
     if ($scope.categories == undefined) {
@@ -36,25 +36,34 @@ myApp.controller('CreateMenuController', ["$scope", "$http", "DataService", func
                     }
                 }
             }
-
-            // get allergen information for each meal
-            //for(i = 0; i < $scope.categories.length; i++){
-            //    for(j = 0; j < $scope.categories[i].mealInfo.length; j++) {
-            //        $http.get('/createmenu/allergens', {params: {mealId: $scope.categories[i].mealInfo[j].meal_id}}).then(function(response){
-            //            for(k = 0; k < response.data.length; k++){
-            //                $scope.allergens.push(response.data[k]);
-            //            }
-            //        });
-            //    }
-            //}
-
         });
     };
 
     $scope.saveMenu = function(currentMeal){
-      console.log(currentMeal);
-        $scope.currentMealArray.push(currentMeal);
-        console.log($scope.currentMealArray);
+        //console.log(currentMeal);
+        $scope.selectedMealArray.push(currentMeal);
+        //console.log($scope.selectedMealArray);
     };
+
+    $scope.createMenu = function(menu){
+        console.log(menu);
+
+        for(var i=0; i<$scope.selectedMealArray.length;i++){
+            console.log($scope.selectedMealArray[i].meal_id, $scope.selectedMealArray[i].category_id);
+        }
+        $http.post('/createmenu', menu).then(function(){
+
+            // GET menu_id of the new entry
+
+            // POST send menu_id and $scope.selectedMealArray to Server
+            // Let server run the loop
+
+            //for(var i=0; i<$scope.selectedMealArray.length;i++){
+            //    console.log($scope.selectedMealArray[i].meal_id, $scope.selectedMealArray[i].category_id);
+            //}
+
+
+        });
+    }
 
 }]);

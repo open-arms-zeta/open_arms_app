@@ -1,5 +1,6 @@
 var express = require('express');
 var app = express();
+var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
 var createMenu = require('./routes/createmenu');
@@ -9,9 +10,12 @@ var getClients = require('./routes/getclients');
 var getMealCount = require('./routes/getmealcount');
 var getMeals = require('./routes/getmeals');
 var getMenu = require('./routes/getmenu');
-var searchClients = require('./routes/searchclients')
+var searchClients = require('./routes/searchclients');
 
 app.set("port", process.env.PORT || 5000);
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({expanded: true}));
 
 app.use('/createmenu', createMenu);
 app.use('/getcategories', getCategories);

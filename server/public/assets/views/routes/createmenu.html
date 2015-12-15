@@ -2,10 +2,18 @@
     <h1 class="admin-header">Create Menu</h1>
     <div class="info">
         <p>Instructions: </p>
-        <p>Select week and select meal from drop-down Menus for each category</p>
+        <p>Select week, week start date, and select meal from drop-down menus for each category</p>
     </div>
 
-    <form class="create-menu-form" name="createMenuForm" ng-submit="createMenu()">
+    <form class="create-menu-form" name="createMenuForm" ng-submit="createMenu(menu)">
+
+        <label for="weekNumber">Select Week Number</label>
+        <select name="weekNumber" id="weekNumber" ng-model="menu.weekNumber">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+        </select>
 
         <label for="startDate">Start Date</label>
         <input type="date" name="startDate" id="startDate" ng-model="menu.startDate">
@@ -17,36 +25,39 @@
             <h2>{{category.category_name}}</h2>
 
             <select name="selectOptions1" id="selectOptions1"
-                    ng-model="currentMeal1"
-                    ng-options="meal.entree + ' with ' + meal.side_1 for meal in category.mealInfo"
-                    ng-change="saveMenu(currentMeal1)">
-                <!--<option ng-repeat="meal in category.mealInfo"-->
-                        <!--value={{meal}}>{{meal.entree}} with {{meal.side_1}}, {{meal.side_2}}-->
-                <!--</option>-->
+                    ng-model="selectedMeal1"
+                    ng-options="meal.entree + ' with ' + meal.side_1 + ', ' + meal.side_2 for meal in category.mealInfo"
+                    ng-change="saveMenu(selectedMeal1)">
             </select><br>
 
             <select name="selectOptions2" id="selectOptions2"
-                    ng-model="currentMeal2"
-                    ng-options="meal.entree + ' with ' + meal.side_1 for meal in category.mealInfo"
-                    ng-change="saveMenu(currentMeal2)">
-                <!--<option ng-repeat="meal in category.mealInfo"-->
-                        <!--value={{meal}}>{{meal.entree}} with {{meal.side_1}}, {{meal.side_2}}-->
-                <!--</option>-->
+                    ng-model="selectedMeal2"
+                    ng-options="meal.entree + ' with ' + meal.side_1 + ', ' + meal.side_2 for meal in category.mealInfo"
+                    ng-change="saveMenu(selectedMeal2)">
             </select><br>
 
+            <select name="selectOptions3" id="selectOptions3"
+                    ng-model="selectedMeal3"
+                    ng-options="meal.entree + ' with ' + meal.side_1 + ', ' + meal.side_2 for meal in category.mealInfo"
+                    ng-change="saveMenu(selectedMeal3)">
+            </select><br>
+
+            <select name="selectOptions4" id="selectOptions4"
+                    ng-model="selectedMeal4"
+                    ng-options="meal.entree + ' with ' + meal.side_1 + ', ' + meal.side_2 for meal in category.mealInfo"
+                    ng-change="saveMenu(selectedMeal4)">
+            </select><br>
+
+            <select name="selectOptions5" id="selectOptions5"
+                    ng-model="selectedMeal5"
+                    ng-options="meal.entree + ' with ' + meal.side_1 + ', ' + meal.side_2 for meal in category.mealInfo"
+                    ng-change="saveMenu(selectedMeal5)">
+            </select><br>
 
         </div>
 
-        <!--<button type="submit">Submit</button>-->
         <button type="submit">Submit</button>
 
     </form>
 
-    <!--<form class="create-menu-form" name="createMenuForm" ng-submit="createMenu()">-->
-        <!--<div class="" ng-repeat="category in categories">-->
-            <!--<label>{{category.category_name}}</label>-->
-            <!--<input class="form-control" type="number" name="{{category.category_name}}" ng-model="category.formCount">-->
-        <!--</div>-->
-        <!--<button type="submit">Submit</button>-->
-    <!--</form>-->
 </div>
