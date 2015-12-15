@@ -10,7 +10,6 @@ myApp.controller('CreateMenuController', ["$scope", "$http", "DataService", func
     $scope.selectedMealArray = [];
     $scope.menu = {};
     $scope.menuId;
-
     $scope.menuPreBuild = {};
 
     // Pull in categories
