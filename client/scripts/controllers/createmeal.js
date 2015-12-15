@@ -4,7 +4,8 @@ myApp.controller('CreateMealController', ["$scope",  '$http', "DataService",  fu
 
     $scope.meal = {
         categories: [],
-        allergens: []
+        allergens: [],
+        status: true
     };
 
     //CATEGORIES PRESENTED FOR SELECTION
