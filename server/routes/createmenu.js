@@ -93,4 +93,72 @@ router.post('/', function(req,res){
 
 });
 
+// GET call to obtain the menu_id of newly created menu
+router.get('/getMenuId', function(req,res){
+
+    console.log(req.query);
+
+    var results = [];
+
+    pg.connect(connectionString, function (err, client) {
+        var query = client.query("SELECT menus.menu_id\
+        FROM menus\
+        WHERE menus.start_date = $1",
+        [req.query.startDate]);
+
+
+        // Stream results back one row at a time, push into results array
+        query.on('row', function (row) {
+            results.push(row);
+        });
+
+        // After all data is returned, close connection and return results
+        query.on('end', function () {
+            client.end();
+            return res.json(results);
+        });
+
+        // Handle Errors
+        if (err) {
+            console.log(err);
+        }
+    });
+});
+
+// POST call to save menu_id, meal_id's and category_id's to meal_menu table
+router.post('/saveToMealMenu', function(req,res){
+
+    for(var i = 0; i < req.body.mealsArray.length; i++){
+
+        var newMealMenu = {
+            "menuId": req.body.menuId,
+            "mealId": req.body.mealsArray[i].meal_id,
+            "categoryId": req.body.mealsArray[i].category_id
+        };
+
+        console.log(newMealMenu.menuId, newMealMenu.mealId ,newMealMenu.categoryId);
+        save(newMealMenu);
+
+    }
+
+    res.send("save success");
+});
+
+function save(newMealMenu) {
+    pg.connect(connectionString, function (err, client){
+
+        var q = "INSERT INTO meal_menu (menu_id, meal_id, category_id) VALUES ($1, $2, $3)";
+        console.log("query: ", q);
+        console.log(newMealMenu.menuId, newMealMenu.mealId ,newMealMenu.categoryId);
+        var result = client.query(q, [newMealMenu.menuId, newMealMenu.mealId, newMealMenu.categoryId]);
+
+        if(err) console.log(err);
+
+        result.on('end', function () {
+            client.end();
+        });
+
+    });
+}
+
 module.exports = router;

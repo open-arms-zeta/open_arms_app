@@ -24,34 +24,35 @@
         <div ng-repeat="category in categories">
             <h2>{{category.category_name}}</h2>
 
+
             <select name="selectOptions1" id="selectOptions1"
                     ng-model="selectedMeal1"
                     ng-options="meal.entree + ' with ' + meal.side_1 + ', ' + meal.side_2 for meal in category.mealInfo"
-                    ng-change="saveMenu(selectedMeal1)">
+                    ng-change="saveMeals(selectedMeal1, category.category_name, 0)">
             </select><br>
 
             <select name="selectOptions2" id="selectOptions2"
                     ng-model="selectedMeal2"
                     ng-options="meal.entree + ' with ' + meal.side_1 + ', ' + meal.side_2 for meal in category.mealInfo"
-                    ng-change="saveMenu(selectedMeal2)">
+                    ng-change="saveMeals(selectedMeal2, category.category_name, 1)">
             </select><br>
 
             <select name="selectOptions3" id="selectOptions3"
                     ng-model="selectedMeal3"
                     ng-options="meal.entree + ' with ' + meal.side_1 + ', ' + meal.side_2 for meal in category.mealInfo"
-                    ng-change="saveMenu(selectedMeal3)">
+                    ng-change="saveMeals(selectedMeal3)">
             </select><br>
 
             <select name="selectOptions4" id="selectOptions4"
                     ng-model="selectedMeal4"
                     ng-options="meal.entree + ' with ' + meal.side_1 + ', ' + meal.side_2 for meal in category.mealInfo"
-                    ng-change="saveMenu(selectedMeal4)">
+                    ng-change="saveMeals(selectedMeal4)">
             </select><br>
 
             <select name="selectOptions5" id="selectOptions5"
                     ng-model="selectedMeal5"
                     ng-options="meal.entree + ' with ' + meal.side_1 + ', ' + meal.side_2 for meal in category.mealInfo"
-                    ng-change="saveMenu(selectedMeal5)">
+                    ng-change="saveMeals(selectedMeal5)">
             </select><br>
 
         </div>

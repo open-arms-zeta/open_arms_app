@@ -8,8 +8,12 @@ myApp.controller('CreateMenuController', ["$scope", "$http", "DataService", func
     $scope.allergens = [];
     $scope.categories = $scope.dataService.getCategories();
     $scope.selectedMealArray = [];
+    $scope.menu = {};
+    $scope.menuId;
 
-    //pull in categories
+    $scope.menuPreBuild = {};
+
+    // Pull in categories
     if ($scope.categories == undefined) {
         $scope.dataService.retrieveCategories().then(function(){
             $scope.categories = $scope.dataService.getCategories();
@@ -20,9 +24,10 @@ myApp.controller('CreateMenuController', ["$scope", "$http", "DataService", func
         $scope.getMeals();
     }
 
-    // get meals for each category (excluding allergen information)
+    // GET meals for each category
     $scope.getMeals = function(){
         $http.get('/createmenu/meals').then(function(response){
+
             $scope.allMeals = response.data;
 
             for(var i = 0; i < $scope.categories.length; i++){
@@ -36,34 +41,50 @@ myApp.controller('CreateMenuController', ["$scope", "$http", "DataService", func
                     }
                 }
             }
+
+
+            for(var i = 0; i<$scope.categories.length; i++){
+                $scope.menuPreBuild[$scope.categories[i].category_name] = [];
+            }
+            console.log($scope.menuPreBuild);
+
         });
     };
 
-    $scope.saveMenu = function(currentMeal){
-        //console.log(currentMeal);
-        $scope.selectedMealArray.push(currentMeal);
-        //console.log($scope.selectedMealArray);
+    // Save selected meals from drop down menus to selectedMealArray
+    $scope.saveMeals = function(currentMeal, category, index){
+
+        $scope.menuPreBuild[category[index]] = currentMeal;
+
+        console.log("This is using arguments", $scope.menuPreBuild[category[index]]);
+
+        // Use underscore to push everything to selectedMealArray!!!!!
+        //$scope.selectedMealArray.push(currentMeal);
     };
 
     $scope.createMenu = function(menu){
         console.log(menu);
 
-        for(var i=0; i<$scope.selectedMealArray.length;i++){
-            console.log($scope.selectedMealArray[i].meal_id, $scope.selectedMealArray[i].category_id);
-        }
-        $http.post('/createmenu', menu).then(function(){
+        //for(var i=0; i<$scope.selectedMealArray.length;i++){
+        //    console.log($scope.selectedMealArray[i].meal_id, $scope.selectedMealArray[i].category_id);
+        //}
 
-            // GET menu_id of the new entry
+        //$http.post('/createmenu', menu).then(function(){
 
-            // POST send menu_id and $scope.selectedMealArray to Server
-            // Let server run the loop
+            // GET menu_id of the new entry based on date
+            //$http.get('/createmenu/getMenuId', {params: {startDate: menu.startDate}}).then(function(response){
+            //
+            //    $scope.menuId = response.data[0].menu_id;
+            //
+            //    $http.post('/createmenu/saveToMealMenu', {menuId: $scope.menuId, mealsArray: $scope.selectedMealArray}).then(function(){
+            //        console.log("HI");
+            //    });
+            //
+            //});
 
-            //for(var i=0; i<$scope.selectedMealArray.length;i++){
-            //    console.log($scope.selectedMealArray[i].meal_id, $scope.selectedMealArray[i].category_id);
-            //}
 
 
-        });
+        //});
     }
 
 }]);
