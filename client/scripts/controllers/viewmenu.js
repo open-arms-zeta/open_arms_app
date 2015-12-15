@@ -49,51 +49,35 @@ myApp.controller('ViewMenuController', ["$scope", "$http", "DataService", functi
     };
 
     $scope.getMenu = function(menu) {
-
         // Get Menu for Specific Week
-        if ($scope.menuByWeek == undefined){
-            $scope.dataService.retrieveMenuByWeek(menu.startDate, menu.endDate).then(function(){
-                $scope.menuByWeek = $scope.dataService.getMenu();
-                console.log($scope.menuByWeek);
-                $scope.setDefault();
-            });
-        }else {
+        //if ($scope.menuByWeek == undefined){
+        //    $scope.dataService.retrieveMenuByWeek(menu.startDate, menu.endDate).then(function(){
+        //        $scope.menuByWeek = $scope.dataService.getMenu();
+        //        console.log($scope.menuByWeek);
+        //        $scope.setDefault();
+        //    });
+        //}else {
+        //    $scope.menuByWeek = $scope.dataService.getMenu();
+        //    console.log($scope.menuByWeek);
+        //    $scope.setDefault();
+        //}
+        $scope.categories = $scope.dataService.getCategories();
+        $scope.dataService.retrieveMenuByWeek(menu.startDate, menu.endDate).then(function(){
             $scope.menuByWeek = $scope.dataService.getMenu();
             console.log($scope.menuByWeek);
             $scope.setDefault();
-        }
+        });
 
         $scope.showCategoryHeadings = true;
 
-        //$http.get('/getmenu', {params: {startDate: menu.startDate, endDate: menu.endDate}}).then(function (response) {
-        //    $scope.mealsInMenuArray = response.data;
-        //    $scope.showCategoryHeadings = true;
-
-            //for(var i = 0; i < $scope.categories.length; i++){
-            //    $scope.categories[i].mealInfo = [];
-            //
-            //    for(var j = 0; j < $scope.mealsInMenuArray.length; j++){
-            //
-            //        // Push meal into object category based on category
-            //        if($scope.categories[i].category_name == $scope.mealsInMenuArray[j].category_name){
-            //            $scope.categories[i].mealInfo.push($scope.mealsInMenuArray[j]);
-            //        }
-            //    }
-            //}
-
-
-
-
-            //$scope.defaultMeal[0] = $scope.categories[0].mealInfo[0];
-
-        //});
     };
 
     $scope.setDefault = function(){
-
         for(var i = 0; i < $scope.categories.length; i++){
             $scope.categories[i].defaultMeal = [];
+
             for(var j = 0; j < $scope.categories[i].mealInfo.length; j++){
+
                 for(var k = 0; k < $scope.menuByWeek.length; k++){
 
                     if($scope.menuByWeek[k].meal_id == $scope.categories[i].mealInfo[j].meal_id &&
@@ -104,8 +88,6 @@ myApp.controller('ViewMenuController', ["$scope", "$http", "DataService", functi
                 }
             }
         }
-
-        //$scope.defaultMeal[0] = $scope.categories[1].mealInfo[0];
     }
 
 

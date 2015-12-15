@@ -26,19 +26,6 @@
         <div ng-repeat="category in categories" ng-show="showCategoryHeadings">
             <h2>{{category.category_name}}</h2>
 
-            <!--<p ng-repeat="meal in category.mealInfo">{{meal.entree}} with {{meal.side_1}}, {{meal.side_2}}</p>-->
-
-            <!--<select name="selectOptions1" id="selectOptions1"-->
-                    <!--ng-options="meal.entree for meal in category.mealInfo"-->
-                    <!--ng-model="defaultMeal[0]">-->
-            <!--</select>-->
-
-            <!--<select name="selectOptions2" id="selectOptions2"-->
-                    <!--ng-options="meal.entree for meal in category.mealInfo"-->
-                    <!--ng-model="defaultMeal[1]">-->
-            <!--</select>-->
-
-
             <select name="selectOptions1" id="selectOptions1"
                     ng-model="category.defaultMeal[0]"
                     ng-options="meal.entree + ' with ' + meal.side_1 + ', ' + meal.side_2 for meal in category.mealInfo"
