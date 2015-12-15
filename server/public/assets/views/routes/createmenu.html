@@ -40,19 +40,19 @@
             <select name="selectOptions3" id="selectOptions3"
                     ng-model="selectedMeal3"
                     ng-options="meal.entree + ' with ' + meal.side_1 + ', ' + meal.side_2 for meal in category.mealInfo"
-                    ng-change="saveMeals(selectedMeal3)">
+                    ng-change="saveMeals(selectedMeal3, category.category_name, 2)">
             </select><br>
 
             <select name="selectOptions4" id="selectOptions4"
                     ng-model="selectedMeal4"
                     ng-options="meal.entree + ' with ' + meal.side_1 + ', ' + meal.side_2 for meal in category.mealInfo"
-                    ng-change="saveMeals(selectedMeal4)">
+                    ng-change="saveMeals(selectedMeal4, category.category_name, 3)">
             </select><br>
 
             <select name="selectOptions5" id="selectOptions5"
                     ng-model="selectedMeal5"
                     ng-options="meal.entree + ' with ' + meal.side_1 + ', ' + meal.side_2 for meal in category.mealInfo"
-                    ng-change="saveMeals(selectedMeal5)">
+                    ng-change="saveMeals(selectedMeal5, category.category_name, 4)">
             </select><br>
 
         </div>
