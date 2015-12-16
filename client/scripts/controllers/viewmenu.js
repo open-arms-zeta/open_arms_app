@@ -13,6 +13,7 @@ myApp.controller('ViewMenuController', ["$scope", "$http", "DataService", functi
     $scope.menuPreBuild = {};
     $scope.selectedMealArray = [];
     $scope.menuId;
+    $scope.hideDropDown = true;
 
     // Pull in categories
     if($scope.categories == undefined){
@@ -52,6 +53,7 @@ myApp.controller('ViewMenuController', ["$scope", "$http", "DataService", functi
     };
 
     $scope.getMenu = function(menu) {
+        $scope.hideDropDown = true;
 
         // Get Menu for Specific Week
         $scope.categories = $scope.dataService.getCategories();
@@ -78,8 +80,8 @@ myApp.controller('ViewMenuController', ["$scope", "$http", "DataService", functi
                     if($scope.menuByWeek[k].meal_id == $scope.categories[i].mealInfo[j].meal_id &&
                         $scope.menuByWeek[k].category_id == $scope.categories[i].mealInfo[j].category_id){
 
-                            $scope.categories[i].defaultMeal.push($scope.categories[i].mealInfo[j]);
-                            $scope.menuPreBuild[$scope.categories[i].category_name] = $scope.categories[i].defaultMeal;
+                        $scope.categories[i].defaultMeal.push($scope.categories[i].mealInfo[j]);
+                        $scope.menuPreBuild[$scope.categories[i].category_name] = $scope.categories[i].defaultMeal;
                     }
                 }
             }
@@ -103,7 +105,7 @@ myApp.controller('ViewMenuController', ["$scope", "$http", "DataService", functi
         // Delete meal_id and category_id columns of the current editing menu
         $http.delete('/getmenu/removeMealsFromMenu', {params: {menuId: $scope.menuId}}).then(function(){
 
-        $scope.postToMealMenu();
+            $scope.postToMealMenu();
 
         });
 
@@ -112,6 +114,8 @@ myApp.controller('ViewMenuController', ["$scope", "$http", "DataService", functi
     $scope.postToMealMenu = function(){
         $http.post('/createmenu/saveToMealMenu', {menuId: $scope.menuId, mealsArray: $scope.selectedMealArray}).then(function(){
             console.log("HI");
+            $scope.hideDropDown = false;
+            $scope.showCategoryHeadings = false;
         });
     };
 

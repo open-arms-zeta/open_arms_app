@@ -5,7 +5,7 @@
         <p>Select week, week start date, view menu or edit menu using drop-down menus for each category</p>
     </div>
 
-    <form class="create-menu-form" name="createMenuForm" ng-submit="createMenu(menu)">
+    <form class="create-menu-form" name="createMenuForm">
 
         <label for="weekNumber">Select Week Number</label>
         <select name="weekNumber" id="weekNumber" ng-model="menu.weekNumber">
@@ -58,8 +58,12 @@
 
         </div>
 
-        <button type="submit" ng-show="showCategoryHeadings">Edit Menu</button>
+        <button ng-show="showCategoryHeadings" ng-click="createMenu(menu)">Edit Menu</button>
 
     </form>
+
+    <div ng-hide="hideDropDown">
+        <h2>Menu is edited for the week of {{menu.startDate | date: 'MM-dd-yyyy'}}!</h2>
+    </div>
 
 </div>

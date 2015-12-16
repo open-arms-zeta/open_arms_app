@@ -10,6 +10,7 @@ myApp.controller('CreateMenuController', ["$scope", "$http", "DataService", func
     $scope.menu = {};
     $scope.menuId;
     $scope.menuPreBuild = {};
+    $scope.hideDropDown = false;
 
     // Pull in categories
     if ($scope.categories == undefined) {
@@ -80,9 +81,10 @@ myApp.controller('CreateMenuController', ["$scope", "$http", "DataService", func
         });
     };
 
-    $scope.postToMealMenu = function(){
+    $scope.postToMealMenu = function(menu){
         $http.post('/createmenu/saveToMealMenu', {menuId: $scope.menuId, mealsArray: $scope.selectedMealArray}).then(function(){
-            console.log("HI");
+            console.log("menu saved");
+            $scope.hideDropDown = true;
         });
     };
 
