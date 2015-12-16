@@ -1,0 +1,15 @@
+<div>
+    <h1 class="admin-header">View Meal</h1>
+</div>
+
+<form class="view-meal-form" name="viewMealForm" ng-submit="searchMeals(searchTerm)">
+    <label for="mealSearch">Search</label>
+    <input type="text" name="mealSearch" id="mealSearch" ng-model="meal.searchTerm">
+
+    <button type="submit">Search</button>
+</form>
+
+<button type="button" ng-click="showAll()">Show All Meals</button>
+
+
+<div ui-grid="gridOptions" ui-grid-edit class="myGrid" ng-if="allMeals"></div>

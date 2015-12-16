@@ -1,37 +1,111 @@
 0 info it worked if it ends with ok
-1 verbose cli [ '/usr/local/bin/node', '/usr/local/bin/npm', 'start' ]
-2 info using npm@2.14.7
-3 info using node@v4.2.1
-4 verbose run-script [ 'prestart', 'start', 'poststart' ]
-5 info prestart angular_factory_lecture@1.0.0
-6 info start angular_factory_lecture@1.0.0
-7 verbose unsafe-perm in lifecycle true
-8 info angular_factory_lecture@1.0.0 Failed to exec start script
-9 verbose stack Error: angular_factory_lecture@1.0.0 start: `node server/app.js`
-9 verbose stack Exit status 1
-9 verbose stack     at EventEmitter.<anonymous> (/usr/local/lib/node_modules/npm/lib/utils/lifecycle.js:214:16)
-9 verbose stack     at emitTwo (events.js:87:13)
-9 verbose stack     at EventEmitter.emit (events.js:172:7)
-9 verbose stack     at ChildProcess.<anonymous> (/usr/local/lib/node_modules/npm/lib/utils/spawn.js:24:14)
-9 verbose stack     at emitTwo (events.js:87:13)
-9 verbose stack     at ChildProcess.emit (events.js:172:7)
-9 verbose stack     at maybeClose (internal/child_process.js:818:16)
-9 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:211:5)
-10 verbose pkgid angular_factory_lecture@1.0.0
-11 verbose cwd /Users/aronthomas/Documents/Scripts/WebStorm_Projects/open_arms_boilerplate-master
-12 error Darwin 15.2.0
-13 error argv "/usr/local/bin/node" "/usr/local/bin/npm" "start"
-14 error node v4.2.1
-15 error npm  v2.14.7
-16 error code ELIFECYCLE
-17 error angular_factory_lecture@1.0.0 start: `node server/app.js`
-17 error Exit status 1
-18 error Failed at the angular_factory_lecture@1.0.0 start script 'node server/app.js'.
-18 error This is most likely a problem with the angular_factory_lecture package,
-18 error not with npm itself.
-18 error Tell the author that this fails on your system:
-18 error     node server/app.js
-18 error You can get their info via:
-18 error     npm owner ls angular_factory_lecture
-18 error There is likely additional logging output above.
-19 verbose exit [ 1, true ]
+1 verbose cli [ '/usr/local/bin/node',
+1 verbose cli   '/usr/local/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   'angular-ui-bootstap',
+1 verbose cli   '--save' ]
+2 info using npm@2.14.4
+3 info using node@v4.1.1
+4 verbose install initial load of /Users/paigewalters/Documents/open_arms_app/package.json
+5 warn package.json angular_factory_lecture@1.0.0 No description
+6 warn package.json angular_factory_lecture@1.0.0 No repository field.
+7 warn package.json angular_factory_lecture@1.0.0 No README data
+8 verbose installManyTop reading scoped package data from /Users/paigewalters/Documents/open_arms_app/node_modules/angular/package.json
+9 verbose installManyTop reading scoped package data from /Users/paigewalters/Documents/open_arms_app/node_modules/angular-route/package.json
+10 verbose installManyTop reading scoped package data from /Users/paigewalters/Documents/open_arms_app/node_modules/bcrypt/package.json
+11 verbose installManyTop reading scoped package data from /Users/paigewalters/Documents/open_arms_app/node_modules/body-parser/package.json
+12 verbose installManyTop reading scoped package data from /Users/paigewalters/Documents/open_arms_app/node_modules/express/package.json
+13 verbose installManyTop reading scoped package data from /Users/paigewalters/Documents/open_arms_app/node_modules/express-session/package.json
+14 verbose installManyTop reading scoped package data from /Users/paigewalters/Documents/open_arms_app/node_modules/grunt/package.json
+15 verbose installManyTop reading scoped package data from /Users/paigewalters/Documents/open_arms_app/node_modules/grunt-contrib-copy/package.json
+16 verbose installManyTop reading scoped package data from /Users/paigewalters/Documents/open_arms_app/node_modules/grunt-contrib-uglify/package.json
+17 verbose installManyTop reading scoped package data from /Users/paigewalters/Documents/open_arms_app/node_modules/normalize.css/package.json
+18 verbose installManyTop reading scoped package data from /Users/paigewalters/Documents/open_arms_app/node_modules/passport/package.json
+19 verbose installManyTop reading scoped package data from /Users/paigewalters/Documents/open_arms_app/node_modules/passport-local/package.json
+20 verbose installManyTop reading scoped package data from /Users/paigewalters/Documents/open_arms_app/node_modules/path/package.json
+21 verbose installManyTop reading scoped package data from /Users/paigewalters/Documents/open_arms_app/node_modules/pg/package.json
+22 verbose installManyTop reading scoped package data from /Users/paigewalters/Documents/open_arms_app/node_modules/sequelize/package.json
+23 verbose installManyTop reading scoped package data from /Users/paigewalters/Documents/open_arms_app/node_modules/ui-grid/package.json
+24 verbose installManyTop reading scoped package data from /Users/paigewalters/Documents/open_arms_app/node_modules/underscore/package.json
+25 info package.json grunt@0.4.5 No license field.
+26 info package.json passport-local@1.0.0 No license field.
+27 info package.json path@0.12.7 path is also the name of a node core module.
+28 info package.json ui-grid@0.0.0 No repository field.
+29 info package.json ui-grid@0.0.0 No README data
+30 verbose readDependencies loading dependencies from /Users/paigewalters/Documents/open_arms_app/package.json
+31 silly cache add args [ 'angular-ui-bootstap', null ]
+32 verbose cache add spec angular-ui-bootstap
+33 silly cache add parsed spec Result {
+33 silly cache add   raw: 'angular-ui-bootstap',
+33 silly cache add   scope: null,
+33 silly cache add   name: 'angular-ui-bootstap',
+33 silly cache add   rawSpec: '',
+33 silly cache add   spec: '*',
+33 silly cache add   type: 'range' }
+34 silly addNamed angular-ui-bootstap@*
+35 verbose addNamed "*" is a valid semver range for angular-ui-bootstap
+36 silly addNameRange { name: 'angular-ui-bootstap', range: '*', hasData: false }
+37 silly mapToRegistry name angular-ui-bootstap
+38 silly mapToRegistry using default registry
+39 silly mapToRegistry registry https://registry.npmjs.org/
+40 silly mapToRegistry uri https://registry.npmjs.org/angular-ui-bootstap
+41 verbose addNameRange registry:https://registry.npmjs.org/angular-ui-bootstap not in flight; fetching
+42 verbose request uri https://registry.npmjs.org/angular-ui-bootstap
+43 verbose request no auth needed
+44 info attempt registry request try #1 at 2:32:38 PM
+45 verbose request id 0dc92ea127e1bd1c
+46 http request GET https://registry.npmjs.org/angular-ui-bootstap
+47 http 404 https://registry.npmjs.org/angular-ui-bootstap
+48 verbose headers { 'content-type': 'application/json',
+48 verbose headers   'cache-control': 'max-age=0',
+48 verbose headers   'content-length': '2',
+48 verbose headers   'accept-ranges': 'bytes',
+48 verbose headers   date: 'Wed, 16 Dec 2015 20:32:39 GMT',
+48 verbose headers   via: '1.1 varnish',
+48 verbose headers   age: '0',
+48 verbose headers   connection: 'keep-alive',
+48 verbose headers   'x-served-by': 'cache-dfw1831-DFW',
+48 verbose headers   'x-cache': 'MISS',
+48 verbose headers   'x-cache-hits': '0',
+48 verbose headers   'x-timer': 'S1450297958.951065,VS0,VE49' }
+49 silly get cb [ 404,
+49 silly get   { 'content-type': 'application/json',
+49 silly get     'cache-control': 'max-age=0',
+49 silly get     'content-length': '2',
+49 silly get     'accept-ranges': 'bytes',
+49 silly get     date: 'Wed, 16 Dec 2015 20:32:39 GMT',
+49 silly get     via: '1.1 varnish',
+49 silly get     age: '0',
+49 silly get     connection: 'keep-alive',
+49 silly get     'x-served-by': 'cache-dfw1831-DFW',
+49 silly get     'x-cache': 'MISS',
+49 silly get     'x-cache-hits': '0',
+49 silly get     'x-timer': 'S1450297958.951065,VS0,VE49' } ]
+50 verbose stack Error: Registry returned 404 for GET on https://registry.npmjs.org/angular-ui-bootstap
+50 verbose stack     at makeError (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:263:12)
+50 verbose stack     at CachingRegistryClient.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:241:14)
+50 verbose stack     at Request._callback (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:171:14)
+50 verbose stack     at Request.self.callback (/usr/local/lib/node_modules/npm/node_modules/request/request.js:198:22)
+50 verbose stack     at emitTwo (events.js:87:13)
+50 verbose stack     at Request.emit (events.js:172:7)
+50 verbose stack     at Request.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:1073:14)
+50 verbose stack     at emitOne (events.js:82:20)
+50 verbose stack     at Request.emit (events.js:169:7)
+50 verbose stack     at IncomingMessage.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:1019:12)
+51 verbose statusCode 404
+52 verbose pkgid angular-ui-bootstap
+53 verbose cwd /Users/paigewalters/Documents/open_arms_app
+54 error Darwin 14.5.0
+55 error argv "/usr/local/bin/node" "/usr/local/bin/npm" "install" "angular-ui-bootstap" "--save"
+56 error node v4.1.1
+57 error npm  v2.14.4
+58 error code E404
+59 error 404 Registry returned 404 for GET on https://registry.npmjs.org/angular-ui-bootstap
+59 error 404
+59 error 404 'angular-ui-bootstap' is not in the npm registry.
+59 error 404 You should bug the author to publish it (or use the name yourself!)
+59 error 404 It was specified as a dependency of 'angular_factory_lecture'
+59 error 404
+59 error 404 Note that you can also install from a
+59 error 404 tarball, folder, http url, or git url.
+60 verbose exit [ 1, true ]

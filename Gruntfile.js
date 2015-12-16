@@ -29,6 +29,15 @@ module.exports = function(grunt){
                 ],
                 "dest": "server/public/vendors/"
             },
+            angularUI: {
+                expand: true,
+                cwd: 'node_modules/angular-ui-bootstrap',
+                src: [
+                    "ui-bootstrap.min.js",
+                    "ui-bootstrap-tpls.min.js"
+                ],
+                "dest": "server/public/vendors/"
+            },
             angularRoute: {
                 expand: true,
                 cwd: 'node_modules/angular-route',
