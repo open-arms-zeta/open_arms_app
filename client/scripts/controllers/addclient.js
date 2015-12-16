@@ -1,6 +1,7 @@
 /**
  * Created by aronthomas on 12/10/15.
  */
+
 myApp.controller('AddClientController', ["$scope", "DataService", "$http", "$filter", function($scope, DataService, $http, $filter){
 
     console.log("Add client Controller Online");
@@ -23,11 +24,21 @@ myApp.controller('AddClientController', ["$scope", "DataService", "$http", "$fil
     };
 
     $scope.submit = function(){
-        console.log($scope.newClient);
-        $scope.newClient.password = $scope.newClient.phone.toString();
-        $http.post('/register',$scope.newClient).then(function(response){
-            console.log(response.data);
-        });
+        if($scope.addClientForm.$valid){
+            console.log($scope.newClient);
+            $scope.newClient.password = $scope.newClient.phone.toString();
+            $http.post('/register',$scope.newClient).then(function(response){
+                console.log(response.data);
+            });
+            $scope.clearInput();
+        }
+
+    };
+
+    //Clear form input
+    $scope.clearInput = function() {
+        $scope.newClient = {};
+        $scope.addClientForm.$setUntouched();
     };
 
     $scope.readCSV = function(){
@@ -74,3 +85,55 @@ myApp.directive('fileChange',['$parse', function($parse){
         }
     }
 }]);
+//=======
+//myApp.controller('AddClientController', ["$scope", "DataService", "$http", function($scope, DataService, $http){
+//    console.log("Add client Controller Online");
+//    //
+//    //$scope.dataService = DataService;
+//    //
+//    ////$scope.newClient = {
+//    ////
+//    ////};
+//    //
+//    //$scope.categories = [];
+//    //
+//    //
+//    //$scope.retrieveCategories = function(){
+//    //    $http({
+//    //        method: 'GET',
+//    //        url: '/getcategories'
+//    //    }).then(function(response) {
+//    //        $scope.categories = response.data;
+//    //        console.log("Here are the categories: ", $scope.categories);
+//    //        console.log($scope.categories[0].category_name);
+//    //    })
+//    //};
+//    //
+//    //
+//    //$scope.retrieveCategories();
+//    //
+//    ////$scope.submit = function(){
+//    ////    console.log($scope.newClient)
+//    ////};
+//
+//
+//    //VALIDATION
+//    $scope.submitForm = function() {
+//
+//        // check to make sure the form is completely valid
+//        if ($scope.addClientForm.$valid) {
+//            //alert('New client added!');
+//            //post new client!
+//            console.log($scope.client);
+//            $scope.clearInput();
+//        }
+//    };
+//
+//    //Clear form input
+//    $scope.clearInput = function() {
+//        $scope.client = null;
+//        $scope.addClientForm.$setUntouched();
+//    };
+//
+//}]);
+//>>>>>>> master

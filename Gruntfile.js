@@ -20,7 +20,6 @@ module.exports = function(grunt){
             factories: {
                 src: 'client/scripts/factories/*.js',
                 dest: "server/public/assets/scripts/factories/factory.min.js"
-
             }
         },
         copy: {
@@ -87,6 +86,23 @@ module.exports = function(grunt){
                 ],
                 "dest": "server/public/vendors/"
             },
+            angularBootstrap: {
+                expand: true,
+                cwd: 'node_modules/angular-bootstrap',
+                src: [
+                    "ui-bootstrap.min.js"
+                ],
+                "dest": "server/public/vendors/"
+            },
+            bootstrap: {
+                expand: true,
+                cwd: 'node_modules/dist/css/',
+                src: [
+                    "bootstrap.min.css",
+                    "bootstrap.min.css.map"
+                ],
+                "dest": "server/public/vendors/"
+            },
             underscore: {
                 expand: true,
                 cwd: 'node_modules/underscore/',
@@ -126,4 +142,5 @@ module.exports = function(grunt){
     grunt.loadNpmTasks('grunt-contrib-uglify');
 
     grunt.registerTask('default', ['copy', 'uglify']);
+
 };

@@ -16,6 +16,7 @@ var getMealCount = require('../routes/getmealcount');
 var getMeals = require('../routes/getmeals');
 var getMenu = require('../routes/getmenu');
 var searchClients = require('../routes/searchclients');
+var postMeals = require('../routes/postmeals');
 
 
 router.post('/',
@@ -49,6 +50,7 @@ router.use('/getmealcount', getMealCount);
 router.use('/getmeals', getMeals);
 router.use('/getmenu', getMenu);
 router.use('/searchclients', searchClients);
+router.use('/postmeals', postMeals);
 router.use('/user', user);
 
 

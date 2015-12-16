@@ -1,0 +1,28 @@
+<div class="modal-header">
+    <h3 class="modal-title">Meal</h3>
+</div>
+<div class="modal-body">
+
+    <div>
+        <h3>Entree</h3>
+        <p>{{displayData[0].entree}}</p>
+        <h3>Sides</h3>
+        <p>{{displayData[0].side_1}}</p>
+        <p>{{displayData[0].side_2}}</p>
+    </div>
+    <div>
+        <h3>Allergens</h3>
+        <p>{{displayData[0].allergen_name}}</p>
+        <p>{{displayData[0].specific_name}}</p>
+    </div>
+
+    <h3>Categories</h3>
+    <div ng-repeat="meals in displayData">
+        <p>{{meals.category_name}}</p>
+    </div>
+
+
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+</div>
