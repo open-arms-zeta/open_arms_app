@@ -40,12 +40,18 @@ myApp.controller('CreateMealController', ["$scope",  '$http', "DataService",  fu
         //    method: 'POST',
         //    url: '/postmeals'
         //}).then (function(req){
+        //$scope.clearInput();
         //
         //});
-        console.log($scope.mealtype);
-        console.log($scope.allergy);
+
         console.log($scope.meal);
-        //$scope.mealCreate();
+
+    };
+
+    $scope.clearInput = function() {
+        $scope.meal = {};
+        $scope.createMeal.$setUntouched();
+
     };
 
     $scope.findAllergen = function(allergen){
@@ -57,5 +63,11 @@ myApp.controller('CreateMealController', ["$scope",  '$http', "DataService",  fu
         var index = _.findLastIndex($scope.meal.allergens, {allergen_name: allergen});
         $scope.meal.allergens[index].specific = specificAllergen;
         //console.log($scope.meal);
-    }
+    };
+
+
+
+
+
+
 }]);

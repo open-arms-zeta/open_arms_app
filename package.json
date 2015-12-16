@@ -13,6 +13,7 @@
     "angular": "^1.4.8",
     "angular-animate": "^1.4.8",
     "angular-bootstrap": "^0.12.2",
+    "angular-messages": "^1.4.8",
     "angular-route": "^1.4.8",
     "bcrypt": "^0.8.5",
     "body-parser": "^1.14.1",

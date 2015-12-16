@@ -46,6 +46,15 @@ module.exports = function(grunt){
                 ],
                 "dest": "server/public/vendors/"
             },
+            angularMessaes: {
+                expand: true,
+                cwd: 'node_modules/angular-route',
+                src: [
+                    "angular-messages.min.js",
+                    "angular-messages.min.js.map"
+                ],
+                "dest": "server/public/vendors/"
+            },
             angularBootstrap: {
                 expand: true,
                 cwd: 'node_modules/angular-bootstrap',
