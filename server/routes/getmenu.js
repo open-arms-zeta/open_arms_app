@@ -9,7 +9,7 @@ router.get('/', function(req,res){
     var results = [];
 
     pg.connect(connectionString, function (err, client) {
-        var query = client.query("SELECT menus.menu_id, meals.meal_id, meals.entree, meals.side_1, meals.side_2, categories.category_id, categories.category_name\
+        var query = client.query("SELECT menus.menu_id, menus.week_number, meals.meal_id, meals.entree, meals.side_1, meals.side_2, categories.category_id, categories.category_name\
         FROM menus\
         JOIN meal_menu ON meal_menu.menu_id = menus.menu_id\
         JOIN meals ON meals.meal_id = meal_menu.meal_id\

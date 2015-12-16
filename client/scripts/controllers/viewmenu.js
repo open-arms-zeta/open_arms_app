@@ -14,6 +14,7 @@ myApp.controller('ViewMenuController', ["$scope", "$http", "DataService", functi
     $scope.selectedMealArray = [];
     $scope.menuId;
     $scope.hideDropDown = true;
+    $scope.weekNumber;
 
     // Pull in categories
     if($scope.categories == undefined){
@@ -60,7 +61,8 @@ myApp.controller('ViewMenuController', ["$scope", "$http", "DataService", functi
         $scope.dataService.retrieveMenuByWeek(menu.startDate, menu.endDate).then(function(){
             $scope.menuByWeek = $scope.dataService.getMenu();
             $scope.menuId = $scope.menuByWeek[0].menu_id;
-            console.log($scope.menuByWeek, $scope.menuId);
+            $scope.weekNumber = $scope.menuByWeek[0].week_number;
+            console.log($scope.menuByWeek, $scope.menuId, $scope.weekNumber);
             $scope.setDefault();
         });
 

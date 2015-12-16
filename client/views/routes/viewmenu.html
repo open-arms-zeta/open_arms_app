@@ -2,18 +2,18 @@
     <h1 class="admin-header">View/Edit Menu</h1>
     <div class="info">
         <p>Instructions: </p>
-        <p>Select week, week start date, view menu or edit menu using drop-down menus for each category</p>
+        <p>Select week start date, view menu, or edit menu using drop-down menus for each category</p>
     </div>
 
     <form class="create-menu-form" name="createMenuForm">
 
-        <label for="weekNumber">Select Week Number</label>
-        <select name="weekNumber" id="weekNumber" ng-model="menu.weekNumber">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-        </select>
+        <!--<label for="weekNumber">Select Week Number</label>-->
+        <!--<select name="weekNumber" id="weekNumber" ng-model="weekNumber">-->
+            <!--<option>1</option>-->
+            <!--<option>2</option>-->
+            <!--<option>3</option>-->
+            <!--<option>4</option>-->
+        <!--</select>-->
 
         <label for="startDate">Start Date</label>
         <input type="date" name="startDate" id="startDate" ng-model="menu.startDate">
@@ -23,10 +23,12 @@
 
         <button ng-click="getMenu(menu)">View Menu</button>
 
+        <p ng-show="showCategoryHeadings">Week Number: {{weekNumber}}</p>
+
         <div ng-repeat="category in categories" ng-show="showCategoryHeadings">
             <h2>{{category.category_name}}</h2>
 
-            <select name="selectOptions1" id="selectOptions1"
+            <select name="selectOptions1" id="selectOptions1" ng-disabled="activeWeek"
                     ng-model="category.defaultMeal[0]"
                     ng-options="meal.entree + ' with ' + meal.side_1 + ', ' + meal.side_2 for meal in category.mealInfo"
                     ng-change="saveMeals(category.defaultMeal[0], category.category_name, 0)">
