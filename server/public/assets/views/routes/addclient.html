@@ -1,0 +1,102 @@
+<div class="container">
+    <h1>Add Clients</h1>
+
+    <div>
+        <form name="addClientForm" ng-submit="submitForm()" novalidate>
+            <div class="form-group" ng-class="{ 'has-error' : addClientForm.inputFirstName.$invalid && !addClientForm.inputFirstName.$pristine }">
+                <input ng-model="client.firstName" type="text" id="inputFirstName" name="inputFirstName" class="form-control" placeholder="First Name" required>
+                <!--<p ng-show="addClientForm.inputFirstName.$invalid && !addClientForm.inputFirstName.$pristine" class="help-block">Enter a first name</p>-->
+                <div ng-messages="addClientForm.inputFirstName.$error" ng-if="addClientForm.inputFirstName.$touched">
+                    <p ng-message="required">Enter a first name</p>
+                </div>
+            </div>
+
+            <div class="form-group" ng-class="{ 'has-error' : addClientForm.inputLastName.$invalid && !addClientForm.inputLastName.$pristine }">
+                <input ng-model="client.lastName" type="text" id="inputLastName" name="inputLastName" class="form-control" placeholder="Last Name" required>
+                <!--<p ng-show="addClientForm.inputLastName.$invalid && !addClientForm.inputLastName.$pristine" class="help-block">Enter a last name</p>-->
+                <div ng-messages="addClientForm.inputLastName.$error" ng-if="addClientForm.inputLastName.$touched">
+                    <p ng-message="required">Enter a last name</p>
+                </div>
+            </div>
+
+            <div class="form-group" ng-class="{ 'has-error' : addClientForm.inputEmail.$invalid && !addClientForm.inputEmail.$pristine }">
+                <input ng-model="client.email" type="email" id="inputEmail" name="inputEmail" class="form-control" placeholder="E-mail" required>
+                <!--<p ng-show="addClientForm.inputEmail.$invalid && !addClientForm.inputEmail.$pristine" class="help-block">Enter an e-mail address</p>-->
+                <div ng-messages="addClientForm.inputEmail.$error" ng-if="addClientForm.inputEmail.$touched">
+                    <p ng-message="required">Enter an e-mail address</p>
+                    <p ng-message="email">This needs to be a valid email</p>
+                </div>
+            </div>
+
+            <div class="form-group" ng-class="{ 'has-error' : addClientForm.inputPhone.$invalid && !addClientForm.inputPhone.$pristine }">
+                <input ng-model="client.phone" type="number" id="inputPhone" ng-minlength="10" ng-maxlength="10" name="inputPhone" class="form-control" placeholder="Phone # must be 10 digits" required>
+                <!--<p ng-show="addClientForm.inputPhone.$invalid && !addClientForm.inputPhone.$pristine" class="help-block">Enter a phone number</p>-->
+                <div ng-messages="addClientForm.inputPhone.$error" ng-if="addClientForm.inputPhone.$touched">
+                    <!-- show an error if username is too short -->
+                    <p ng-show="addClientForm.inputPhone.$error.minlength">Phone number is too short.</p>
+                    <!-- show an error if username is too long -->
+                    <p ng-show="addClientForm.inputPhone.$error.maxlength">Phone number is too long.</p>
+                    <p ng-message="required">Enter a phone number</p>
+                </div>
+            </div>
+
+            <div class="form-group" ng-class="{ 'has-error' : addClientForm.inputStreet.$invalid && !addClientForm.inputStreet.$pristine }">
+                <input ng-model="client.street" type="text" id="inputStreet" name="inputStreet" class="form-control" placeholder="Street" required>
+                <!--<p ng-show="addClientForm.inputStreet.$invalid && !addClientForm.inputStreet.$pristine" class="help-block">Enter a street address</p>-->
+                <div ng-messages="addClientForm.inputStreet.$error" ng-if="addClientForm.inputStreet.$touched">
+                    <p ng-message="required">Enter a street address</p>
+                </div>
+            </div>
+
+            <div class="form-group" ng-class="{ 'has-error' : addClientForm.inputCity.$invalid && !addClientForm.inputCity.$pristine }">
+                <input ng-model="client.city" type="text" id="inputCity" name="inputCity" class="form-control" placeholder="City" required>
+                <!--<p ng-show="addClientForm.inputCity.$invalid && !addClientForm.inputCity.$pristine" class="help-block">Enter a city</p>-->
+                <div ng-messages="addClientForm.inputCity.$error" ng-if="addClientForm.inputCity.$touched">
+                    <p ng-message="required">Enter a city</p>
+                </div>
+            </div>
+
+            <div class="form-group" ng-class="{ 'has-error' : addClientForm.inputState.$invalid && !addClientForm.inputState.$pristine }">
+                <input ng-model="client.state" type="text" id="inputState" name="inputState" class="form-control" placeholder="State" required>
+                <!--<p ng-show="addClientForm.inputState.$invalid && !addClientForm.inputState.$pristine" class="help-block">Enter a state</p>-->
+                <div ng-messages="addClientForm.inputState.$error" ng-if="addClientForm.inputState.$touched">
+                    <p ng-message="required">Enter a state</p>
+                </div>
+            </div>
+
+            <div class="form-group" ng-class="{ 'has-error' : addClientForm.inputZip.$invalid && !addClientForm.inputZip.$pristine }">
+                <input ng-model="client.zip" type="number" id="inputZip" name="inputZip" ng-minlength="5" ng-maxlength="5" class="form-control" placeholder="Zip" required>
+                <!--<p ng-show="addClientForm.inputState.$invalid && !addClientForm.inputState.$pristine" class="help-block">Enter a zip code</p>-->
+                <div ng-messages="addClientForm.inputZip.$error" ng-if="addClientForm.inputZip.$touched">
+                    <!-- show an error if username is too short -->
+                    <p ng-show="addClientForm.inputZip.$error.minlength">Zip code is too short.</p>
+                    <!-- show an error if username is too long -->
+                    <p ng-show="addClientForm.inputZip.$error.maxlength">Zip code is too long.</p>
+                    <p ng-message="required">Enter a zip code</p>
+                </div>
+            </div>
+
+            <div class="form-group" ng-class="{ 'has-error' : addClientForm.categorySelect.$invalid && !addClientForm.categorySelect.$pristine }">
+                <label for="categorySelect">Select default meal category: </label><br>
+                <select name="categorySelect" id="categorySelect" class="form-control" ng-model="client.defaultCategory" required>
+                    <option value="">---Default Category---</option> <!-- not selected / blank option -->
+                    <option value="{{category.category_name}}" ng-repeat="category in categories">{{category.category_name}}</option> <!-- interpolation -->
+                </select><br>
+                <div ng-messages="addClientForm.categorySelect.$error" ng-if="addClientForm.categorySelect.$touched">
+                    <p ng-message="required">Select a default category</p>
+                </div>
+            </div>
+
+            <div class="submitButton">
+                <button type="submit" ng-click="submitForm(client)" id="submitBtn" ng-disabled="addClientForm.$invalid">Add</button>
+            </div>
+        </form>
+
+        <div class="csvImport">
+            <p>Import a .csv file below to quickly add large amounts of clients</p>
+
+            <button type="submit">Upload</button>
+        </div>
+
+    </div>
+</div>

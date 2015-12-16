@@ -28,7 +28,7 @@
         <div ng-repeat="category in categories" ng-show="showCategoryHeadings">
             <h2>{{category.category_name}}</h2>
 
-            <select name="selectOptions1" id="selectOptions1" ng-disabled="true"
+            <select name="selectOptions1" id="selectOptions1" ng-disabled="activeWeek"
                     ng-model="category.defaultMeal[0]"
                     ng-options="meal.entree + ' with ' + meal.side_1 + ', ' + meal.side_2 for meal in category.mealInfo"
                     ng-change="saveMeals(category.defaultMeal[0], category.category_name, 0)">

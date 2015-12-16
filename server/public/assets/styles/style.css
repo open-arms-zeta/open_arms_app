@@ -20,3 +20,8 @@ header{
     float:right;
     width: 85%;
 }
+
+.myGrid {
+    width: 1200px;
+    height: 250px;
+}

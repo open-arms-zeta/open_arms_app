@@ -16,7 +16,6 @@ module.exports = function(grunt){
             factories: {
                 src: 'client/scripts/factories/*.js',
                 dest: "server/public/assets/scripts/factories/factory.min.js"
-
             }
         },
         copy: {
@@ -35,6 +34,41 @@ module.exports = function(grunt){
                 src: [
                     "angular-route.min.js",
                     "angular-route.min.js.map"
+                ],
+                "dest": "server/public/vendors/"
+            },
+            angularAnimate: {
+                expand: true,
+                cwd: 'node_modules/angular-route',
+                src: [
+                    "angular-animate.min.js",
+                    "angular-animate.min.js.map"
+                ],
+                "dest": "server/public/vendors/"
+            },
+            angularMessages: {
+                expand: true,
+                cwd: 'node_modules/angular-messages',
+                src: [
+                    "angular-messages.min.js",
+                    "angular-messages.min.js.map"
+                ],
+                "dest": "server/public/vendors/"
+            },
+            angularBootstrap: {
+                expand: true,
+                cwd: 'node_modules/angular-bootstrap',
+                src: [
+                    "ui-bootstrap.min.js"
+                ],
+                "dest": "server/public/vendors/"
+            },
+            bootstrap: {
+                expand: true,
+                cwd: 'node_modules/dist/css/',
+                src: [
+                    "bootstrap.min.css",
+                    "bootstrap.min.css.map"
                 ],
                 "dest": "server/public/vendors/"
             },
@@ -77,4 +111,5 @@ module.exports = function(grunt){
     grunt.loadNpmTasks('grunt-contrib-uglify');
 
     grunt.registerTask('default', ['copy', 'uglify']);
+
 };
