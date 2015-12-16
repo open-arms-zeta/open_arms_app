@@ -1,0 +1,15 @@
+body {
+    background-color: #baecf4;
+}
+
+.container {
+    background-color: #91b0df;
+    width: 60%;
+    margin: 10px auto;
+    padding: 10px 0;
+    border-radius: 5px;
+}
+
+.text-center{
+    text-align: center;
+}

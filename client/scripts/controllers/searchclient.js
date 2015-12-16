@@ -4,7 +4,7 @@ myApp.controller('SearchClientController', ["$scope", "DataService", "$http", fu
     $scope.search = "";
 
     $scope.retrieveAll = function(){
-        $http.get('searchclients/all').then(function(response){
+        $http.get('/searchclients/all').then(function(response){
             console.log(response.data);
             $scope.clientData = response.data;
         })

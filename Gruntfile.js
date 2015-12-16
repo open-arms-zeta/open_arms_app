@@ -6,8 +6,12 @@ module.exports = function(grunt){
                 banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
             },
             client: {
-                src: 'client/scripts/*.js',
-                dest: 'server/public/assets/scripts/app.min.js'
+                src: 'client/scripts/client.js',
+                dest: 'server/public/assets/scripts/client.min.js'
+            },
+            admin: {
+                src: 'client/scripts/admin.js',
+                dest: 'server/public/assets/scripts/admin.min.js'
             },
             controllers: {
                 src: 'client/scripts/controllers/*.js',
@@ -35,6 +39,43 @@ module.exports = function(grunt){
                 src: [
                     "angular-route.min.js",
                     "angular-route.min.js.map"
+                ],
+                "dest": "server/public/vendors/"
+            },
+            angularAria: {
+                expand: true,
+                cwd: 'node_modules/angular-aria',
+                src: [
+                    "angular-aria.min.js",
+                    "angular-aria.min.js.map"
+                ],
+                "dest": "server/public/vendors/"
+            },
+            angularAnimate: {
+                expand: true,
+                cwd: 'node_modules/angular-animate',
+                src: [
+                    "angular-animate.min.js",
+                    "angular-animate.min.js.map"
+                ],
+                "dest": "server/public/vendors/"
+            },
+            angularMaterial: {
+                expand: true,
+                cwd: 'node_modules/angular-material',
+                src: [
+                    "angular-material.min.js",
+                    "angular-material.min.css",
+                    "angular-material.min.js.map"
+                ],
+                "dest": "server/public/vendors/"
+            },
+            angularMessages: {
+                expand: true,
+                cwd: 'node_modules/angular-messages',
+                src: [
+                    "angular-messages.min.js",
+                    "angular-messages.min.js.map"
                 ],
                 "dest": "server/public/vendors/"
             },

@@ -3,32 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <title></title>
+    <link rel="stylesheet" href="/vendors/normalize.css">
+    <link rel="stylesheet" href="/assets/styles/loginstyle.css">
 </head>
 <body>
     <div class="instructions">
         <div class="container">
-            <h1 class="lead text-center">Prime Origin</h1>
+            <h1 class="lead text-center">Admin Registration</h1>
         </div>
     </div>
-    <div class="container col-md-6 col-md-offset-3">
+    <div class="container">
         <div class="well text-center">
             <h3>Login</h3>
 
-            <form class="form-horizontal" action="/" method="post">
+            <form class="form-horizontal" action="/register/admin" method="post">
                 <div class="form-group">
-                    <label class="control-label col-sm-2" for="username">Username:</label>
+                    <label class="control-label col-sm-2" for="email">Email:</label>
                     <div class="col-sm-10">
-                        <input class='form-control' type="text" name="username" id="username"/>
+                        <input class='form-control' type="email" name="email" id="email"/>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-sm-2" for="password">Password:</label>
+                    <label class="control-label col-sm-2" for="password">Set gPassword:</label>
                     <div class="col-sm-10">
                         <input class='form-control' type="password" name="password" id="password"/>
                     </div>
                 </div>
                 <div class="row">
-                    <!--<a class='col-md-4' href="/register">Register</a>-->
                     <input class='btn btn-default col-md-4' type="submit" value="Log In"/>
                     <!--<a class="col-md-4" href="/password">Forgot your password?</a>-->
                 </div>

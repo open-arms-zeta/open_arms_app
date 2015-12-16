@@ -6,6 +6,9 @@ myApp.factory('DataService', ['$http', function($http){
 
     * */
     //PRIVATE
+
+    //object
+    var user = undefined;
     //array
     var categories = undefined;
     //date
@@ -28,6 +31,12 @@ myApp.factory('DataService', ['$http', function($http){
         return $http.get('/getmenu', {params: {startDate: startDate, endDate: endDate}}).then(function(response){
 
             menu = response.data;
+        })
+    };
+
+    var retrieveUser = function(){
+        return $http.get('/user').then(function(response){
+            user = response.data;
         })
     };
 
@@ -82,6 +91,14 @@ myApp.factory('DataService', ['$http', function($http){
         },
         getClientOrders: function(){
             return clientOrders;
+        },
+
+        //get user in session
+        retrieveUser: function(){
+            return retrieveUser();
+        },
+        getUser: function(){
+            return user;
         }
     };
 
