@@ -79,6 +79,14 @@ module.exports = function(grunt){
                 ],
                 "dest": "server/public/vendors/"
             },
+            papaparse: {
+                expand: true,
+                cwd: 'node_modules/papaparse',
+                src: [
+                    "papaparse.min.js"
+                ],
+                "dest": "server/public/vendors/"
+            },
             underscore: {
                 expand: true,
                 cwd: 'node_modules/underscore/',

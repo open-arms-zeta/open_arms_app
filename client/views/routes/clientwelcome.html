@@ -11,12 +11,22 @@
     </div>
     <h4>Do you want to customize your selection?</h4>
     <div>
-        <md-button ng-click="customize()">Yes please!</md-button>
-        <md-button ng-click="completeOrder()">No, I prefer the options listed above</md-button>
+        <md-button class="md-raised" ng-click="customize()">Yes please!</md-button>
+        <md-button class="md-raised" ng-click="completeOrder()">No, I prefer the options listed above</md-button>
     </div>
 </div>
 <div class="customize-meals" ng-if="customized">
     <h1>Lets choose some meals</h1>
+    <!--<div ng-init="accordion=0">-->
+        <!--<div ng-repeat="category in categories track by $index">-->
+            <!--<h3 class="accordion" ng-class="{active:accordion == $index}">-->
+                <!--<a href ng-click="accordion = $index">-->
+                    <!--{{category.category_name}}-->
+                <!--</a>-->
+            <!--</h3>-->
+            <!--<p class="accordion-content" ng-show="accordion == $index">Some Meals</p>-->
+        <!--</div>-->
+    <!--</div>-->
 </div>
 <div class="already-ordered" ng-if="mealsChosen">
     <h1>Your meals for the week of {{activeWeek | date: 'fullDate'}} are selected, enjoy!</h1>

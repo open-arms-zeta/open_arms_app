@@ -5,6 +5,7 @@ myApp.controller('ClientWelcomeController', ["$scope", "DataService", "$http", f
     $scope.user = undefined;
     $scope.activeWeek = undefined;
     $scope.menu = undefined;
+    $scope.categories = undefined;
 
     $scope.mealsChosen = false;
     $scope.customized = false;
@@ -26,7 +27,17 @@ myApp.controller('ClientWelcomeController', ["$scope", "DataService", "$http", f
         $scope.activeWeek = $scope.dataService.getActiveWeek()
     }
 
+    //pull in categories
+    if ($scope.categories == undefined) {
+        $scope.dataService.retrieveCategories().then(function(){
+            $scope.categories = $scope.dataService.getCategories();
+        });
+    }else{
+        $scope.categories = $scope.dataService.getCategories();
+    }
+
     //pulls in menu
+    //-------------------To do: have this select the menu for the active week
     if ($scope.menu == undefined) {
         $scope.dataService.retrieveMenuByWeek('2015-12-05', '2015-12-05').then(function(){
             $scope.menu = $scope.dataService.getMenu();
@@ -37,11 +48,13 @@ myApp.controller('ClientWelcomeController', ["$scope", "DataService", "$http", f
         $scope.menu = $scope.dataService.getMenu();
     }
 
-
+    //If user wishses to customize, this value is set to true
     $scope.customize = function(){
         $scope.customized = true;
     };
 
+    //If user completes order, this value is set to true and the program is terminated
+    //-------------------To do: check client orders for active week to see if user has already chosen meals
     $scope.completeOrder = function(){
         $scope.mealsChosen = true;
     };

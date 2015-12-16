@@ -24,6 +24,7 @@
     "grunt-contrib-copy": "^0.8.2",
     "grunt-contrib-uglify": "^0.10.1",
     "normalize.css": "^3.0.3",
+    "papaparse": "^4.1.2",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
     "path": "^0.12.7",

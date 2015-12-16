@@ -29,7 +29,6 @@ myApp.factory('DataService', ['$http', function($http){
     var retrieveMenuByWeek = function(startDate, endDate){
         //returns the http call to get a menu by date input, and sets menu variable to the returned result
         return $http.get('/getmenu', {params: {startDate: startDate, endDate: endDate}}).then(function(response){
-
             menu = response.data;
         })
     };
@@ -41,19 +40,17 @@ myApp.factory('DataService', ['$http', function($http){
     };
 
     var calculateActiveWeek = function(){
+        //CALCULATES THE MONDAY OF THE ACTIVE WEEKS (3rd upcoming monday)
         var d = new Date();
-        //console.log("hi", (7-d.getDay())%7+15);
         var daysToActiveWeek = (7-d.getDay())%7+15;
         d.setDate(d.getDate()+daysToActiveWeek);
-        console.log(d);
         activeWeek = d;
         return d;
     };
 
     var retrieveClientOrders = function(startDate, endDate){
-        console.log("hi");
+        //pulls in client orders for a given start and end date
         return $http.get('/getclients', {params: {startDate: startDate, endDate: endDate}}).then(function(response){
-            console.log(response.data);
             clientOrders = response.data;
         })
     };

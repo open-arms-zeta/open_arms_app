@@ -21,4 +21,8 @@
 
         <button ng-click="submit()">Submit</button>
     </form>
+    <form>
+        <input type="file" file-change="handler($event,files)" ng-model="myFiles" />
+        <button ng-click="readCSV()"></button>
+    </form>
 </div>
