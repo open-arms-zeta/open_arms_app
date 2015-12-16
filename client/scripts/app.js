@@ -1,4 +1,4 @@
-var myApp = angular.module('myApp', ['ngRoute', 'ui.grid', 'ui.grid.edit']);
+var myApp = angular.module('myApp', ['ngRoute', 'ui.grid', 'ui.grid.edit', 'ngMessages']);
 
 myApp.config(['$routeProvider', function($routeProvider){
     $routeProvider
