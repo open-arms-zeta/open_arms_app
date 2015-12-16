@@ -42,6 +42,7 @@ myApp.factory('DataService', ['$http', function($http){
     };
 
     var retrieveClientOrders = function(startDate, endDate){
+        console.log("hi");
         return $http.get('/getclients', {params: {startDate: startDate, endDate: endDate}}).then(function(response){
             console.log(response.data);
             clientOrders = response.data;

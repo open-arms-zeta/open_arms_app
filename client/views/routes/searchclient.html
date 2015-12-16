@@ -1,0 +1,12 @@
+<div>
+    <h1>Search Clients</h1>
+    <div class="search">
+        <form novalidate class="searchForm" ng-submit="getSearchResults()">
+            <label>Search</label>
+            <input type="text" name="search" ng-model="search">
+            <button type="submit">Search</button>
+        </form>
+    </div>
+    <div ui-grid="gridOptions" ui-grid-edit class="myGrid"></div>
+    <button ng-click="updateOrders()">submit changes</button>
+</div>
