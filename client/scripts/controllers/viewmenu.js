@@ -3,13 +3,16 @@ myApp.controller('ViewMenuController', ["$scope", "$http", "DataService", functi
 
     // Declare Variables
     $scope.dataService = DataService;
-    $scope.categories = $scope.dataService.getCategories();
-    $scope.menuByWeek = $scope.dataService.getMenu();
+    //$scope.categories = $scope.dataService.getCategories();
+    //$scope.menuByWeek = $scope.dataService.getMenu();
     $scope.showCategoryHeadings = false;
     $scope.menu = {};
     $scope.allMeals = [];
     $scope.mealsInMenuArray = [];
     $scope.defaultMeal = [];
+    $scope.menuPreBuild = {};
+    $scope.selectedMealArray = [];
+    $scope.menuId;
 
     // Pull in categories
     if($scope.categories == undefined){
@@ -22,7 +25,7 @@ myApp.controller('ViewMenuController', ["$scope", "$http", "DataService", functi
         $scope.getMeals();
     }
 
-    // GET meals for each category
+    // GET all meals for each category
     $scope.getMeals = function(){
         $http.get('/createmenu/meals').then(function(response){
 
@@ -41,30 +44,21 @@ myApp.controller('ViewMenuController', ["$scope", "$http", "DataService", functi
             }
 
             // Build menuPreBuild Object for storing meals for each category
-            //for(var i = 0; i<$scope.categories.length; i++){
-            //    $scope.menuPreBuild[$scope.categories[i].category_name] = [];
-            //}
+            for(var i = 0; i<$scope.categories.length; i++){
+                $scope.menuPreBuild[$scope.categories[i].category_name] = [];
+            }
 
         });
     };
 
     $scope.getMenu = function(menu) {
+
         // Get Menu for Specific Week
-        //if ($scope.menuByWeek == undefined){
-        //    $scope.dataService.retrieveMenuByWeek(menu.startDate, menu.endDate).then(function(){
-        //        $scope.menuByWeek = $scope.dataService.getMenu();
-        //        console.log($scope.menuByWeek);
-        //        $scope.setDefault();
-        //    });
-        //}else {
-        //    $scope.menuByWeek = $scope.dataService.getMenu();
-        //    console.log($scope.menuByWeek);
-        //    $scope.setDefault();
-        //}
         $scope.categories = $scope.dataService.getCategories();
         $scope.dataService.retrieveMenuByWeek(menu.startDate, menu.endDate).then(function(){
             $scope.menuByWeek = $scope.dataService.getMenu();
-            console.log($scope.menuByWeek);
+            $scope.menuId = $scope.menuByWeek[0].menu_id;
+            console.log($scope.menuByWeek, $scope.menuId);
             $scope.setDefault();
         });
 
@@ -72,6 +66,7 @@ myApp.controller('ViewMenuController', ["$scope", "$http", "DataService", functi
 
     };
 
+    // Show Previously Saved Menu meal items as default options in drop down menu
     $scope.setDefault = function(){
         for(var i = 0; i < $scope.categories.length; i++){
             $scope.categories[i].defaultMeal = [];
@@ -82,13 +77,43 @@ myApp.controller('ViewMenuController', ["$scope", "$http", "DataService", functi
 
                     if($scope.menuByWeek[k].meal_id == $scope.categories[i].mealInfo[j].meal_id &&
                         $scope.menuByWeek[k].category_id == $scope.categories[i].mealInfo[j].category_id){
-                        console.log("JACKPOT!");
+
                             $scope.categories[i].defaultMeal.push($scope.categories[i].mealInfo[j]);
+                            $scope.menuPreBuild[$scope.categories[i].category_name] = $scope.categories[i].defaultMeal;
                     }
                 }
             }
         }
-    }
+    };
+
+    // Save selected meals from drop down menus to menuPreBuild (this allows changes before clicking submit button)
+    $scope.saveMeals = function(currentMeal, category, index){
+        $scope.menuPreBuild[category][index] = currentMeal;
+        //console.log($scope.menuPreBuild);
+    };
+
+    // This function runs when the "Edit Menu" button is clicked
+    $scope.createMenu = function(menu){
+        //console.log(menu);
+
+        // Push all objects in menuPreBuild to selectedMealArray as one array of objects (using UnderscoreJS)
+        $scope.selectedMealArray = (_.flatten(_.values($scope.menuPreBuild)));
+        //console.log($scope.selectedMealArray);
+
+        // Delete meal_id and category_id columns of the current editing menu
+        $http.delete('/getmenu/removeMealsFromMenu', {params: {menuId: $scope.menuId}}).then(function(){
+
+        $scope.postToMealMenu();
+
+        });
+
+    };
+
+    $scope.postToMealMenu = function(){
+        $http.post('/createmenu/saveToMealMenu', {menuId: $scope.menuId, mealsArray: $scope.selectedMealArray}).then(function(){
+            console.log("HI");
+        });
+    };
 
 
 }]);

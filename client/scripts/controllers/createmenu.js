@@ -6,7 +6,6 @@ myApp.controller('CreateMenuController', ["$scope", "$http", "DataService", func
     $scope.allMeals = [];
     $scope.mealByCategory = {};
     $scope.allergens = [];
-    $scope.categories = $scope.dataService.getCategories();
     $scope.selectedMealArray = [];
     $scope.menu = {};
     $scope.menuId;
@@ -18,7 +17,7 @@ myApp.controller('CreateMenuController', ["$scope", "$http", "DataService", func
             $scope.categories = $scope.dataService.getCategories();
             $scope.getMeals();
         });
-    }else{
+    } else {
         $scope.categories = $scope.dataService.getCategories();
         $scope.getMeals();
     }

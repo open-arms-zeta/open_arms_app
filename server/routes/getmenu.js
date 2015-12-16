@@ -9,7 +9,7 @@ router.get('/', function(req,res){
     var results = [];
 
     pg.connect(connectionString, function (err, client) {
-        var query = client.query("SELECT meals.meal_id, meals.entree, meals.side_1, meals.side_2, categories.category_id, categories.category_name\
+        var query = client.query("SELECT menus.menu_id, meals.meal_id, meals.entree, meals.side_1, meals.side_2, categories.category_id, categories.category_name\
         FROM menus\
         JOIN meal_menu ON meal_menu.menu_id = menus.menu_id\
         JOIN meals ON meals.meal_id = meal_menu.meal_id\
@@ -37,6 +37,19 @@ router.get('/', function(req,res){
     });
 });
 
+// DELETE menu_id, meal_id, and category_id from meal_menu table for a specific menu_id
+router.delete('/removeMealsFromMenu', function(req,res){
 
+    pg.connect(connectionString, function (err, client) {
+        client.query("DELETE FROM meal_menu WHERE menu_id = $1", [req.query.menuId], function(err, result){
+            if (err) {
+                console.log("Error deleting data! ", err);
+                res.send(false);
+            }
+
+            res.send(true);
+        });
+    });
+});
 
 module.exports = router;
