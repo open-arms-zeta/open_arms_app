@@ -12,4 +12,4 @@
 <button type="button" ng-click="showAll()">Show All Meals</button>
 
 
-<div ui-grid="gridOptions" ui-grid-edit class="myGrid" ng-if="allMeals"></div>
+<div ui-grid="gridOptions" ui-grid-selection ui-grid-exporter ui-grid-edit class="table-responsive" ng-if="allMeals"></div>
