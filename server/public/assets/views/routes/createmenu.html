@@ -1,0 +1,70 @@
+<div>
+    <h1 class="admin-header">Create Menu</h1>
+    <div class="info">
+        <p>Instructions: </p>
+        <p>Select week, week start date, and select meal from drop-down menus for each category</p>
+    </div>
+
+    <form class="create-menu-form" name="createMenuForm" ng-submit="createMenu(menu)">
+
+        <label for="weekNumber">Select Week Number</label>
+        <select name="weekNumber" id="weekNumber" ng-model="menu.weekNumber">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+        </select>
+
+        <label for="startDate">Start Date</label>
+        <input type="date" name="startDate" id="startDate" ng-model="menu.startDate">
+
+        <label for="endDate">End Date</label>
+        <input type="date" name="endDate" id="endDate" ng-model="menu.endDate">
+
+        <div ng-hide="hideDropDown">
+            <div ng-repeat="category in categories">
+                <h2>{{category.category_name}}</h2>
+
+                <select name="selectOptions1" id="selectOptions1"
+                        ng-model="selectedMeal1"
+                        ng-options="meal.entree + ' with ' + meal.side_1 + ', ' + meal.side_2 for meal in category.mealInfo"
+                        ng-change="saveMeals(selectedMeal1, category.category_name, 0)">
+                </select><br>
+
+                <select name="selectOptions2" id="selectOptions2"
+                        ng-model="selectedMeal2"
+                        ng-options="meal.entree + ' with ' + meal.side_1 + ', ' + meal.side_2 for meal in category.mealInfo"
+                        ng-change="saveMeals(selectedMeal2, category.category_name, 1)">
+                </select><br>
+
+                <select name="selectOptions3" id="selectOptions3"
+                        ng-model="selectedMeal3"
+                        ng-options="meal.entree + ' with ' + meal.side_1 + ', ' + meal.side_2 for meal in category.mealInfo"
+                        ng-change="saveMeals(selectedMeal3, category.category_name, 2)">
+                </select><br>
+
+                <select name="selectOptions4" id="selectOptions4"
+                        ng-model="selectedMeal4"
+                        ng-options="meal.entree + ' with ' + meal.side_1 + ', ' + meal.side_2 for meal in category.mealInfo"
+                        ng-change="saveMeals(selectedMeal4, category.category_name, 3)">
+                </select><br>
+
+                <select name="selectOptions5" id="selectOptions5"
+                        ng-model="selectedMeal5"
+                        ng-options="meal.entree + ' with ' + meal.side_1 + ', ' + meal.side_2 for meal in category.mealInfo"
+                        ng-change="saveMeals(selectedMeal5, category.category_name, 4)">
+                </select><br>
+
+            </div>
+
+            <button type="submit">Create Menu</button>
+
+        </div>
+
+        <div ng-show="hideDropDown">
+            <h2>Menu is saved for the week of {{menu.startDate | date: 'MM-dd-yyyy'}}!</h2>
+        </div>
+
+    </form>
+
+</div>

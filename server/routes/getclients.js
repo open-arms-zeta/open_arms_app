@@ -14,14 +14,14 @@ router.get('/', function(req,res){
         JOIN client_orders\
         ON client_orders.meal_id = meals.meal_id\
         JOIN users\
-        ON client_orders.client_id = orders.client_id\
+        ON client_orders.client_id = users.id\
         JOIN menus\
         ON client_orders.menu_id = menus.menu_id\
         JOIN categories\
         ON categories.category_id = client_orders.category_id\
-        WHERE users.role = 'client' AND menus.start_date >= $1 AND menus.start_date <= $2\
+        WHERE users.role = 'client' AND menus.start_date = $1\
         ORDER BY menus.start_date, users.last_name ASC",
-            [req.query.startDate, req.query.endDate]);
+            [req.query.startDate]);
 
 
         // Stream results back one row at a time, push into results array

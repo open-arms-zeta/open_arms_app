@@ -30,7 +30,7 @@ myApp.controller('CalculateMealsController', ["$scope", "DataService", "$http", 
 
     //pulls in menu
     if ($scope.menu == undefined) {
-        $scope.dataService.retrieveMenuByWeek('2015-12-05', '2015-12-05').then(function(){
+        $scope.dataService.retrieveMenuByWeek('2015-12-05', '2015-12-11').then(function(){
             $scope.menu = $scope.dataService.getMenu();
         });
 
@@ -40,15 +40,25 @@ myApp.controller('CalculateMealsController', ["$scope", "DataService", "$http", 
 
     //pull in client orders
     if ($scope.clientOrders == undefined){
-        $scope.dataService.retrieveClientOrders('2015-12-05', '2015-12-05').then(function(){
+        $scope.dataService.retrieveClientOrders('2015-12-05', '2015-12-11').then(function(){
             $scope.clientOrders = $scope.dataService.getClientOrders();
         });
     }else {
         $scope.clientOrders = $scope.dataService.getClientOrders();
     }
 
+    //Calculates the range (monday to sunday) for the most recent week of completed orders, this is used for determining
+    //meal quantities.
+    $scope.getOrderWeek = function(){
+        var startDate = new Date($scope.activeWeek);
+        $scope.selectedStartDate = startDate.setDate(startDate.getDate()- 7);
+        var endDate = new Date($scope.activeWeek);
+        $scope.selectedEndDate = endDate.setDate(endDate.getDate() - 1);
+    };
+
+
     $scope.calculateMeals = function(){
-        //LOOP THROUGH FORM VALUES TO ADD TO MENU COUNT
+        //LOOP THROUGH FORM VALUES TO ADD TO MENU COUNT (Each meal that applies to the category gets incremented by the amount entered in the categories field)
         for(var i = 0; i<$scope.menu.length; i++){
             console.log($scope.menu[i]);
             var category = _.where($scope.categories, {category_name : $scope.menu[i].category_name})[0];
@@ -56,7 +66,7 @@ myApp.controller('CalculateMealsController', ["$scope", "DataService", "$http", 
 
             var clientOrders = _.where($scope.clientOrders, {entree: $scope.menu[i].entree});
 
-            //If client orders exist for a certain value, the count for each item of clothing is extracted and summed
+            //If client orders exist for a certain value, the count for the meal is extracted and summed
             if(clientOrders.length>0){
                 var orderNum = _.pluck(clientOrders, 'count').reduce(function(a,b){
                     return a + b;

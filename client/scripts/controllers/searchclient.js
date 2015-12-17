@@ -3,13 +3,15 @@ myApp.controller('SearchClientController', ["$scope", "DataService", "$http", fu
     $scope.clientData = undefined;
     $scope.search = "";
 
+    //retrieves all clients in the database
     $scope.retrieveAll = function(){
-        $http.get('searchclients/all').then(function(response){
+        $http.get('/searchclients/all').then(function(response){
             console.log(response.data);
             $scope.clientData = response.data;
         })
     };
 
+    //retrieves clients based on a query, if query is empty all clients are returned
     $scope.getSearchResults = function(){
         if ($scope.search.length == 0){
             $scope.retrieveAll();
@@ -23,6 +25,7 @@ myApp.controller('SearchClientController', ["$scope", "DataService", "$http", fu
         }
     };
 
+    //Configuration of the UI grid
     $scope.gridOptions = {
         data: 'clientData',
         enableSorting: true,
@@ -39,7 +42,8 @@ myApp.controller('SearchClientController', ["$scope", "DataService", "$http", fu
         ]
     };
 
-    $scope.updateOrders = function(){
+    //THIS CODE makes a put to the database to update client information
+    $scope.updateClients = function(){
         console.log($scope.clientData);
         //Some code to update the update orders
     };

@@ -8,13 +8,13 @@ router.get('/', function(req,res){
     var results = [];
 
     pg.connect(connectionString, function (err, client) {
-        var query = client.query("SELECT menus.start_date, menus.end_date, meals.entree, meals.side_1, meals.side_2, categories.category_name, meal_count.count\
+        var query = client.query("SELECT menus.start_date, meals.entree, meals.side_1, meals.side_2, categories.category_name, meal_count.count\
        FROM meal_count\
        JOIN menus ON menus.menu_id = meal_count.menu_id\
        JOIN meals ON meals.meal_id = meal_count.meal_id\
        JOIN categories ON categories.category_id = meal_count.category_id\
-       WHERE menus.start_date >= $1 AND menus.start_date <= $2",
-            [req.query.startDate, req.query.endDate]);
+       WHERE menus.start_date= $1",
+            [req.query.startDate]);
 
 
         // Stream results back one row at a time, push into results array
