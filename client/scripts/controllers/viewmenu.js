@@ -137,34 +137,4 @@ myApp.controller('ViewMenuController', ["$scope", "$http", "DataService", functi
         });
     };
 
-    //pull in active week
-    //if ($scope.activeWeek == undefined) {
-    //    $scope.dataService.calculateActiveWeek();
-    //    $scope.activeWeek = $scope.dataService.getActiveWeek();
-    //    console.log("this is active week", $scope.activeWeek);
-    //    console.log("this is today", new Date());
-    //    console.log("comparison", $scope.activeWeek > new Date());
-    //
-    //    if($scope.menu.startDate <= $scope.activeWeek){
-    //        console.log("Hi");
-    //        $scope.disableDropDown = true;
-    //    }
-    //
-    //} else {
-    //    $scope.activeWeek = $scope.dataService.getActiveWeek();
-    //    console.log("this is active week", $scope.activeWeek);
-    //
-    //    if($scope.menu.startDate <= $scope.activeWeek){
-    //        console.log("Hi");
-    //        $scope.disableDropDown = true;
-    //    }
-    //}
-
-    //$scope.compareDates = function(){
-    //    if($scope.menu.startDate <= $scope.activeWeek){
-    //        console.log("Hi");
-    //        $scope.disableDropDown = true;
-    //    }
-    //};
-
 }]);
