@@ -22,7 +22,10 @@ myApp.controller('ViewMealController', ["$scope", "$http", "$uibModal", function
     $scope.gridOptions = {
         data: 'allMeals',
         enableSorting: true,
-        enableRowSelection: true,
+        enableGridMenu: true,
+        enableSelectAll: true,
+        exporterMenuCsv: true,
+        exporterMenuPdf: false,
         columnDefs: [
             {field: "entree", displayName: 'Entree', enableCellEdit: false},
             {field: "side_1", displayName: 'Side 1', enableCellEdit: false},
