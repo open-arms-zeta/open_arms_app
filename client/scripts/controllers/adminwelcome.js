@@ -41,7 +41,7 @@ myApp.controller('AdminWelcomeController', ["$scope", "DataService", "$http", "$
     $scope.getMealCount = function(){
         var startDate = new Date($scope.selectedStartDate);
         var endDate = new Date($scope.selectedEndDate);
-        $http.get('/getmealcount', {params: {startDate: startDate, endDate: endDate}}).then(function(response){
+        $http.get('/mealcount', {params: {startDate: startDate, endDate: endDate}}).then(function(response){
             //console.log(response.data);
             $scope.selectedMealCount = response.data;
         });

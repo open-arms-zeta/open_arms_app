@@ -19,9 +19,9 @@ router.get('/', function(req,res){
         ON client_orders.menu_id = menus.menu_id\
         JOIN categories\
         ON categories.category_id = client_orders.category_id\
-        WHERE menus.start_date >= $1 AND menus.start_date <= $2\
+        WHERE menus.start_date = $1\
         ORDER BY menus.start_date, clients.last_name ASC",
-            [req.query.startDate, req.query.endDate]);
+            [req.query.startDate]);
 
 
         // Stream results back one row at a time, push into results array
