@@ -39,9 +39,9 @@ myApp.controller('ClientWelcomeController', ["$scope", "DataService", "$http", f
     //pulls in menu
     //-------------------To do: have this select the menu for the active week
     if ($scope.menu == undefined) {
-        $scope.dataService.retrieveMenuByWeek('2015-12-05', '2015-12-05').then(function(){
+        $scope.dataService.retrieveMenuByWeek($scope.activeWeek).then(function(){
             $scope.menu = $scope.dataService.getMenu();
-            console.log($scope.menu)
+            console.log($scope.menu);
         });
 
     }else{

@@ -26,9 +26,9 @@ myApp.factory('DataService', ['$http', function($http){
         })
     };
 
-    var retrieveMenuByWeek = function(startDate, endDate){
+    var retrieveMenuByWeek = function(startDate){
         //returns the http call to get a menu by date input, and sets menu variable to the returned result
-        return $http.get('/getmenu', {params: {startDate: startDate, endDate: endDate}}).then(function(response){
+        return $http.get('/getmenu', {params: {startDate: startDate}}).then(function(response){
             menu = response.data;
         })
     };
