@@ -28,6 +28,7 @@ myApp.factory('DataService', ['$http', function($http){
 
     var retrieveMenuByWeek = function(startDate, endDate){
         //returns the http call to get a menu by date input, and sets menu variable to the returned result
+        console.log(startDate)
         return $http.get('/getmenu', {params: {startDate: startDate, endDate: endDate}}).then(function(response){
             menu = response.data;
         })
@@ -50,6 +51,7 @@ myApp.factory('DataService', ['$http', function($http){
 
     var retrieveClientOrders = function(startDate, endDate){
         //pulls in client orders for a given start and end date
+        console.log(startDate);
         return $http.get('/getclients', {params: {startDate: startDate, endDate: endDate}}).then(function(response){
             clientOrders = response.data;
         })

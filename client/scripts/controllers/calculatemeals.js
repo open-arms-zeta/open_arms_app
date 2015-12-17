@@ -11,49 +11,13 @@ myApp.controller('CalculateMealsController', ["$scope", "DataService", "$http", 
     $scope.meal = {};
     $scope.mealCount = [];
 
-    //pull in categories
-    if ($scope.categories == undefined) {
-        $scope.dataService.retrieveCategories().then(function(){
-            $scope.categories = $scope.dataService.getCategories();
-        });
-    }else{
-        $scope.categories = $scope.dataService.getCategories();
-    }
-
-    //pull in active week
-    if ($scope.activeWeek == undefined) {
-        $scope.dataService.calculateActiveWeek();
-        $scope.activeWeek = $scope.dataService.getActiveWeek();
-    }else{
-        $scope.activeWeek = $scope.dataService.getActiveWeek()
-    }
-
-    //pulls in menu
-    if ($scope.menu == undefined) {
-        $scope.dataService.retrieveMenuByWeek('2015-12-05', '2015-12-11').then(function(){
-            $scope.menu = $scope.dataService.getMenu();
-        });
-
-    }else{
-        $scope.menu = $scope.dataService.getMenu();
-    }
-
-    //pull in client orders
-    if ($scope.clientOrders == undefined){
-        $scope.dataService.retrieveClientOrders('2015-12-05', '2015-12-11').then(function(){
-            $scope.clientOrders = $scope.dataService.getClientOrders();
-        });
-    }else {
-        $scope.clientOrders = $scope.dataService.getClientOrders();
-    }
-
     //Calculates the range (monday to sunday) for the most recent week of completed orders, this is used for determining
     //meal quantities.
     $scope.getOrderWeek = function(){
         var startDate = new Date($scope.activeWeek);
-        $scope.selectedStartDate = startDate.setDate(startDate.getDate()- 7);
+        $scope.selectedStartDate = new Date(startDate.setDate($scope.activeWeek.getDate()- 7));
         var endDate = new Date($scope.activeWeek);
-        $scope.selectedEndDate = endDate.setDate(endDate.getDate() - 1);
+        $scope.selectedEndDate = endDate.setDate($scope.activeWeek.getDate() - 1);
     };
 
 
@@ -77,5 +41,53 @@ myApp.controller('CalculateMealsController', ["$scope", "DataService", "$http", 
         }
         console.log($scope.menu);
         $scope.displayResults = true;
+        $scope.postMealCount();
+    };
+
+    //pull in categories
+    if ($scope.categories == undefined) {
+        $scope.dataService.retrieveCategories().then(function(){
+            $scope.categories = $scope.dataService.getCategories();
+        });
+    }else{
+        $scope.categories = $scope.dataService.getCategories();
+    }
+
+    //pull in active week
+    if ($scope.activeWeek == undefined) {
+        $scope.dataService.calculateActiveWeek();
+        $scope.activeWeek = $scope.dataService.getActiveWeek();
+        $scope.getOrderWeek();
+    }else{
+        $scope.activeWeek = $scope.dataService.getActiveWeek();
+        $scope.getOrderWeek();
+    }
+
+    //pulls in menu
+    if ($scope.menu == undefined) {
+        $scope.dataService.retrieveMenuByWeek($scope.selectedStartDate, $scope.selectedEndDate).then(function(){
+            $scope.menu = $scope.dataService.getMenu();
+        });
+
+    }else{
+        $scope.menu = $scope.dataService.getMenu();
+    }
+
+    //pull in client orders
+    if ($scope.clientOrders == undefined){
+        $scope.dataService.retrieveClientOrders($scope.selectedStartDate, $scope.selectedEndDate).then(function(){
+            $scope.clientOrders = $scope.dataService.getClientOrders();
+        });
+    }else {
+        $scope.clientOrders = $scope.dataService.getClientOrders();
+    }
+
+    $scope.postMealCount = function(){
+        for(var i = 0; i<$scope.menu.length; i++){
+            console.log($scope.menu[i]);
+            $http.post('/mealcount', $scope.menu[i]).then(function(response){
+                console.log(response);
+            })
+        }
     }
 }]);
