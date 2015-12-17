@@ -69,6 +69,7 @@ router.get('/searchMeal', function(req,res){
     var results = [];
 
     pg.connect(connectionString, function (err, client) {
+
         var query = client.query("SELECT meals.meal_id, meals.entree, meals.side_1, meals.side_2\
       FROM meals\
       WHERE meals.status = TRUE\

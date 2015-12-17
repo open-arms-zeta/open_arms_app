@@ -13,6 +13,9 @@ router.get('/', function(req,res){
             "FROM users WHERE users.first_name ILIKE $1 OR users.last_name ILIKE $1 AND users.role = 'client'",
             [name]);
 
+        //("SELECT first_name, last_name, email, phone, default_meal, status " +
+        //"FROM clients WHERE clients.first_name ILIKE $1 OR clients.last_name ILIKE $1",
+            //[name]);
 
         // Stream results back one row at a time, push into results array
         query.on('row', function (row) {
@@ -36,7 +39,9 @@ router.get('/all', function(req,res){
     var results = [];
 
     pg.connect(connectionString, function (err, client) {
+
         var query = client.query("SELECT id, first_name, last_name, email, phone, default_meal, status " +
+
             "FROM users WHERE users.role = 'client'");
 
 

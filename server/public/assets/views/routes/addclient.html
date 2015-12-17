@@ -1,32 +1,3 @@
-<!--<<<<<<< HEAD-->
-<!--<div>-->
-    <!--<h1>Add client</h1>-->
-    <!--<form novalidate>-->
-        <!--<div class="form-group">-->
-            <!--<label>First Name: </label>-->
-            <!--<input type="text" ng-model="newClient.firstName">-->
-        <!--</div>-->
-        <!--<div class="form-group">-->
-            <!--<label>Last Name: </label>-->
-            <!--<input type="text" ng-model="newClient.lastName">-->
-        <!--</div>-->
-        <!--<div class="form-group">-->
-            <!--<label>Email Address: </label>-->
-            <!--<input type="email" ng-model="newClient.email">-->
-        <!--</div>-->
-        <!--<div class="form-group">-->
-            <!--<label>Phone Number (no-dashes): </label>-->
-            <!--<input type="number" ng-model="newClient.phone">-->
-        <!--</div>-->
-        <!--<select ng-options="category.category_name for category in categories" ng-model="newClient.defaultMeal" id="userselect"></select>-->
-
-        <!--<button ng-click="submit()">Submit</button>-->
-    <!--</form>-->
-    <!--<form>-->
-        <!--<input type="file" file-change="handler($event,files)" ng-model="myFiles" />-->
-        <!--<button ng-click="readCSV()"></button>-->
-    <!--</form>-->
-<!--=======-->
 <div class="container">
     <h1>Add Clients</h1>
 
@@ -69,47 +40,11 @@
                 </div>
             </div>
 
-            <!--<div class="form-group" ng-class="{ 'has-error' : addClientForm.inputStreet.$invalid && !addClientForm.inputStreet.$pristine }">-->
-                <!--<input ng-model="newClient.street" type="text" id="inputStreet" name="inputStreet" class="form-control" placeholder="Street" required>-->
-                <!--&lt;!&ndash;<p ng-show="addClientForm.inputStreet.$invalid && !addClientForm.inputStreet.$pristine" class="help-block">Enter a street address</p>&ndash;&gt;-->
-                <!--<div ng-messages="addClientForm.inputStreet.$error" ng-if="addClientForm.inputStreet.$touched">-->
-                    <!--<p ng-message="required">Enter a street address</p>-->
-                <!--</div>-->
-            <!--</div>-->
-
-            <!--<div class="form-group" ng-class="{ 'has-error' : addClientForm.inputCity.$invalid && !addClientForm.inputCity.$pristine }">-->
-                <!--<input ng-model="newClient.city" type="text" id="inputCity" name="inputCity" class="form-control" placeholder="City" required>-->
-                <!--&lt;!&ndash;<p ng-show="addClientForm.inputCity.$invalid && !addClientForm.inputCity.$pristine" class="help-block">Enter a city</p>&ndash;&gt;-->
-                <!--<div ng-messages="addClientForm.inputCity.$error" ng-if="addClientForm.inputCity.$touched">-->
-                    <!--<p ng-message="required">Enter a city</p>-->
-                <!--</div>-->
-            <!--</div>-->
-
-            <!--<div class="form-group" ng-class="{ 'has-error' : addClientForm.inputState.$invalid && !addClientForm.inputState.$pristine }">-->
-                <!--<input ng-model="client.state" type="text" id="inputState" name="inputState" class="form-control" placeholder="State" required>-->
-                <!--&lt;!&ndash;<p ng-show="addClientForm.inputState.$invalid && !addClientForm.inputState.$pristine" class="help-block">Enter a state</p>&ndash;&gt;-->
-                <!--<div ng-messages="addClientForm.inputState.$error" ng-if="addClientForm.inputState.$touched">-->
-                    <!--<p ng-message="required">Enter a state</p>-->
-                <!--</div>-->
-            <!--</div>-->
-
-            <!--<div class="form-group" ng-class="{ 'has-error' : addClientForm.inputZip.$invalid && !addClientForm.inputZip.$pristine }">-->
-                <!--<input ng-model="client.zip" type="number" id="inputZip" name="inputZip" ng-minlength="5" ng-maxlength="5" class="form-control" placeholder="Zip" required>-->
-                <!--&lt;!&ndash;<p ng-show="addClientForm.inputState.$invalid && !addClientForm.inputState.$pristine" class="help-block">Enter a zip code</p>&ndash;&gt;-->
-                <!--<div ng-messages="addClientForm.inputZip.$error" ng-if="addClientForm.inputZip.$touched">-->
-                    <!--&lt;!&ndash; show an error if username is too short &ndash;&gt;-->
-                    <!--<p ng-show="addClientForm.inputZip.$error.minlength">Zip code is too short.</p>-->
-                    <!--&lt;!&ndash; show an error if username is too long &ndash;&gt;-->
-                    <!--<p ng-show="addClientForm.inputZip.$error.maxlength">Zip code is too long.</p>-->
-                    <!--<p ng-message="required">Enter a zip code</p>-->
-                <!--</div>-->
-            <!--</div>-->
 
             <div class="form-group" ng-class="{ 'has-error' : addClientForm.categorySelect.$invalid && !addClientForm.categorySelect.$pristine }">
                 <label for="categorySelect">Select default meal category: </label><br>
                 <select name="categorySelect" id="categorySelect" class="form-control" ng-model="newClient.defaultMeal"  ng-options="category.category_name for category in categories" required>
-                    <!--<option value="">-&#45;&#45;Default Category-&#45;&#45;</option> &lt;!&ndash; not selected / blank option &ndash;&gt;-->
-                    <option>{{category.category_name}}</option> <!-- interpolation -->
+                    <option>{{category.category_name}}</option>
                 </select><br>
                 <div ng-messages="addClientForm.categorySelect.$error" ng-if="addClientForm.categorySelect.$touched">
                     <p ng-message="required">Select a default category</p>
@@ -123,7 +58,6 @@
 
         <form>
             <input type="file" file-change="handler($event,files)" ng-model="myFiles" />
-            <!--<button ng-click="readCSV()"></button>-->
         </form>
 
     </div>
