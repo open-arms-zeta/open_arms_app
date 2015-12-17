@@ -13,6 +13,7 @@ myApp.controller('CreateMenuController', ["$scope", "$http", "DataService", func
     $scope.hideDropDown = false;
     $scope.activeWeek = undefined;
     $scope.menuExist = false;
+    $scope.showSaveSuccessMessage = false;
 
     //pull in active week
     if ($scope.activeWeek == undefined) {
@@ -63,7 +64,10 @@ myApp.controller('CreateMenuController', ["$scope", "$http", "DataService", func
 
     // Check if a menu is already created for the selected startDate
     $scope.checkExistingMenu = function(startDate){
-        console.log("ngChange is working");
+
+        // Reset
+        $scope.menuExist = false;
+        $scope.hideDropDown = false;
 
         // call get menu function (factory)
         $http.get('/createmenu/getMenuId', {params: {startDate: startDate}}).then(function(response){
@@ -71,6 +75,7 @@ myApp.controller('CreateMenuController', ["$scope", "$http", "DataService", func
             if (response.data[0] != null){
                 console.log("this menu already exist");
                 $scope.menuExist = true;
+                $scope.hideDropDown = true;
             }
         });
     };
@@ -115,6 +120,7 @@ myApp.controller('CreateMenuController', ["$scope", "$http", "DataService", func
         $http.post('/createmenu/saveToMealMenu', {menuId: $scope.menuId, mealsArray: $scope.selectedMealArray}).then(function(){
             console.log("menu saved");
             $scope.hideDropDown = true;
+            $scope.showSaveSuccessMessage = true;
         });
     };
 

@@ -23,17 +23,17 @@
         <!--<input type="date" name="endDate" id="endDate" ng-model="menu.endDate">-->
 
         <div class="col-xs-3">
-        <p class="input-group">
-            <input type="text" class="form-control" uib-datepicker-popup="{{format}}"
-                   ng-model="menu.startDate" is-open="status.opened" min-date="minDate" max-date="maxDate"
-                   show-button-bar = "false"
-                   datepicker-options="dateOptions" date-disabled="disabled(date, mode)"
-                   ng-required="true" close-text="Close" placeholder="Select Start Date"
-                   ng-change="checkExistingMenu(menu.startDate)"/>
-              <span class="input-group-btn">
-                <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-              </span>
-        </p>
+            <p class="input-group">
+                <input type="text" class="form-control" uib-datepicker-popup="{{format}}"
+                       ng-model="menu.startDate" is-open="status.opened" min-date="minDate" max-date="maxDate"
+                       show-button-bar = "false"
+                       datepicker-options="dateOptions" date-disabled="disabled(date, mode)"
+                       ng-required="true" close-text="Close" placeholder="Select Start Date"
+                       ng-change="checkExistingMenu(menu.startDate)"/>
+                  <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                  </span>
+            </p>
         </div>
 
         <h3 ng-show="menuExist">A menu already exists for the selected week.  Please go to <a href="#viewmenu">View/Edit Menu</a> page to view or edit menu.</h3>
@@ -80,7 +80,7 @@
 
     </form>
 
-        <div ng-show="hideDropDown">
+        <div ng-show="showSaveSuccessMessage">
             <h2>Menu is saved for the week of {{menu.startDate | date: 'MM-dd-yyyy'}}!</h2>
         </div>
 

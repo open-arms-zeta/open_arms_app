@@ -12,9 +12,12 @@ myApp.controller('ViewMenuController', ["$scope", "$http", "DataService", functi
     $scope.selectedMealArray = [];
     $scope.menuId;
     $scope.hideDropDown = true;
+    $scope.hideEditSuccessMessage = true;
     $scope.weekNumber;
     $scope.activeWeek = undefined;
     $scope.disableDropDown = false;
+    $scope.noMenuMessage = false;
+    $scope.oldMenuMessage = false;
 
     //pull in active week
     if ($scope.activeWeek == undefined) {
@@ -63,26 +66,63 @@ myApp.controller('ViewMenuController', ["$scope", "$http", "DataService", functi
         });
     };
 
+    // This function runs when view menu button is clicked
     $scope.getMenu = function(menu) {
+
+        // Reset all messages and disables
         $scope.hideDropDown = true;
+        $scope.hideEditSuccessMessage = true;
         $scope.disableDropDown = false;
+        $scope.noMenuMessage = false;
+        $scope.oldMenuMessage = false;
 
         if($scope.menu.startDate <= $scope.activeWeek){
             //console.log("Hi");
             $scope.disableDropDown = true;
+            $scope.oldMenuMessage = true;
+
         }
 
-        // Get Menu for Specific Week
-        $scope.categories = $scope.dataService.getCategories();
-        $scope.dataService.retrieveMenuByWeek(menu.startDate, menu.endDate).then(function(){
-            $scope.menuByWeek = $scope.dataService.getMenu();
-            $scope.menuId = $scope.menuByWeek[0].menu_id;
-            $scope.weekNumber = $scope.menuByWeek[0].week_number;
-            console.log($scope.menuByWeek, $scope.menuId, $scope.weekNumber);
-            $scope.setDefault();
+        // Check if menu exists
+        $http.get('/createmenu/getMenuId', {params: {startDate: menu.startDate}}).then(function(response){
+            console.log(response.data);
+            if (response.data[0] == null){
+
+                console.log("this menu does not exist");
+                $scope.noMenuMessage = true;
+                $scope.disableDropDown = true;
+
+
+            } else {
+
+                // Get Menu for Specific Week
+                $scope.hideDropDown = false;
+                $scope.categories = $scope.dataService.getCategories();
+                $scope.dataService.retrieveMenuByWeek(menu.startDate, menu.endDate).then(function(){
+                    $scope.menuByWeek = $scope.dataService.getMenu();
+                    $scope.menuId = $scope.menuByWeek[0].menu_id;
+                    $scope.weekNumber = $scope.menuByWeek[0].week_number;
+                    console.log($scope.menuByWeek, $scope.menuId, $scope.weekNumber);
+                    $scope.setDefault();
+                });
+
+                $scope.showCategoryHeadings = true;
+
+            }
+
         });
 
-        $scope.showCategoryHeadings = true;
+        //// Get Menu for Specific Week
+        //$scope.categories = $scope.dataService.getCategories();
+        //$scope.dataService.retrieveMenuByWeek(menu.startDate, menu.endDate).then(function(){
+        //    $scope.menuByWeek = $scope.dataService.getMenu();
+        //    $scope.menuId = $scope.menuByWeek[0].menu_id;
+        //    $scope.weekNumber = $scope.menuByWeek[0].week_number;
+        //    console.log($scope.menuByWeek, $scope.menuId, $scope.weekNumber);
+        //    $scope.setDefault();
+        //});
+        //
+        //$scope.showCategoryHeadings = true;
 
     };
 
@@ -133,8 +173,87 @@ myApp.controller('ViewMenuController', ["$scope", "$http", "DataService", functi
         $http.post('/createmenu/saveToMealMenu', {menuId: $scope.menuId, mealsArray: $scope.selectedMealArray}).then(function(){
             console.log("HI");
             $scope.hideDropDown = false;
+            $scope.hideEditSuccessMessage = false;
             $scope.showCategoryHeadings = false;
         });
+    };
+
+
+
+    //// Bootstrap UI Date Picker ////
+
+    //$scope.today = function() {
+    //    $scope.menu.startDate = null;
+    //};
+    //$scope.today();
+    //
+    //$scope.clear = function () {
+    //    $scope.menu.startDate = null;
+    //};
+
+    // Disable dates selection
+    $scope.disabled = function(date, mode) {
+
+        // Disable days before today, non-Mondays, and dates before active week
+        return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() > 1));
+    };
+
+    $scope.toggleMin = function() {
+        $scope.minDate = $scope.minDate ? null : new Date();
+    };
+    $scope.toggleMin();
+    $scope.maxDate = new Date(2020, 5, 22);
+
+    $scope.open = function($event) {
+        $scope.status.opened = true;
+    };
+
+    $scope.setDate = function(year, month, day) {
+        $scope.menu.startDate = new Date(year, month, day);
+    };
+
+    $scope.dateOptions = {
+        formatYear: 'yy',
+        startingDay: 0
+    };
+
+    $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'MM/dd/yyyy', 'shortDate'];
+    $scope.format = $scope.formats[2];
+
+    $scope.status = {
+        opened: false
+    };
+
+    var tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    var afterTomorrow = new Date();
+    afterTomorrow.setDate(tomorrow.getDate() + 2);
+    $scope.events =
+        [
+            {
+                date: tomorrow,
+                status: 'full'
+            },
+            {
+                date: afterTomorrow,
+                status: 'partially'
+            }
+        ];
+
+    $scope.getDayClass = function(date, mode) {
+        if (mode === 'day') {
+            var dayToCheck = new Date(date).setHours(0,0,0,0);
+
+            for (var i=0;i<$scope.events.length;i++){
+                var currentDay = new Date($scope.events[i].date).setHours(0,0,0,0);
+
+                if (dayToCheck === currentDay) {
+                    return $scope.events[i].status;
+                }
+            }
+        }
+
+        return '';
     };
 
 }]);
