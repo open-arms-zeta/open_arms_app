@@ -68,7 +68,7 @@ myApp.controller('ViewMenuController', ["$scope", "$http", "DataService", functi
         $scope.disableDropDown = false;
 
         if($scope.menu.startDate <= $scope.activeWeek){
-            console.log("Hi");
+            //console.log("Hi");
             $scope.disableDropDown = true;
         }
 

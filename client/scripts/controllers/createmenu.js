@@ -12,6 +12,7 @@ myApp.controller('CreateMenuController', ["$scope", "$http", "DataService", func
     $scope.menuPreBuild = {};
     $scope.hideDropDown = false;
     $scope.activeWeek = undefined;
+    $scope.menuExist = false;
 
     //pull in active week
     if ($scope.activeWeek == undefined) {
@@ -60,6 +61,21 @@ myApp.controller('CreateMenuController', ["$scope", "$http", "DataService", func
         });
     };
 
+    // Check if a menu is already created for the selected startDate
+    $scope.checkExistingMenu = function(startDate){
+        console.log("ngChange is working");
+
+        // call get menu function (factory)
+        $http.get('/createmenu/getMenuId', {params: {startDate: startDate}}).then(function(response){
+
+            if (response.data[0] != null){
+                console.log("this menu already exist");
+                $scope.menuExist = true;
+            }
+        });
+    };
+
+
     // Save selected meals from drop down menus to menuPreBuild (this allows changes before clicking submit button)
     $scope.saveMeals = function(currentMeal, category, index){
         $scope.menuPreBuild[category][index] = currentMeal;
@@ -84,6 +100,9 @@ myApp.controller('CreateMenuController', ["$scope", "$http", "DataService", func
     $scope.getMenuId = function(menu){
 
         $http.get('/createmenu/getMenuId', {params: {startDate: menu.startDate}}).then(function(response){
+
+            console.log("This is menu start date", menu.startDate);
+
             $scope.menuId = response.data[0].menu_id;
 
             // POST menu_id, meal_id, and category_id to meal_menu table
@@ -104,14 +123,14 @@ myApp.controller('CreateMenuController', ["$scope", "$http", "DataService", func
 
     //// Bootstrap UI Date Picker ////
 
-    $scope.today = function() {
-        $scope.dt = null;
-    };
-    $scope.today();
-
-    $scope.clear = function () {
-        $scope.dt = null;
-    };
+    //$scope.today = function() {
+    //    $scope.menu.startDate = null;
+    //};
+    //$scope.today();
+    //
+    //$scope.clear = function () {
+    //    $scope.menu.startDate = null;
+    //};
 
     // Disable dates selection
     $scope.disabled = function(date, mode) {
@@ -131,7 +150,7 @@ myApp.controller('CreateMenuController', ["$scope", "$http", "DataService", func
     };
 
     $scope.setDate = function(year, month, day) {
-        $scope.dt = new Date(year, month, day);
+        $scope.menu.startDate = new Date(year, month, day);
     };
 
     $scope.dateOptions = {
@@ -146,37 +165,37 @@ myApp.controller('CreateMenuController', ["$scope", "$http", "DataService", func
         opened: false
     };
 
-    //var tomorrow = new Date();
-    //tomorrow.setDate(tomorrow.getDate() + 1);
-    //var afterTomorrow = new Date();
-    //afterTomorrow.setDate(tomorrow.getDate() + 2);
-    //$scope.events =
-    //    [
-    //        {
-    //            date: tomorrow,
-    //            status: 'full'
-    //        },
-    //        {
-    //            date: afterTomorrow,
-    //            status: 'partially'
-    //        }
-    //    ];
-    //
-    //$scope.getDayClass = function(date, mode) {
-    //    if (mode === 'day') {
-    //        var dayToCheck = new Date(date).setHours(0,0,0,0);
-    //
-    //        for (var i=0;i<$scope.events.length;i++){
-    //            var currentDay = new Date($scope.events[i].date).setHours(0,0,0,0);
-    //
-    //            if (dayToCheck === currentDay) {
-    //                return $scope.events[i].status;
-    //            }
-    //        }
-    //    }
-    //
-    //    return '';
-    //};
+    var tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    var afterTomorrow = new Date();
+    afterTomorrow.setDate(tomorrow.getDate() + 2);
+    $scope.events =
+        [
+            {
+                date: tomorrow,
+                status: 'full'
+            },
+            {
+                date: afterTomorrow,
+                status: 'partially'
+            }
+        ];
+
+    $scope.getDayClass = function(date, mode) {
+        if (mode === 'day') {
+            var dayToCheck = new Date(date).setHours(0,0,0,0);
+
+            for (var i=0;i<$scope.events.length;i++){
+                var currentDay = new Date($scope.events[i].date).setHours(0,0,0,0);
+
+                if (dayToCheck === currentDay) {
+                    return $scope.events[i].status;
+                }
+            }
+        }
+
+        return '';
+    };
 
 
 }]);
