@@ -1,4 +1,4 @@
-myApp.controller('AdminWelcomeController', ["$scope", "DataService", "$http", function($scope, DataService, $http){
+myApp.controller('AdminWelcomeController', ["$scope", "DataService", "$http", "$filter", function($scope, DataService, $http, $filter){
     console.log("AdminWelcome Controller Online");
 
     $scope.dataService = DataService;
@@ -27,12 +27,14 @@ myApp.controller('AdminWelcomeController', ["$scope", "DataService", "$http", fu
     $scope.previousWeek = function(){
         $scope.moveSelectedWeek(-7);
         $scope.getMealCount();
+        $scope.getClientOrders();
     };
 
     //moves forward a week, meal count is updated
     $scope.nextWeek = function(){
         $scope.moveSelectedWeek(7);
         $scope.getMealCount();
+        $scope.getClientOrders()
     };
 
     //gets meal count for a given week
@@ -51,7 +53,6 @@ myApp.controller('AdminWelcomeController', ["$scope", "DataService", "$http", fu
         var endDate = new Date($scope.selectedEndDate);
         $scope.dataService.retrieveClientOrders(startDate, endDate).then(function(){
             $scope.clientOrders = $scope.dataService.getClientOrders();
-            $scope.print();
         });
 
     };
@@ -60,17 +61,29 @@ myApp.controller('AdminWelcomeController', ["$scope", "DataService", "$http", fu
     //------------------------NEED TO ADD: EXPORT CSV FUNCTION -----------------------------
     $scope.printMealCount = function(){
         console.log($scope.selectedMealCount);
+        //console.log($filter('date')($scope.selectedMealCount.start_date, 'fullDate'));
+        for(var i = 0; i<$scope.selectedMealCount.length; i++){
+            $scope.selectedMealCount[i].start_date = $filter('date')($scope.selectedMealCount[i].start_date, 'fullDate');
+            $scope.selectedMealCount[i].end_date = $filter('date')($scope.selectedMealCount[i].end_date, 'fullDate');
+        }
+        return $scope.selectedMealCount;
     };
 
     //prints client orders for a week
     //------------------------NEED TO ADD: EXPORT CSV FUNCTION -----------------------------
     $scope.printClientOrders = function(){
-        $scope.getClientOrders();
+        console.log($scope.clientOrders);
+        for(var i = 0; i<$scope.selectedMealCount.length; i++){
+            $scope.clientOrders[i].start_date = $filter('date')($scope.clientOrders[i].start_date, 'fullDate');
+            $scope.clientOrders[i].end_date = $filter('date')($scope.clientOrders[i].end_date, 'fullDate');
+        }
+        return $scope.clientOrders;
     };
 
-    $scope.print = function(){
-        console.log($scope.clientOrders);
-    };
+    //$scope.print = function(){
+    //    console.log($scope.clientOrders);
+    //    return $scope.clientOrders;
+    //};
 
     if ($scope.activeWeek == undefined) {
         $scope.dataService.calculateActiveWeek();

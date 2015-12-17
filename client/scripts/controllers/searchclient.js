@@ -35,10 +35,10 @@ myApp.controller('SearchClientController', ["$scope", "DataService", "$http", fu
         {field: "email", displayName: 'Email Address', enableCellEdit: false},
         {field: "phone", displayName: 'Phone Number', enableCellEdit: false},
         {field: "default_meal", displayName: 'Default Pack', enableCellEdit: false},
-        {field: "status", displayName: 'Active Status',  type: 'boolean', cellTemplate: '<div ng-show="row.entity.status"><input type="checkbox" ng-model="row.entity.status"> Active</div>' +
-        '<div ng-hide="row.entity.status"><input type="checkbox" ng-model="row.entity.status"> Inactive</div>',
-            editableCellTemplate: '<div ng-show="row.entity.status"><input type="checkbox" ng-model="row.entity.status"> Active</div>' +
-        '<div ng-hide="row.entity.status"><input type="checkbox" ng-model="row.entity.status"> Inactive</div>'}
+        {field: "status", displayName: 'Active Status',  type: 'boolean', cellTemplate: '<div ng-show="row.entity.status"><input type="checkbox" ng-model="row.entity.status" ng-click="grid.appScope.updateRow(row)"> Active</div>' +
+        '<div ng-hide="row.entity.status"><input type="checkbox" ng-model="row.entity.status" ng-click="grid.appScope.updateRow(row)"> Inactive</div>',
+            editableCellTemplate: '<div ng-show="row.entity.status"><input type="checkbox" ng-model="row.entity.status" ng-click="grid.appScope.updateRow(row)"> Active</div>' +
+        '<div ng-hide="row.entity.status"><input type="checkbox" ng-model="row.entity.status" ng-click="grid.appScope.updateRow(row)"> Inactive</div>'}
         ]
     };
 
@@ -46,6 +46,14 @@ myApp.controller('SearchClientController', ["$scope", "DataService", "$http", fu
     $scope.updateClients = function(){
         console.log($scope.clientData);
         //Some code to update the update orders
+    };
+
+    $scope.updateRow = function(row){
+        var updatedClient = row.entity;
+        $http.put('/searchclients/update', updatedClient).then(function(response){
+            console.log(response.data);
+        });
+        //console.log(row)
     };
 
     $scope.retrieveAll();
