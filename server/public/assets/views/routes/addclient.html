@@ -46,9 +46,6 @@
                         ng-options="category.category_name for category in categories">
                 </select><br>
 
-                {{newClient.defaultMeal}}
-
-
                 <div ng-messages="addClientForm.categorySelect.$error" ng-if="addClientForm.categorySelect.$touched">
                     <p ng-message="required">Select a default category</p>
                 </div>
