@@ -46,7 +46,7 @@ myApp.controller('CreateMealController', ["$scope",  '$http', "DataService",  fu
             //console.log(response.data);
 
             //$scope.mealId = response.data[0].meal_id;
-            //$scope.clearInput();
+
             $scope.newMealID();
 
         });
@@ -70,7 +70,7 @@ myApp.controller('CreateMealController', ["$scope",  '$http', "DataService",  fu
 
             // Call function to post info into meal_allergens_allergenspecific table
             $scope.postToAllergens();
-
+            $scope.clearInput();
         });
     };
 
