@@ -8,19 +8,19 @@ router.get('/', function(req,res){
     var results = [];
 
     pg.connect(connectionString, function (err, client) {
-        var query = client.query("SELECT clients.first_name, clients.last_name, meals.entree, meals.side_1, \
+        var query = client.query("SELECT users.first_name, users.last_name, meals.entree, meals.side_1, \
         meals.side_2, categories.category_name, client_orders.count, menus.menu_id, menus.start_date, menus.end_date\
         FROM meals\
         JOIN client_orders\
         ON client_orders.meal_id = meals.meal_id\
-        JOIN clients\
-        ON client_orders.client_id = clients.client_id\
+        JOIN users\
+        ON client_orders.client_id = orders.client_id\
         JOIN menus\
         ON client_orders.menu_id = menus.menu_id\
         JOIN categories\
         ON categories.category_id = client_orders.category_id\
-        WHERE menus.start_date >= $1 AND menus.start_date <= $2\
-        ORDER BY menus.start_date, clients.last_name ASC",
+        WHERE users.role = 'client' AND menus.start_date >= $1 AND menus.start_date <= $2\
+        ORDER BY menus.start_date, users.last_name ASC",
             [req.query.startDate, req.query.endDate]);
 
 
