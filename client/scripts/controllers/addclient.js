@@ -41,11 +41,11 @@ myApp.controller('AddClientController', ["$scope", "DataService", "$http", "$fil
         $scope.addClientForm.$setUntouched();
     };
 
-    $scope.readCSV = function(){
-        console.log($scope.myFiles);
-        var results = Papa.parse($scope.myFiles);
-        console.log(results);
-    };
+    //$scope.readCSV = function(){
+    //    console.log($scope.myFiles);
+    //    var results = Papa.parse($scope.myFiles);
+    //    console.log(results);
+    //};
 
 
     $scope.handler=function(e,files){

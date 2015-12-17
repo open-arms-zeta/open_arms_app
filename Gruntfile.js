@@ -94,6 +94,23 @@ module.exports = function(grunt){
                 ],
                 "dest": "server/public/vendors/"
             },
+            angularCSV: {
+                expand: true,
+                cwd: 'node_modules/ng-csv/build',
+                src: [
+                    "ng-csv.min.js"
+                ],
+                "dest": "server/public/vendors/"
+            },
+            angularSanitize: {
+                expand: true,
+                cwd: 'node_modules/angular-sanitize',
+                src: [
+                    "angular-sanitize.min.js",
+                    "angular-sanitize.min.js.map"
+                ],
+                "dest": "server/public/vendors/"
+            },
             bootstrap: {
                 expand: true,
                 cwd: 'node_modules/dist/css/',

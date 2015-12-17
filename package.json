@@ -1,13 +1,13 @@
 {
-  "name": "angular_factory_lecture",
+  "name": "open_arms_app",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server/app.js"
   },
-  "author": "Scott Bromander",
+  "author": "Pui Choi, Paige Walters, Danny Ritter, Thomas Hartle, Aron Thomas",
   "license": "ISC",
   "dependencies": {
     "angular": "^1.4.8",
@@ -17,6 +17,7 @@
     "angular-material": "^1.0.0",
     "angular-messages": "^1.4.8",
     "angular-route": "^1.4.8",
+    "angular-sanitize": "^1.4.8",
     "bcrypt": "^0.8.5",
     "body-parser": "^1.14.1",
     "bootstrap": "^3.3.6",
@@ -25,6 +26,7 @@
     "grunt": "^0.4.5",
     "grunt-contrib-copy": "^0.8.2",
     "grunt-contrib-uglify": "^0.10.1",
+    "ng-csv": "^0.3.6",
     "node": "0.0.0",
     "normalize.css": "^3.0.3",
     "papaparse": "^4.1.2",
