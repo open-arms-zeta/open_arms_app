@@ -69,7 +69,7 @@ myApp.controller('CreateMealController', ["$scope",  '$http', "DataService",  fu
             $scope.postToMealCategory();
 
             // Call function to post info into meal_allergens_allergenspecific table
-
+            $scope.postToAllergens();
 
         });
     };
@@ -78,6 +78,16 @@ myApp.controller('CreateMealController', ["$scope",  '$http', "DataService",  fu
         $http({
             method: 'POST',
             url: "/postmeals/postToMealCategory",
+            data: {mealId: $scope.mealId, mealObject: $scope.meal}
+        }).then(function(){
+
+        });
+    };
+
+    $scope.postToAllergens = function(){
+        $http({
+            method: 'POST',
+            url: "/postmeals/postToAllergens",
             data: {mealId: $scope.mealId, mealObject: $scope.meal}
         }).then(function(){
 

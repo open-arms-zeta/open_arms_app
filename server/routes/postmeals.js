@@ -117,6 +117,39 @@ router.post('/postToMealCategory', function(req, res){
 
     res.send("save success");
 
+});
+
+router.post('/postToAllergens', function(req, res){
+
+    console.log(req.body);
+
+    var mealAllergens = {
+        "meal_id": req.body.mealId
+    };
+
+    pg.connect(connectionString, function (err, client){
+
+        for(var i = 0; i < req.body.mealObject.allergens.length; i++) {
+
+            mealAllergens.allergen_id = req.body.mealObject.allergens[i].allergen_id;
+            mealAllergens.allergenspecific = req.body.mealObject.allergens[i].specific;
+            console.log(mealAllergens);
+
+            var q = "INSERT INTO meal_allergen_allergenspecific (meal_id, allergen_id, allergen_specific) VALUES ($1, $2, $3)";
+            console.log("query: ", q);
+            console.log(mealAllergens.meal_id, mealAllergens.allergen_id);
+            var result = client.query(q, [mealAllergens.meal_id, mealAllergens.allergen_id, mealAllergens.allergenspecific]);
+        }
+
+        if(err) console.log(err);
+
+        result.on('end', function () {
+            client.end();
+        });
+
+    });
+
+    res.send("save success");
 
 });
 
