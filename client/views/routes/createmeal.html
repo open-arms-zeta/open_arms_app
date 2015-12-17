@@ -1,6 +1,6 @@
 
 
-<form name="createMeal" ng-submit="submit()" onsubmit="return reset()">
+<form name="createMeal" ng-hide="mealEntrySuccess"  ng-submit="submit()" onsubmit="return reset()">
 
     <div class='mealCategories checkbox-inline' ng-repeat="category in categories">
         <input type="checkbox" name="categoryCheckbox"  checklist-value="category" checklist-model="meal.categories" ng-required="!meal.categories[0]">
@@ -52,9 +52,9 @@
 </form>
 
 <button class="btn btn-success" ng-click="submit()" ng-disabled="createMeal.$invalid">Enter New Entree</button>
+<div ng-show="mealEntrySuccess"><h3>A New Meal Has Been Entered</h3></div>
 
-
-
+<button class="btn btn-success" ng-click="refreshForm()" ng-show="mealEntrySuccess" >Reset -- Enter Another Meal</button>
 
 
 

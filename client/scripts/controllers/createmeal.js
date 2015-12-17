@@ -2,6 +2,8 @@ myApp.controller('CreateMealController', ["$scope",  '$http', "DataService",  fu
     console.log("create meal Controller Online");
 
 
+
+    $scope.mealEntrySuccess = false;
     $scope.meal = {
         categories: [],
         allergens: [],
@@ -42,18 +44,18 @@ myApp.controller('CreateMealController', ["$scope",  '$http', "DataService",  fu
             url: '/postmeals/saveToMealsTable',
             data: $scope.meal
         }).then (function(response){
-            //console.log($scope.meal_id);
-            //console.log(response.data);
-
-            //$scope.mealId = response.data[0].meal_id;
-
             $scope.newMealID();
+            $scope.mealEntrySuccess = true;
 
         });
 
-        //console.log($scope.meal);
-
     };
+
+    $scope.refreshForm = function() {
+        $scope.mealEntrySuccess = false;
+    };
+
+    $scope.refreshForm();
 
     //NEW MEAL_ID NEWLY CREATED MEAL
     $scope.newMealID = function(){
