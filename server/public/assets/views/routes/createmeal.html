@@ -29,7 +29,7 @@
 
 
 
-    <div class='allergens' ng-repeat="allergen in allergens">
+    <div class='allergens' ng-repeat="allergen in allergens" ng-if="ifNoAllergen(allergen)">
         <input type="checkbox" checklist-value="allergen" checklist-model="meal.allergens">
         <label>{{allergen.allergen_name}}</label>
     </div>
