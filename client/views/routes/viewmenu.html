@@ -7,14 +7,6 @@
 
     <form class="create-menu-form" name="createMenuForm">
 
-        <!--<label for="weekNumber">Select Week Number</label>-->
-        <!--<select name="weekNumber" id="weekNumber" ng-model="weekNumber">-->
-            <!--<option>1</option>-->
-            <!--<option>2</option>-->
-            <!--<option>3</option>-->
-            <!--<option>4</option>-->
-        <!--</select>-->
-
         <label for="startDate">Start Date</label>
         <input type="date" name="startDate" id="startDate" ng-model="menu.startDate">
 
@@ -25,34 +17,41 @@
 
         <p ng-show="showCategoryHeadings">Week Number: {{weekNumber}}</p>
 
+        <p ng-show="disableDropDown">This menu cannot be edited; it is either in use this week or client orders have been completed</p>
+
         <div ng-repeat="category in categories" ng-show="showCategoryHeadings">
             <h2>{{category.category_name}}</h2>
 
-            <select name="selectOptions1" id="selectOptions1" ng-disabled="activeWeek"
+            <select name="selectOptions1" id="selectOptions1"
+                    ng-disabled="disableDropDown"
                     ng-model="category.defaultMeal[0]"
                     ng-options="meal.entree + ' with ' + meal.side_1 + ', ' + meal.side_2 for meal in category.mealInfo"
                     ng-change="saveMeals(category.defaultMeal[0], category.category_name, 0)">
             </select><br>
 
             <select name="selectOptions2" id="selectOptions2"
+                    ng-disabled="disableDropDown"
                     ng-model="category.defaultMeal[1]"
                     ng-options="meal.entree + ' with ' + meal.side_1 + ', ' + meal.side_2 for meal in category.mealInfo"
                     ng-change="saveMeals(category.defaultMeal[1], category.category_name, 1)">
             </select><br>
 
             <select name="selectOptions3" id="selectOptions3"
+                    ng-disabled="disableDropDown"
                     ng-model="category.defaultMeal[2]"
                     ng-options="meal.entree + ' with ' + meal.side_1 + ', ' + meal.side_2 for meal in category.mealInfo"
                     ng-change="saveMeals(category.defaultMeal[2], category.category_name, 2)">
             </select><br>
 
             <select name="selectOptions4" id="selectOptions4"
+                    ng-disabled="disableDropDown"
                     ng-model="category.defaultMeal[3]"
                     ng-options="meal.entree + ' with ' + meal.side_1 + ', ' + meal.side_2 for meal in category.mealInfo"
                     ng-change="saveMeals(category.defaultMeal[3], category.category_name, 3)">
             </select><br>
 
             <select name="selectOptions5" id="selectOptions5"
+                    ng-disabled="disableDropDown"
                     ng-model="category.defaultMeal[4]"
                     ng-options="meal.entree + ' with ' + meal.side_1 + ', ' + meal.side_2 for meal in category.mealInfo"
                     ng-change="saveMeals(category.defaultMeal[4], category.category_name, 4)">
@@ -60,7 +59,10 @@
 
         </div>
 
-        <button ng-show="showCategoryHeadings" ng-click="createMenu(menu)">Edit Menu</button>
+        <button class="btn btn-primary"
+                ng-show="showCategoryHeadings"
+                ng-disabled="disableDropDown"
+                ng-click="createMenu(menu)">Edit Menu</button>
 
     </form>
 

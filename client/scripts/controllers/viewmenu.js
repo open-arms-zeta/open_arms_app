@@ -3,8 +3,6 @@ myApp.controller('ViewMenuController', ["$scope", "$http", "DataService", functi
 
     // Declare Variables
     $scope.dataService = DataService;
-    //$scope.categories = $scope.dataService.getCategories();
-    //$scope.menuByWeek = $scope.dataService.getMenu();
     $scope.showCategoryHeadings = false;
     $scope.menu = {};
     $scope.allMeals = [];
@@ -15,6 +13,18 @@ myApp.controller('ViewMenuController', ["$scope", "$http", "DataService", functi
     $scope.menuId;
     $scope.hideDropDown = true;
     $scope.weekNumber;
+    $scope.activeWeek = undefined;
+    $scope.disableDropDown = false;
+
+    //pull in active week
+    if ($scope.activeWeek == undefined) {
+        $scope.dataService.calculateActiveWeek();
+        $scope.activeWeek = $scope.dataService.getActiveWeek();
+        console.log($scope.activeWeek);
+    } else {
+        $scope.activeWeek = $scope.dataService.getActiveWeek();
+
+    }
 
     // Pull in categories
     if($scope.categories == undefined){
@@ -55,6 +65,12 @@ myApp.controller('ViewMenuController', ["$scope", "$http", "DataService", functi
 
     $scope.getMenu = function(menu) {
         $scope.hideDropDown = true;
+        $scope.disableDropDown = false;
+
+        if($scope.menu.startDate <= $scope.activeWeek){
+            console.log("Hi");
+            $scope.disableDropDown = true;
+        }
 
         // Get Menu for Specific Week
         $scope.categories = $scope.dataService.getCategories();
@@ -121,5 +137,34 @@ myApp.controller('ViewMenuController', ["$scope", "$http", "DataService", functi
         });
     };
 
+    //pull in active week
+    //if ($scope.activeWeek == undefined) {
+    //    $scope.dataService.calculateActiveWeek();
+    //    $scope.activeWeek = $scope.dataService.getActiveWeek();
+    //    console.log("this is active week", $scope.activeWeek);
+    //    console.log("this is today", new Date());
+    //    console.log("comparison", $scope.activeWeek > new Date());
+    //
+    //    if($scope.menu.startDate <= $scope.activeWeek){
+    //        console.log("Hi");
+    //        $scope.disableDropDown = true;
+    //    }
+    //
+    //} else {
+    //    $scope.activeWeek = $scope.dataService.getActiveWeek();
+    //    console.log("this is active week", $scope.activeWeek);
+    //
+    //    if($scope.menu.startDate <= $scope.activeWeek){
+    //        console.log("Hi");
+    //        $scope.disableDropDown = true;
+    //    }
+    //}
+
+    //$scope.compareDates = function(){
+    //    if($scope.menu.startDate <= $scope.activeWeek){
+    //        console.log("Hi");
+    //        $scope.disableDropDown = true;
+    //    }
+    //};
 
 }]);
