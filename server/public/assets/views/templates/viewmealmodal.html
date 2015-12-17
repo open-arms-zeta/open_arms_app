@@ -12,12 +12,14 @@
     </div>
     <div>
         <h3>Allergens</h3>
-        <p>{{displayData[0].allergen_name}}</p>
-        <p>{{displayData[0].specific_name}}</p>
+        <div ng-repeat="meals in displayData | unique: 'allergen_specific'">
+            <p>{{meals.allergen_name}}</p>
+            <p>{{meals.allergen_specific}}</p>
+        </div>
     </div>
 
     <h3>Categories</h3>
-    <div ng-repeat="meals in displayData">
+    <div ng-repeat="meals in displayData | unique: 'category_name'">
         <p>{{meals.category_name}}</p>
     </div>
 

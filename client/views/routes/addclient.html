@@ -103,13 +103,12 @@
                     <!--<p ng-show="addClientForm.inputZip.$error.maxlength">Zip code is too long.</p>-->
                     <!--<p ng-message="required">Enter a zip code</p>-->
                 <!--</div>-->
-            </div>
+            <!--</div>-->
 
             <div class="form-group" ng-class="{ 'has-error' : addClientForm.categorySelect.$invalid && !addClientForm.categorySelect.$pristine }">
                 <label for="categorySelect">Select default meal category: </label><br>
-                <select name="categorySelect" id="categorySelect" class="form-control" ng-model="newClient.defaultMeal" required>
-                    <option value="">---Default Category---</option> <!-- not selected / blank option -->
-                    <option value="{{category.category_name}}" ng-repeat="category in categories">{{category.category_name}}</option> <!-- interpolation -->
+                <select name="categorySelect" id="categorySelect" class="form-control" ng-model="newClient.defaultMeal"  ng-options="category.category_name for category in categories" required>
+                    <option>{{category.category_name}}</option>
                 </select><br>
                 <div ng-messages="addClientForm.categorySelect.$error" ng-if="addClientForm.categorySelect.$touched">
                     <p ng-message="required">Select a default category</p>
@@ -123,7 +122,7 @@
 
         <form>
             <input type="file" file-change="handler($event,files)" ng-model="myFiles" />
-            <button ng-click="readCSV()"></button>
+            <!--<button ng-click="readCSV()"></button>-->
         </form>
 
     </div>
