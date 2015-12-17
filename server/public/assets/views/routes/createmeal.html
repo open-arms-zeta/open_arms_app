@@ -2,7 +2,7 @@
 
 <form name="createMeal" ng-submit="submit()" onsubmit="return reset()">
 
-    <div class='mealCategories' ng-repeat="category in categories">
+    <div class='mealCategories checkbox-inline' ng-repeat="category in categories">
         <input type="checkbox" name="categoryCheckbox"  checklist-value="category" checklist-model="meal.categories" ng-required="!meal.categories[0]">
 
         <label>{{category.category_name}}</label>
@@ -29,7 +29,7 @@
 
 
 
-    <div class='allergens' ng-repeat="allergen in allergens">
+    <div class='allergens checkbox-inline' ng-repeat="allergen in allergens">
         <input type="checkbox" checklist-value="allergen" checklist-model="meal.allergens">
         <label>{{allergen.allergen_name}}</label>
     </div>
@@ -51,7 +51,7 @@
 
 </form>
 
-<button class="btn btn-success" ng-click="submit(form)" ng-disabled="createMeal.$invalid">Enter New Entree</button>
+<button class="btn btn-success" ng-click="submit()" ng-disabled="createMeal.$invalid">Enter New Entree</button>
 
 
 
