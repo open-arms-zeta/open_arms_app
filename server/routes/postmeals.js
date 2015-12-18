@@ -15,7 +15,7 @@ router.post('/saveToMealsTable', function(req, res){
         "entree": req.body.entree,
         "side_1": req.body.side_1,
         "side_2": req.body.side_2,
-        "status": req.body.status
+        "status": true
     };
     console.log("post request", postMeals);
 

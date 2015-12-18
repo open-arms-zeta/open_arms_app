@@ -113,12 +113,20 @@ module.exports = function(grunt){
             },
             bootstrap: {
                 expand: true,
-                cwd: 'node_modules/dist/css/',
+                cwd: 'node_modules/bootstrap/dist/css',
                 src: [
                     "bootstrap.min.css",
                     "bootstrap.min.css.map"
                 ],
                 "dest": "server/public/vendors/"
+            },
+            bootstrapFonts: {
+                expand: true,
+                cwd: 'node_modules/bootstrap/dist/fonts',
+                src: [
+                    "*"
+                ],
+                "dest": "server/public/fonts/"
             },
             underscore: {
                 expand: true,

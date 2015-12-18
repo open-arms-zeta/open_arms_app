@@ -2,16 +2,14 @@
 
 <form name="createMeal" ng-hide="mealEntrySuccess"  ng-submit="submit()" onsubmit="return reset()">
 
-    <div class='mealCategories checkbox-inline' ng-repeat="category in categories">
+    <div class='mealCategories checkbox-inline' ng-repeat="category in categories" ng-class="{'has-error': createMeal.categoryCheckbox.length < 1 && !createMeal.categoryCheckbox.$pristine}">
         <input type="checkbox" name="categoryCheckbox"  checklist-value="category" checklist-model="meal.categories" ng-required="!meal.categories[0]">
-
         <label>{{category.category_name}}</label>
-
     </div>
-
-    <div ng-messages="createMeal.categoryCheckbox.$error">
-        <div ng-message="required">Required to check at least one category</div>
-    </div>
+    <p ng-show="createMeal.categoryCheckbox.$invalid" class="help-block">At least one category is required.</p>
+    <!--<div ng-messages="createMeal.categoryCheckbox.$invalid">-->
+        <!--<div ng-message="required">Required to check at least one category</div>-->
+    <!--</div>-->
 
     <div>
         <input type="text" name="entree" placeholder="Entree" required ng-model="meal.entree"><br/>
@@ -30,10 +28,12 @@
 
 
 
-    <div class='allergens' ng-repeat="allergen in allergens" ng-if="ifNoAllergen(allergen)">
-        <input type="checkbox" checklist-value="allergen" checklist-model="meal.allergens">
+    <div class='allergens' ng-repeat="allergen in allergens" ng-if="ifNoAllergen(allergen)" ng-class="{'has-error': createMeal.allergenCheckbox.length < 1}">
+        <input type="checkbox" name='allergenCheckbox' checklist-value="allergen" checklist-model="meal.allergens" ng-required="!meal.allergens[0]">
         <label>{{allergen.allergen_name}}</label>
     </div>
+
+    <p ng-show="createMeal.allergenCheckbox.$invalid" class="help-block">Allergen field must be filled.</p>
 
     <div class="allergenSpecific" ng-if="findAllergen('Tree Nuts')">
         <input type="text" placeholder="Specific Tree Nut Allergen" ng-model="treeNutAllergen" ng-change="associate('Tree Nuts', treeNutAllergen)">

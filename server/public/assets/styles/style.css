@@ -1,27 +1,117 @@
+/*COLOR PALLETE
+
+some color : hex value
+
+*/
+
 /*HEADER STYLING*/
-header{
-    height: 150px;
-    background-color: #eceae4;
-}
+/*header{*/
+    /*height: 150px;*/
+    /*background-color: #eceae4;*/
+/*}*/
 
 .menu-title{
-    margin-top: 0px;
-}
-
-.side-nav{
-    float: left;
-    width: 14.5%;
-    background-color: #c2c0ba;
-    position:absolute;
-    height: 618px;
-}
-
-.route{
-    float:right;
-    width: 85%;
+    margin-top: 0;
 }
 
 .my-grid {
     width: 1200px;
     height: 250px;
+}
+
+
+/*NAVBAR STYLING*/
+.navbar {
+    /*height: 70px;*/
+    margin-bottom: 0;
+    background-color: #3f5566;
+    color: #ffe1bc;
+    border-radius: 0px;
+    border: none;
+}
+
+.navbar-btn {
+    margin-top: -40px;
+    margin-bottom: 17px;
+    margin-right: 15px;
+}
+
+.navbar-brand {
+    padding: 7px 15px;
+}
+
+/*NAV STYLING*/
+.side-nav{
+    float: left;
+    width: 14.5%;
+    background-color: #ffe1bc;
+    position:absolute;
+    height: 725px;
+    -webkit-box-shadow: 3px 0px 48px -13px rgba(0,0,0,0.5);
+    -moz-box-shadow: 3px 0px 48px -13px rgba(0,0,0,0.5);
+    box-shadow: 3px 0px 48px -13px rgba(0,0,0,0.5);
+}
+
+.route-list{
+    margin-top: 20px;
+}
+
+.route-link{
+    padding: 10px 0;
+}
+
+/*MAIN ROUTES STYLING*/
+.route{
+    padding-left: 15px;
+    float:right;
+    width: 85%;
+}
+
+
+/*BUTTONS*/
+
+.light-button{
+    background-color: #ffe1bc;
+    border-color: #ddbfa3;
+    color: #3f5566;
+}
+
+.light-button:hover {
+    background-color: #dec0a1;
+    border-color: #bea28a;
+    color: #3f5566;
+}
+
+.light-button:active {
+    background-color: #c2a48a;
+    border-color: #a48977;
+    color: #3f5566;
+}
+.light-button:active:focus {
+    background-color: #c2a48a;
+    border-color: #a48977;
+    color: #3f5566;
+}
+
+.dark-button{
+    border-color: #476e75;
+    background-color: #5d8990;
+    color: #ffefd8;
+}
+
+.dark-button:hover {
+    border-color: #375e65;
+    background-color: #4c787f;
+    color: #deceb7;
+}
+
+.dark-button:active {
+    border-color: #2f565d;
+    background-color: #426f76;
+    color: #d1c1a9;
+}
+.dark-button:active:focus {
+    border-color: #294b52;
+    background-color: #305a61;
+    color: #bdad98;
 }

@@ -1,8 +1,8 @@
 <div>
     <h1>Welcome!</h1>
     <p>Displaying information for the week of: {{selectedStartDate | date: 'fullDate'}}</p>
-    <button class="switch-week" ng-click="previousWeek()">Previous Week</button>
-    <button class="switch-week" ng-click="nextWeek()">Next Week</button>
+    <button class="switch-week btn dark-button" ng-click="previousWeek()">Previous Week</button>
+    <button class="switch-week btn dark-button" ng-click="nextWeek()">Next Week</button>
     <div>
         <button type="button" ng-csv="printMealCount()" csv-header="['Entree', 'Side 1', 'Side 2', 'Category', 'Start Date', 'End Date','Number of Meals']"
                 csv-column-order="['entree', 'side_1', 'side_2', 'category_name', 'start_date', 'end_date','count']" filename="mealCount.csv">Meal Count</button>

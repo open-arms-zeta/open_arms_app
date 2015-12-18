@@ -13,8 +13,8 @@
     <div>
         <h3>Allergens</h3>
         <div ng-repeat="meals in displayData | unique: 'allergen_specific'">
-            <p>{{meals.allergen_name}}</p>
-            <p>{{meals.allergen_specific}}</p>
+            <p>{{meals.allergen_name}}<span ng-if="meals.allergen_specific"> - {{meals.allergen_specific}}</span></p>
+
         </div>
     </div>
 

@@ -41,6 +41,7 @@ myApp.controller('CreateMenuController', ["$scope", "$http", "DataService", func
         $http.get('/createmenu/meals').then(function(response){
 
             $scope.allMeals = response.data;
+            console.log($scope.allMeals);
 
             for(var i = 0; i < $scope.categories.length; i++){
                 $scope.categories[i].mealInfo = [];
@@ -60,6 +61,8 @@ myApp.controller('CreateMenuController', ["$scope", "$http", "DataService", func
             }
 
         });
+
+
     };
 
     // Check if a menu is already created for the selected startDate
