@@ -25,7 +25,7 @@ some color : hex value
     /*height: 70px;*/
     margin-bottom: 0;
     background-color: #3f5566;
-    color: #ffe1bc;
+    color: #e9edc0;
     border-radius: 0px;
     border: none;
 }
@@ -65,6 +65,16 @@ some color : hex value
     padding-left: 15px;
     float:right;
     width: 85%;
+    height: 725px;
+}
+
+.route-header{
+    height:100%;
+}
+
+.route-body{
+    height:100%;
+    overflow: scroll;
 }
 
 
@@ -102,16 +112,16 @@ some color : hex value
 .dark-button:hover {
     border-color: #375e65;
     background-color: #4c787f;
-    color: #deceb7;
+    color: #ffefd8;
 }
 
 .dark-button:active {
     border-color: #2f565d;
     background-color: #426f76;
-    color: #d1c1a9;
+    color: #ffefd8;
 }
 .dark-button:active:focus {
     border-color: #294b52;
     background-color: #305a61;
-    color: #bdad98;
+    color: #ffefd8;
 }

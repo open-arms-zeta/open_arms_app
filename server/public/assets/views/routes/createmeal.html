@@ -1,73 +1,64 @@
-
-
-<form name="createMeal" ng-hide="mealEntrySuccess"  ng-submit="submit()" onsubmit="return reset()">
-
-    <div class='mealCategories checkbox-inline' ng-repeat="category in categories" ng-class="{'has-error': createMeal.categoryCheckbox.length < 1 && !createMeal.categoryCheckbox.$pristine}">
-        <input type="checkbox" name="categoryCheckbox"  checklist-value="category" checklist-model="meal.categories" ng-required="!meal.categories[0]">
-        <label>{{category.category_name}}</label>
+<div class="route-header">
+    <h1>Add Clients</h1>
+    <div class="info">
+        <p>Instructions: </p>
+        <p>Enter in the total number of 5 packs for each category to determine the total number of individual
+            meals to be prepared
+        </p>
     </div>
-    <p ng-show="createMeal.categoryCheckbox.$invalid" class="help-block">At least one category is required.</p>
-    <!--<div ng-messages="createMeal.categoryCheckbox.$invalid">-->
+</div>
+
+<div class="route-body">
+    <form name="createMeal" ng-hide="mealEntrySuccess"  ng-submit="submit()" onsubmit="return reset()">
+
+        <div class='mealCategories checkbox-inline' ng-repeat="category in categories" ng-class="{'has-error': createMeal.categoryCheckbox.length < 1 && !createMeal.categoryCheckbox.$pristine}">
+            <input type="checkbox" name="categoryCheckbox"  checklist-value="category" checklist-model="meal.categories" ng-required="!meal.categories[0]">
+            <label>{{category.category_name}}</label>
+        </div>
+        <p ng-show="createMeal.categoryCheckbox.$invalid" class="help-block">At least one category is required.</p>
+        <!--<div ng-messages="createMeal.categoryCheckbox.$invalid">-->
         <!--<div ng-message="required">Required to check at least one category</div>-->
-    <!--</div>-->
+        <!--</div>-->
 
-    <div>
-        <input type="text" name="entree" placeholder="Entree" required ng-model="meal.entree"><br/>
-        <div ng-messages="createMeal.entree.$error" ng-if="createMeal.entree.$touched">
-            <div ng-message="required">Require Entree</div>
+        <div>
+            <input type="text" name="entree" placeholder="Entree" required ng-model="meal.entree">
+            <div ng-messages="createMeal.entree.$error" ng-if="createMeal.entree.$touched">
+                <div ng-message="required">Require Entree</div>
+            </div>
+            <input type="text" name="side1" placeholder="Side #1" required ng-model="meal.side_1">
+            <div ng-messages="createMeal.side1.$error" ng-if="createMeal.side1.$touched">
+                <div ng-message="required">Require One Side</div>
+            </div>
+            <input type="text" name="side2" placeholder="Side #2" ng-model="meal.side_2">
         </div>
-        <input type="text" name="side1" placeholder="Side #1" required ng-model="meal.side_1"><br/>
-        <div ng-messages="createMeal.side1.$error" ng-if="createMeal.side1.$touched">
-            <div ng-message="required">Require One Side</div>
+
+
+        <div class='allergens' ng-repeat="allergen in allergens" ng-if="ifNoAllergen(allergen)" ng-class="{'has-error': createMeal.allergenCheckbox.length < 1}">
+            <input type="checkbox" name='allergenCheckbox' checklist-value="allergen" checklist-model="meal.allergens" ng-required="!meal.allergens[0]">
+            <label>{{allergen.allergen_name}}</label>
         </div>
-        <input type="text" name="side2" placeholder="Side #2" ng-model="meal.side_2">
-    </div>
 
+        <p ng-show="createMeal.allergenCheckbox.$invalid" class="help-block">Allergen field must be filled.</p>
 
+        <div class="allergenSpecific" ng-if="findAllergen('Tree Nuts')">
+            <input type="text" placeholder="Specific Tree Nut Allergen" ng-model="treeNutAllergen" ng-change="associate('Tree Nuts', treeNutAllergen)">
+            <!--<span ng-if=" !! Tree Nuts === TRUE" class="animate-if"></span>-->
+        </div>
 
+        <div class="allergenSpecific" ng-if="findAllergen('Shellfish')">
+            <input type="text" placeholder="Specific Shellfish Allergen" ng-model="shellfishAllergen" ng-change="associate('Shellfish', shellfishAllergen)">
 
+        </div>
 
+        <div class="allergenSpecific" ng-if="findAllergen('Fish')">
+            <input type="text" placeholder="Specific Fish Allergen" ng-model="fishAllergen" ng-change="associate('Fish', fishAllergen)">
 
-    <div class='allergens' ng-repeat="allergen in allergens" ng-if="ifNoAllergen(allergen)" ng-class="{'has-error': createMeal.allergenCheckbox.length < 1}">
-        <input type="checkbox" name='allergenCheckbox' checklist-value="allergen" checklist-model="meal.allergens" ng-required="!meal.allergens[0]">
-        <label>{{allergen.allergen_name}}</label>
-    </div>
+        </div>
 
-    <p ng-show="createMeal.allergenCheckbox.$invalid" class="help-block">Allergen field must be filled.</p>
+    </form>
 
-    <div class="allergenSpecific" ng-if="findAllergen('Tree Nuts')">
-        <input type="text" placeholder="Specific Tree Nut Allergen" ng-model="treeNutAllergen" ng-change="associate('Tree Nuts', treeNutAllergen)">
-        <!--<span ng-if=" !! Tree Nuts === TRUE" class="animate-if"></span>-->
-    </div>
+    <button class="btn btn-success" ng-click="submit()" ng-disabled="createMeal.$invalid">Enter New Entree</button>
+    <div ng-show="mealEntrySuccess"><h3>A New Meal Has Been Entered</h3></div>
 
-    <div class="allergenSpecific" ng-if="findAllergen('Shellfish')">
-        <input type="text" placeholder="Specific Shellfish Allergen" ng-model="shellfishAllergen" ng-change="associate('Shellfish', shellfishAllergen)">
-
-    </div>
-
-    <div class="allergenSpecific" ng-if="findAllergen('Fish')">
-        <input type="text" placeholder="Specific Fish Allergen" ng-model="fishAllergen" ng-change="associate('Fish', fishAllergen)">
-
-    </div>
-
-</form>
-
-<button class="btn btn-success" ng-click="submit()" ng-disabled="createMeal.$invalid">Enter New Entree</button>
-<div ng-show="mealEntrySuccess"><h3>A New Meal Has Been Entered</h3></div>
-
-<button class="btn btn-success" ng-click="refreshForm()" ng-show="mealEntrySuccess" >Reset -- Enter Another Meal</button>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    <button class="btn btn-success" ng-click="refreshForm()" ng-show="mealEntrySuccess" >Reset -- Enter Another Meal</button>
+</div>

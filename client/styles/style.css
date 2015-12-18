@@ -25,7 +25,7 @@ some color : hex value
     /*height: 70px;*/
     margin-bottom: 0;
     background-color: #3f5566;
-    color: #ffe1bc;
+    color: #e9edc0;
     border-radius: 0px;
     border: none;
 }
@@ -65,6 +65,8 @@ some color : hex value
     padding-left: 15px;
     float:right;
     width: 85%;
+    height: 725px;
+    overflow:scroll;
 }
 
 
