@@ -57,3 +57,14 @@ header{
     font-weight: bold;
     font-family: 'arial', 'sans-serif';
 }
+
+
+/* ------ ACCORDION ------ */
+.accordion a {
+    padding: 10px;
+    background: #eeeeee;
+    color: #333;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 1px;
+}

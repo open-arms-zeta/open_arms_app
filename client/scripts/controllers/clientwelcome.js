@@ -11,6 +11,7 @@ myApp.controller('ClientWelcomeController', ["$scope", "DataService", "$http", f
 
     $scope.mealsChosen = false;
     $scope.customized = false;
+    $scope.notActive = false;
 
     $scope.mealsWithAllergens = [];
 
@@ -21,9 +22,11 @@ myApp.controller('ClientWelcomeController', ["$scope", "DataService", "$http", f
     if ($scope.user == undefined) {
         $scope.dataService.retrieveUser().then(function(){
             $scope.user = $scope.dataService.getUser();
+            $scope.checkClientStatus($scope.user);
         });
     } else {
         $scope.user = $scope.dataService.getUser();
+        $scope.checkClientStatus($scope.user);
 
     }
 
@@ -73,7 +76,6 @@ myApp.controller('ClientWelcomeController', ["$scope", "DataService", "$http", f
                     $scope.categories[i].mealInfo.push($scope.menu[j]);
                 }
             }
-            //console.log($scope.categories);
         }
     };
 
@@ -86,13 +88,9 @@ myApp.controller('ClientWelcomeController', ["$scope", "DataService", "$http", f
 
     $scope.getAllergen = function(i){
         $scope.menu[i].allergen=[];
-        //console.log($scope.menu[i]);
-        //console.log('outside get', $scope.menu[i]);
+
         $http.get('/getmeals/allergenExtras', {params: {meal_id : $scope.menu[i].meal_id}}).then(function(response){
-            //console.log('this is i', i);
-            //
-            //console.log('inside get', $scope.menu[i]);
-            //console.log("mealExtras Response: ", response.data);
+
             for(var j = 0; j < response.data.length; j++){
                 if(response.data[j].allergen_specific){
                     $scope.menu[i].allergen.push(response.data[j].allergen_name + '- ' +  response.data[j].allergen_specific);
@@ -105,16 +103,40 @@ myApp.controller('ClientWelcomeController', ["$scope", "DataService", "$http", f
     };
 
 
+    // Check client status
+    $scope.checkClientStatus = function(user){
+        if(user.status == false){
+            $scope.notActive = true;
+        }
+    };
+
+    //-------------------To do: check client orders for active week to see if user has already chosen meals
+    // GET call to server passing client_id
+    // if response.data[0], $scope.mealsChosen = true
+
+
     //If user wishes to customize, this value is set to true
     $scope.customize = function(){
         $scope.customized = true;
     };
 
-    //If user completes order, this value is set to true and the program is terminated
-    //-------------------To do: check client orders for active week to see if user has already chosen meals
-    $scope.defaultOrder = function(){
-        //$scope.mealsChosen = true;
-        //$scope.toggleModal();
+    //If user completes order, mealsChosen is set to true and the program is terminated
+
+    $scope.postDefaultMeal = function(){
+
+        // NEED TO CHECK COUNT FOR EACH MEAL!!!!!!
+
+        // Format default meal choices into objects
+        // ---- client_id
+        // ---- menu_id
+        // ---- meal_id
+        // ---- category_id
+        // ---- count
+        // POST client order to database
+        // ---- Need to post in a loop to post multiple lines
+
+        $scope.mealsChosen = true;
+        $scope.modalShown = !$scope.modalShown;
     };
 
     // Modal
@@ -133,6 +155,7 @@ myApp.controller('ClientWelcomeController', ["$scope", "DataService", "$http", f
     $scope.removeMeal = function(index){
         $scope.addedMeal.splice(index, 1);
     };
+
 
 
 }]);

@@ -1,4 +1,4 @@
-<div class="welcome-message" ng-if="!mealsChosen && !customized">
+<md-content class="welcome-message" ng-if="!mealsChosen && !customized && !notActive">
     <h1>Welcome {{user.first_name}}</h1>
     <h2>Your default meal pack is: {{user.default_meal}}</h2>
     <h2>These are the default meals for the week of: {{activeWeek | date: 'fullDate'}}</h2>
@@ -17,7 +17,7 @@
         <md-button class="md-raised" ng-click="customize()">Yes please! I would like to customize</md-button>
         <md-button class="md-raised" ng-click="toggleModal()">No, I prefer the default options listed above</md-button>
     </div>
-</div>
+</md-content>
 
 <!--Modal for meal confirmation for default meal selection-->
 <modal-dialog show='modalShown' width='90%' height='90%'>
@@ -34,15 +34,16 @@
 
         </div>
 
-        <md-button class="md-raised">Confirm Meal Selection</md-button>
+        <md-button class="md-raised" ng-click="postDefaultMeal()">Confirm Meal Selection</md-button>
         <md-button class="md-raised md-warn" ng-click="toggleModal()">No</md-button>
 
     </md-content>
 </modal-dialog>
 
 <!------------- CUSTOMIZE MEALS PAGE ---------------->
-<div class="customize-meals" ng-if="customized">
-    <h1>Lets choose some meals</h1>
+<md-content class="customize-meals" ng-if="customized">
+    <h1>Customize Meal Selection</h1>
+    <h2>For the week of: {{activeWeek | date: 'fullDate'}}</h2>
 
     <div layout="row">
         <div flex="50" layout="column">
@@ -88,7 +89,7 @@
 
         </div>
     </div>
-</div>
+</md-content>
 
 <!--Modal for customized meal confirmation-->
 <modal-dialog show='modalShown2' width='90%' height='90%'>
@@ -110,7 +111,13 @@
     </md-content>
 </modal-dialog>
 
-<div class="already-ordered" ng-if="mealsChosen">
+<!--SHOWS AFTER CLIENT CONFIRMED ORDER -->
+<md-content class="already-ordered" ng-if="mealsChosen">
     <h1>Your meals for the week of {{activeWeek | date: 'fullDate'}} are selected, enjoy!</h1>
+</md-content>
 
-</div>
+<!--SHOWS WHEN CLIENT STATUS IS NOT ACTIVE-->
+<md-content class="not-active" ng-if="notActive">
+    <h1>Your status is not active according to our system.</h1>
+    <h2>If this is incorrect, please call us.</h2>
+</md-content>
