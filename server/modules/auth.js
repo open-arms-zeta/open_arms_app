@@ -4,7 +4,7 @@ function ensureAuthenticated(req, res, next) {
     else {
         console.log('redirect!');
 
-        return res.redirect('../')
+        return res.send(false);
     }
 }
 

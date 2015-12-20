@@ -5,9 +5,9 @@ var path = require('path');
 var Model = require('../models/models');
 var bcrypt = require('bcrypt');
 
-//router.get('/', function (req, res, next){
-//    res.sendFile(path.resolve(__dirname, '../public/views/registeradmin.html'));
-//});
+var pg = require('pg');
+
+var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/open_arms_db';
 
 
 router.post('/', function(req,res,next) {
@@ -51,18 +51,45 @@ router.post('/admin', function(req,res,next){
     var hashedPassword = bcrypt.hashSync(admin.password, salt);
 
     var newUser = {
-        email: admin.email,
+        email: admin.username,
         role: 'admin',
         salt: salt,
         password: hashedPassword
     };
 
     Model.User.create(newUser).then(function () {
-        res.redirect('/')
+        res.send('/')
     }).catch(function (error) {
-        res.redirect('/register')
+        res.send('/register')
     });
 
+});
+
+//Check emails
+router.get('/all', function(req,res){
+    console.log('retrieving emails')
+    var results = [];
+
+    pg.connect(connectionString, function (err, client) {
+
+        var query = client.query("SELECT email FROM users");
+
+        // Stream results back one row at a time, push into results array
+        query.on('row', function (row) {
+            results.push(row);
+        });
+
+        // After all data is returned, close connection and return results
+        query.on('end', function () {
+            client.end();
+            return res.json(results);
+        });
+
+        // Handle Errors
+        if (err) {
+            console.log(err);
+        }
+    });
 });
 
 module.exports = router;
