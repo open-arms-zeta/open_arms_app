@@ -1,7 +1,6 @@
 /*COLOR PALLETE
 
-some color : hex value
-
+White Font: #dfdedb
 */
 
 /*HEADER STYLING*/
@@ -25,9 +24,10 @@ some color : hex value
     /*height: 70px;*/
     margin-bottom: 0;
     background-color: #3f5566;
-    color: #e9edc0;
+    color: #dfdedb;
     border-radius: 0px;
     border: none;
+    z-index: 1;
 }
 
 .navbar-btn {
@@ -42,14 +42,16 @@ some color : hex value
 
 /*NAV STYLING*/
 .side-nav{
+    padding-right: 10px;
+    text-align: right;
     float: left;
     width: 14.5%;
-    background-color: #ffe1bc;
+    background-color: #dfdedb;
     position:absolute;
     height: 725px;
-    -webkit-box-shadow: 3px 0px 48px -13px rgba(0,0,0,0.5);
-    -moz-box-shadow: 3px 0px 48px -13px rgba(0,0,0,0.5);
-    box-shadow: 3px 0px 48px -13px rgba(0,0,0,0.5);
+    -webkit-box-shadow: 1px 0px 28px 0px rgba(0,0,0,0.3);
+    -moz-box-shadow: 1px 0px 28px 0px rgba(0,0,0,0.3);
+    box-shadow: 1px 0px 28px 0px rgba(0,0,0,0.3);
 }
 
 .route-list{
@@ -66,62 +68,63 @@ some color : hex value
     float:right;
     width: 85%;
     height: 725px;
-}
-
-.route-header{
-    height:100%;
-}
-
-.route-body{
-    height:100%;
-    overflow: scroll;
+    overflow:scroll;
 }
 
 
 /*BUTTONS*/
 
 .light-button{
-    background-color: #ffe1bc;
-    border-color: #ddbfa3;
+    background-color: #dfdedb;
+    border-color: #bab9b6;
     color: #3f5566;
 }
 
 .light-button:hover {
-    background-color: #dec0a1;
-    border-color: #bea28a;
+    background-color: #cdccc9;
+    border-color: #a1a09d;
     color: #3f5566;
 }
 
 .light-button:active {
-    background-color: #c2a48a;
-    border-color: #a48977;
+    background-color: #bcbbb8;
+    border-color: #92918e;
     color: #3f5566;
 }
 .light-button:active:focus {
-    background-color: #c2a48a;
-    border-color: #a48977;
+    background-color: #aaa9a6;
+    border-color: #81807d;
     color: #3f5566;
 }
 
 .dark-button{
-    border-color: #476e75;
-    background-color: #5d8990;
-    color: #ffefd8;
+    border-color: #667e8f;
+    background-color: #506372;
+    color: #eff1ec;
 }
 
 .dark-button:hover {
-    border-color: #375e65;
-    background-color: #4c787f;
-    color: #ffefd8;
+    border-color: #5a7283;
+    background-color: #485b6a;
+    color: #eff1ec;
 }
 
 .dark-button:active {
-    border-color: #2f565d;
-    background-color: #426f76;
-    color: #ffefd8;
+    border-color: #4b6172;
+    background-color: #3d4f5d;
+    color: #eff1ec;
 }
+
 .dark-button:active:focus {
-    border-color: #294b52;
-    background-color: #305a61;
-    color: #ffefd8;
+    border-color: #3f5566;
+    background-color: #324352;
+    color: #eff1ec;
+}
+
+/*WELCOME PAGE STYLING*/
+.welcome-header{
+    text-align: center;
+}
+.date-picker {
+    text-align: center;
 }

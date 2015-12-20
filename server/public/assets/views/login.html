@@ -3,39 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <title></title>
-    <link rel="stylesheet" href="/vendors/normalize.css">
+    <link rel="stylesheet" href="/vendors/bootstrap.min.css">
+    <link rel="stylesheet" href="/vendors/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="/assets/styles/loginstyle.css">
+
+
 </head>
 <body>
-    <div class="instructions">
-        <div class="container">
-            <h1 class="lead text-center">Open Arms Meal Selection</h1>
-        </div>
-    </div>
-    <div class="container">
-        <div class="text-center">
-            <h3>Login</h3>
+    <!--<div class="instructions">-->
+        <!--<div class="title">-->
+            <!--<h1 class="text-center">Open Arms Meal Selection</h1>-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--<div class="container">-->
+        <!--<div class="text-center">-->
 
-            <form class="form-horizontal" action="/" method="post">
-                <div class="form-group">
-                    <label class="control-label col-sm-2" for="username">Username:</label>
-                    <div class="col-sm-10">
-                        <input class='form-control' type="text" name="username" id="username"/>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="control-label col-sm-2" for="password">Password:</label>
-                    <div class="col-sm-10">
-                        <input class='form-control' type="password" name="password" id="password"/>
-                    </div>
-                </div>
-                <div class="row">
-                    <a class='col-md-4' href="/register/admin">Admin Registration</a>
-                    <input class='btn btn-default col-md-4' type="submit" value="Log In"/>
-                    <!--<a class="col-md-4" href="/password">Forgot your password?</a>-->
-                </div>
-            </form>
-        </div>
+
+            <!--<form class="form-horizontal" action="/" method="post">-->
+                <!--<fieldset>-->
+                    <!--<legend>Login</legend>-->
+                        <!--<div class="form-group">-->
+                            <!--<label class="control-label col-sm-2" for="username">Username:</label>-->
+                            <!--<div class="col-sm-10">-->
+                                <!--<input class='form-control' type="text" name="username" id="username"/>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="form-group">-->
+                            <!--<label class="control-label col-sm-2" for="password">Password:</label>-->
+                            <!--<div class="col-sm-10">-->
+                                <!--<input class='form-control' type="password" name="password" id="password"/>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="row">-->
+                            <!--<a class='col-md-4' href="/register/admin">Admin Registration</a>-->
+                            <!--<input class='btn btn-default col-md-4' type="submit" value="Log In"/>-->
+                            <!--&lt;!&ndash;<a class="col-md-4" href="/password">Forgot your password?</a>&ndash;&gt;-->
+                        <!--</div>-->
+                <!--</fieldset>-->
+            <!--</form>-->
+        <!--</div>-->
+    <!--</div>-->
+    <div class="registration">
+        <a class="btn" href="/register/admin">Admin Registration</a>
     </div>
+    <form class="login" action="/" method="post">
+
+        <fieldset>
+
+            <legend class="legend">Login</legend>
+
+            <div class="input">
+                <input type="email" placeholder="Email" name="username" required />
+                <span><i class="fa fa-envelope-o"></i></span>
+            </div>
+
+            <div class="input">
+                <input type="password" placeholder="Password" name="password" required />
+                <span><i class="fa fa-lock"></i></span>
+            </div>
+
+            <button type="submit" class="submit"><i class="fa fa-long-arrow-right"></i></button>
+
+        </fieldset>
+
+        <div class="feedback-success">
+            login successful <br />
+            redirecting...
+        </div>
+
+        <div class="feedback-failure">
+            login failed <br />
+            try again...
+        </div>
+
+    </form>
+    <script type="text/javascript" src="/vendors/jquery.min.js"></script>
+    <script type="text/javascript" src="/assets/scripts/login.min.js"></script>
 </body>
 </html>

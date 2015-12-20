@@ -20,15 +20,13 @@ var postMeals = require('../routes/postmeals');
 
 
 router.post('/',
-    passport.authenticate('local', {
-            failureRedirect: '/assets/views/failedlogin.html'
-    }),
+    passport.authenticate('local'),
     function(req,res){
         console.log(req.user);
         if (req.user.role === 'client') {
-                    res.redirect('/assets/views/client.html');
+                    res.send('/assets/views/client.html');
             } else if (req.user.role === 'admin') {
-                    res.redirect('/assets/views/admin.html');
+                    res.send('/assets/views/admin.html');
         }
     });
 

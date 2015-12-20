@@ -13,6 +13,10 @@ module.exports = function(grunt){
                 src: 'client/scripts/admin.js',
                 dest: 'server/public/assets/scripts/admin.min.js'
             },
+            login: {
+                src: 'client/scripts/login.js',
+                dest: 'server/public/assets/scripts/login.min.js'
+            },
             controllers: {
                 src: 'client/scripts/controllers/*.js',
                 dest: "server/public/assets/scripts/controllers/controller.min.js"
@@ -127,6 +131,24 @@ module.exports = function(grunt){
                     "*"
                 ],
                 "dest": "server/public/fonts/"
+            },fontAwesome: {
+                expand: true,
+                cwd: 'node_modules/font-awesome/',
+                src: [
+                    "css/font-awesome.min.css",
+                    "css/font-awesome.css.map",
+                    "fonts/*"
+                ],
+                "dest": "server/public/vendors/font-awesome/"
+            },
+            jQuery: {
+                expand: true,
+                cwd: 'node_modules/jquery/dist/',
+                src: [
+                    "jquery.min.js",
+                    "jquery.min.map"
+                ],
+                "dest": "server/public/vendors/"
             },
             underscore: {
                 expand: true,

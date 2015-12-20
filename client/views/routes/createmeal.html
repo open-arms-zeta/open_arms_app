@@ -7,7 +7,6 @@
         </p>
     </div>
 </div>
-
 <div class="route-body">
     <form name="createMeal" ng-hide="mealEntrySuccess"  ng-submit="submit()" onsubmit="return reset()">
 
@@ -16,10 +15,13 @@
             <label>{{category.category_name}}</label>
         </div>
         <p ng-show="createMeal.categoryCheckbox.$invalid" class="help-block">At least one category is required.</p>
-        <!--<div ng-messages="createMeal.categoryCheckbox.$invalid">-->
-        <!--<div ng-message="required">Required to check at least one category</div>-->
-        <!--</div>-->
 
+        <div>
+            <input>
+            <div ng-messages="createMeal.entree.$error" ng-if="createMeal.entree.$touched">
+                <div ng-message="required">Require Entree</div>
+            </div>
+        </div>
         <div>
             <input type="text" name="entree" placeholder="Entree" required ng-model="meal.entree">
             <div ng-messages="createMeal.entree.$error" ng-if="createMeal.entree.$touched">
@@ -27,7 +29,7 @@
             </div>
             <input type="text" name="side1" placeholder="Side #1" required ng-model="meal.side_1">
             <div ng-messages="createMeal.side1.$error" ng-if="createMeal.side1.$touched">
-                <div ng-message="required">Require One Side</div>
+                <div ng-message="required">Require One side</div>
             </div>
             <input type="text" name="side2" placeholder="Side #2" ng-model="meal.side_2">
         </div>
@@ -42,7 +44,6 @@
 
         <div class="allergenSpecific" ng-if="findAllergen('Tree Nuts')">
             <input type="text" placeholder="Specific Tree Nut Allergen" ng-model="treeNutAllergen" ng-change="associate('Tree Nuts', treeNutAllergen)">
-            <!--<span ng-if=" !! Tree Nuts === TRUE" class="animate-if"></span>-->
         </div>
 
         <div class="allergenSpecific" ng-if="findAllergen('Shellfish')">
@@ -56,9 +57,8 @@
         </div>
 
     </form>
-
     <button class="btn btn-success" ng-click="submit()" ng-disabled="createMeal.$invalid">Enter New Entree</button>
     <div ng-show="mealEntrySuccess"><h3>A New Meal Has Been Entered</h3></div>
-
     <button class="btn btn-success" ng-click="refreshForm()" ng-show="mealEntrySuccess" >Reset -- Enter Another Meal</button>
 </div>
+
