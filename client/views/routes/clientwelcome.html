@@ -3,31 +3,114 @@
     <h2>Your default meal pack is: {{user.default_meal}}</h2>
     <h2>These are the default meals for the week of: {{activeWeek | date: 'fullDate'}}</h2>
     <div>
-        <div ng-repeat="meal in menu track by $index">
-            <h3>{{$index+1}}: {{meal.entree}} </h3>
+        <div ng-repeat="meal in menu track by $index" ng-if="user.category_id == meal.category_id">
+
+            <h3>{{meal.entree}}</h3>
             <p>Side 1: {{meal.side_1}}</p>
             <p ng-if="meal.side_2">Side 2: {{meal.side_2}}</p>
+            <p ng-repeat="allergen in meal.allergen">Allergen: {{allergen}}</p>
+
         </div>
     </div>
     <h4>Do you want to customize your selection?</h4>
     <div>
-        <md-button class="md-raised" ng-click="customize()">Yes please!</md-button>
-        <md-button class="md-raised" ng-click="completeOrder()">No, I prefer the options listed above</md-button>
+        <md-button class="md-raised" ng-click="customize()">Yes please! I would like to customize</md-button>
+        <md-button class="md-raised" ng-click="toggleModal()">No, I prefer the default options listed above</md-button>
     </div>
 </div>
+
+<!--Modal for meal confirmation for default meal selection-->
+<modal-dialog show='modalShown' width='90%' height='90%'>
+    <md-content>
+        <h1>Meal Confirmation for the week of: {{activeWeek | date: 'fullDate'}}</h1>
+        <h2>You have selected:</h2>
+
+        <div ng-repeat="meal in menu track by $index" ng-if="user.category_id == meal.category_id">
+
+            <h3>{{meal.entree}} </h3>
+            <p>Side 1: {{meal.side_1}}</p>
+            <p ng-if="meal.side_2">Side 2: {{meal.side_2}}</p>
+            <p ng-repeat="allergen in meal.allergen">Allergen: {{allergen}}</p>
+
+        </div>
+
+        <md-button class="md-raised">Confirm Meal Selection</md-button>
+        <md-button class="md-raised md-warn" ng-click="toggleModal()">No</md-button>
+
+    </md-content>
+</modal-dialog>
+
+<!------------- CUSTOMIZE MEALS PAGE ---------------->
 <div class="customize-meals" ng-if="customized">
     <h1>Lets choose some meals</h1>
-    <!--<div ng-init="accordion=0">-->
-        <!--<div ng-repeat="category in categories track by $index">-->
-            <!--<h3 class="accordion" ng-class="{active:accordion == $index}">-->
-                <!--<a href ng-click="accordion = $index">-->
-                    <!--{{category.category_name}}-->
-                <!--</a>-->
-            <!--</h3>-->
-            <!--<p class="accordion-content" ng-show="accordion == $index">Some Meals</p>-->
-        <!--</div>-->
-    <!--</div>-->
+
+    <div layout="row">
+        <div flex="50" layout="column">
+            <div ng-repeat="category in categories track by $index">
+
+                <div ng-init="accordion.current = user.default_meal">
+
+                    <h2 class="accordion" ng-class="{active:accordion.current == category.category_name}">
+                        <a href ng-click="accordion.current = category.category_name">
+                            {{category.category_name}}
+                        </a>
+                    </h2>
+
+                    <div ng-show="accordion.current == category.category_name" ng-repeat="meal in category.mealInfo">
+                        <h3>{{meal.entree}}</h3>
+                        <p>Side 1: {{meal.side_1}}</p>
+                        <p ng-if="meal.side_2">Side 2: {{meal.side_2}}</p>
+                        <p ng-repeat="allergen in meal.allergen">Allergen: {{allergen}}</p>
+
+                        <md-button class="md-raised" ng-click="addMeal(meal)" ng-disabled="addedMeal[4]">Add Meal</md-button>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+        <!--PICNIC BASKET (DESKTOP VERSION)-->
+        <div flex="50">
+            <h2>Meals Selected</h2>
+            <div ng-repeat="meal in addedMeal track by $index">
+                <h3>{{meal.entree}}</h3>
+                <p>Side 1: {{meal.side_1}}</p>
+                <p ng-if="meal.side_2">Side 2: {{meal.side_2}}</p>
+                <p ng-repeat="allergen in meal.allergen">Allergen: {{allergen}}</p>
+
+                <md-button class="md-raised md-warn" ng-click="removeMeal($index)">Remove Meal</md-button>
+
+            </div>
+
+            <md-button class="md-raised md-primary" ng-disabled="!addedMeal[0]" ng-click="toggleModal2()">Submit Meal Selection</md-button>
+
+        </div>
+    </div>
 </div>
+
+<!--Modal for customized meal confirmation-->
+<modal-dialog show='modalShown2' width='90%' height='90%'>
+    <md-content>
+        <h1>Meal Confirmation for the week of: {{activeWeek | date: 'fullDate'}}</h1>
+        <h2>You have selected:</h2>
+
+        <div ng-repeat="meal in addedMeal track by $index">
+            <h3>{{meal.entree}}</h3>
+            <p>Side 1: {{meal.side_1}}</p>
+            <p ng-if="meal.side_2">Side 2: {{meal.side_2}}</p>
+            <p ng-repeat="allergen in meal.allergen">Allergen: {{allergen}}</p>
+
+        </div>
+
+        <md-button class="md-raised">Confirm Meal Selection</md-button>
+        <md-button class="md-raised md-warn" ng-click="toggleModal2()">No</md-button>
+
+    </md-content>
+</modal-dialog>
+
 <div class="already-ordered" ng-if="mealsChosen">
     <h1>Your meals for the week of {{activeWeek | date: 'fullDate'}} are selected, enjoy!</h1>
+
 </div>

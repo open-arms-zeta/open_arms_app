@@ -63,6 +63,37 @@ router.get('/mealExtras', function(req,res){
     });
 });
 
+router.get('/allergenExtras', function(req,res){
+    var results = [];
+
+    pg.connect(connectionString, function (err, client) {
+        var query = client.query("SELECT meals.meal_id, meals.entree, meals.side_1, meals.side_2, meals.status, allergens.allergen_name, meal_allergen_allergenspecific.allergen_specific\
+       FROM meals\
+       JOIN meal_allergen_allergenspecific ON meal_allergen_allergenspecific.meal_id = meals.meal_id\
+       JOIN allergens ON meal_allergen_allergenspecific.allergen_id = allergens.allergen_id\
+       WHERE meals.meal_id = $1", [req.query.meal_id]);
+
+        console.log(req.query);
+
+
+        // Stream results back one row at a time, push into results array
+        query.on('row', function (row) {
+            results.push(row);
+        });
+
+        // After all data is returned, close connection and return results
+        query.on('end', function () {
+            client.end();
+            return res.json(results);
+        });
+
+        // Handle Errors
+        if (err) {
+            console.log(err);
+        }
+    });
+});
+
 
 router.get('/searchMeal', function(req,res){
 

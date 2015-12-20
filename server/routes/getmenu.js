@@ -6,6 +6,9 @@ var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/op
 
 // GET call to view menu by specific week
 router.get('/', function(req,res){
+
+    console.log(req.query);
+
     var results = [];
 
     pg.connect(connectionString, function (err, client) {

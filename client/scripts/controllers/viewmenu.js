@@ -98,7 +98,7 @@ myApp.controller('ViewMenuController', ["$scope", "$http", "DataService", functi
                 // Get Menu for Specific Week
                 $scope.hideDropDown = false;
                 $scope.categories = $scope.dataService.getCategories();
-                $scope.dataService.retrieveMenuByWeek(menu.startDate, menu.endDate).then(function(){
+                $scope.dataService.retrieveMenuByWeek(menu.startDate).then(function(){
                     $scope.menuByWeek = $scope.dataService.getMenu();
                     $scope.menuId = $scope.menuByWeek[0].menu_id;
                     $scope.weekNumber = $scope.menuByWeek[0].week_number;
