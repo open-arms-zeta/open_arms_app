@@ -44,7 +44,7 @@ $(document).ready(function(){
             $('.password :input').val("");
             //$(this).empty();
             return false;
-        }else if(accountExists(values.username)){
+        }else if(accountExists(values.email)){
             $(".feedback-failure-username").show().animate({"opacity":"1", "bottom":"-80px"}, 400);
             $('.input :input').val("");
         }else{

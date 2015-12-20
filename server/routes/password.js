@@ -15,31 +15,31 @@ if(process.env.DATABASE_URL != undefined) {
 
 
 
-router.post('/reset', function(req, res) {
-
-    var user = req.body;
-
-    var salt = bcrypt.genSaltSync(10);
-    var hashedPassword = bcrypt.hashSync(user.password, salt);
-
-    pg.connect(connectionString, function(err, client, done){
-
-        if (err) console.log('error connection to database: ', err);
-        client.query("UPDATE users  " +
-            "SET salt = $1, password = $2 " +
-            "WHERE username = $3;", [salt, hashedPassword, user.email], function(err){
-            if(err) {
-                console.log(err);
-                res.send(false);
-            } else {
-                res.redirect('/');
-            }
-        });
-
-    });
-
-
-});
+//router.post('/reset', function(req, res) {
+//
+//    var user = req.body;
+//
+//    var salt = bcrypt.genSaltSync(10);
+//    var hashedPassword = bcrypt.hashSync(user.password, salt);
+//
+//    pg.connect(connectionString, function(err, client, done){
+//
+//        if (err) console.log('error connection to database: ', err);
+//        client.query("UPDATE users  " +
+//            "SET salt = $1, password = $2 " +
+//            "WHERE username = $3;", [salt, hashedPassword, user.email], function(err){
+//            if(err) {
+//                console.log(err);
+//                res.send(false);
+//            } else {
+//                res.redirect('/');
+//            }
+//        });
+//
+//    });
+//
+//
+//});
 router.post('/', function(req, res) {
     var result = 0;
     var check = req.body;

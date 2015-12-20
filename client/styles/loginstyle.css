@@ -1,5 +1,6 @@
 /*Images from
 
+
 */
 * {
     -ms-box-sizing: border-box;
@@ -46,7 +47,7 @@ html, body {
 }
 .legend:after {
     content: "";
-    background-image: url(http://simpleicon.com/wp-content/uploads/multy-user.png);
+    background-image: url(http://simpleicon.com/wp-content/uploads/fruit_basket.png);
     background-size: 100px 100px;
     background-repeat: no-repeat;
     background-position: 152px -16px;

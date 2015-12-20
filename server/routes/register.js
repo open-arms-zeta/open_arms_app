@@ -51,7 +51,7 @@ router.post('/admin', function(req,res,next){
     var hashedPassword = bcrypt.hashSync(admin.password, salt);
 
     var newUser = {
-        email: admin.username,
+        email: admin.email,
         role: 'admin',
         salt: salt,
         password: hashedPassword
