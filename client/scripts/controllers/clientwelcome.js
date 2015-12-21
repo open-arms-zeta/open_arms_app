@@ -16,7 +16,9 @@ myApp.controller('ClientWelcomeController', ["$scope", "DataService", "$http", f
     $scope.mealsWithAllergens = [];
 
     $scope.accordion = {current: null};
-    $scope.addedMeal = [];
+    $scope.addedMealArray = [];
+    $scope.uniqueMealArray = [];
+    $scope.orderToPost = [];
 
     //get user
     if ($scope.user == undefined) {
@@ -57,12 +59,14 @@ myApp.controller('ClientWelcomeController', ["$scope", "DataService", "$http", f
             console.log("This is active week", $scope.activeWeek);
             $scope.matchAllergens();
             $scope.pushMenu();
+            $scope.checkHasOrdered();
         });
 
     }else {
         $scope.menu = $scope.dataService.getMenu();
         $scope.matchAllergens();
         $scope.pushMenu();
+        $scope.checkHasOrdered();
     }
 
 
@@ -112,6 +116,17 @@ myApp.controller('ClientWelcomeController', ["$scope", "DataService", "$http", f
         }
     };
 
+    // Check if client has already ordered!
+    $scope.checkHasOrdered = function(){
+
+        $http.get('/getclients/checkOrdered', {params: {clientId: $scope.user.id, menuId: $scope.menu[0].menu_id}}).then(function(response){
+           if (response.data[0]) {
+               $scope.mealsChosen = true;
+               console.log(response.data);
+           }
+        });
+    };
+
     // ****************************************************
     //-------------------To do: check client orders for active week to see if user has already chosen meals
     // GET call to server passing client_id and menu_id
@@ -128,12 +143,12 @@ myApp.controller('ClientWelcomeController', ["$scope", "DataService", "$http", f
     //  This function runs when client confirms default meal selection
     $scope.postDefaultMeal = function(){
 
-        console.log("User ID", $scope.user.id);
-        console.log("menu ID", $scope.menu[0].menu_id);
+        //console.log("User ID", $scope.user.id);
+        //console.log("menu ID", $scope.menu[0].menu_id);
 
         for(var i = 0; i < $scope.menu.length; i++){
             if($scope.user.category_id == $scope.menu[i].category_id){
-                $scope.addedMeal.push({
+                $scope.orderToPost.push({
                     clientId: $scope.user.id,
                     menuId: $scope.menu[0].menu_id,
                     mealId: $scope.menu[i].meal_id,
@@ -143,58 +158,69 @@ myApp.controller('ClientWelcomeController', ["$scope", "DataService", "$http", f
             }
         }
 
-        $http.post('/postclientorders/saveClientOrders', $scope.addedMeal).then(function(){
-            console.log("post done");
+        $http.post('/postclientorders/saveClientOrders', $scope.orderToPost).then(function(){
+            $scope.mealsChosen = true;
         });
 
-        // Format default meal choices into objects
-        // ---- client_id
-        // ---- menu_id
-        // ---- meal_id
-        // ---- category_id
-        // ---- count
-        // POST client order to database
-        // ---- Need to post in a loop to post multiple lines
-
-        $scope.mealsChosen = true;
         $scope.modalShown = !$scope.modalShown;
     };
 
-    // Modal
+    // Modal for default
     $scope.toggleModal = function() {
         $scope.modalShown = !$scope.modalShown;
     };
 
+    // Modal for customize meals
     $scope.toggleModal2 = function() {
         $scope.modalShown2 = !$scope.modalShown2;
     };
 
     // Add Custom Meal to Picnic Basket
     $scope.addMeal = function(meal){
-        $scope.addedMeal.push(meal);
+        $scope.addedMealArray.push(meal);
     };
 
     // Remove Custom Meal from Picnic Basket
     $scope.removeMeal = function(index){
-        $scope.addedMeal.splice(index, 1);
+        $scope.addedMealArray.splice(index, 1);
     };
 
     // POST custom meals to Clients Order table
     $scope.postCustomMeal = function(){
 
-        // NEED TO CHECK COUNT FOR EACH MEAL!!!!!!
+        $scope.uniqueMealArray = _.uniq($scope.addedMealArray);
 
-        // Format meal choices into objects
-        // ---- client_id (already have user.id)
-        // ---- menu_id (already have menu.menu_id)
-        // ---- meal_id
-        // ---- category_id
-        // ---- count
+        // Create orderToPost array with uniqueMealArray information
+        for(var i = 0; i < $scope.uniqueMealArray.length; i++) {
+            $scope.orderToPost.push({
+                clientId: $scope.user.id,
+                menuId: $scope.menu[0].menu_id,
+                mealId: $scope.uniqueMealArray[i].meal_id,
+                categoryId: $scope.uniqueMealArray[i].category_id,
+                count: 0
+            });
+        }
 
-        // POST client order to database
-        // ---- Need to post in a loop to post multiple lines
+        // Compare uniqueMealArray and addedMealArray for duplicates
+        for(var i = 0; i < $scope.uniqueMealArray.length; i++) {
+            for (var j = 0; j < $scope.addedMealArray.length; j++){
 
-        $scope.mealsChosen = true;
+                if($scope.uniqueMealArray[i].meal_id == $scope.addedMealArray[j].meal_id &&
+                    $scope.uniqueMealArray[i].category_id == $scope.addedMealArray[j].category_id){
+
+                    // Add to count in orderToPost for number of each meal selected
+                    $scope.orderToPost[i].count += 1;
+
+                }
+            }
+
+        }
+
+        $http.post('/postclientorders/saveClientOrders', $scope.orderToPost).then(function(){
+            $scope.mealsChosen = true;
+            $scope.customized = false;
+        });
+
         $scope.modalShown2 = !$scope.modalShown2;
     };
 

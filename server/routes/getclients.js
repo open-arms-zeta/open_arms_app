@@ -42,4 +42,33 @@ router.get('/', function(req,res){
     });
 });
 
+router.get('/checkOrdered', function(req,res){
+    var results = [];
+
+    pg.connect(connectionString, function (err, client) {
+        var query = client.query("SELECT meals.entree, meals.side_1, meals.side_2, client_orders.count \
+        FROM client_orders \
+        JOIN meals ON client_orders.meal_id = meals.meal_id\
+        WHERE client_id = $1 AND menu_id = $2",
+            [req.query.clientId, req.query.menuId]);
+
+
+        // Stream results back one row at a time, push into results array
+        query.on('row', function (row) {
+            results.push(row);
+        });
+
+        // After all data is returned, close connection and return results
+        query.on('end', function () {
+            client.end();
+            return res.json(results);
+        });
+
+        // Handle Errors
+        if (err) {
+            console.log(err);
+        }
+    });
+});
+
 module.exports = router;

@@ -70,7 +70,7 @@
                         </div>
 
                         <div class="accordion-right" layout="column" layout-align="end center">
-                            <md-button class="md-raised" ng-click="addMeal(meal)" ng-disabled="addedMeal[4]">Add Meal</md-button>
+                            <md-button class="md-raised" ng-click="addMeal(meal)" ng-disabled="addedMealArray[4]">Add Meal</md-button>
                         </div>
 
                     </div>
@@ -84,9 +84,9 @@
         <div flex-offset="5" flex="45">
             <!--<div layout="row" layout-align="space-between">-->
             <h2>Meals Selected</h2>
-            <md-button class="md-raised md-primary" ng-disabled="!addedMeal[0]" ng-click="toggleModal2()">Submit Meal Selection</md-button>
+            <md-button class="md-raised md-primary" ng-disabled="!addedMealArray[0]" ng-click="toggleModal2()">Submit Meal Selection</md-button>
             <!--</div>-->
-            <div ng-repeat="meal in addedMeal track by $index" layout="row" layout-align="space-between">
+            <div ng-repeat="meal in addedMealArray track by $index" layout="row" layout-align="space-between">
                 <div>
                     <h3>{{meal.entree}}</h3>
                     <p>Side 1: {{meal.side_1}}</p>
@@ -117,7 +117,7 @@
 
             </div>
 
-            <md-button class="md-raised">Confirm Meal Selection</md-button>
+            <md-button class="md-raised" ng-click="postCustomMeal()">Confirm Meal Selection</md-button>
             <md-button class="md-raised md-warn" ng-click="toggleModal2()">No</md-button>
 
         </md-content>
