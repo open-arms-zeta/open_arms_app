@@ -20,7 +20,7 @@
     </div>
 
     <!--Modal for meal confirmation for default meal selection-->
-    <modal-dialog show='modalShown' width='90%' height='90%'>
+    <modal-dialog show='modalShown' width='90%' height='90%' ng-if="!mealsChosen && !customized && !notActive">
         <md-content>
             <h1>Meal Confirmation for the week of: {{activeWeek | date: 'fullDate'}}</h1>
             <h2>You have selected:</h2>
@@ -42,34 +42,13 @@
 
 </md-content>
 
-<!--&lt;!&ndash;Modal for meal confirmation for default meal selection&ndash;&gt;-->
-<!--<modal-dialog show='modalShown' width='90%' height='90%'>-->
-    <!--<md-content>-->
-        <!--<h1>Meal Confirmation for the week of: {{activeWeek | date: 'fullDate'}}</h1>-->
-        <!--<h2>You have selected:</h2>-->
-
-        <!--<div ng-repeat="meal in menu track by $index" ng-if="user.category_id == meal.category_id">-->
-
-            <!--<h3>{{meal.entree}} </h3>-->
-            <!--<p>Side 1: {{meal.side_1}}</p>-->
-            <!--<p ng-if="meal.side_2">Side 2: {{meal.side_2}}</p>-->
-            <!--<p ng-repeat="allergen in meal.allergen">Allergen: {{allergen}}</p>-->
-
-        <!--</div>-->
-
-        <!--<md-button class="md-raised" ng-click="postDefaultMeal()">Confirm Meal Selection</md-button>-->
-        <!--<md-button class="md-raised md-warn" ng-click="toggleModal()">No</md-button>-->
-
-    <!--</md-content>-->
-<!--</modal-dialog>-->
-
 <!------------- CUSTOMIZE MEALS PAGE ---------------->
 <md-content class="customize-meals" ng-if="customized" flex="90" flex-offset="5">
     <h1>Customize Meal Selection</h1>
     <h2>For the week of: {{activeWeek | date: 'fullDate'}}</h2>
 
     <div layout="row">
-        <div flex="45" layout="column">
+        <div flex="50" layout="column">
             <div ng-repeat="category in categories track by $index">
 
                 <div ng-init="accordion.current = user.default_meal">
@@ -94,7 +73,6 @@
                             <md-button class="md-raised" ng-click="addMeal(meal)" ng-disabled="addedMeal[4]">Add Meal</md-button>
                         </div>
 
-
                     </div>
 
                 </div>
@@ -103,7 +81,7 @@
         </div>
 
         <!--PICNIC BASKET (DESKTOP VERSION)-->
-        <div flex-offset="5" flex="40">
+        <div flex-offset="5" flex="45">
             <!--<div layout="row" layout-align="space-between">-->
             <h2>Meals Selected</h2>
             <md-button class="md-raised md-primary" ng-disabled="!addedMeal[0]" ng-click="toggleModal2()">Submit Meal Selection</md-button>
@@ -128,7 +106,7 @@
     </div>
 
     <!--Modal for customized meal confirmation-->
-    <modal-dialog show='modalShown2' width='90%' height='90%'>
+    <modal-dialog show='modalShown2' width='90%' height='90%' ng-if="customized">
         <md-content>
             <h1>Meal Confirmation for the week of: {{activeWeek | date: 'fullDate'}}</h1>
             <h2>You have selected:</h2>
@@ -149,12 +127,12 @@
 </md-content>
 
 <!--SHOWS AFTER CLIENT CONFIRMED ORDER -->
-<md-content class="already-ordered" ng-if="mealsChosen">
+<md-content class="already-ordered" ng-if="mealsChosen" flex="90" flex-offset="5">
     <h1>Your meals for the week of {{activeWeek | date: 'fullDate'}} are selected, enjoy!</h1>
 </md-content>
 
 <!--SHOWS WHEN CLIENT STATUS IS NOT ACTIVE-->
-<md-content class="not-active" ng-if="notActive">
-    <h1>Your status is not active according to our system.</h1>
-    <h2>If this is incorrect, please call us.</h2>
+<md-content class="not-active" ng-if="notActive" flex="90" flex-offset="5">
+    <h1>Our system shows that you have inactivated meal services.</h1>
+    <h2>If this is incorrect, or if you would like to activate meal services, please call Client Services at 612-872-1152</h2>
 </md-content>
