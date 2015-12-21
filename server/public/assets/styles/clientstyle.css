@@ -9,8 +9,8 @@
 
 
 .welcome-message{
-    margin-left:150px;
-    min-height: 800px;
+    margin-top: 50px;
+    /*margin-left:150px;*/
 }
 
 /* ------ MODAL ------ */
@@ -62,7 +62,6 @@
 /* ------ CUSTOMIZE MEALS ------ */
 .customize-meals {
     margin-top: 40px;
-    min-height: 800px;
 }
 
 .customize-meals h2 {
@@ -72,7 +71,7 @@
 /* ------ ACCORDION ------ */
 
 .accordion {
-    margin-top: 1px;
+    margin-top: 2px;
     margin-bottom: 0;
 }
 

@@ -1,4 +1,5 @@
-<md-content class="welcome-message" ng-if="!mealsChosen && !customized && !notActive">
+<md-content class="welcome-message" ng-if="!mealsChosen && !customized && !notActive"
+        flex="80" flex-offset="10">
     <h1>Welcome {{user.first_name}}</h1>
     <h2>Your default meal pack is: {{user.default_meal}}</h2>
     <h2>These are the default meals for the week of: {{activeWeek | date: 'fullDate'}}</h2>
@@ -17,36 +18,58 @@
         <md-button class="md-raised" ng-click="customize()">Yes please! I would like to customize</md-button>
         <md-button class="md-raised" ng-click="toggleModal()">No, I prefer the default options listed above</md-button>
     </div>
+
+    <!--Modal for meal confirmation for default meal selection-->
+    <modal-dialog show='modalShown' width='90%' height='90%'>
+        <md-content>
+            <h1>Meal Confirmation for the week of: {{activeWeek | date: 'fullDate'}}</h1>
+            <h2>You have selected:</h2>
+
+            <div ng-repeat="meal in menu track by $index" ng-if="user.category_id == meal.category_id">
+
+                <h3>{{meal.entree}} </h3>
+                <p>Side 1: {{meal.side_1}}</p>
+                <p ng-if="meal.side_2">Side 2: {{meal.side_2}}</p>
+                <p ng-repeat="allergen in meal.allergen">Allergen: {{allergen}}</p>
+
+            </div>
+
+            <md-button class="md-raised" ng-click="postDefaultMeal()">Confirm Meal Selection</md-button>
+            <md-button class="md-raised md-warn" ng-click="toggleModal()">No</md-button>
+
+        </md-content>
+    </modal-dialog>
+
 </md-content>
 
-<!--Modal for meal confirmation for default meal selection-->
-<modal-dialog show='modalShown' width='90%' height='90%'>
-    <md-content>
-        <h1>Meal Confirmation for the week of: {{activeWeek | date: 'fullDate'}}</h1>
-        <h2>You have selected:</h2>
+<!--&lt;!&ndash;Modal for meal confirmation for default meal selection&ndash;&gt;-->
+<!--<modal-dialog show='modalShown' width='90%' height='90%'>-->
+    <!--<md-content>-->
+        <!--<h1>Meal Confirmation for the week of: {{activeWeek | date: 'fullDate'}}</h1>-->
+        <!--<h2>You have selected:</h2>-->
 
-        <div ng-repeat="meal in menu track by $index" ng-if="user.category_id == meal.category_id">
+        <!--<div ng-repeat="meal in menu track by $index" ng-if="user.category_id == meal.category_id">-->
 
-            <h3>{{meal.entree}} </h3>
-            <p>Side 1: {{meal.side_1}}</p>
-            <p ng-if="meal.side_2">Side 2: {{meal.side_2}}</p>
-            <p ng-repeat="allergen in meal.allergen">Allergen: {{allergen}}</p>
+            <!--<h3>{{meal.entree}} </h3>-->
+            <!--<p>Side 1: {{meal.side_1}}</p>-->
+            <!--<p ng-if="meal.side_2">Side 2: {{meal.side_2}}</p>-->
+            <!--<p ng-repeat="allergen in meal.allergen">Allergen: {{allergen}}</p>-->
 
-        </div>
+        <!--</div>-->
 
-        <md-button class="md-raised" ng-click="postDefaultMeal()">Confirm Meal Selection</md-button>
-        <md-button class="md-raised md-warn" ng-click="toggleModal()">No</md-button>
+        <!--<md-button class="md-raised" ng-click="postDefaultMeal()">Confirm Meal Selection</md-button>-->
+        <!--<md-button class="md-raised md-warn" ng-click="toggleModal()">No</md-button>-->
 
-    </md-content>
-</modal-dialog>
+    <!--</md-content>-->
+<!--</modal-dialog>-->
 
 <!------------- CUSTOMIZE MEALS PAGE ---------------->
-<md-content class="customize-meals" ng-if="customized">
+<md-content class="customize-meals" ng-if="customized" flex="90" flex-offset="5">
     <h1>Customize Meal Selection</h1>
     <h2>For the week of: {{activeWeek | date: 'fullDate'}}</h2>
 
     <div layout="row">
-        <div flex="45" flex-offset="5" layout="column">
+        <div flex="45" layout="column">
             <div ng-repeat="category in categories track by $index">
 
                 <div ng-init="accordion.current = user.default_meal">
@@ -103,27 +126,27 @@
 
         </div>
     </div>
+
+    <!--Modal for customized meal confirmation-->
+    <modal-dialog show='modalShown2' width='90%' height='90%'>
+        <md-content>
+            <h1>Meal Confirmation for the week of: {{activeWeek | date: 'fullDate'}}</h1>
+            <h2>You have selected:</h2>
+
+            <div ng-repeat="meal in addedMeal track by $index">
+                <h3>{{meal.entree}}</h3>
+                <p>Side 1: {{meal.side_1}}</p>
+                <p ng-if="meal.side_2">Side 2: {{meal.side_2}}</p>
+                <p ng-repeat="allergen in meal.allergen">Allergen: {{allergen}}</p>
+
+            </div>
+
+            <md-button class="md-raised">Confirm Meal Selection</md-button>
+            <md-button class="md-raised md-warn" ng-click="toggleModal2()">No</md-button>
+
+        </md-content>
+    </modal-dialog>
 </md-content>
-
-<!--Modal for customized meal confirmation-->
-<modal-dialog show='modalShown2' width='90%' height='90%'>
-    <md-content>
-        <h1>Meal Confirmation for the week of: {{activeWeek | date: 'fullDate'}}</h1>
-        <h2>You have selected:</h2>
-
-        <div ng-repeat="meal in addedMeal track by $index">
-            <h3>{{meal.entree}}</h3>
-            <p>Side 1: {{meal.side_1}}</p>
-            <p ng-if="meal.side_2">Side 2: {{meal.side_2}}</p>
-            <p ng-repeat="allergen in meal.allergen">Allergen: {{allergen}}</p>
-
-        </div>
-
-        <md-button class="md-raised">Confirm Meal Selection</md-button>
-        <md-button class="md-raised md-warn" ng-click="toggleModal2()">No</md-button>
-
-    </md-content>
-</modal-dialog>
 
 <!--SHOWS AFTER CLIENT CONFIRMED ORDER -->
 <md-content class="already-ordered" ng-if="mealsChosen">
