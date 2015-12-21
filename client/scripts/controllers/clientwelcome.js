@@ -34,8 +34,10 @@ myApp.controller('ClientWelcomeController', ["$scope", "DataService", "$http", f
     if ($scope.activeWeek == undefined) {
         $scope.dataService.calculateActiveWeek();
         $scope.activeWeek = $scope.dataService.getActiveWeek();
+        $scope.activeWeek = new Date($scope.activeWeek.setHours(0,0,0,0));
     }else{
-        $scope.activeWeek = $scope.dataService.getActiveWeek()
+        $scope.activeWeek = $scope.dataService.getActiveWeek();
+        $scope.activeWeek = new Date($scope.activeWeek.setHours(0,0,0,0))
     }
 
     //pull in categories
@@ -49,7 +51,7 @@ myApp.controller('ClientWelcomeController', ["$scope", "DataService", "$http", f
 
     //pulls in menu
     if ($scope.menu == undefined) {
-        $scope.dataService.retrieveMenuByWeek("2016-01-04").then(function(){
+        $scope.dataService.retrieveMenuByWeek($scope.activeWeek).then(function(){
             $scope.menu = $scope.dataService.getMenu();
             console.log("This is menu", $scope.menu);
             console.log("This is active week", $scope.activeWeek);
@@ -124,8 +126,6 @@ myApp.controller('ClientWelcomeController', ["$scope", "DataService", "$http", f
 
     $scope.postDefaultMeal = function(){
 
-        // NEED TO CHECK COUNT FOR EACH MEAL!!!!!!
-
         // Format default meal choices into objects
         // ---- client_id
         // ---- menu_id
@@ -148,15 +148,34 @@ myApp.controller('ClientWelcomeController', ["$scope", "DataService", "$http", f
         $scope.modalShown2 = !$scope.modalShown2;
     };
 
+    // Add Custom Meal to Picnic Basket
     $scope.addMeal = function(meal){
         $scope.addedMeal.push(meal);
     };
 
+    // Remove Custom Meal from Picnic Basket
     $scope.removeMeal = function(index){
         $scope.addedMeal.splice(index, 1);
     };
 
+    // POST custom meals to Clients Order table
+    $scope.postCustomMeal = function(){
 
+        // NEED TO CHECK COUNT FOR EACH MEAL!!!!!!
+
+        // Format meal choices into objects
+        // ---- client_id (already have user.id)
+        // ---- menu_id (already have menu.menu_id)
+        // ---- meal_id
+        // ---- category_id
+        // ---- count
+
+        // POST client order to database
+        // ---- Need to post in a loop to post multiple lines
+
+        $scope.mealsChosen = true;
+        $scope.modalShown2 = !$scope.modalShown2;
+    };
 
 }]);
 

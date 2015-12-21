@@ -1,15 +1,16 @@
-header{
-    height: 150px;
-    background-color: #eceae4;
-}
+/*header{*/
+    /*/!*height: 150px;*!/*/
+    /*background-color: #eceae4;*/
+/*}*/
 
-.title{
-    margin-top: 0px;
-}
+/*.title{*/
+    /*margin-top: 0px;*/
+/*}*/
 
 
 .welcome-message{
     margin-left:150px;
+    min-height: 800px;
 }
 
 /* ------ MODAL ------ */
@@ -58,8 +59,23 @@ header{
     font-family: 'arial', 'sans-serif';
 }
 
+/* ------ CUSTOMIZE MEALS ------ */
+.customize-meals {
+    margin-top: 40px;
+    min-height: 800px;
+}
+
+.customize-meals h2 {
+    margin: 0;
+}
 
 /* ------ ACCORDION ------ */
+
+.accordion {
+    margin-top: 1px;
+    margin-bottom: 0;
+}
+
 .accordion a {
     padding: 10px;
     background: #eeeeee;
@@ -67,4 +83,8 @@ header{
     text-decoration: none;
     display: block;
     margin-bottom: 1px;
+}
+
+.Red a {
+    background: red;
 }

@@ -46,24 +46,31 @@
     <h2>For the week of: {{activeWeek | date: 'fullDate'}}</h2>
 
     <div layout="row">
-        <div flex="50" layout="column">
+        <div flex="45" flex-offset="5" layout="column">
             <div ng-repeat="category in categories track by $index">
 
                 <div ng-init="accordion.current = user.default_meal">
 
-                    <h2 class="accordion" ng-class="{active:accordion.current == category.category_name}">
+                    <h2 class="accordion {{category.category_name}}" ng-class="{active:accordion.current == category.category_name}">
                         <a href ng-click="accordion.current = category.category_name">
                             {{category.category_name}}
                         </a>
                     </h2>
 
-                    <div ng-show="accordion.current == category.category_name" ng-repeat="meal in category.mealInfo">
-                        <h3>{{meal.entree}}</h3>
-                        <p>Side 1: {{meal.side_1}}</p>
-                        <p ng-if="meal.side_2">Side 2: {{meal.side_2}}</p>
-                        <p ng-repeat="allergen in meal.allergen">Allergen: {{allergen}}</p>
+                    <div ng-show="accordion.current == category.category_name" ng-repeat="meal in category.mealInfo"
+                         layout="row" layout-align="space-between" flex="80" flex-offset="10">
 
-                        <md-button class="md-raised" ng-click="addMeal(meal)" ng-disabled="addedMeal[4]">Add Meal</md-button>
+                        <div class="accordion-left">
+                            <h3>{{meal.entree}}</h3>
+                            <p>Side 1: {{meal.side_1}}</p>
+                            <p ng-if="meal.side_2">Side 2: {{meal.side_2}}</p>
+                            <p ng-repeat="allergen in meal.allergen">Allergen: {{allergen}}</p>
+                        </div>
+
+                        <div class="accordion-right" layout="column" layout-align="end center">
+                            <md-button class="md-raised" ng-click="addMeal(meal)" ng-disabled="addedMeal[4]">Add Meal</md-button>
+                        </div>
+
 
                     </div>
 
@@ -73,19 +80,26 @@
         </div>
 
         <!--PICNIC BASKET (DESKTOP VERSION)-->
-        <div flex="50">
+        <div flex-offset="5" flex="40">
+            <!--<div layout="row" layout-align="space-between">-->
             <h2>Meals Selected</h2>
-            <div ng-repeat="meal in addedMeal track by $index">
-                <h3>{{meal.entree}}</h3>
-                <p>Side 1: {{meal.side_1}}</p>
-                <p ng-if="meal.side_2">Side 2: {{meal.side_2}}</p>
-                <p ng-repeat="allergen in meal.allergen">Allergen: {{allergen}}</p>
+            <md-button class="md-raised md-primary" ng-disabled="!addedMeal[0]" ng-click="toggleModal2()">Submit Meal Selection</md-button>
+            <!--</div>-->
+            <div ng-repeat="meal in addedMeal track by $index" layout="row" layout-align="space-between">
+                <div>
+                    <h3>{{meal.entree}}</h3>
+                    <p>Side 1: {{meal.side_1}}</p>
+                    <p ng-if="meal.side_2">Side 2: {{meal.side_2}}</p>
+                    <p ng-repeat="allergen in meal.allergen">Allergen: {{allergen}}</p>
+                </div>
 
-                <md-button class="md-raised md-warn" ng-click="removeMeal($index)">Remove Meal</md-button>
+                <div>
+                    <md-button class="md-raised md-warn" ng-click="removeMeal($index)">Remove Meal</md-button>
+                </div>
 
             </div>
 
-            <md-button class="md-raised md-primary" ng-disabled="!addedMeal[0]" ng-click="toggleModal2()">Submit Meal Selection</md-button>
+            <!--<md-button class="md-raised md-primary" ng-disabled="!addedMeal[0]" ng-click="toggleModal2()">Submit Meal Selection</md-button>-->
 
         </div>
     </div>

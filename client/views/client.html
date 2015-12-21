@@ -10,10 +10,15 @@
     <link rel="stylesheet" href="/vendors/angular-material.min.css">
     <link rel="stylesheet" href="/assets/styles/clientstyle.css">
 </head>
-<body>
-<header ng-include="'/assets/views/templates/clientheader.html'"></header>
+<body layout="column" layout-align="space-between">
 
-<main class="main route" ng-view></main>
+<md-toolbar>
+    <header ng-include="'/assets/views/templates/clientheader.html'"></header>
+</md-toolbar>
+
+<md-content>
+    <main class="main route" ng-view></main>
+</md-content>
 
 <!--SCRIPTS-->
 <script type="text/javascript" src="/vendors/angular.min.js"></script>

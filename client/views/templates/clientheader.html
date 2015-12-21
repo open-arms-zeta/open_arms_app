@@ -1,4 +1,15 @@
-<div class="client-header">
+<md-toolbar class="client-header" layout="row" layout-align="space-between center">
     <h1 class="title">Open Arms Meal Selection Page</h1>
-    <button><a href="/user/logout">Logout</a></button>
-</div>
+    <!--<md-button><a href="/user/logout">Logout</a></md-button>-->
+
+
+    <form action="/user/logout">
+        <md-button class="logout-button" aria-label="Logout" type="submit">
+            Logout
+            <!--<md-tooltip md-autohide>-->
+                <!--Logout-->
+            <!--</md-tooltip>-->
+        </md-button>
+    </form>
+
+</md-toolbar>
