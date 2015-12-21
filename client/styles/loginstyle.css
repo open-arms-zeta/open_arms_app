@@ -1,6 +1,5 @@
-/*Images from
-
-
+/*Images from -  http://www.freefoodphotos.com AND http://simpleicon.com/
+LOGIN STYLE FROM - http://codepen.io/reidark/pen/uAmey
 */
 * {
     -ms-box-sizing: border-box;
@@ -21,6 +20,18 @@ html, body {
     font-weight: 200;
 }
 
+.title{
+    position: relative;
+    text-align: center;
+    top: 15%;
+}
+
+.title-text{
+    font-family: 'Playball', cursive;
+    font-weight: 200;
+    font-size: 56px;
+    color: #fff;
+}
 .registration {
     position: relative;
     text-align: right;
@@ -29,7 +40,7 @@ html, body {
 
 .login {
     position: relative;
-    top: 30%;
+    top: 20%;
     width: 250px;
     display: table;
     margin: 0 auto 0 auto;
@@ -40,7 +51,7 @@ html, body {
     position: relative;
     width: 100%;
     display: block;
-    background: #FF7052;
+    background: #c75e66;
     padding: 15px;
     color: #fff;
     font-size: 20px;
@@ -83,7 +94,7 @@ html, body {
 .input input:focus {
     padding: 10px 5px 10px 10px;
     outline: 0;
-    border-color: #FF7052;
+    border-color: #c75e66;
 }
 .submit {
     width: 45px;
@@ -92,8 +103,8 @@ html, body {
     margin: 0 auto -15px auto;
     background: #fff;
     border-radius: 100%;
-    border: 1px solid #FF7052;
-    color: #FF7052;
+    border: 1px solid #c75e66;
+    color: #c75e66;
     font-size: 24px;
     cursor: pointer;
     box-shadow: 0px 0px 0px 7px #fff;
@@ -101,7 +112,7 @@ html, body {
 }
 .submit:hover,
 .submit:focus {
-    background: #FF7052;
+    background: #c75e66;
     color: #fff;
     outline: 0;
 }
@@ -138,7 +149,7 @@ html, body {
     width: 100%;
     text-align: center;
     color: #fff;
-    background: #FF7052;
+    background: #c75e66;
     padding: 10px 0;
     font-size: 12px;
     display: none;
@@ -155,7 +166,7 @@ html, body {
     position: absolute;
     pointer-events: none;
     border-color: rgba(46, 204, 113, 0);
-    border-bottom-color: #FF7052;
+    border-bottom-color: #c75e66;
     border-width: 10px;
     margin-left: -10px;
 }
@@ -166,7 +177,7 @@ html, body {
     width: 100%;
     text-align: center;
     color: #fff;
-    background: #FF7052;
+    background: #c75e66;
     padding: 10px 0;
     font-size: 12px;
     display: none;
@@ -183,7 +194,7 @@ html, body {
     position: absolute;
     pointer-events: none;
     border-color: rgba(46, 204, 113, 0);
-    border-bottom-color: #FF7052;
+    border-bottom-color: #c75e66;
     border-width: 10px;
     margin-left: -10px;
 }
