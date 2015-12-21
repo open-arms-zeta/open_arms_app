@@ -112,8 +112,9 @@ myApp.controller('ClientWelcomeController', ["$scope", "DataService", "$http", f
         }
     };
 
+    // ****************************************************
     //-------------------To do: check client orders for active week to see if user has already chosen meals
-    // GET call to server passing client_id
+    // GET call to server passing client_id and menu_id
     // if response.data[0], $scope.mealsChosen = true
 
 
@@ -124,7 +125,27 @@ myApp.controller('ClientWelcomeController', ["$scope", "DataService", "$http", f
 
     //If user completes order, mealsChosen is set to true and the program is terminated
 
+    //  This function runs when client confirms default meal selection
     $scope.postDefaultMeal = function(){
+
+        console.log("User ID", $scope.user.id);
+        console.log("menu ID", $scope.menu[0].menu_id);
+
+        for(var i = 0; i < $scope.menu.length; i++){
+            if($scope.user.category_id == $scope.menu[i].category_id){
+                $scope.addedMeal.push({
+                    clientId: $scope.user.id,
+                    menuId: $scope.menu[0].menu_id,
+                    mealId: $scope.menu[i].meal_id,
+                    categoryId: $scope.menu[i].category_id,
+                    count: 1
+                });
+            }
+        }
+
+        $http.post('/postclientorders/saveClientOrders', $scope.addedMeal).then(function(){
+            console.log("post done");
+        });
 
         // Format default meal choices into objects
         // ---- client_id

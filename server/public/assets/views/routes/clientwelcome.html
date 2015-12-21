@@ -100,8 +100,6 @@
 
             </div>
 
-            <!--<md-button class="md-raised md-primary" ng-disabled="!addedMeal[0]" ng-click="toggleModal2()">Submit Meal Selection</md-button>-->
-
         </div>
     </div>
 
@@ -127,12 +125,12 @@
 </md-content>
 
 <!--SHOWS AFTER CLIENT CONFIRMED ORDER -->
-<md-content class="already-ordered" ng-if="mealsChosen" flex="90" flex-offset="5">
+<md-content class="already-ordered" ng-if="mealsChosen" flex="80" flex-offset="10">
     <h1>Your meals for the week of {{activeWeek | date: 'fullDate'}} are selected, enjoy!</h1>
 </md-content>
 
 <!--SHOWS WHEN CLIENT STATUS IS NOT ACTIVE-->
-<md-content class="not-active" ng-if="notActive" flex="90" flex-offset="5">
+<md-content class="not-active" ng-if="notActive" flex="80" flex-offset="10">
     <h1>Our system shows that you have inactivated meal services.</h1>
     <h2>If this is incorrect, or if you would like to activate meal services, please call Client Services at 612-872-1152</h2>
 </md-content>
