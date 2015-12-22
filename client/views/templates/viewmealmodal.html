@@ -1,30 +1,32 @@
-<div class="modal-header">
-    <h3 class="modal-title">Meal</h3>
-</div>
-<div class="modal-body">
-
-    <div>
-        <h3>Entree</h3>
-        <p>{{displayData[0].entree}}</p>
-        <h3>Sides</h3>
-        <p>{{displayData[0].side_1}}</p>
-        <p>{{displayData[0].side_2}}</p>
+<div>
+    <div class="modal-header">
+        <h3 class="modal-title">Meal</h3>
     </div>
-    <div>
-        <h3>Allergens</h3>
-        <div ng-repeat="meals in displayData | unique: 'allergen_specific'">
-            <p>{{meals.allergen_name}}<span ng-if="meals.allergen_specific"> - {{meals.allergen_specific}}</span></p>
+    <div class="modal-body">
 
+        <div>
+            <h3>Entree</h3>
+            <p>{{displayData[0].entree}}</p>
+            <h3>Sides</h3>
+            <p>{{displayData[0].side_1}}</p>
+            <p>{{displayData[0].side_2}}</p>
         </div>
+        <div>
+            <h3>Allergens</h3>
+            <div ng-repeat="meals in displayData | unique: 'allergen_specific'">
+                <p>{{meals.allergen_name}}<span ng-if="meals.allergen_specific"> - {{meals.allergen_specific}}</span></p>
+
+            </div>
+        </div>
+
+        <h3>Categories</h3>
+        <div ng-repeat="meals in displayData | unique: 'category_name'">
+            <p>{{meals.category_name}}</p>
+        </div>
+
+
     </div>
-
-    <h3>Categories</h3>
-    <div ng-repeat="meals in displayData | unique: 'category_name'">
-        <p>{{meals.category_name}}</p>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
     </div>
-
-
-</div>
-<div class="modal-footer">
-    <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
 </div>

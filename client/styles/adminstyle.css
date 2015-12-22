@@ -13,11 +13,10 @@ rusty orange: #d78119;
 /*FONTS*/
 html, body {
     /*background-color: #e0e0d8;*/
-    /*background: url('/assets/images/cooked_tagliatelle.jpg') #f5eecf;*/
-    /*opacity: .2;*/
-    /*background-size: cover;*/
-    /*width: 100%;*/
-    /*height: 100%;*/
+    background: url('/assets/images/cooked_tagliatelle_low_opacity.jpg') #f5eecf;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
     font-family: "Helvetica Neue Light", "HelveticaNeue-Light", "Helvetica Neue", Calibri, Helvetica, Arial, sans-serif;
 }
 
@@ -66,10 +65,11 @@ html, body {
     text-align: right;
     /*background-color: #d78119;*/
     background-color: #f1f3eb;
+    border-right: 1px solid #d5d9d2;
     height: 100vh;
-    -webkit-box-shadow: 1px 0px 28px 0px rgba(0,0,0,0.3);
-    -moz-box-shadow: 1px 0px 28px 0px rgba(0,0,0,0.3);
-    box-shadow: 1px 0px 28px 0px rgba(0,0,0,0.3);
+    -webkit-box-shadow: 1px 0px 28px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 1px 0px 28px 0px rgba(0,0,0,0.75);
+    box-shadow: 1px 0px 28px 0px rgba(0,0,0,0.75);
 }
 
 .brand {
@@ -138,12 +138,9 @@ html, body {
 
 /*MAIN ROUTES STYLING*/
 .route{
-    /*position: relative;*/
+    background-color: rgba(255,255,255,.8);
     padding-left: 25px;
     padding-bottom: 10px;
-    /*float:right;*/
-    /*width: 85%;*/
-    /*min-width: 1000px;*/
     height: 100vh;
     overflow:scroll;
 }
@@ -305,15 +302,26 @@ html, body {
 /*WELCOME PAGE STYLING*/
 .welcome-header{
     text-align: center;
-
 }
+
+
 .date-picker {
     text-align: center;
+    margin-left: -10px
 }
 
 .date-display{
     display: inline-block;
     width: 300px;
+}
+
+
+.csv-buttons{
+    text-align: center;
+    margin-left: 15px;
+}
+.csv-buttons * {
+    margin: 0 25px;
 }
 
 .switch-week{
@@ -342,3 +350,20 @@ html, body {
 .meal-form{
     display: block
 }
+
+/*!*SPLASH*!*/
+
+/*.view-meal-modal {*/
+    /*color: green;*/
+
+    /*display: none;*/
+/*}*/
+
+/*.view-meal-window{*/
+    /*color: blue;*/
+    /*display: none;*/
+/*}*/
+
+/*.view-meal-backdrop{*/
+    /*background-color: red;*/
+/*}*/
