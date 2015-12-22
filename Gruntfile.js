@@ -17,7 +17,6 @@ module.exports = function(grunt){
                 src: 'client/scripts/login.js',
                 dest: 'server/public/assets/scripts/login.min.js'
             },
-
             register: {
                 src: 'client/scripts/register.js',
                 dest: 'server/public/assets/scripts/register.min.js'

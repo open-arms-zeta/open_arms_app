@@ -46,7 +46,18 @@ html, body {
 
 .message-lead{
     text-align: center;
-    color: #d78119;
+    color: #806f6f;
+    border-bottom: 2px solid #806f6f;
+    margin-bottom: 0px;
+}
+
+.info{
+    color: #806f6f;
+    margin-bottom: 15px;
+}
+
+.info *{
+    margin-bottom: 5px;
 }
 
 /*NAV STYLING*/
@@ -135,7 +146,6 @@ html, body {
     /*min-width: 1000px;*/
     height: 100vh;
     overflow:scroll;
-
 }
 
 /*.route-body{*/
@@ -322,6 +332,10 @@ html, body {
 /*ADD CLIENT STYLIHG*/
 .submit-buttons{
     margin-top: 10px;
+}
+
+.csv-field{
+    padding-left: 3px;
 }
 
 /*Calculate meals page*/

@@ -1,4 +1,4 @@
-var myApp = angular.module('myApp', ['ngRoute', 'checklist-model', 'ui.bootstrap', 'ngAnimate', 'ngMessages',
+var myApp = angular.module('myApp', ['ngRoute', 'checklist-model', 'ngAnimate', 'ui.bootstrap', 'ngMessages',
 	'ui.grid', 'ui.grid.edit', 'ui.grid.selection', 'ui.grid.exporter', 'ngSanitize', 'ngCsv']);
 
 

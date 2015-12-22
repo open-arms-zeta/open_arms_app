@@ -51,7 +51,7 @@ html, body {
     position: relative;
     width: 100%;
     display: block;
-    background: #d78119;
+    background: #ffc107;
     padding: 15px;
     color: #fff;
     font-size: 20px;
@@ -94,7 +94,7 @@ html, body {
 .input input:focus {
     padding: 10px 5px 10px 10px;
     outline: 0;
-    border-color: #d78119;
+    border-color: #ffc107;
 }
 .submit {
     width: 45px;
@@ -103,8 +103,8 @@ html, body {
     margin: 0 auto -15px auto;
     background: #fff;
     border-radius: 100%;
-    border: 1px solid #d78119;
-    color: #d78119;
+    border: 1px solid #ffc107;
+    color: #ffc107;
     font-size: 24px;
     cursor: pointer;
     box-shadow: 0px 0px 0px 7px #fff;
@@ -112,7 +112,7 @@ html, body {
 }
 .submit:hover,
 .submit:focus {
-    background: #d78119;
+    background: #ffc107;
     color: #fff;
     outline: 0;
 }
@@ -149,7 +149,7 @@ html, body {
     width: 100%;
     text-align: center;
     color: #fff;
-    background: #d78119;
+    background: #ffc107;
     padding: 10px 0;
     font-size: 12px;
     display: none;
@@ -166,7 +166,7 @@ html, body {
     position: absolute;
     pointer-events: none;
     border-color: rgba(46, 204, 113, 0);
-    border-bottom-color: #d78119;
+    border-bottom-color: #ffc107;
     border-width: 10px;
     margin-left: -10px;
 }
@@ -177,7 +177,7 @@ html, body {
     width: 100%;
     text-align: center;
     color: #fff;
-    background: #d78119;
+    background: #ffc107;
     padding: 10px 0;
     font-size: 12px;
     display: none;
@@ -194,7 +194,7 @@ html, body {
     position: absolute;
     pointer-events: none;
     border-color: rgba(46, 204, 113, 0);
-    border-bottom-color: #d78119;
+    border-bottom-color: #ffc107;
     border-width: 10px;
     margin-left: -10px;
 }

@@ -70,7 +70,7 @@ myApp.controller('ViewMealController', ["$scope", "$http", "$uibModal", function
         var modalInstance = $uibModal.open({
             animation: true,
             templateUrl: './templates/viewmealmodal.html',
-            controller: 'ModalInstanceCtrl',
+            controller: 'ViewMealModalController',
             size: size,
             resolve: {
                 row: function(){
@@ -90,7 +90,7 @@ myApp.controller('ViewMealController', ["$scope", "$http", "$uibModal", function
     $scope.showAll();
 }]);
 
-myApp.controller('ModalInstanceCtrl', ["$scope", "$http", "$uibModalInstance", "row", function ($scope, $http, $uibModalInstance, row) {
+myApp.controller('ViewMealModalController', ["$scope", "$http", "$uibModalInstance", "row", function ($scope, $http, $uibModalInstance, row) {
 
     $scope.row = row;
 

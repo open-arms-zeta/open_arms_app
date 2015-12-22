@@ -64,15 +64,17 @@
         <!--</form>-->
     </div>
     <div class="upload-csv">
-        <h1 class="admin-subheader">Upload a CSV file for Import</h1>
-        <label>Select File:</label>
-        <form  name="csvForm">
-            <div class="btn btn-default btn-file">
-                Browse... <input type="file" file-change="handler($event,files)" ng-model="files" />
+        <h3 class="admin-subheader">Upload a CSV file for Import</h3>
+        <div class="csv-field">
+            <label>Select File:</label>
+            <form  name="csvForm">
+                <div class="btn btn-default btn-file">
+                    Browse... <input type="file" file-change="handler($event,files)" ng-model="files" />
+                </div>
+            </form>
+            <div  ng-show="csvClients !== undefined">
+                <button class='btn btn-danger' ng-click="console.log('hi')">Remove</button>
             </div>
-        </form>
-        <div  ng-show="csvClients !== undefined">
-            <button class='btn btn-danger' ng-click="console.log('hi')">Remove</button>
         </div>
     </div>
 </div>
