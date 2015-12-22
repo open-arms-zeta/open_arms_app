@@ -6,6 +6,10 @@ var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/op
 
 // GET call to view menu by specific week
 router.get('/', function(req,res){
+
+    console.log(req.query);
+    var d = req.query.startDate;
+
     var results = [];
 
     pg.connect(connectionString, function (err, client) {
@@ -16,7 +20,7 @@ router.get('/', function(req,res){
         JOIN categories ON categories.category_id = meal_menu.category_id\
         WHERE menus.start_date = $1\
         ORDER BY menus.start_date ASC, categories.category_id ASC",
-            [req.query.startDate]);
+            [d]);
 
 
         // Stream results back one row at a time, push into results array

@@ -28,6 +28,10 @@ module.exports = function(grunt){
             factories: {
                 src: 'client/scripts/factories/*.js',
                 dest: "server/public/assets/scripts/factories/factory.min.js"
+            },
+            directives: {
+                src: 'client/scripts/directives/*.js',
+                dest: "server/public/assets/scripts/directives/directive.min.js"
             }
         },
         copy: {

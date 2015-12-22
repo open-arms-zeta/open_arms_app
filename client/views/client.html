@@ -9,12 +9,22 @@
 
     <link rel="stylesheet" href="/vendors/ui-grid-stable.min.css">
     <link rel="stylesheet" href="/vendors/angular-material.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="/assets/styles/clientstyle.css">
 </head>
-<body>
-<header ng-include="'/assets/views/templates/clientheader.html'"></header>
+<body layout="column" layout-align="space-between">
 
-<main class="main route" ng-view></main>
+<md-toolbar>
+    <header ng-include="'/assets/views/templates/clientheader.html'"></header>
+</md-toolbar>
+
+<md-content>
+    <main class="main route" ng-view></main>
+</md-content>
+
+<md-toolbar>
+    <footer ng-include="'/assets/views/templates/clientfooter.html'"></footer>
+</md-toolbar>
 
 <!--SCRIPTS-->
 <script type="text/javascript" src="/vendors/angular.min.js"></script>
@@ -28,5 +38,7 @@
 <script type="text/javascript" src="/assets/scripts/client.min.js"></script>
 <script type="text/javascript" src="/assets/scripts/factories/factory.min.js"></script>
 <script type="text/javascript" src="/assets/scripts/controllers/controller.min.js"></script>
+<script type="text/javascript" src="/assets/scripts/directives/directive.min.js"></script>
+
 </body>
 </html>
