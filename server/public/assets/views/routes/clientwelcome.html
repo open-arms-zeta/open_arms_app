@@ -1,18 +1,28 @@
 <md-content class="welcome-message" ng-if="!mealsChosen && !customized && !notActive">
-    <div flex="80" flex-offset="10">
+    <div layout="row" layout-align="end center">
+    <md-button class="instruction-button" ng-click="toggleModal3()">Instructions</md-button>
+    </div>
+    <div class="md-whiteframe-1dp" flex="50" flex-offset="25">
         <div layout="row" layout-align="space-between center">
-            <h1>Welcome {{user.first_name}}!</h1>
-            <md-button class="instruction-button" ng-click="toggleModal3()">Instructions</md-button>
+            <h1 class="welcome-message-title">Welcome <span class="welcome-message-name">{{user.first_name}}!</span></h1>
+            <!--<md-button class="instruction-button" ng-click="toggleModal3()">Instructions</md-button>-->
         </div>
-        <h2>Your default meal pack is: {{user.default_meal}}<br>
-        These are the default meals for the week of: {{activeWeek | date: 'fullDate'}}</h2>
-        <div>
-            <div class="meal-info" ng-repeat="meal in menu track by $index" ng-if="user.category_id == meal.category_id">
+        <!--<h2>Your default meal pack is: {{user.default_meal}}<br>-->
+        <!--These are the default meals for the week of: {{activeWeek | date: 'fullDate'}}</h2>-->
 
-                <h3>{{meal.entree}} with {{meal.side_1}}<span ng-if="meal.side_2"> and {{meal.side_2}}</span></h3>
-                <p class="allergen-text" ng-repeat="allergen in meal.allergen">Allergen: {{allergen}}</p>
+        <div layout="column">
+            <h2>Your default meal pack is: {{user.default_meal}}<br>
+                These are the default meals for the week of: {{activeWeek | date: 'fullDate'}}</h2>
 
-            </div>
+            <ol>
+                <li class="meal-info" ng-repeat="meal in menu track by $index" ng-if="user.category_id == meal.category_id">
+
+                    <h3>{{meal.entree}} with {{meal.side_1}}<span ng-if="meal.side_2"> and {{meal.side_2}}</span></h3>
+                    <p class="allergen-text" ng-repeat="allergen in meal.allergen">Allergen: {{allergen}}</p>
+
+                </li>
+            </ol>
+
         </div>
         <!--<h4>Do you want to customize your selection?</h4>-->
         <div class="welcome-message-buttons">
@@ -22,17 +32,19 @@
         </div>
 
         <!--Modal for meal confirmation for default meal selection-->
-        <modal-dialog show='modalShown' width='90%' height='90%' ng-if="!mealsChosen && !customized && !notActive">
-            <md-content>
+        <modal-dialog show='modalShown' width='70%' height='90%' ng-if="!mealsChosen && !customized && !notActive">
+            <md-content flex-offset="10">
                 <h1>Meal Confirmation for the week of: {{activeWeek | date: 'fullDate'}}</h1>
                 <h2>You have selected:</h2>
 
-                <div class="meal-info" ng-repeat="meal in menu track by $index" ng-if="user.category_id == meal.category_id">
+                <ol>
+                    <li class="meal-info" ng-repeat="meal in menu track by $index" ng-if="user.category_id == meal.category_id">
 
-                    <h3>{{meal.entree}} with {{meal.side_1}}<span ng-if="meal.side_2"> and {{meal.side_2}}</span></h3>
-                    <p class="allergen-text" ng-repeat="allergen in meal.allergen">Allergen: {{allergen}}</p>
+                        <h3>{{meal.entree}} with {{meal.side_1}}<span ng-if="meal.side_2"> and {{meal.side_2}}</span></h3>
+                        <p class="allergen-text" ng-repeat="allergen in meal.allergen">Allergen: {{allergen}}</p>
 
-                </div>
+                    </li>
+                </ol>
 
                 <md-button class="md-raised" ng-click="postDefaultMeal()">Confirm Meal Selection</md-button>
                 <md-button class="md-raised md-warn" ng-click="toggleModal()">No - Go Back</md-button>

@@ -17,7 +17,7 @@ myApp.config(['$routeProvider', '$mdThemingProvider', function($routeProvider, $
         .accentPalette('orange', {
             'hue-1': 'A100',
             'hue-2': '300',
-            'hue-3': '800'
+            'hue-3': '900'
         });
 
 }]);
