@@ -15,14 +15,14 @@ myApp.directive('modalDialog', function() {
                 scope.dialogStyle.width = attrs.width;
             if (attrs.height)
                 scope.dialogStyle.height = attrs.height;
-            scope.hideModal = function() {
-                scope.show = false;
-            };
+            //scope.hideModal = function() {
+            //    scope.show = !scope.show;
+            //};
         },
         template: "<div class='ng-modal' ng-show='show'>" +
-        "<div class='ng-modal-overlay' ng-click='hideModal()'></div>" +
+        "<div class='ng-modal-overlay'></div>" +
         "<md-content class='ng-modal-dialog' ng-style='dialogStyle'>" +
-        "<div class='ng-modal-close' ng-click='hideModal()'>X</div>" +
+        //"<div class='ng-modal-close' ng-click='hideModal()'>X</div>" +
         "<div class='ng-modal-dialog-content' ng-transclude></div></md-content>" +
         "</div>"
     };

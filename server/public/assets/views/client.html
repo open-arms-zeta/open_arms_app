@@ -8,9 +8,10 @@
     <!--<link rel="stylesheet" href="/vendors/normalize.css">-->
     <link rel="stylesheet" href="/vendors/ui-grid-stable.min.css">
     <link rel="stylesheet" href="/vendors/angular-material.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="/assets/styles/clientstyle.css">
 </head>
-<body layout="column">
+<body layout="column" layout-align="space-between">
 
 <md-toolbar>
     <header ng-include="'/assets/views/templates/clientheader.html'"></header>
@@ -19,6 +20,10 @@
 <md-content>
     <main class="main route" ng-view></main>
 </md-content>
+
+<md-toolbar>
+    <footer ng-include="'/assets/views/templates/clientfooter.html'"></footer>
+</md-toolbar>
 
 <!--SCRIPTS-->
 <script type="text/javascript" src="/vendors/angular.min.js"></script>

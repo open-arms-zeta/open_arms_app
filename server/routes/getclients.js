@@ -71,4 +71,21 @@ router.get('/checkOrdered', function(req,res){
     });
 });
 
+router.put('/updateNewUser', function(req,res){
+    //console.log(req.body);
+
+
+    pg.connect(connectionString, function(err, client){
+        client.query("UPDATE users\
+        SET new_user = false\
+        WHERE id = $1", [req.body.id]);
+        // Handle Errors
+        if (err) {
+            console.log(err);
+        }
+
+        res.send(true);
+    });
+});
+
 module.exports = router;

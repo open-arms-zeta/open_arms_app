@@ -8,6 +8,7 @@ myApp.controller('ClientWelcomeController', ["$scope", "DataService", "$http", f
     $scope.categories = undefined;
     $scope.modalShown = false;
     $scope.modalShown2 = false;
+    $scope.modalShown3 = false;
 
     $scope.mealsChosen = false;
     $scope.customized = false;
@@ -19,16 +20,19 @@ myApp.controller('ClientWelcomeController', ["$scope", "DataService", "$http", f
     $scope.addedMealArray = [];
     $scope.uniqueMealArray = [];
     $scope.orderToPost = [];
+    $scope.orderedMealsArray = [];
 
     //get user
     if ($scope.user == undefined) {
         $scope.dataService.retrieveUser().then(function(){
             $scope.user = $scope.dataService.getUser();
             $scope.checkClientStatus($scope.user);
+            $scope.checkNewUser($scope.user);
         });
     } else {
         $scope.user = $scope.dataService.getUser();
         $scope.checkClientStatus($scope.user);
+        $scope.checkNewUser($scope.user);
 
     }
 
@@ -99,7 +103,7 @@ myApp.controller('ClientWelcomeController', ["$scope", "DataService", "$http", f
 
             for(var j = 0; j < response.data.length; j++){
                 if(response.data[j].allergen_specific){
-                    $scope.menu[i].allergen.push(response.data[j].allergen_name + '- ' +  response.data[j].allergen_specific);
+                    $scope.menu[i].allergen.push(response.data[j].allergen_name + ' - ' +  response.data[j].allergen_specific);
                 } else {
                     $scope.menu[i].allergen.push(response.data[j].allergen_name);
                 }
@@ -116,22 +120,28 @@ myApp.controller('ClientWelcomeController', ["$scope", "DataService", "$http", f
         }
     };
 
+    // Check if client has used this app before
+    $scope.checkNewUser = function(user){
+        if(user.new_user){
+            $scope.toggleModal3();
+
+            // PUT to change new_user to false
+            $http.put('/getclients/updateNewUser', {id: user.id}).then(function(){
+               console.log("Change new_user to false");
+            });
+        }
+    };
+
     // Check if client has already ordered!
     $scope.checkHasOrdered = function(){
 
         $http.get('/getclients/checkOrdered', {params: {clientId: $scope.user.id, menuId: $scope.menu[0].menu_id}}).then(function(response){
            if (response.data[0]) {
                $scope.mealsChosen = true;
-               console.log(response.data);
+               $scope.orderedMealsArray = (response.data);
            }
         });
     };
-
-    // ****************************************************
-    //-------------------To do: check client orders for active week to see if user has already chosen meals
-    // GET call to server passing client_id and menu_id
-    // if response.data[0], $scope.mealsChosen = true
-
 
     //If user wishes to customize, this value is set to true
     $scope.customize = function(){
@@ -142,9 +152,6 @@ myApp.controller('ClientWelcomeController', ["$scope", "DataService", "$http", f
 
     //  This function runs when client confirms default meal selection
     $scope.postDefaultMeal = function(){
-
-        //console.log("User ID", $scope.user.id);
-        //console.log("menu ID", $scope.menu[0].menu_id);
 
         for(var i = 0; i < $scope.menu.length; i++){
             if($scope.user.category_id == $scope.menu[i].category_id){
@@ -160,19 +167,25 @@ myApp.controller('ClientWelcomeController', ["$scope", "DataService", "$http", f
 
         $http.post('/postclientorders/saveClientOrders', $scope.orderToPost).then(function(){
             $scope.mealsChosen = true;
+            $scope.checkHasOrdered();
         });
 
         $scope.modalShown = !$scope.modalShown;
     };
 
     // Modal for default
-    $scope.toggleModal = function() {
+    $scope.toggleModal = function(){
         $scope.modalShown = !$scope.modalShown;
     };
 
     // Modal for customize meals
-    $scope.toggleModal2 = function() {
+    $scope.toggleModal2 = function(){
         $scope.modalShown2 = !$scope.modalShown2;
+    };
+
+    // Modal for Instructions
+    $scope.toggleModal3 = function(){
+        $scope.modalShown3 = !$scope.modalShown3;
     };
 
     // Add Custom Meal to Picnic Basket
@@ -219,9 +232,15 @@ myApp.controller('ClientWelcomeController', ["$scope", "DataService", "$http", f
         $http.post('/postclientorders/saveClientOrders', $scope.orderToPost).then(function(){
             $scope.mealsChosen = true;
             $scope.customized = false;
+            $scope.checkHasOrdered();
         });
 
         $scope.modalShown2 = !$scope.modalShown2;
+    };
+
+    $scope.backToHome = function(){
+        $scope.customized = false;
+        $scope.modalShown3 = false;
     };
 
 }]);
