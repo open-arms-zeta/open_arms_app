@@ -5,10 +5,11 @@
 myApp.controller('AddClientController', ["$scope", "DataService", "$http", "$filter", function($scope, DataService, $http, $filter){
 
     console.log("Add client Controller Online");
-    $scope.myFiles = [];
+    $scope.csvClients = undefined;
     $scope.dataService = DataService;
     $scope.categories = undefined;
     $scope.newClient = {};
+
 
     if ($scope.categories == undefined) {
         $scope.dataService.retrieveCategories().then(function(){
@@ -41,14 +42,9 @@ myApp.controller('AddClientController', ["$scope", "DataService", "$http", "$fil
         $scope.addClientForm.$setUntouched();
     };
 
-    //$scope.readCSV = function(){
-    //    console.log($scope.myFiles);
-    //    var results = Papa.parse($scope.myFiles);
-    //    console.log(results);
-    //};
-
 
     $scope.handler=function(e,files){
+        console.log($scope.myFiles);
         var reader=new FileReader();
         reader.onload=function(e){
             var string=reader.result;
@@ -58,17 +54,20 @@ myApp.controller('AddClientController', ["$scope", "DataService", "$http", "$fil
             var results = Papa.parse(string,{
                 header: true
             });
-            console.log('1st', results);
+            console.log(results);
+            $scope.csvClients = results.data;
+            console.log('results', $scope.csvClients)
         };
         reader.readAsText(files[0]);
         Papa.parse(files[0], {
             complete: function(results) {
-                console.log('these results', results);
+                console.log('these results', $scope.csvClients);
             }
         });
     };
-    console.log($scope.categories)
+    //console.log($scope.categories)
 }]);
+
 
 myApp.directive('fileChange',['$parse', function($parse){
     return{
@@ -85,55 +84,4 @@ myApp.directive('fileChange',['$parse', function($parse){
         }
     }
 }]);
-//=======
-//myApp.controller('AddClientController', ["$scope", "DataService", "$http", function($scope, DataService, $http){
-//    console.log("Add client Controller Online");
-//    //
-//    //$scope.dataService = DataService;
-//    //
-//    ////$scope.newClient = {
-//    ////
-//    ////};
-//    //
-//    //$scope.categories = [];
-//    //
-//    //
-//    //$scope.retrieveCategories = function(){
-//    //    $http({
-//    //        method: 'GET',
-//    //        url: '/getcategories'
-//    //    }).then(function(response) {
-//    //        $scope.categories = response.data;
-//    //        console.log("Here are the categories: ", $scope.categories);
-//    //        console.log($scope.categories[0].category_name);
-//    //    })
-//    //};
-//    //
-//    //
-//    //$scope.retrieveCategories();
-//    //
-//    ////$scope.submit = function(){
-//    ////    console.log($scope.newClient)
-//    ////};
-//
-//
-//    //VALIDATION
-//    $scope.submitForm = function() {
-//
-//        // check to make sure the form is completely valid
-//        if ($scope.addClientForm.$valid) {
-//            //alert('New client added!');
-//            //post new client!
-//            console.log($scope.client);
-//            $scope.clearInput();
-//        }
-//    };
-//
-//    //Clear form input
-//    $scope.clearInput = function() {
-//        $scope.client = null;
-//        $scope.addClientForm.$setUntouched();
-//    };
-//
-//}]);
-//>>>>>>> master
+

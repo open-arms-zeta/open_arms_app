@@ -9,7 +9,7 @@ myApp.controller('CreateMealController', ["$scope",  '$http', "DataService",  fu
         allergens: [],
         status: true
     };
-    $scope.mealID;
+    //$scope.mealID;
 
     //CATEGORIES PRESENTED FOR SELECTION
     $scope.mealCategories = function(){

@@ -1,4 +1,4 @@
-<div>
+<div class="route-body">
     <h1 class="admin-header">Meal Calculation</h1>
     <div class="info">
         <p>Instructions: </p>
@@ -6,12 +6,15 @@
             meals to be prepared</p>
     </div>
     <form novalidate class="meal-form" name="mealCountForm" ng-submit="calculateMeals()">
-        <div class="form-group" ng-repeat="category in categories">
-            <label>{{category.category_name}}</label>
-            <input class="form-control" type="number" name="{{category.category_name}}" ng-model="category.formCount">
+        <div class="row">
+            <div class="form-group col-md-4 col-sm-6 col-xs-12" ng-repeat="category in categories">
+                <label class="lead label-lead">{{category.category_name}}</label>
+                <input class="form-control" type="number" name="{{category.category_name}}" ng-model="category.formCount">
+            </div>
         </div>
-        <button type="submit">Submit</button>
+        <button type="submit" class="btn dark-button">Submit</button>
     </form>
+
     <div ng-show="displayResults">
         <div ng-repeat="meal in menu">
             <p>Entree: {{meal.entree}}</p>

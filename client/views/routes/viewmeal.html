@@ -1,15 +1,29 @@
-<div>
-    <h1 class="admin-header">View Meal</h1>
+<div class="route-body">
+    <div>
+        <h1 class="admin-header">View Meal</h1>
+    </div>
+
+    <!--<form class="view-meal-form" name="viewMealForm" ng-submit="searchMeals(searchTerm)">-->
+        <!--<label for="mealSearch">Search</label>-->
+        <!--<input type="text" name="mealSearch" id="mealSearch" ng-model="meal.searchTerm">-->
+
+        <!--<button type="submit">Search</button>-->
+    <!--</form>-->
+    <div class="search">
+        <form novalidate class="searchForm input-group" ng-submit="getSearchResults()">
+            <!--<label>Search</label>-->
+            <!--<input type="text" name="search" ng-model="search">-->
+            <!--<button type="submit" class="btn dark-button">Search</button>-->
+            <span class="input-group-btn">
+            <button class="btn btn-default" type="button" ng-click="getSearchResults()"><i class="fa fa-search"></i></button>
+          </span>
+            <input type="text" class="form-control" placeholder="Search for clients by name..." ng-model="search">
+        </form>
+    </div>
+
+    <!--<button type="button" ng-click="showAll()">Show All Meals</button>-->
+
+
+    <!--<div ui-grid="gridOptions" ui-grid-selection ui-grid-exporter ui-grid-edit class="table-responsive ui-grid" ng-if="allMeals"></div>-->
+    <div ui-grid="gridOptions" ui-grid-edit class="table-responsive ui-grid" ng-if="allMeals"></div>
 </div>
-
-<form class="view-meal-form" name="viewMealForm" ng-submit="searchMeals(searchTerm)">
-    <label for="mealSearch">Search</label>
-    <input type="text" name="mealSearch" id="mealSearch" ng-model="meal.searchTerm">
-
-    <button type="submit">Search</button>
-</form>
-
-<button type="button" ng-click="showAll()">Show All Meals</button>
-
-
-<div ui-grid="gridOptions" ui-grid-selection ui-grid-exporter ui-grid-edit class="table-responsive" ng-if="allMeals"></div>

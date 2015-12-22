@@ -1,5 +1,6 @@
 myApp.controller('ViewMealController', ["$scope", "$http", "$uibModal", function($scope, $http, $uibModal){
     console.log("view meal Controller Online");
+    $scope.search = undefined;
     $scope.allMeals = [];
 
     $scope.showAll = function(){
@@ -9,29 +10,35 @@ myApp.controller('ViewMealController', ["$scope", "$http", "$uibModal", function
         })
     };
 
-    $scope.searchMeals = function(){
-        console.log($scope.meal.searchTerm);
-        $http.get('/getmeals/searchMeal', {params : {searchTerm : $scope.meal.searchTerm}}).then(function(response){
-            console.log("search Meals Response:", response.data);
-            $scope.allMeals = response.data;
-        })
+    $scope.getSearchResults = function(){
+        console.log($scope.search);
+        if($scope.search.length > 0){
+            $http.get('/getmeals/searchMeal', {params : {searchTerm : $scope.search}}).then(function(response){
+                console.log("search Meals Response:", response.data);
+                $scope.allMeals = response.data;
+                $scope.search = "";
+            })
+        }else{
+            $scope.showAll();
+        }
     };
 
 
 
     $scope.gridOptions = {
         data: 'allMeals',
+        rowHeight: 40,
         enableSorting: true,
-        enableGridMenu: true,
-        enableSelectAll: true,
-        exporterMenuCsv: true,
-        exporterMenuPdf: false,
+        //enableGridMenu: true,
+        //enableSelectAll: true,
+        //exporterMenuCsv: true,
+        //exporterMenuPdf: false,
         columnDefs: [
             {field: "entree", displayName: 'Entree', enableCellEdit: false},
             {field: "side_1", displayName: 'Side 1', enableCellEdit: false},
             {field: "side_2", displayName: 'Side 2', enableCellEdit: false},
-            {field: "view", name: "view", displayName: 'View', cellTemplate: '<div class="ui-grid-cell-contents"><button ng-click="grid.appScope.viewMeal(row)">View</button></div>'},
-            {field: "delete", name: "delete", displayName: 'Delete', cellTemplate: '<div class="ui-grid-cell-contents"><button ng-click="grid.appScope.deleteMeal(row)">Delete</button></div>'}
+            {field: "view", name: "view", displayName: 'View', cellClass: 'ui-grid-vcenter',cellTemplate: '<div class="ui-grid-cell-contents"><button ng-click="grid.appScope.viewMeal(row)" class="custom-button-ui-grid">View</button></div>'},
+            {field: "delete", name: "delete", displayName: 'Delete', cellClass: 'ui-grid-vcenter', cellTemplate: '<div class="ui-grid-cell-contents"><button ng-click="grid.appScope.deleteMeal(row)" class="custom-button-ui-grid">Delete</button></div>'}
         ]
     };
 
@@ -57,12 +64,11 @@ myApp.controller('ViewMealController', ["$scope", "$http", "$uibModal", function
         $scope.open('lg', row);
     };
 
-    $scope.animationsEnabled = true;
 
     $scope.open = function (size, row) {
 
         var modalInstance = $uibModal.open({
-            animation: $scope.animationsEnabled,
+            animation: true,
             templateUrl: './templates/viewmealmodal.html',
             controller: 'ModalInstanceCtrl',
             size: size,
@@ -74,12 +80,14 @@ myApp.controller('ViewMealController', ["$scope", "$http", "$uibModal", function
             }
         });
 
+        modalInstance.result.then(function(){
+            console.log('closed');
+        })
+
     };
 
-    $scope.toggleAnimation = function () {
-        $scope.animationsEnabled = !$scope.animationsEnabled;
-    };
 
+    $scope.showAll();
 }]);
 
 myApp.controller('ModalInstanceCtrl', ["$scope", "$http", "$uibModalInstance", "row", function ($scope, $http, $uibModalInstance, row) {

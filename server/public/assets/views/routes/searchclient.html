@@ -1,12 +1,16 @@
-<div>
-    <h1>Search Clients</h1>
+<div class="route-body">
+    <h1 class="admin-header">Search Clients</h1>
     <div class="search">
-        <form novalidate class="searchForm" ng-submit="getSearchResults()">
-            <label>Search</label>
-            <input type="text" name="search" ng-model="search">
-            <button type="submit">Search</button>
+        <form novalidate class="searchForm input-group" ng-submit="getSearchResults()">
+            <!--<label>Search</label>-->
+            <!--<input type="text" name="search" ng-model="search">-->
+            <!--<button type="submit" class="btn dark-button">Search</button>-->
+            <span class="input-group-btn">
+            <button class="btn btn-default" type="button" ng-click="getSearchResults()"><i class="fa fa-search"></i></button>
+          </span>
+            <input type="text" class="form-control" placeholder="Search for clients by name..." ng-model="search">
         </form>
     </div>
-    <div ui-grid="gridOptions" ui-grid-edit class="my-grid"></div>
+    <div ui-grid="gridOptions" ui-grid-edit class="ui-grid"></div>
     <!--<button ng-click="updateClients()">submit changes</button>-->
 </div>

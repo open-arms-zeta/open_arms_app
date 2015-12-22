@@ -1,9 +1,9 @@
 <div>
-    <h1 class="welcome-header">Welcome!</h1>
+    <h1 class="welcome-header admin-header">Welcome!</h1>
     <div class="date-picker">
         <p class="lead">Displaying information for the week of:</p>
         <button class="switch-week btn dark-button" ng-click="previousWeek()"><i class="fa fa-chevron-left"></i> Previous Week</button>
-        <span class="lead">{{selectedStartDate | date: 'fullDate'}}</span>
+        <span class="lead date-display">{{selectedStartDate | date: 'fullDate'}}</span>
         <button class="switch-week btn dark-button" ng-click="nextWeek()">Next Week <i class="fa fa-chevron-right"></i></button>
     </div>
     <div ng-if="selectedMEa">
