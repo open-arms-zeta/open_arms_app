@@ -94,18 +94,49 @@ router.get('/getMenuId', function(req,res){
 // POST call to save menu_id, meal_id's and category_id's to meal_menu table
 router.post('/saveToMealMenu', function(req,res){
 
-    for(var i = 0; i < req.body.mealsArray.length; i++){
+    //for(var i = 0; i < req.body.mealsArray.length; i++){
+    //
+    //    var newMealMenu = {
+    //        "menuId": req.body.menuId,
+    //        "mealId": req.body.mealsArray[i].meal_id,
+    //        "categoryId": req.body.mealsArray[i].category_id
+    //    };
+    //
+    //    //console.log(newMealMenu.menuId, newMealMenu.mealId ,newMealMenu.categoryId);
+    //    save(newMealMenu);
+    //
+    //}
+    //
+    //res.send("save success");
 
-        var newMealMenu = {
-            "menuId": req.body.menuId,
-            "mealId": req.body.mealsArray[i].meal_id,
-            "categoryId": req.body.mealsArray[i].category_id
-        };
+    pg.connect(connectionString, function (err, client){
 
-        //console.log(newMealMenu.menuId, newMealMenu.mealId ,newMealMenu.categoryId);
-        save(newMealMenu);
 
-    }
+        for(var i = 0; i < req.body.mealsArray.length; i++){
+
+            var newMealMenu = {
+                "menuId": req.body.menuId,
+                "mealId": req.body.mealsArray[i].meal_id,
+                "categoryId": req.body.mealsArray[i].category_id
+            };
+
+            var q = "INSERT INTO meal_menu (menu_id, meal_id, category_id) VALUES ($1, $2, $3)";
+            //console.log("query: ", q);
+            //console.log(newMealMenu.menuId, newMealMenu.mealId ,newMealMenu.categoryId);
+            client.query(q, [newMealMenu.menuId, newMealMenu.mealId, newMealMenu.categoryId]);
+
+            if(err) console.log(err);
+
+            //console.log(newMealMenu.menuId, newMealMenu.mealId ,newMealMenu.categoryId);
+            //save(newMealMenu);
+        }
+
+        //client.end();
+        //result.on('end', function () {
+        //    client.end();
+        //});
+    });
+
 
     res.send("save success");
 });
