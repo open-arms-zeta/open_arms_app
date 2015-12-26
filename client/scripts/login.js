@@ -37,12 +37,7 @@ $(document).ready(function(){
                 $("input").css({"border-color":"#2ecc71"});
                 $(context).find(".submit i").removeAttr('class').addClass("fa fa-check").css({"color":"#fff"});
                 setTimeout(function(){
-                    if (data === 'client'){
-                        window.location = '/client'
-                    }else if (data === 'admin'){
-                        window.location = '/admin'
-                    }
-                    //window.location = data;
+                    window.location = data;
                 },500)
 
             },

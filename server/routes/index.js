@@ -26,9 +26,9 @@ router.post('/',
         console.log(req.user);
         if (req.user.role === 'client') {
             //res.send('/assets/views/client.html');
-            res.send('client');
+            res.send('/client');
         } else if (req.user.role === 'admin') {
-            res.send('admin');
+            res.send('/admin');
             //res.send('/assets/views/admin.html');
         }
     });
