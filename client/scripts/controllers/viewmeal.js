@@ -69,7 +69,7 @@ myApp.controller('ViewMealController', ["$scope", "$http", "$uibModal", function
 
         var modalInstance = $uibModal.open({
             animation: true,
-            templateUrl: './templates/viewmealmodal.html',
+            templateUrl: '/assets/views/templates/viewmealmodal.html',
             controller: 'ViewMealModalController',
             size: size,
             resolve: {

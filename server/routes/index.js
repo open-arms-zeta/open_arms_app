@@ -25,11 +25,21 @@ router.post('/',
     function(req,res){
         console.log(req.user);
         if (req.user.role === 'client') {
-                    res.send('/assets/views/client.html');
-            } else if (req.user.role === 'admin') {
-                    res.send('/assets/views/admin.html');
+            //res.send('/assets/views/client.html');
+            res.send('client');
+        } else if (req.user.role === 'admin') {
+            res.send('admin');
+            //res.send('/assets/views/admin.html');
         }
     });
+
+router.get("/admin", function(req, res, next){
+    res.sendFile(path.join(__dirname, "../public", '/assets/views/admin.html'));
+});
+
+router.get("/client", function(req, res, next){
+    res.sendFile(path.join(__dirname, "../public", '/assets/views/client.html'));
+});
 
 router.get("/", function(req, res, next){
         res.sendFile(path.join(__dirname, "../public", '/assets/views/login.html'));
