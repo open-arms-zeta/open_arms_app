@@ -64,7 +64,7 @@ myApp.controller('AdminWelcomeController', ["$scope", "DataService", "$http", "$
         //console.log($filter('date')($scope.selectedMealCount.start_date, 'fullDate'));
         for(var i = 0; i<$scope.selectedMealCount.length; i++){
             $scope.selectedMealCount[i].start_date = $filter('date')($scope.selectedMealCount[i].start_date, 'fullDate');
-            $scope.selectedMealCount[i].end_date = $filter('date')($scope.selectedMealCount[i].end_date, 'fullDate');
+            //$scope.selectedMealCount[i].end_date = $filter('date')($scope.selectedMealCount[i].end_date, 'fullDate');
         }
         return $scope.selectedMealCount;
     };
@@ -73,9 +73,9 @@ myApp.controller('AdminWelcomeController', ["$scope", "DataService", "$http", "$
     //------------------------NEED TO ADD: EXPORT CSV FUNCTION -----------------------------
     $scope.printClientOrders = function(){
         console.log($scope.clientOrders);
-        for(var i = 0; i<$scope.selectedMealCount.length; i++){
+        for(var i = 0; i<$scope.clientOrders.length; i++){
             $scope.clientOrders[i].start_date = $filter('date')($scope.clientOrders[i].start_date, 'fullDate');
-            $scope.clientOrders[i].end_date = $filter('date')($scope.clientOrders[i].end_date, 'fullDate');
+            //$scope.clientOrders[i].end_date = $filter('date')($scope.clientOrders[i].end_date, 'fullDate');
         }
         return $scope.clientOrders;
     };
