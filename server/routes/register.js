@@ -39,6 +39,44 @@ router.post('/', function(req,res,next) {
 
 });
 
+router.post('/groupregister', function(req,res,next){
+
+    var clients = req.body;
+    console.log(clients);
+    var numAdded = 0;
+    var numErrors = 0;
+    for (var i = 0; i<clients.length; i++){
+        var client = clients[i];
+
+        var salt = bcrypt.genSaltSync(10);
+        var hashedPassword = bcrypt.hashSync(client.phone.toString(), salt);
+
+        var newUser = {
+            email: client.email,
+            first_name: client.first_name,
+            last_name: client.last_name,
+            phone: client.phone,
+            default_meal: client.default_meal,
+            category_id: client.category_id,
+            status: true,
+            new_user: true,
+            role: 'client',
+            salt: salt,
+            password: hashedPassword
+        };
+
+        Model.User.create(newUser).then(function () {
+            numAdded++;
+            //res.send('user added to database');
+        }).catch(function (error) {
+            numErrors++;
+            //res.redirect('/register')
+        });
+    }
+
+    res.send('users added')
+});
+
 router.get('/admin', function (req, res, next){
     res.sendFile(path.resolve(__dirname, '../public/assets/views/registeradmin.html'));
 });
@@ -67,7 +105,7 @@ router.post('/admin', function(req,res,next){
 
 //Check emails
 router.get('/all', function(req,res){
-    console.log('retrieving emails')
+    console.log('retrieving emails');
     var results = [];
 
     pg.connect(connectionString, function (err, client) {

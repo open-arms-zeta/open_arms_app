@@ -66,15 +66,16 @@
     <div class="upload-csv">
         <h3 class="admin-subheader">Upload a CSV file for Import</h3>
         <div class="csv-field">
-            <label>Select File:</label>
-            <form  name="csvForm">
-                <div class="btn btn-default btn-file">
-                    Browse... <input type="file" file-change="handler($event,files)" ng-model="files" />
-                </div>
-            </form>
-            <div  ng-show="csvClients !== undefined">
-                <button class='btn btn-danger' ng-click="console.log('hi')">Remove</button>
-            </div>
+            <button class="btn dark-button" ng-click="openCSVModal()">Upload CSV</button>
+            <!--<label>Select File:</label>-->
+            <!--<form  name="csvForm">-->
+                <!--<div class="btn btn-default btn-file">-->
+                    <!--Browse... <input type="file" file-change="handler($event,files)" ng-model="files" />-->
+                <!--</div>-->
+            <!--</form>-->
+            <!--<div  ng-show="csvClients !== undefined">-->
+                <!--<button class='btn btn-danger' ng-click="console.log('hi')">Remove</button>-->
+            <!--</div>-->
         </div>
     </div>
 </div>

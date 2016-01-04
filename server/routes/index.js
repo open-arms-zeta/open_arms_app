@@ -49,7 +49,7 @@ router.use('/register', register);
 router.use('/password', password);
 
 //AUTHORIZED AREA
-router.use('/*', auth);
+//router.use('/*', auth);
 
 router.use('/createmenu', createMenu);
 router.use('/getcategories', getCategories);

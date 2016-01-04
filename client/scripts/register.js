@@ -65,7 +65,7 @@ $(document).ready(function(){
     };
 
     var register = function(values, context){
-        console.log(values);
+        //console.log(values);
         $.ajax({
             url: "/register/admin",
             type: "POST",
