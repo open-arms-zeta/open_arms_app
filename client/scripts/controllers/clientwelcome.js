@@ -137,6 +137,7 @@ myApp.controller('ClientWelcomeController', ["$scope", "DataService", "$http", f
 
         $http.get('/getclients/checkOrdered', {params: {clientId: $scope.user.id, menuId: $scope.menu[0].menu_id}}).then(function(response){
            if (response.data[0]) {
+               //console.log("This person ordered...", response.data);
                $scope.mealsChosen = true;
                $scope.orderedMealsArray = (response.data);
            }
