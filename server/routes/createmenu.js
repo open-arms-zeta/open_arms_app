@@ -111,6 +111,7 @@ router.post('/saveToMealMenu', function(req,res){
 
     pg.connect(connectionString, function (err, client){
 
+        console.log("SAVING to meal_menu", req.body);
 
         for(var i = 0; i < req.body.mealsArray.length; i++){
 

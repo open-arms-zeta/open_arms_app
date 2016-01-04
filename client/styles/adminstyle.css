@@ -335,6 +335,11 @@ html, body {
     padding-right: 20px;
 }
 
+.dropdown-container {
+    height: 380px;
+    margin-bottom: 0;
+}
+
 
 
 /*ADD CLIENT STYLIHG*/
