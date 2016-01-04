@@ -2,17 +2,14 @@
     <div layout="row" layout-align="end center">
     <md-button class="instruction-button" ng-click="toggleModal3()">Instructions</md-button>
     </div>
-    <div class="md-whiteframe-1dp welcome-message-content" flex="60" flex-offset="20">
+    <div class="md-whiteframe-1dp welcome-message-content" flex-gt-sm="80 "flex-gt-lg="60" flex-offset-gt-sm="10" flex-offset-gt-lg="20">
         <div layout="row" layout-align="space-between center">
             <h1 class="welcome-message-title">Welcome <span class="welcome-message-name">{{user.first_name}}!</span></h1>
-            <!--<md-button class="instruction-button" ng-click="toggleModal3()">Instructions</md-button>-->
         </div>
-        <!--<h2>Your default meal pack is: {{user.default_meal}}<br>-->
-        <!--These are the default meals for the week of: {{activeWeek | date: 'fullDate'}}</h2>-->
 
         <div layout="column">
             <h2>Your default meal pack is: {{user.default_meal}}<br>
-                These are the default meals for the week of: {{activeWeek | date: 'fullDate'}}</h2>
+                These are the default meals for the week of: {{activeWeek | date: 'longDate'}}</h2>
 
             <ol>
                 <li class="meal-info" ng-repeat="meal in menu track by $index" ng-if="user.category_id == meal.category_id">
@@ -32,9 +29,9 @@
         </div>
 
         <!--Modal for meal confirmation for default meal selection-->
-        <modal-dialog show='modalShown' width='70%' height='90%' ng-if="!mealsChosen && !customized && !notActive">
-            <md-content flex-offset="10">
-                <h1>Meal Confirmation for the week of: {{activeWeek | date: 'fullDate'}}</h1>
+        <modal-dialog class="confirmation-modal" show='modalShown' width='50%' height='70%' ng-if="!mealsChosen && !customized && !notActive">
+            <md-content flex-offset="5">
+                <h1>Meal Confirmation for the week of: {{activeWeek | date: 'longDate'}}</h1>
                 <h2>You have selected:</h2>
 
                 <ol>
@@ -70,20 +67,21 @@
 <!------------- CUSTOMIZE MEALS PAGE ---------------->
 <md-content class="customize-meals" ng-if="customized">
 
-    <div flex="90" flex-offset="5">
+    <div flex="90" flex-offset="5" class="customize-meals-container md-whiteframe-2dp">
         <div layout="row" layout-align="space-between center">
-            <md-button class="back-button" ng-click="backToHome()">< Back</md-button>
+            <md-button class="back-button md-raised" ng-click="backToHome()">< Back</md-button>
 
             <div layout="column" layout-align="center center">
                 <h1>Customize Meal Selection</h1>
-                <h2>For the week of: {{activeWeek | date: 'fullDate'}}</h2>
+                <h2>For the week of: {{activeWeek | date: 'longDate'}}</h2>
             </div>
 
-            <md-button class="instruction-button" ng-click="toggleModal3()">Instructions</md-button>
+            <md-button class="instruction-button md-raised" ng-click="toggleModal3()">Instructions</md-button>
         </div>
 
         <div class="customize-meals-content" layout="row">
             <div flex="55" layout="column">
+
                 <div ng-repeat="category in categories track by $index">
 
                     <div ng-init="accordion.current = user.default_meal">
@@ -120,9 +118,10 @@
                     <h2>Meals Selected</h2>
                     <md-button class="md-raised md-accent md-hue-3 submit-meal-button" ng-disabled="!addedMealArray[0]" ng-click="toggleModal2()">Submit Meal Selection</md-button>
                 </div>
-                <div class="meal-info" ng-repeat="meal in addedMealArray track by $index" layout="row" layout-align="space-between center">
+                <div class="meal-info" ng-repeat="meal in addedMealArray track by $index" layout="row" layout-align="space-between start">
+
                     <div>
-                        <p>{{$index+1}}: {{meal.entree}} with {{meal.side_1}}<span ng-if="meal.side_2"> and {{meal.side_2}}</span></p>
+                        <p>{{meal.entree}} with {{meal.side_1}}<span ng-if="meal.side_2"> and {{meal.side_2}}</span></p>
                         <p class="allergen-text" ng-repeat="allergen in meal.allergen">  Allergen: {{allergen}}</p>
                     </div>
 
@@ -136,15 +135,17 @@
         </div>
 
         <!--Modal for customized meal confirmation-->
-        <modal-dialog show='modalShown2' width='90%' height='90%' ng-if="customized">
-            <md-content>
-                <h1>Meal Confirmation for the week of: {{activeWeek | date: 'fullDate'}}</h1>
+        <modal-dialog class="confirmation-modal" show='modalShown2' width='50%' height='70%' ng-if="customized">
+            <md-content flex-offset="5">
+                <h1>Meal Confirmation for the week of: {{activeWeek | date: 'longDate'}}</h1>
                 <h2>You have selected:</h2>
 
-                <div class="meal-info" ng-repeat="meal in addedMealArray track by $index">
-                    <h3>{{$index+1}}: {{meal.entree}} with {{meal.side_1}}<span ng-if="meal.side_2"> and {{meal.side_2}}</span></h3>
-                    <p class="allergen-text" ng-repeat="allergen in meal.allergen">  Allergen: {{allergen}}</p>
-                </div>
+                <ol>
+                    <li class="meal-info" ng-repeat="meal in addedMealArray track by $index">
+                        <h3>{{meal.entree}} with {{meal.side_1}}<span ng-if="meal.side_2"> and {{meal.side_2}}</span></h3>
+                        <p class="allergen-text" ng-repeat="allergen in meal.allergen">  Allergen: {{allergen}}</p>
+                    </li>
+                </ol>
 
                 <md-button class="md-raised" ng-click="postCustomMeal()">Confirm Meal Selection</md-button>
                 <md-button class="md-raised md-warn" ng-click="toggleModal2()">No - Go Back</md-button>
@@ -166,17 +167,34 @@
 </md-content>
 
 <!--SHOWS AFTER CLIENT CONFIRMED ORDER -->
-<md-content class="already-ordered" ng-if="mealsChosen" flex="80" flex-offset="10">
-    <h1>Your meals for the week of {{activeWeek | date: 'fullDate'}} have been ordered, enjoy!</h1>
-    <h2>You have ordered:</h2>
-    <div class="meal-info" ng-repeat="meal in orderedMealsArray">
-        <h3>{{$index+1}}: {{meal.entree}} with {{meal.side_1}}<span ng-if="meal.side_2"> and {{meal.side_2}}</span></h3>
-        <h4>Qty: {{meal.count}}</h4>
+<md-content class="already-ordered" ng-if="mealsChosen">
+    <div class="md-whiteframe-1dp welcome-message-content" flex-gt-sm="80 "flex-gt-lg="60" flex-offset-gt-sm="10" flex-offset-gt-lg="20">
+
+        <div layout="row" layout-align="space-between center">
+            <h1 class="welcome-message-title">Thanks <span class="welcome-message-name">{{user.first_name}}!</span></h1>
+        </div>
+
+        <h1>Your meals for the week of {{activeWeek | date: 'longDate'}} have been ordered, enjoy!</h1>
+        <h2>You have ordered:</h2>
+
+        <div class="meal-info" ng-repeat="meal in orderedMealsArray">
+            <h3>{{meal.entree}} with {{meal.side_1}}<span ng-if="meal.side_2"> and {{meal.side_2}}</span></h3>
+            <h4>Quantity: {{meal.count}}</h4>
+        </div>
+
     </div>
 </md-content>
 
 <!--SHOWS WHEN CLIENT STATUS IS NOT ACTIVE-->
-<md-content class="not-active" ng-if="notActive" flex="80" flex-offset="10">
-    <h1>Our system shows that you have inactivated meal services.</h1>
-    <h2>If this is incorrect, or if you would like to activate meal services, please call Client Services at 612-872-1152</h2>
+<md-content class="not-active" ng-if="notActive">
+    <div class="md-whiteframe-1dp welcome-message-content" flex-gt-sm="80 "flex-gt-lg="60" flex-offset-gt-sm="10" flex-offset-gt-lg="20">
+
+        <div layout="row" layout-align="space-between center">
+            <h1 class="welcome-message-title">Welcome <span class="welcome-message-name">{{user.first_name}}!</span></h1>
+        </div>
+
+        <h1>Our system shows that you have inactivated meal services.</h1>
+        <h2>If this is incorrect, or if you would like to activate meal services, please call Client Services at 612-872-1152.</h2>
+
+    </div>
 </md-content>
