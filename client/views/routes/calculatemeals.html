@@ -9,7 +9,7 @@
         <div class="row">
             <div class="form-group col-md-4 col-sm-6 col-xs-12" ng-repeat="category in categories">
                 <label class="lead label-lead">{{category.category_name}}</label>
-                <input class="form-control" type="number" name="{{category.category_name}}" ng-model="category.formCount">
+                <input class="form-control" type="number" min="0" name="{{category.category_name}}" ng-model="category.formCount">
             </div>
         </div>
         <button type="submit" class="btn dark-button">Submit</button>

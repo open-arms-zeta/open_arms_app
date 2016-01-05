@@ -238,6 +238,12 @@ html, body {
 }
 
 /*FORM FORMATING AND VALIDATION*/
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
 .form-group{
     height: 100px;
     margin-bottom: 0;

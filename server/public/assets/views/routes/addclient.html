@@ -34,7 +34,7 @@
 
             <div class="form-group" ng-class="{ 'has-error' : addClientForm.inputPhone.$invalid && !addClientForm.inputPhone.$pristine }">
                 <label class="lead label-lead">Phone Number</label>
-                <input ng-model="newClient.phone" type="number" id="inputPhone" ng-minlength="10" ng-maxlength="10" name="inputPhone" class="form-control" placeholder="Phone # must be 10 digits" required>
+                <input ng-model="newClient.phone" type="number"  min="0" id="inputPhone" ng-minlength="10" ng-maxlength="10" name="inputPhone" class="form-control" placeholder="Phone # must be 10 digits" required>
                 <!--<p ng-show="addClientForm.inputPhone.$invalid && !addClientForm.inputPhone.$pristine" class="help-block">Enter a phone number</p>-->
                 <div ng-messages="addClientForm.inputPhone.$error" ng-if="addClientForm.inputPhone.$touched">
                     <!-- show an error if username is too short -->
