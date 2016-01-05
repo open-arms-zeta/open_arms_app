@@ -3,7 +3,7 @@
     <div class="info">
         <p>Instructions: </p>
         <p>Enter in the total number of 5 packs for each category to determine the total number of individual
-            meals to be prepared</p>
+            meals to be prepared for the week of: {{selectedStartDate | date: 'fullDate'}}</p>
     </div>
     <form novalidate class="meal-form" name="mealCountForm" ng-submit="calculateMeals()">
         <div class="row">

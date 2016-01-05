@@ -3,7 +3,7 @@
 
     <div class="add-client">
         <form name="addClientForm" ng-submit="submitForm()" novalidate>
-            <div class="form-group" ng-class="{ 'has-error' : addClientForm.inputFirstName.$invalid && !addClientForm.inputFirstName.$pristine }">
+            <div class="form-group col-md-6 col-sm-12" ng-class="{ 'has-error' : addClientForm.inputFirstName.$invalid && !addClientForm.inputFirstName.$pristine }">
                 <label class="lead label-lead">First Name</label>
                 <input ng-model="newClient.firstName" type="text" id="inputFirstName" name="inputFirstName" class="form-control" placeholder="First Name" required>
                 <!--<p ng-show="addClientForm.inputFirstName.$invalid && !addClientForm.inputFirstName.$pristine" class="help-block">Enter a first name</p>-->
@@ -12,7 +12,7 @@
                 </div>
             </div>
 
-            <div class="form-group" ng-class="{ 'has-error' : addClientForm.inputLastName.$invalid && !addClientForm.inputLastName.$pristine }">
+            <div class="form-group col-md-6 col-sm-12" ng-class="{ 'has-error' : addClientForm.inputLastName.$invalid && !addClientForm.inputLastName.$pristine }">
                 <label class="lead label-lead">Last Name</label>
                 <input ng-model="newClient.lastName" type="text" id="inputLastName" name="inputLastName" class="form-control" placeholder="Last Name" required>
                 <!--<p ng-show="addClientForm.inputLastName.$invalid && !addClientForm.inputLastName.$pristine" class="help-block">Enter a last name</p>-->
@@ -21,7 +21,7 @@
                 </div>
             </div>
 
-            <div class="form-group" ng-class="{ 'has-error' : addClientForm.inputEmail.$invalid && !addClientForm.inputEmail.$pristine || addClientForm.inputEmail.$error.isunique}">
+            <div class="form-group col-md-6 col-sm-12" ng-class="{ 'has-error' : addClientForm.inputEmail.$invalid && !addClientForm.inputEmail.$pristine || addClientForm.inputEmail.$error.isunique}">
                 <label class="lead label-lead">Email Address</label>
                 <input ng-model="newClient.email" type="email" id="inputEmail" name="inputEmail" class="form-control" placeholder="E-mail" is-unique="" required>
                 <!--<p ng-show="addClientForm.inputEmail.$invalid && !addClientForm.inputEmail.$pristine" class="help-block">Enter an e-mail address</p>-->
@@ -32,7 +32,7 @@
                 </div>
             </div>
 
-            <div class="form-group" ng-class="{ 'has-error' : addClientForm.inputPhone.$invalid && !addClientForm.inputPhone.$pristine }">
+            <div class="form-group col-md-6 col-sm-12" ng-class="{ 'has-error' : addClientForm.inputPhone.$invalid && !addClientForm.inputPhone.$pristine }">
                 <label class="lead label-lead">Phone Number</label>
                 <input ng-model="newClient.phone" type="number"  min="0" id="inputPhone" ng-minlength="10" ng-maxlength="10" name="inputPhone" class="form-control" placeholder="Phone # must be 10 digits" required>
                 <!--<p ng-show="addClientForm.inputPhone.$invalid && !addClientForm.inputPhone.$pristine" class="help-block">Enter a phone number</p>-->
@@ -45,7 +45,7 @@
                 </div>
             </div>
 
-            <div class="form-group" ng-class="{ 'has-error' : addClientForm.categorySelect.$invalid && !addClientForm.categorySelect.$pristine }">
+            <div class="form-group col-md-6 col-sm-12" ng-class="{ 'has-error' : addClientForm.categorySelect.$invalid && !addClientForm.categorySelect.$pristine }">
                 <label for="categorySelect" class="lead label-lead">Select default meal category: </label><br>
                 <select name="categorySelect" id="categorySelect" class="form-control" ng-model="newClient.defaultMeal" required
                         ng-options="category.category_name for category in categories">
@@ -55,7 +55,7 @@
                 </div>
             </div>
 
-            <div class="submitButton">
+            <div class="add-client-button row col-md-12">
                 <button class="btn dark-button" type="submit" ng-click="submit()" id="submitBtn" ng-disabled="addClientForm.$invalid">Add</button>
             </div>
         </form>
@@ -64,7 +64,7 @@
             <!--<input type="file" file-change="handler($event,files)" ng-model="myFiles" />-->
         <!--</form>-->
     </div>
-    <div class="upload-csv">
+    <div class="upload-csv row col-md-12">
         <h3 class="admin-subheader">Upload a CSV file for Import</h3>
         <div class="csv-field">
             <button class="btn dark-button" ng-click="openCSVModal()">Upload CSV</button>

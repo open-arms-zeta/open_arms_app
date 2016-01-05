@@ -38,10 +38,10 @@
             <input class="form-control" type="text" name="side2" placeholder="Side #2" ng-model="meal.side_2">
         </div>
 
-        <div class="form-group">
+        <div class="form-group row checkbox-group">
             <p class="lead label-lead">Categories</p>
             <!--ng-class="{'has-error': createMeal.categoryCheckbox.$invalid && !createMeal.categoryCheckbox.$pristine}"-->
-            <div class='mealCategories checkbox-inline form-group' ng-repeat="category in categories">
+            <div class='mealCategories checkbox-inline col-md-2 col-sm-3 col-xs-4' ng-repeat="category in categories">
                 <input type="checkbox" name="categoryCheckbox"  checklist-value="category" checklist-model="meal.categories" ng-required="!meal.categories[0]">
                 <label>{{category.category_name}}</label>
             </div>
@@ -51,10 +51,10 @@
             <!--<p ng-show="createMeal.categoryCheckbox.$error && !createMeal.categoryCheckbox.$pristine" class="warning-message">At least one category is required.</p>-->
         </div>
 
-        <div class="form-group" >
+        <div class="form-group row checkbox-group">
             <!--ng-class="{'has-error': meal.allergens.length <1 && !createMeal.allergenCheckbox.$pristine}"-->
             <p class="lead label-lead">Allergens</p>
-            <div class='allergens checkbox-inline' ng-repeat="allergen in allergens" ng-if="ifNoAllergen(allergen)">
+            <div class='allergens checkbox-inline col-md-2 col-sm-3 col-xs-4' ng-repeat="allergen in allergens" ng-if="ifNoAllergen(allergen)">
                 <input type="checkbox" name='allergenCheckbox' checklist-value="allergen" checklist-model="meal.allergens" ng-required="!meal.allergens[0]">
                 <label>{{allergen.allergen_name}}</label>
             </div>
