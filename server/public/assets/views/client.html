@@ -11,11 +11,13 @@
     <link rel="stylesheet" href="/vendors/ui-grid-stable.min.css">
     <link rel="stylesheet" href="/vendors/angular-material.min.css">
     <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/vendors/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="/assets/styles/clientstyle.css">
+    <link rel="stylesheet" href="/assets/styles/clientmobile.css">
 </head>
-<body layout="column" layout-align="space-between">
+<body layout-gt-sm="column" layout-align-gt-sm="space-between" ng-controller="ClientWelcomeController">
 
-<md-toolbar>
+<md-toolbar hide show-gt-sm>
     <header ng-include="'/assets/views/templates/clientheader.html'"></header>
 </md-toolbar>
 
@@ -23,7 +25,7 @@
     <main class="main route" ng-view></main>
 </md-content>
 
-<md-toolbar>
+<md-toolbar hide show-gt-sm>
     <footer ng-include="'/assets/views/templates/clientfooter.html'"></footer>
 </md-toolbar>
 

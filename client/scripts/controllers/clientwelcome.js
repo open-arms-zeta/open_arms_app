@@ -9,6 +9,7 @@ myApp.controller('ClientWelcomeController', ["$scope", "DataService", "$http", f
     $scope.modalShown = false;
     $scope.modalShown2 = false;
     $scope.modalShown3 = false;
+    $scope.modalShownMobileBasket = false;
 
     $scope.mealsChosen = false;
     $scope.customized = false;
@@ -21,6 +22,9 @@ myApp.controller('ClientWelcomeController', ["$scope", "DataService", "$http", f
     $scope.uniqueMealArray = [];
     $scope.orderToPost = [];
     $scope.orderedMealsArray = [];
+
+    $scope.viewSelectMeals = false;
+
 
     //get user
     if ($scope.user == undefined) {
@@ -187,6 +191,11 @@ myApp.controller('ClientWelcomeController', ["$scope", "DataService", "$http", f
     // Modal for Instructions
     $scope.toggleModal3 = function(){
         $scope.modalShown3 = !$scope.modalShown3;
+    };
+
+    // Modal for Mobile Picnic Basket
+    $scope.toggleModalMobileBasket = function(){
+        $scope.modalShownMobileBasket = !$scope.modalShownMobileBasket;
     };
 
     // Add Custom Meal to Picnic Basket

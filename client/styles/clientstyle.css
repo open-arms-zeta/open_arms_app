@@ -15,8 +15,6 @@
 }
 
 
-
-
 md-toolbar {
     z-index: 20;
 }
@@ -56,7 +54,7 @@ h1, h2, h3, h4, h5, h6, p {
 .welcome-message {
     padding-top: 30px;
     padding-bottom: 50px;
-    min-height: 750px;
+    /*min-height: 800px;*/
 }
 
 .welcome-message-title {
@@ -70,11 +68,11 @@ h1, h2, h3, h4, h5, h6, p {
     color: orange;
 }
 
-.welcome-message h2, .confirmation-modal h2 {
+.welcome-default-meal-message, .confirmation-modal h2 {
     margin: 30px 0;
 }
 
-.welcome-message-buttons {
+.welcome-message-buttons-container {
     margin-top: 20px;
 }
 
@@ -95,11 +93,12 @@ h1, h2, h3, h4, h5, h6, p {
     background-color:#000000;
     opacity: 0.8;
 }
+
 .ng-modal-dialog {
     /* A centered div above the overlay with a box shadow. */
     z-index:10;
     position: absolute;
-    /*width: 90%; /!* Default *!/*/
+    width: 50%;
 
     /* Center the dialog */
     top: 50%;
@@ -173,10 +172,6 @@ h1, h2, h3, h4, h5, h6, p {
     margin-bottom: 1px;
 }
 
-/*.Red a {*/
-/*background: red;*/
-/*}*/
-
 /* ------ PICNIC BASKET ------ */
 .picnic-basket-header {
     margin-bottom: 20px;
@@ -197,11 +192,118 @@ h1, h2, h3, h4, h5, h6, p {
 /* ------ NOT ACTIVE PAGE ------ */
 
 .not-active {
-    padding-top: 50px;
-    padding-bottom: 50px;
+    padding-top: 60px;
+    padding-bottom: 60px;
     min-height: 800px;
 }
 
 .not-active h1, h2 {
     margin: 22px 0;
+}
+
+@media (max-width:1240px) {
+    .welcome-message-title {
+        font-size: 60px;
+    }
+
+    .ng-modal-dialog {
+        width: 70%;
+    }
+}
+
+@media (max-width:960px) {
+
+    .welcome-message-button {
+        font-size: 14px;
+    }
+
+    .ng-modal-dialog {
+        width: 70%;
+    }
+
+    .customize-meals-container {
+        padding: 20px;
+    }
+
+}
+
+@media (max-width:600px) {
+
+    .welcome-message, .not-active, .already-ordered {
+        margin-top: 50px;
+        margin-bottom: 0;
+        padding-top: 0;
+        padding-bottom:0;
+        min-height: 0;
+        height: 100%;
+
+    }
+
+    .not-active h1, .not-active h2, .already-ordered h1 {
+        text-align: center;
+    }
+
+    .welcome-message-title {
+        font-size: 50px;
+        text-align: center;
+    }
+
+    .welcome-message-content {
+        padding: 30px 20px;
+        height: 100%;
+    }
+
+    .welcome-default-meal-message {
+        text-align: center;
+        font-size: 22px;
+        margin: 20px;
+    }
+
+    .welcome-message-button {
+        font-size: 12px;
+    }
+
+    .instruction-button, .back-button {
+        min-height: 0;
+        line-height: 0;
+        height: 30px;
+        font-size: 12px;
+    }
+
+
+    .ng-modal-dialog {
+        width: 90%;
+    }
+
+    /*CONFIRMATION MODAL*/
+
+    .confirmation-modal .ng-modal-dialog-content {
+        padding: 30px;
+    }
+
+    .confirmation-modal h1 {
+        font-size: 26px;
+    }
+
+    .confirmation-modal h2 {
+        font-size: 22px;
+    }
+
+    .confirmation-modal-button {
+        font-size: 12px;
+    }
+
+    /*CUSTOMIZE MEAL PAGE*/
+    .customize-meals-container {
+        padding: 40px 20px;
+    }
+
+    .customize-meals-title {
+        text-align: center;
+    }
+
+    .add-meal-button {
+        font-size: 12px;
+    }
+
 }
