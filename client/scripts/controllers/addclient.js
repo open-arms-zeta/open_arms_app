@@ -2,14 +2,21 @@
  * Created by aronthomas on 12/10/15.
  */
 
-myApp.controller('AddClientController', ["$scope", "DataService", "$http", "$filter", function($scope, DataService, $http, $filter){
+myApp.controller('AddClientController', ["$scope", "DataService", "$http", "$uibModal", function($scope, DataService, $http, $uibModal){
 
     console.log("Add client Controller Online");
-    $scope.csvClients = undefined;
     $scope.dataService = DataService;
     $scope.categories = undefined;
+    $scope.clients = undefined;
     $scope.newClient = {};
 
+
+    if($scope.clients == undefined){
+        $http.get('/register/all').then(function(response){
+            $scope.clients = response.data;
+            console.log('clients in db', $scope.clients);
+        })
+    }
 
     if ($scope.categories == undefined) {
         $scope.dataService.retrieveCategories().then(function(){
@@ -27,7 +34,7 @@ myApp.controller('AddClientController', ["$scope", "DataService", "$http", "$fil
     $scope.submit = function(){
         if($scope.addClientForm.$valid){
             console.log($scope.newClient);
-            $scope.newClient.password = $scope.newClient.phone.toString();
+            //$scope.newClient.password = $scope.newClient.phone.toString();
             $http.post('/register',$scope.newClient).then(function(response){
                 console.log(response.data);
             });
@@ -43,45 +50,40 @@ myApp.controller('AddClientController', ["$scope", "DataService", "$http", "$fil
     };
 
 
-    $scope.handler=function(e,files){
-        console.log($scope.myFiles);
-        var reader=new FileReader();
-        reader.onload=function(e){
-            var string=reader.result;
-            //console.log(string);
-            //var obj=$filter('csvToObj')(string);
-            //console.log(obj);
-            var results = Papa.parse(string,{
-                header: true
-            });
-            console.log(results);
-            $scope.csvClients = results.data;
-            console.log('results', $scope.csvClients)
-        };
-        reader.readAsText(files[0]);
-        Papa.parse(files[0], {
-            complete: function(results) {
-                console.log('these results', $scope.csvClients);
-            }
+
+    //csv modal
+    $scope.openCSVModal = function(){
+        var size = 'lg';
+
+        var modalInstance = $uibModal.open({
+            animation: true,
+            templateUrl: '/assets/views/templates/importclients.html',
+            controller: 'ImportClientController',
+            size: size
+        });
+
+        modalInstance.result.then(function(){
+            console.log('modal closed')
         });
     };
-    //console.log($scope.categories)
-}]);
 
-
-myApp.directive('fileChange',['$parse', function($parse){
-    return{
-        require:'ngModel',
-        restrict:'A',
-        link:function($scope,element,attrs,ngModel){
-            var attrHandler=$parse(attrs['fileChange']);
-            var handler=function(e){
-                $scope.$apply(function(){
-                    attrHandler($scope,{$event:e,files:e.target.files});
-                });
-            };
-            element[0].addEventListener('change',handler,false);
-        }
+    $scope.clientExists = function(clientEmail){
+        console.log( _.findWhere($scope.clients, {email: clientEmail}));
+        return $scope.$apply(function(){
+            if(_.findWhere($scope.clients, {email: clientEmail})){
+                $scope.addClientForm.inputEmail.$setValidity('unique', false);
+                //addClientForm.inputEmail.$duplicate = true;
+                return true
+            }else{
+                $scope.addClientForm.inputEmail.$setValidity('unique', true);
+                //addClientForm.inputEmail.$duplicate = false;
+                return false
+            }
+        });
+        //return _.findWhere($scope.clients, {email: clientEmail});
     }
 }]);
+
+
+
 

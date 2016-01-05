@@ -1,5 +1,5 @@
 var myApp = angular.module('myApp', ['ngRoute', 'checklist-model', 'ngAnimate', 'ui.bootstrap', 'ngMessages',
-	'ui.grid', 'ui.grid.edit', 'ui.grid.selection', 'ui.grid.exporter', 'ngSanitize', 'ngCsv']);
+	'ui.grid', 'ui.grid.edit', 'ui.grid.selection', 'ui.grid.exporter', 'ui.grid.importer', 'ngSanitize', 'ngCsv']);
 
 
 myApp.config(['$routeProvider', function($routeProvider){

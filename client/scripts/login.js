@@ -18,7 +18,7 @@ $(document).ready(function(){
         //ANIMATION
 
 
-        console.log(values);
+        //console.log(values);
 
         login(values, this);
         return false;
@@ -30,7 +30,7 @@ $(document).ready(function(){
             type: "POST",
             data: values,
             success: function(data, textStatus, jqXHR){
-                console.log(data);
+                //console.log(data);
 
                 $(".feedback-success").show().animate({"opacity":"1", "bottom":"-80px"}, 400);
                 $(".submit").css({"background":"#2ecc71", "border-color":"#2ecc71"});
@@ -42,7 +42,7 @@ $(document).ready(function(){
 
             },
             error: function(data){
-                console.log(data);
+                //console.log(data);
                 console.log("failure");
                 $(".feedback-failure").show().animate({"opacity":"1", "bottom":"-80px"}, 400);
             }
