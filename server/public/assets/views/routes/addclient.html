@@ -21,13 +21,14 @@
                 </div>
             </div>
 
-            <div class="form-group" ng-class="{ 'has-error' : addClientForm.inputEmail.$invalid && !addClientForm.inputEmail.$pristine }">
+            <div class="form-group" ng-class="{ 'has-error' : addClientForm.inputEmail.$invalid && !addClientForm.inputEmail.$pristine || addClientForm.inputEmail.$error.isunique}">
                 <label class="lead label-lead">Email Address</label>
-                <input ng-model="newClient.email" type="email" id="inputEmail" name="inputEmail" class="form-control" placeholder="E-mail" required>
+                <input ng-model="newClient.email" type="email" id="inputEmail" name="inputEmail" class="form-control" placeholder="E-mail" is-unique="" required>
                 <!--<p ng-show="addClientForm.inputEmail.$invalid && !addClientForm.inputEmail.$pristine" class="help-block">Enter an e-mail address</p>-->
-                <div ng-messages="addClientForm.inputEmail.$error" ng-if="addClientForm.inputEmail.$touched">
-                    <p ng-message="required" class="warning-message">Enter an e-mail address</p>
-                    <p ng-message="email" class="warning-message">This needs to be a valid email</p>
+                <!--<p ng-message="required" class="warning-message" ng-show="addClientForm.inputEmail.$error.email">An account for this email address already exists</p>-->
+                <div ng-messages="addClientForm.inputEmail.$error">
+                    <p ng-message="required" class="warning-message" ng-if="addClientForm.inputEmail.$touched">Enter a valid e-mail address</p>
+                    <p class="warning-message" ng-show="addClientForm.inputEmail.$error.isunique">An account for this email address already exists</p>
                 </div>
             </div>
 
@@ -37,10 +38,10 @@
                 <!--<p ng-show="addClientForm.inputPhone.$invalid && !addClientForm.inputPhone.$pristine" class="help-block">Enter a phone number</p>-->
                 <div ng-messages="addClientForm.inputPhone.$error" ng-if="addClientForm.inputPhone.$touched">
                     <!-- show an error if username is too short -->
-                    <p ng-show="addClientForm.inputPhone.$error.minlength">Phone number is too short.</p>
+                    <p ng-show="addClientForm.inputPhone.$error.minlength" class="warning-message">Phone number is too short.</p>
                     <!-- show an error if username is too long -->
-                    <p ng-show="addClientForm.inputPhone.$error.maxlength">Phone number is too long.</p>
-                    <p ng-message="required" class="warning-message">Enter a phone number</p>
+                    <p ng-show="addClientForm.inputPhone.$error.maxlength" class="warning-message">Phone number is too long.</p>
+                    <p ng-message="required" class="warning-message" class="warning-message">Enter a phone number</p>
                 </div>
             </div>
 
