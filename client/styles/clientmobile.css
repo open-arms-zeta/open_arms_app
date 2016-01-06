@@ -44,6 +44,11 @@
     .ng-modal-dialog {
         width: 70%;
     }
+
+    .submit-meal-button {
+        font-size: 11px;
+        padding: 0 5px 0 5px;
+    }
 }
 
 @media (max-width:959px) {

@@ -166,9 +166,9 @@
                     <div ng-init="accordion.current = user.default_meal">
 
                         <h2 class="accordion {{category.category_name}}" ng-class="{active:accordion.current == category.category_name}">
-                            <a href ng-click="accordion.current = category.category_name">
+                            <md-button class="accordion-header" href ng-click="accordion.current = category.category_name">
                                 {{category.category_name}}
-                            </a>
+                            </md-button>
                         </h2>
 
                         <div ng-show="accordion.current == category.category_name" ng-repeat="meal in category.mealInfo"
