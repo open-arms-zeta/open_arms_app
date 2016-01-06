@@ -10,7 +10,7 @@
     <div class="md-toolbar-tools" layout-align="end center">
 
 
-        <md-button class="mobile-header-icons" ng-if="customized">
+        <md-button class="mobile-header-icons" ng-if="customized" ng-click="toggleBasket()">
             <i class="fa fa-shopping-basket fa-lg badge-position"></i>
             <span class="badge">{{badgeNumber}}</span>
             <!--<span>Shopping Basket</span>-->
@@ -40,7 +40,7 @@
 
         <div layout="column">
             <!--<h2 class="welcome-default-meal-message">Your default meal pack is: {{user.default_meal}}<br>-->
-                <h2>These are your default meals for the week of: {{activeWeek | date: 'longDate'}}</h2>
+                <h2 class="welcome-default-meal-message">These are your default meals for the week of: {{activeWeek | date: 'longDate'}}</h2>
 
             <ol>
                 <li class="meal-info" ng-repeat="meal in menu track by $index" ng-if="user.category_id == meal.category_id">
@@ -104,7 +104,32 @@
 <!------------- CUSTOMIZE MEALS PAGE ---------------->
 <md-content class="customize-meals" ng-if="customized">
 
+    <!--PICNIC BASKET (MOBILE VERSION)-->
+    <div ng-if="showBasket" class="mobile-picnic-basket">
+            <div class="picnic-basket-header">
+                <h2>Meals Selected</h2>
+                <md-button class="md-raised md-accent md-hue-3 submit-meal-button" ng-disabled="!addedMealArray[0]" ng-click="toggleModal2()">Submit Meal Selection</md-button>
+            </div>
+            <div class="meal-info" ng-repeat="meal in addedMealArray track by $index" layout="row" layout-align-gt-xs="space-between start">
+
+                <div flex-xs="60">
+                    <p>{{meal.entree}} with {{meal.side_1}}<span ng-if="meal.side_2"> and {{meal.side_2}}</span></p>
+                    <p class="allergen-text" ng-repeat="allergen in meal.allergen">  Allergen: {{allergen}}</p>
+                </div>
+
+                <div flex-xs="40">
+                    <md-button class="md-warn remove-meal-button" ng-click="removeMeal($index)">Remove Meal</md-button>
+                </div>
+
+            </div>
+
+            <!--<md-button class="md-raised md-warn" ng-click="showBasket=!showBasket">Close</md-button>-->
+
+
+    </div>
+
     <div flex-gt-sm="90" flex-offset-gt-sm="5" class="customize-meals-container md-whiteframe-2dp">
+
         <div layout-gt-sm="row" layout-align-gt-sm="space-between center">
             <md-button class="back-button md-raised" hide show-gt-sm ng-click="backToHome()">< Back</md-button>
 
@@ -113,18 +138,8 @@
                 <h2>For the week of: {{activeWeek | date: 'longDate'}}</h2>
             </div>
 
-            <!--<div layout-xs="row" layout-align-xs="space-between center" layout-sm="row" layout-align-sm="space-between center">-->
-            <!--&lt;!&ndash;BACK BUTTON FOR MOBILE&ndash;&gt;-->
-            <!--<md-button class="back-button md-raised" hide-gt-sm ng-click="backToHome()">< Back</md-button>-->
-
             <md-button hide show-gt-sm class="instruction-button md-raised" ng-click="toggleModal3()">Instructions</md-button>
-            <!--</div>-->
         </div>
-
-        <!--VIEW PICNIC BASKET BUTTON FOR MOBILE ONLY-->
-        <!--<div>-->
-            <!--<md-button hide-gt-sm class="md-raised md-warn" ng-click="toggleModalMobileBasket()">View Selected Meals</md-button>-->
-        <!--</div>-->
 
         <div class="customize-meals-content" layout="row">
             <div flex flex-gt-sm="55" layout="column">
@@ -179,31 +194,6 @@
                 </div>
 
             </div>
-
-            <!--PICNIC BASKET (MOBILE VERSION)-->
-            <modal-dialog class="mobile-picnic-basket-modal" show='modalShownMobileBasket' ng-if="customized">
-                <div flex-offset="5">
-                    <div class="picnic-basket-header" layout="row" layout-align="space-between center">
-                        <h2>Meals Selected</h2>
-                        <md-button class="md-raised md-accent md-hue-3 submit-meal-button" ng-disabled="!addedMealArray[0]" ng-click="toggleModal2()">Submit Meal Selection</md-button>
-                    </div>
-                    <div class="meal-info" ng-repeat="meal in addedMealArray track by $index" layout="row" layout-align="space-between start">
-
-                        <div>
-                            <p>{{meal.entree}} with {{meal.side_1}}<span ng-if="meal.side_2"> and {{meal.side_2}}</span></p>
-                            <p class="allergen-text" ng-repeat="allergen in meal.allergen">  Allergen: {{allergen}}</p>
-                        </div>
-
-                        <div>
-                            <md-button class="md-warn" ng-click="removeMeal($index)">Remove Meal</md-button>
-                        </div>
-
-                    </div>
-
-                    <md-button class="md-raised md-warn" ng-click="toggleModalMobileBasket()">Close</md-button>
-
-                </div>
-            </modal-dialog>
 
         </div>
 

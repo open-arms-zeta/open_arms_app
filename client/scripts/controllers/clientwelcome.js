@@ -9,7 +9,7 @@ myApp.controller('ClientWelcomeController', ["$scope", "DataService", "$http", f
     $scope.modalShown = false;
     $scope.modalShown2 = false;
     $scope.modalShown3 = false;
-    $scope.modalShownMobileBasket = false;
+    $scope.showBasket = false;
 
     $scope.mealsChosen = false;
     $scope.customized = false;
@@ -23,7 +23,7 @@ myApp.controller('ClientWelcomeController', ["$scope", "DataService", "$http", f
     $scope.orderToPost = [];
     $scope.orderedMealsArray = [];
 
-    //$scope.viewSelectMeals = false;
+
     //$scope.mealAddedMessage = false;
     $scope.badgeNumber = 0;
 
@@ -195,10 +195,9 @@ myApp.controller('ClientWelcomeController', ["$scope", "DataService", "$http", f
         $scope.modalShown3 = !$scope.modalShown3;
     };
 
-    // Modal for Mobile Picnic Basket
-    $scope.toggleModalMobileBasket = function(){
-        $scope.modalShownMobileBasket = !$scope.modalShownMobileBasket;
-    };
+    $scope.toggleBasket = function(){
+        $scope.showBasket = !$scope.showBasket;
+    }
 
     // Add Custom Meal to Picnic Basket
     $scope.addMeal = function(meal){
