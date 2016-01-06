@@ -38,35 +38,47 @@ router.get('/', function(req,res){
 router.post('/', function(req,res){
     var $insert = "INSERT INTO meal_count (menu_id, meal_id, category_id) VALUES ($1, $2, $3)";
     var $upsert = "UPDATE meal_count";
-    var results = [];
+
+    var mealArray = req.body;
     pg.connect(connectionString, function(err,client){
-        var checkIfExists = client.query("SELECT * FROM meal_count WHERE menu_id=$1 AND meal_id=$2 AND category_id = $3", [req.body.menu_id,req.body.meal_id,req.body.category_id]);
+        //console.log(req.body);
+        for (var i = 0; i<mealArray.length; i++){
+            upsertMeal(i, mealArray[i], err, client);
+        }
+        res.send('updated');
+    });
+
+    var upsertMeal = function(i, meal, err, client){
+        if(err) {
+            console.log(err);
+        }
+        var results = [];
+        //var meal = mealArray[i];
+        var checkIfExists = client.query("SELECT * FROM meal_count WHERE menu_id=$1 AND meal_id=$2 AND category_id = $3",
+            [meal.menu_id,meal.meal_id,meal.category_id]);
 
         checkIfExists.on('row', function (row) {
+            console.log('checking', row);
             results.push(row);
+            console.log('results inside', results);
         });
 
+        console.log('results outside', results);
         // After all data is returned, close connection and return results
         checkIfExists.on('end', function () {
             if (results.length>0){
-                client.query("UPDATE meal_count SET count = $4 WHERE menu_id=$1 AND meal_id=$2 AND category_id = $3", [req.body.menu_id,req.body.meal_id,req.body.category_id, req.body.count]);
-                res.send("updated");
+                console.log('updating');
+                client.query("UPDATE meal_count SET count = $4 WHERE menu_id=$1 AND meal_id=$2 AND category_id = $3",
+                    [meal.menu_id,meal.meal_id,meal.category_id, meal.count]);
+                //res.send("updated");
             }else{
-                client.query("INSERT INTO meal_count (menu_id, meal_id, category_id, count) VALUES ($1,$2,$3,$4)", [req.body.menu_id,req.body.meal_id,req.body.category_id, req.body.count]);
-                res.send("inserted");
+                console.log('inserting');
+                client.query("INSERT INTO meal_count (menu_id, meal_id, category_id, count) VALUES ($1,$2,$3,$4)",
+                    [meal.menu_id,meal.meal_id,meal.category_id, meal.count]);
+                //res.send("inserted");
             }
         });
-
-
-
-        //console.log(checkIfExists);
-        ////if(checkIfExists.rows.length>0){
-        ////    console.log(true);
-        ////}else{
-        ////    console.log(false);
-        ////}
-        //res.send(true);
-    })
+    }
 
 });
 

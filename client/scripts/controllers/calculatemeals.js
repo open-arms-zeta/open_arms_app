@@ -7,6 +7,7 @@ myApp.controller('CalculateMealsController', ["$scope", "DataService", "$http", 
     $scope.menu = undefined;
     $scope.categories = $scope.dataService.getCategories();
     $scope.displayResults = false;
+    $scope.whenSubmit = false;
 
     $scope.meal = {};
     $scope.mealCount = [];
@@ -24,7 +25,7 @@ myApp.controller('CalculateMealsController', ["$scope", "DataService", "$http", 
     $scope.calculateMeals = function(){
         //LOOP THROUGH FORM VALUES TO ADD TO MENU COUNT (Each meal that applies to the category gets incremented by the amount entered in the categories field)
         for(var i = 0; i<$scope.menu.length; i++){
-            console.log($scope.menu[i]);
+            console.log('meal number', i, $scope.menu[i]);
             var category = _.where($scope.categories, {category_name : $scope.menu[i].category_name})[0];
             $scope.menu[i].count = category.formCount || 0;
 
@@ -39,7 +40,8 @@ myApp.controller('CalculateMealsController', ["$scope", "DataService", "$http", 
                 $scope.menu[i].count += orderNum;
             }
         }
-        console.log($scope.menu);
+        console.log('final menu', $scope.menu);
+        $scope.whenSubmit = true;
         $scope.displayResults = true;
         $scope.postMealCount();
     };
@@ -83,11 +85,15 @@ myApp.controller('CalculateMealsController', ["$scope", "DataService", "$http", 
     }
 
     $scope.postMealCount = function(){
-        for(var i = 0; i<$scope.menu.length; i++){
-            console.log($scope.menu[i]);
-            $http.post('/mealcount', $scope.menu[i]).then(function(response){
-                console.log(response);
-            })
-        }
+        console.log('post', $scope.menu)
+        $http.post('/mealcount', $scope.menu).then(function(response){
+            console.log(response)
+        });
+        //for(var i = 0; i<$scope.menu.length; i++){
+        //    console.log('posts', $scope.menu[i]);
+        //    $http.post('/mealcount', $scope.menu[i]).then(function(response){
+        //        console.log(response);
+        //    })
+        //}
     }
 }]);

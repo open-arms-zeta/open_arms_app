@@ -1,5 +1,7 @@
 <div class="route-body">
+
     <h1 class="admin-header">Meal Calculation</h1>
+    <div ng-hide="whenSubmit">
     <div class="info">
         <p>Instructions: </p>
         <p>Enter in the total number of 5 packs for each category to determine the total number of individual
@@ -14,11 +16,27 @@
         </div>
         <button type="submit" class="btn dark-button">Submit</button>
     </form>
+    </div>
 
     <div ng-show="displayResults">
-        <div ng-repeat="meal in menu">
-            <p>Entree: {{meal.entree}}</p>
-            <p>Count: {{meal.count}}</p>
+            <div class="row admin-welcome-meal-calc-header-div">
+                <p class="col-xs-1 admin-welcome-meal-calc-header">Meal</p>
+                <p class="col-xs-3 admin-welcome-meal-calc-header">Entree</p>
+                <p class="col-xs-2 admin-welcome-meal-calc-header">Side 1</p>
+                <p class="col-xs-2 admin-welcome-meal-calc-header">Side 2</p>
+                <p class="col-xs-2 admin-welcome-meal-calc-header">Category</p>
+                <p class="col-xs-2 admin-welcome-meal-calc-header">Number of Orders</p>
+            </div>
+
+            <div class="calcResults row" ng-repeat="meal in menu track by $index">
+                <p class="col-xs-1 admin-welcome-meal-calc-data">{{$index+1}}</p>
+                <p class="col-xs-3 admin-welcome-meal-calc-data">{{meal.entree}}</p>
+                <p class="col-xs-2 admin-welcome-meal-calc-data">{{meal.side_1}}</p>
+                <p class="col-xs-2 admin-welcome-meal-calc-data">{{meal.side_2}}</p>
+                <p class="col-xs-2 admin-welcome-meal-calc-data">{{meal.category_name}}</p>
+                <p class="col-xs-2 admin-welcome-meal-calc-data">{{meal.count}}</p>
+            </div>
+
         </div>
     </div>
 </div>
