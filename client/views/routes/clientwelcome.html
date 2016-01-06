@@ -42,7 +42,7 @@
             <!--<h2 class="welcome-default-meal-message">Your default meal pack is: {{user.default_meal}}<br>-->
                 <h2 class="welcome-default-meal-message">These are your default meals for the week of: {{activeWeek | date: 'longDate'}}</h2>
 
-            <ol>
+            <ol class="meal-info-list">
                 <li class="meal-info" ng-repeat="meal in menu track by $index" ng-if="user.category_id == meal.category_id">
 
                     <h3>{{meal.entree}} with {{meal.side_1}}<span ng-if="meal.side_2"> and {{meal.side_2}}</span></h3>

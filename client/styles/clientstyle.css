@@ -85,6 +85,10 @@ h1, h2, h3, h4, h5, h6, p {
     background-color: rgba(255, 255, 255, 0.85);
 }
 
+.meal-info-list {
+    padding-left: 25px;
+}
+
 /* ------ MODAL ------ */
 .ng-modal-overlay {
     /* A dark translucent div that covers the whole screen */
