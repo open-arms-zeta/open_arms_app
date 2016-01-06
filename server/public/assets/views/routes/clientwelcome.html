@@ -3,20 +3,20 @@
 <md-toolbar class="client-mobile-header md-whiteframe-4dp md-hue-1" layout="row" layout-align="space-between center" show-sm hide-gt-sm>
 
     <div class="md-toolbar-tools" layout-align="start center">
-        <img src="/assets/images/open_arms_logo.svg" width="30">
+        <img src="/assets/images/open_arms_logo.svg" width="30" ng-click="backToHome()" class="header-logo">
     </div>
 
 
     <div class="md-toolbar-tools" layout-align="end center">
 
 
-        <md-button class="mobile-header-icons">
+        <md-button class="mobile-header-icons" ng-if="!mealsChosen && !notActive">
             <i class="fa fa-shopping-basket fa-lg badge-position"></i>
             <span class="badge">{{badgeNumber}}</span>
             <!--<span>Shopping Basket</span>-->
         </md-button>
 
-        <md-button class="mobile-header-icons" ng-click="toggleModal3()">
+        <md-button class="mobile-header-icons" ng-click="toggleModal3()" ng-if="!mealsChosen && !notActive">
             <i class="fa fa-question-circle fa-lg"></i>
             <!--<span>Instructions</span>-->
         </md-button>
@@ -260,7 +260,7 @@
 
 <!--SHOWS WHEN CLIENT STATUS IS NOT ACTIVE-->
 <md-content class="not-active" ng-if="notActive">
-    <div class="md-whiteframe-1dp welcome-message-content" flex-gt-sm="80 "flex-gt-lg="60" flex-offset-gt-sm="10" flex-offset-gt-lg="20">
+    <div class="md-whiteframe-1dp not-active-content" flex-gt-sm="80 "flex-gt-lg="60" flex-offset-gt-sm="10" flex-offset-gt-lg="20">
 
         <div layout="row" layout-align="space-between center">
             <h1 class="welcome-message-title">Welcome <span class="welcome-message-name">{{user.first_name}}!</span></h1>
