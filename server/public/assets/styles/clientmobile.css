@@ -35,3 +35,147 @@
     border-radius: 50%;
     color:white;
 }
+
+@media (max-width:1240px) {
+    .welcome-message-title {
+        font-size: 60px;
+    }
+
+    .ng-modal-dialog {
+        width: 70%;
+    }
+}
+
+@media (max-width:959px) {
+
+    .welcome-message, .not-active, .already-ordered {
+        padding-top: 0;
+        padding-bottom: 0;
+        min-height: 0;
+        height: 100vh;
+    }
+
+    .welcome-message-content, .not-active-content {
+        margin-top: 100px;
+    }
+
+    .welcome-message-button {
+        font-size: 14px;
+    }
+
+    .ng-modal-dialog {
+        width: 70%;
+    }
+
+    .customize-meals-container {
+        padding: 30px;
+    }
+
+}
+
+@media (max-width:736px) {
+    .welcome-message, .already-ordered {
+        height: 100%;
+    }
+
+    .welcome-message-content, .not-active-content {
+        margin-top: 0;
+    }
+
+    .not-active-content {
+        height: 100vh;
+    }
+
+    .customize-meals-content {
+        padding-top: 0;
+    }
+}
+
+@media (max-width:599px) {
+
+    /*.welcome-message, .not-active, .already-ordered {*/
+    /*padding-top: 0;*/
+    /*padding-bottom: 0;*/
+    /*min-height: 0;*/
+    /*/!*height: 100vh;*!/*/
+    /*}*/
+
+    .already-ordered h1 {
+        text-align: center;
+    }
+
+    .welcome-message-title {
+        font-size: 50px;
+        text-align: center;
+    }
+
+    .welcome-message-content, .not-active-content {
+        padding: 30px 20px;
+        margin-top: 50px;
+    }
+
+    .not-active-content {
+        height: 100vh;
+        text-align: center;
+    }
+
+    .welcome-default-meal-message {
+        text-align: center;
+        font-size: 22px;
+        margin: 20px;
+    }
+
+    .welcome-message-button {
+        font-size: 12px;
+    }
+
+    .instruction-button, .back-button {
+        min-height: 0;
+        line-height: 0;
+        height: 30px;
+        font-size: 12px;
+    }
+
+
+    .ng-modal-dialog {
+        width: 90%;
+    }
+
+    /*CONFIRMATION MODAL*/
+
+    .confirmation-modal .ng-modal-dialog-content {
+        padding: 30px;
+    }
+
+    .confirmation-modal h1 {
+        font-size: 26px;
+    }
+
+    .confirmation-modal h2 {
+        font-size: 22px;
+    }
+
+    .confirmation-modal-button {
+        font-size: 12px;
+    }
+
+    /*CUSTOMIZE MEAL PAGE*/
+
+    .customize-meals {
+        padding-bottom: 0;
+    }
+
+    .customize-meals-container {
+        padding: 40px 20px;
+    }
+
+    .customize-meals-title {
+        text-align: center;
+    }
+
+    .add-meal-button {
+        font-size: 12px;
+        padding: 1px 3px;
+    }
+
+}

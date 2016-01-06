@@ -10,7 +10,7 @@
     <div class="md-toolbar-tools" layout-align="end center">
 
 
-        <md-button class="mobile-header-icons" ng-if="!mealsChosen && !notActive">
+        <md-button class="mobile-header-icons" ng-if="customized">
             <i class="fa fa-shopping-basket fa-lg badge-position"></i>
             <span class="badge">{{badgeNumber}}</span>
             <!--<span>Shopping Basket</span>-->
@@ -104,7 +104,7 @@
 <!------------- CUSTOMIZE MEALS PAGE ---------------->
 <md-content class="customize-meals" ng-if="customized">
 
-    <div flex="90" flex-offset="5" class="customize-meals-container md-whiteframe-2dp">
+    <div flex-gt-sm="90" flex-offset-gt-sm="5" class="customize-meals-container md-whiteframe-2dp">
         <div layout-gt-sm="row" layout-align-gt-sm="space-between center">
             <md-button class="back-button md-raised" hide show-gt-sm ng-click="backToHome()">< Back</md-button>
 
@@ -113,18 +113,18 @@
                 <h2>For the week of: {{activeWeek | date: 'longDate'}}</h2>
             </div>
 
-            <div layout-xs="row" layout-align-xs="space-between center" layout-sm="row" layout-align-sm="space-between center">
-            <!--BACK BUTTON FOR MOBILE-->
-            <md-button class="back-button md-raised" hide-gt-sm ng-click="backToHome()">< Back</md-button>
+            <!--<div layout-xs="row" layout-align-xs="space-between center" layout-sm="row" layout-align-sm="space-between center">-->
+            <!--&lt;!&ndash;BACK BUTTON FOR MOBILE&ndash;&gt;-->
+            <!--<md-button class="back-button md-raised" hide-gt-sm ng-click="backToHome()">< Back</md-button>-->
 
-            <md-button class="instruction-button md-raised" ng-click="toggleModal3()">Instructions</md-button>
-            </div>
+            <md-button hide show-gt-sm class="instruction-button md-raised" ng-click="toggleModal3()">Instructions</md-button>
+            <!--</div>-->
         </div>
 
         <!--VIEW PICNIC BASKET BUTTON FOR MOBILE ONLY-->
-        <div>
-            <md-button hide-gt-sm class="md-raised md-warn" ng-click="toggleModalMobileBasket()">View Selected Meals</md-button>
-        </div>
+        <!--<div>-->
+            <!--<md-button hide-gt-sm class="md-raised md-warn" ng-click="toggleModalMobileBasket()">View Selected Meals</md-button>-->
+        <!--</div>-->
 
         <div class="customize-meals-content" layout="row">
             <div flex flex-gt-sm="55" layout="column">

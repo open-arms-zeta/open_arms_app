@@ -23,8 +23,8 @@ myApp.controller('ClientWelcomeController', ["$scope", "DataService", "$http", f
     $scope.orderToPost = [];
     $scope.orderedMealsArray = [];
 
-    $scope.viewSelectMeals = false;
-
+    //$scope.viewSelectMeals = false;
+    //$scope.mealAddedMessage = false;
     $scope.badgeNumber = 0;
 
 
@@ -203,6 +203,7 @@ myApp.controller('ClientWelcomeController', ["$scope", "DataService", "$http", f
     // Add Custom Meal to Picnic Basket
     $scope.addMeal = function(meal){
         $scope.addedMealArray.push(meal);
+        //$scope.mealAddedMessage = true;
         $scope.badgeNumber = $scope.addedMealArray.length;
     };
 
