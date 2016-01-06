@@ -10,6 +10,7 @@ router.get('/', function(req,res){
     pg.connect(connectionString, function (err, client) {
         var name = '%' + req.query.name + '%';
         var query = client.query("SELECT id, first_name, last_name, email, phone, default_meal, status " +
+
             "FROM users WHERE users.first_name ILIKE $1 OR users.last_name ILIKE $1 " +
             "OR (users.first_name || ' ' || users.last_name) ILIKE $1 AND users.role = 'client'",
             [name]);

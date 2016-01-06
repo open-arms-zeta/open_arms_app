@@ -14,14 +14,34 @@
                 csv-column-order="['first_name', 'last_name', 'category_name', 'entree', 'side_1', 'start_date', 'count']" filename="clientOrders.csv">Export Client Orders</button>
         <!--<button class="print" ng-click="printClientOrders()">Print Client Orders</button>-->
     </div>
-    <div>
-        <div ng-repeat="meal in selectedMealCount track by $index">
-            <h3>Meal {{$index+1}}: {{meal.entree}}</h3>
-            <p>Side 1: {{meal.side_1}}</p>
-            <p>Side 2: {{meal.side_2}}</p>
-            <p>Category: {{meal.category_name}}</p>
-            <p>Number of orders: {{meal.count}} order(s)</p>
+    <!--<div>-->
+        <!--<div ng-repeat="meal in selectedMealCount track by $index">-->
+            <!--<h3>Meal {{$index+1}}: {{meal.entree}}</h3>-->
+            <!--<p>Side 1: {{meal.side_1}}</p>-->
+            <!--<p>Side 2: {{meal.side_2}}</p>-->
+            <!--<p>Category: {{meal.category_name}}</p>-->
+            <!--<p>Number of orders: {{meal.count}} order(s)</p>-->
+        <!--</div>-->
+    <!--</div>-->
+
+        <div class="row admin-welcome-meal-calc-header-div">
+            <p class="col-xs-1 admin-welcome-meal-calc-header">Meal</p>
+            <p class="col-xs-3 admin-welcome-meal-calc-header">Entree</p>
+            <p class="col-xs-2 admin-welcome-meal-calc-header">Side 1</p>
+            <p class="col-xs-2 admin-welcome-meal-calc-header">Side 2</p>
+            <p class="col-xs-2 admin-welcome-meal-calc-header">Category</p>
+            <p class="col-xs-2 admin-welcome-meal-calc-header">Number of Orders</p>
         </div>
-    </div>
+
+        <div class="row" ng-repeat="meal in selectedMealCount track by $index">
+            <p class="col-xs-1 admin-welcome-meal-calc-data">{{$index+1}}</p>
+            <p class="col-xs-3 admin-welcome-meal-calc-data">{{meal.entree}}</p>
+            <p class="col-xs-2 admin-welcome-meal-calc-data">{{meal.side_1}}</p>
+            <p class="col-xs-2 admin-welcome-meal-calc-data" ng-if="meal.side_2">{{meal.side_2}}</p>
+            <p class="col-xs-2 admin-welcome-meal-calc-data">{{meal.category_name}}</p>
+            <p class="col-xs-2 admin-welcome-meal-calc-data">{{meal.count}}</p>
+        </div>
+
+
 </div>
 

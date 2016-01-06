@@ -18,6 +18,7 @@ myApp.controller('ViewMenuController', ["$scope", "$http", "DataService", functi
     $scope.disableDropDown = false;
     $scope.noMenuMessage = false;
     $scope.oldMenuMessage = false;
+    $scope.disableButton = false;
 
     //pull in active week
     if ($scope.activeWeek == undefined) {
@@ -126,6 +127,18 @@ myApp.controller('ViewMenuController', ["$scope", "$http", "DataService", functi
 
     };
 
+    // Function to combine entree names and sides to display in dropdown
+    $scope.combined = function(meal){
+
+        if(meal.side_2 == null){
+            return meal.entree + ' with ' + meal.side_1;
+        }
+        else {
+            return meal.entree + ' with ' + meal.side_1 + ' and ' + meal.side_2;
+        }
+
+    };
+
     // Show Previously Saved Menu meal items as default options in drop down menu
     $scope.setDefault = function(){
         for(var i = 0; i < $scope.categories.length; i++){
@@ -147,9 +160,26 @@ myApp.controller('ViewMenuController', ["$scope", "$http", "DataService", functi
     };
 
     // Save selected meals from drop down menus to menuPreBuild (this allows changes before clicking submit button)
-    $scope.saveMeals = function(currentMeal, category, index){
-        $scope.menuPreBuild[category][index] = currentMeal;
+    $scope.saveMeals = function(currentMeal, categoryName, index, categoryObject){
+        $scope.menuPreBuild[categoryName][index] = currentMeal;
         //console.log($scope.menuPreBuild);
+
+        $scope.checkMealDuplicates(categoryName, categoryObject);
+    };
+
+    // Check if duplicate meals are selected for a category
+    $scope.checkMealDuplicates = function(categoryName, category){
+
+        $scope.categoryIndex = _.indexOf($scope.categories, category);
+
+        $scope.categories[$scope.categoryIndex].mealDuplicateError = false;
+
+        if(_.compact($scope.menuPreBuild[categoryName]).length > _.compact(_.uniq($scope.menuPreBuild[categoryName])).length){
+            //console.log("This is menuPreBuild", $scope.menuPreBuild[categoryName]);
+            //console.log("This is unique", _.uniq($scope.menuPreBuild[categoryName]));
+            $scope.categories[$scope.categoryIndex].mealDuplicateError = true;
+            $scope.disableButton = true;
+        }
     };
 
     // This function runs when the "Edit Menu" button is clicked

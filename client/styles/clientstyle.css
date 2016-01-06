@@ -10,8 +10,9 @@
 .customize-meals {
     background-image: url('/assets/images/cooked_tagliatelle.jpg');
     width: 100%;
-    height: 100%;
-    background-size: cover
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
 }
 
 
@@ -23,6 +24,10 @@ h1, h2, h3, h4, h5, h6, p {
     margin: 0;
     font-family: 'Lato', sans-serif;
     font-weight: 400;
+}
+
+.header-logo {
+    cursor: pointer;
 }
 
 .footer-text {
@@ -54,7 +59,7 @@ h1, h2, h3, h4, h5, h6, p {
 .welcome-message {
     padding-top: 30px;
     padding-bottom: 50px;
-    /*min-height: 800px;*/
+    min-height: 800px;
 }
 
 .welcome-message-title {
@@ -76,9 +81,13 @@ h1, h2, h3, h4, h5, h6, p {
     margin-top: 20px;
 }
 
-.welcome-message-content {
+.welcome-message-content, .not-active-content {
     padding: 60px 100px;
     background-color: rgba(255, 255, 255, 0.85);
+}
+
+.meal-info-list {
+    padding-left: 25px;
 }
 
 /* ------ MODAL ------ */
@@ -98,10 +107,10 @@ h1, h2, h3, h4, h5, h6, p {
     /* A centered div above the overlay with a box shadow. */
     z-index:10;
     position: absolute;
-    width: 50%;
+    width: 70%;
 
     /* Center the dialog */
-    top: 50%;
+    top: 30%;
     left: 50%;
     transform: translate(-50%, -50%);
     -webkit-transform: translate(-50%, -50%);
@@ -172,6 +181,12 @@ h1, h2, h3, h4, h5, h6, p {
     margin-bottom: 1px;
 }
 
+.accordion-header {
+    text-align: left;
+    font-size: 26px;
+    text-transform: inherit;
+}
+
 /* ------ PICNIC BASKET ------ */
 .picnic-basket-header {
     margin-bottom: 20px;
@@ -199,111 +214,4 @@ h1, h2, h3, h4, h5, h6, p {
 
 .not-active h1, h2 {
     margin: 22px 0;
-}
-
-@media (max-width:1240px) {
-    .welcome-message-title {
-        font-size: 60px;
-    }
-
-    .ng-modal-dialog {
-        width: 70%;
-    }
-}
-
-@media (max-width:960px) {
-
-    .welcome-message-button {
-        font-size: 14px;
-    }
-
-    .ng-modal-dialog {
-        width: 70%;
-    }
-
-    .customize-meals-container {
-        padding: 20px;
-    }
-
-}
-
-@media (max-width:600px) {
-
-    .welcome-message, .not-active, .already-ordered {
-        margin-top: 50px;
-        margin-bottom: 0;
-        padding-top: 0;
-        padding-bottom:0;
-        min-height: 0;
-        height: 100%;
-
-    }
-
-    .not-active h1, .not-active h2, .already-ordered h1 {
-        text-align: center;
-    }
-
-    .welcome-message-title {
-        font-size: 50px;
-        text-align: center;
-    }
-
-    .welcome-message-content {
-        padding: 30px 20px;
-        height: 100%;
-    }
-
-    .welcome-default-meal-message {
-        text-align: center;
-        font-size: 22px;
-        margin: 20px;
-    }
-
-    .welcome-message-button {
-        font-size: 12px;
-    }
-
-    .instruction-button, .back-button {
-        min-height: 0;
-        line-height: 0;
-        height: 30px;
-        font-size: 12px;
-    }
-
-
-    .ng-modal-dialog {
-        width: 90%;
-    }
-
-    /*CONFIRMATION MODAL*/
-
-    .confirmation-modal .ng-modal-dialog-content {
-        padding: 30px;
-    }
-
-    .confirmation-modal h1 {
-        font-size: 26px;
-    }
-
-    .confirmation-modal h2 {
-        font-size: 22px;
-    }
-
-    .confirmation-modal-button {
-        font-size: 12px;
-    }
-
-    /*CUSTOMIZE MEAL PAGE*/
-    .customize-meals-container {
-        padding: 40px 20px;
-    }
-
-    .customize-meals-title {
-        text-align: center;
-    }
-
-    .add-meal-button {
-        font-size: 12px;
-    }
-
 }

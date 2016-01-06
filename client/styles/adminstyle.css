@@ -427,6 +427,22 @@ input[type=number]::-webkit-outer-spin-button {
     margin: 0 25px;
 }
 
+.admin-welcome-meal-calc-header-div {
+    border-bottom: 1px solid darkgrey;
+    margin-bottom: 10px;
+}
+
+.admin-welcome-meal-calc-header {
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.admin-welcome-meal-calc-data {
+    text-align: center;
+}
+
 /*CREATE MENU STYLE*/
 #weekNumber{
     width: 50px;

@@ -3,18 +3,20 @@
 <md-toolbar class="client-mobile-header md-whiteframe-4dp md-hue-1" layout="row" layout-align="space-between center" show-sm hide-gt-sm>
 
     <div class="md-toolbar-tools" layout-align="start center">
-        <img src="/assets/images/open_arms_logo.svg" width="30">
+        <img src="/assets/images/open_arms_logo.svg" width="30" ng-click="backToHome()" class="header-logo">
     </div>
 
 
     <div class="md-toolbar-tools" layout-align="end center">
 
-        <md-button class="mobile-header-icons">
-            <i class="fa fa-shopping-basket fa-lg"></i>
+
+        <md-button class="mobile-header-icons" ng-if="customized" ng-click="toggleBasket()">
+            <i class="fa fa-shopping-basket fa-lg badge-position"></i>
+            <span class="badge">{{badgeNumber}}</span>
             <!--<span>Shopping Basket</span>-->
         </md-button>
 
-        <md-button class="mobile-header-icons" ng-click="toggleModal3()">
+        <md-button class="mobile-header-icons" ng-click="toggleModal3()" ng-if="!mealsChosen && !notActive">
             <i class="fa fa-question-circle fa-lg"></i>
             <!--<span>Instructions</span>-->
         </md-button>
@@ -38,9 +40,9 @@
 
         <div layout="column">
             <!--<h2 class="welcome-default-meal-message">Your default meal pack is: {{user.default_meal}}<br>-->
-                <h2>These are your default meals for the week of: {{activeWeek | date: 'longDate'}}</h2>
+                <h2 class="welcome-default-meal-message">These are your default meals for the week of: {{activeWeek | date: 'longDate'}}</h2>
 
-            <ol>
+            <ol class="meal-info-list">
                 <li class="meal-info" ng-repeat="meal in menu track by $index" ng-if="user.category_id == meal.category_id">
 
                     <h3>{{meal.entree}} with {{meal.side_1}}<span ng-if="meal.side_2"> and {{meal.side_2}}</span></h3>
@@ -102,7 +104,49 @@
 <!------------- CUSTOMIZE MEALS PAGE ---------------->
 <md-content class="customize-meals" ng-if="customized">
 
-    <div flex="90" flex-offset="5" class="customize-meals-container md-whiteframe-2dp">
+    <!--PICNIC BASKET (MOBILE VERSION)-->
+    <div ng-if="showBasket" class="mobile-picnic-basket">
+            <div class="picnic-basket-header">
+                <h1>Meals Selected</h1>
+                <md-button class="md-raised md-accent md-hue-3 submit-meal-button" ng-disabled="!addedMealArray[0]" ng-click="toggleBasketSubmission()">Submit Meal Selection</md-button>
+            </div>
+            <div class="meal-info" ng-repeat="meal in addedMealArray track by $index" layout="row" layout-align-gt-xs="space-between start">
+
+                <div flex-xs="60">
+                    <p>{{meal.entree}} with {{meal.side_1}}<span ng-if="meal.side_2"> and {{meal.side_2}}</span></p>
+                    <p class="allergen-text" ng-repeat="allergen in meal.allergen">  Allergen: {{allergen}}</p>
+                </div>
+
+                <div flex-xs="40">
+                    <md-button class="md-warn remove-meal-button" ng-click="removeMeal($index)">Remove Meal</md-button>
+                </div>
+
+            </div>
+    </div>
+
+    <!--PICNIC BASKET CONFIRMATION (MOBILE VERSION)-->
+    <div class="mobile-picnic-basket" ng-if="showMobileConfirmation">
+
+        <div class="picnic-basket-header">
+            <h1>Meal Confirmation for the week of: {{activeWeek | date: 'longDate'}}</h1>
+            <h2>You have selected:</h2>
+        </div>
+
+        <ol>
+            <li class="meal-info" ng-repeat="meal in addedMealArray track by $index">
+                <h3>{{meal.entree}} with {{meal.side_1}}<span ng-if="meal.side_2"> and {{meal.side_2}}</span></h3>
+                <p class="allergen-text" ng-repeat="allergen in meal.allergen">  Allergen: {{allergen}}</p>
+            </li>
+        </ol>
+
+        <md-button class="md-raised" ng-click="postCustomMeal()">Confirm Meal Selection</md-button>
+        <md-button class="md-raised md-warn" ng-click="toggleBasketSubmission()">No - Go Back</md-button>
+
+    </div>
+
+    <!--CUSTOMIZE MEAL CONTAINER-->
+    <div flex-gt-sm="90" flex-offset-gt-sm="5" class="customize-meals-container md-whiteframe-2dp">
+
         <div layout-gt-sm="row" layout-align-gt-sm="space-between center">
             <md-button class="back-button md-raised" hide show-gt-sm ng-click="backToHome()">< Back</md-button>
 
@@ -111,17 +155,7 @@
                 <h2>For the week of: {{activeWeek | date: 'longDate'}}</h2>
             </div>
 
-            <div layout-xs="row" layout-align-xs="space-between center" layout-sm="row" layout-align-sm="space-between center">
-            <!--BACK BUTTON FOR MOBILE-->
-            <md-button class="back-button md-raised" hide-gt-sm ng-click="backToHome()">< Back</md-button>
-
-            <md-button class="instruction-button md-raised" ng-click="toggleModal3()">Instructions</md-button>
-            </div>
-        </div>
-
-        <!--VIEW PICNIC BASKET BUTTON FOR MOBILE ONLY-->
-        <div>
-            <md-button hide-gt-sm class="md-raised md-warn" ng-click="toggleModalMobileBasket()">View Selected Meals</md-button>
+            <md-button hide show-gt-sm class="instruction-button md-raised" ng-click="toggleModal3()">Instructions</md-button>
         </div>
 
         <div class="customize-meals-content" layout="row">
@@ -132,9 +166,9 @@
                     <div ng-init="accordion.current = user.default_meal">
 
                         <h2 class="accordion {{category.category_name}}" ng-class="{active:accordion.current == category.category_name}">
-                            <a href ng-click="accordion.current = category.category_name">
+                            <md-button class="accordion-header" href ng-click="accordion.current = category.category_name">
                                 {{category.category_name}}
-                            </a>
+                            </md-button>
                         </h2>
 
                         <div ng-show="accordion.current == category.category_name" ng-repeat="meal in category.mealInfo"
@@ -177,31 +211,6 @@
                 </div>
 
             </div>
-
-            <!--PICNIC BASKET (MOBILE VERSION)-->
-            <modal-dialog class="mobile-picnic-basket-modal" show='modalShownMobileBasket' ng-if="customized">
-                <div flex-offset="5">
-                    <div class="picnic-basket-header" layout="row" layout-align="space-between center">
-                        <h2>Meals Selected</h2>
-                        <md-button class="md-raised md-accent md-hue-3 submit-meal-button" ng-disabled="!addedMealArray[0]" ng-click="toggleModal2()">Submit Meal Selection</md-button>
-                    </div>
-                    <div class="meal-info" ng-repeat="meal in addedMealArray track by $index" layout="row" layout-align="space-between start">
-
-                        <div>
-                            <p>{{meal.entree}} with {{meal.side_1}}<span ng-if="meal.side_2"> and {{meal.side_2}}</span></p>
-                            <p class="allergen-text" ng-repeat="allergen in meal.allergen">  Allergen: {{allergen}}</p>
-                        </div>
-
-                        <div>
-                            <md-button class="md-warn" ng-click="removeMeal($index)">Remove Meal</md-button>
-                        </div>
-
-                    </div>
-
-                    <md-button class="md-raised md-warn" ng-click="toggleModalMobileBasket()">Close</md-button>
-
-                </div>
-            </modal-dialog>
 
         </div>
 
@@ -258,7 +267,7 @@
 
 <!--SHOWS WHEN CLIENT STATUS IS NOT ACTIVE-->
 <md-content class="not-active" ng-if="notActive">
-    <div class="md-whiteframe-1dp welcome-message-content" flex-gt-sm="80 "flex-gt-lg="60" flex-offset-gt-sm="10" flex-offset-gt-lg="20">
+    <div class="md-whiteframe-1dp not-active-content" flex-gt-sm="80 "flex-gt-lg="60" flex-offset-gt-sm="10" flex-offset-gt-lg="20">
 
         <div layout="row" layout-align="space-between center">
             <h1 class="welcome-message-title">Welcome <span class="welcome-message-name">{{user.first_name}}!</span></h1>
