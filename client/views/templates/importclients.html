@@ -1,0 +1,26 @@
+<div>
+    <div class="modal-header">CSV Client Upload</div>
+    <div class="instructions">Select a csv or spreadsheet file to add clients to the database</div>
+    <label>Select File:</label>
+    <form  name="csvForm">
+    <div class="btn btn-default btn-file">
+    Browse... <input type="file" accept=".csv" custom-on-change="uploadFile"/>
+    </div>
+    </form>
+
+    <div ng-if="csvClients">
+        <!--<div>yo</div>-->
+        <div ui-grid="gridOptions" ui-grid-edit class="table-responsive ui-grid"></div>
+        <div>
+            These are the clients listed in the csv file, if you would like to add these clients to the database,
+            press select.  Otherwise, press remove.
+        </div>
+        <div>
+            <button class="btn dark-button" ng-click="post()">Accept</button>
+            <button class="btn custom-button" ng-click="remove()">Remove</button>
+        </div>
+    </div>
+    <div ng-if="clientsAdded">
+        <div>Clients added to the database!</div>
+    </div>
+</div>

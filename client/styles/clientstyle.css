@@ -15,8 +15,6 @@
 }
 
 
-
-
 md-toolbar {
     z-index: 20;
 }
@@ -25,6 +23,10 @@ h1, h2, h3, h4, h5, h6, p {
     margin: 0;
     font-family: 'Lato', sans-serif;
     font-weight: 400;
+}
+
+.header-logo {
+    cursor: pointer;
 }
 
 .footer-text {
@@ -56,7 +58,7 @@ h1, h2, h3, h4, h5, h6, p {
 .welcome-message {
     padding-top: 30px;
     padding-bottom: 50px;
-    min-height: 750px;
+    min-height: 800px;
 }
 
 .welcome-message-title {
@@ -70,17 +72,21 @@ h1, h2, h3, h4, h5, h6, p {
     color: orange;
 }
 
-.welcome-message h2, .confirmation-modal h2 {
+.welcome-default-meal-message, .confirmation-modal h2 {
     margin: 30px 0;
 }
 
-.welcome-message-buttons {
+.welcome-message-buttons-container {
     margin-top: 20px;
 }
 
-.welcome-message-content {
+.welcome-message-content, .not-active-content {
     padding: 60px 100px;
     background-color: rgba(255, 255, 255, 0.85);
+}
+
+.meal-info-list {
+    padding-left: 25px;
 }
 
 /* ------ MODAL ------ */
@@ -95,11 +101,12 @@ h1, h2, h3, h4, h5, h6, p {
     background-color:#000000;
     opacity: 0.8;
 }
+
 .ng-modal-dialog {
     /* A centered div above the overlay with a box shadow. */
     z-index:10;
     position: absolute;
-    /*width: 90%; /!* Default *!/*/
+    width: 50%;
 
     /* Center the dialog */
     top: 50%;
@@ -173,10 +180,6 @@ h1, h2, h3, h4, h5, h6, p {
     margin-bottom: 1px;
 }
 
-/*.Red a {*/
-/*background: red;*/
-/*}*/
-
 /* ------ PICNIC BASKET ------ */
 .picnic-basket-header {
     margin-bottom: 20px;
@@ -197,8 +200,8 @@ h1, h2, h3, h4, h5, h6, p {
 /* ------ NOT ACTIVE PAGE ------ */
 
 .not-active {
-    padding-top: 50px;
-    padding-bottom: 50px;
+    padding-top: 60px;
+    padding-bottom: 60px;
     min-height: 800px;
 }
 

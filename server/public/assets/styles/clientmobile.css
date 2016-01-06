@@ -1,0 +1,217 @@
+.client-mobile-header {
+    position: fixed;
+    top:0;
+    left:0;
+    z-index: 999;
+    width: 100%;
+    -webkit-transform: translate3d(0,0,0);
+}
+
+.mobile-header-icons {
+    padding: 0;
+    min-width: 0;
+    width: 50px;
+    margin-left: 15px;
+    margin-right: 10px;
+}
+
+.badge-position {
+    width:50px;
+    text-align:center;
+    vertical-align:middle;
+    position: relative;
+}
+
+.badge {
+    position: absolute;
+    background: rgb(230,81,0);
+    height:1rem;
+    top:0;
+    right:0.5rem;
+    width:1rem;
+    text-align: center;
+    line-height: 1rem;
+    font-size: 0.7rem;
+    border-radius: 50%;
+    color:white;
+}
+
+@media (max-width:1240px) {
+    .welcome-message-title {
+        font-size: 60px;
+    }
+
+    .ng-modal-dialog {
+        width: 70%;
+    }
+}
+
+@media (max-width:959px) {
+
+    .welcome-message, .not-active, .already-ordered {
+        padding-top: 0;
+        padding-bottom: 0;
+        min-height: 0;
+        height: 100vh;
+    }
+
+    .welcome-message-content, .not-active-content {
+        margin-top: 100px;
+    }
+
+    .welcome-message-button {
+        font-size: 14px;
+    }
+
+    .ng-modal-dialog {
+        width: 70%;
+    }
+
+    .customize-meals-container {
+        padding: 50px 30px;
+    }
+
+    .customize-meals-content {
+        padding-top: 0;
+    }
+
+    .picnic-basket-header h2 {
+        margin: 10px;
+    }
+
+    .picnic-basket-header {
+        text-align: center;
+    }
+
+    .mobile-picnic-basket {
+        position: fixed;
+        top: 56px;
+        right: 0;
+        z-index: 800;
+        background: white;
+        padding: 10px 30px 40px 30px;
+        box-shadow: 0 2px 4px grey;
+        overflow:auto;
+        max-height: 280px;
+        width: 60%;
+    }
+
+}
+
+@media (max-width:736px) {
+    .welcome-message, .already-ordered {
+        height: 100%;
+    }
+
+    .welcome-message-content, .not-active-content {
+        margin-top: 0;
+    }
+
+    .not-active-content {
+        height: 100vh;
+    }
+
+    .customize-meals {
+        padding-bottom: 0;
+    }
+
+    .customize-meals-content {
+        padding-top: 0;
+    }
+
+}
+
+@media (max-width:599px) {
+
+    .already-ordered h1 {
+        text-align: center;
+    }
+
+    .welcome-message-title {
+        font-size: 50px;
+        text-align: center;
+    }
+
+    .welcome-message-content, .not-active-content {
+        padding: 30px 20px;
+        margin-top: 50px;
+    }
+
+    .not-active-content {
+        height: 100vh;
+        text-align: center;
+    }
+
+    .welcome-default-meal-message {
+        text-align: center;
+        font-size: 22px;
+        margin: 20px;
+    }
+
+    .welcome-message-button {
+        font-size: 12px;
+    }
+
+    .instruction-button, .back-button {
+        min-height: 0;
+        line-height: 0;
+        height: 30px;
+        font-size: 12px;
+    }
+
+
+    .ng-modal-dialog {
+        width: 90%;
+    }
+
+    /*CONFIRMATION MODAL*/
+
+    .confirmation-modal .ng-modal-dialog-content {
+        padding: 30px;
+    }
+
+    .confirmation-modal h1 {
+        font-size: 26px;
+    }
+
+    .confirmation-modal h2 {
+        font-size: 22px;
+    }
+
+    .confirmation-modal-button {
+        font-size: 12px;
+    }
+
+    /*CUSTOMIZE MEAL PAGE*/
+
+    /*.customize-meals {*/
+        /*padding-bottom: 0;*/
+    /*}*/
+
+    .customize-meals-container {
+        padding: 40px 20px;
+    }
+
+    .customize-meals-title {
+        text-align: center;
+    }
+
+    .add-meal-button {
+        font-size: 12px;
+        padding: 1px 3px;
+    }
+
+    .submit-meal-button, .remove-meal-button {
+        font-size: 12px;
+        height: 30px;
+    }
+
+    .mobile-picnic-basket {
+        width: 85%;
+    }
+
+    .customize-meals .ng-modal-dialog {
+        top: 25%;
+    }
+
+}

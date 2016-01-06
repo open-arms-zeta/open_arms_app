@@ -17,8 +17,19 @@ myApp.factory('DataService', ['$http', function($http){
     var menu = undefined;
     //array
     var clientOrders = undefined;
+    // clients
+    var clients = undefined;
+    var isUnique = undefined;
 
 
+    var checkUniqueEmails = function(email){
+        return $http.get('/register/all').then(function(response){
+            clients = response.data;
+            console.log('clients in db', $scope.clients);
+        }).then(function(){
+            isUnique = _.findWhere(clients, {email: email})
+        })
+    };
     var retrieveCategories = function(){
         //some http call to get categories, and set it to categories variable
         return $http.get('/getcategories').then(function(response){
@@ -98,6 +109,12 @@ myApp.factory('DataService', ['$http', function($http){
         },
         getUser: function(){
             return user;
+        },
+        checkUniqueEmails: function(email){
+            return checkUniqueEmails(email)
+        },
+        isUniqueEmail: function(){
+            return isUnique;
         }
     };
 

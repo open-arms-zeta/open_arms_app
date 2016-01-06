@@ -14,6 +14,8 @@ myApp.controller('CreateMenuController', ["$scope", "$http", "DataService", func
     $scope.activeWeek = undefined;
     $scope.menuExist = false;
     $scope.showSaveSuccessMessage = false;
+    $scope.categoryIndex;
+    $scope.disableButton = false;
 
     //pull in active week
     if ($scope.activeWeek == undefined) {
@@ -41,7 +43,6 @@ myApp.controller('CreateMenuController', ["$scope", "$http", "DataService", func
         $http.get('/createmenu/meals').then(function(response){
 
             $scope.allMeals = response.data;
-            console.log($scope.allMeals);
 
             for(var i = 0; i < $scope.categories.length; i++){
                 $scope.categories[i].mealInfo = [];
@@ -55,15 +56,32 @@ myApp.controller('CreateMenuController', ["$scope", "$http", "DataService", func
                 }
             }
 
+            console.log("This is categories array", $scope.categories);
+
             // Build menuPreBuild Object for storing meals for each category
             for(var i = 0; i<$scope.categories.length; i++){
-                $scope.menuPreBuild[$scope.categories[i].category_name] = [];
+
+                // Need to enter placeholders for the 5 meals for duplication check to work properly
+                $scope.menuPreBuild[$scope.categories[i].category_name] = Array.apply(null, Array(5)).map(function () {});
             }
 
         });
 
 
     };
+
+    // Function to combine entree names and sides to display in dropdown
+    $scope.combined = function(meal){
+
+      if(meal.side_2 == null){
+          return meal.entree + ' with ' + meal.side_1;
+      }
+        else {
+          return meal.entree + ' with ' + meal.side_1 + ' and ' + meal.side_2;
+      }
+
+    };
+
 
     // Check if a menu is already created for the selected startDate
     $scope.checkExistingMenu = function(startDate){
@@ -85,16 +103,35 @@ myApp.controller('CreateMenuController', ["$scope", "$http", "DataService", func
 
 
     // Save selected meals from drop down menus to menuPreBuild (this allows changes before clicking submit button)
-    $scope.saveMeals = function(currentMeal, category, index){
-        $scope.menuPreBuild[category][index] = currentMeal;
+    $scope.saveMeals = function(currentMeal, categoryName, index, category){
+
+        $scope.menuPreBuild[categoryName][index] = currentMeal;
+
+        $scope.checkMealDuplicates(categoryName, category);
+
+    };
+
+    // Check if duplicate meals are selected for a category
+    $scope.checkMealDuplicates = function(categoryName, category){
+
+        $scope.categoryIndex = _.indexOf($scope.categories, category);
+
+        $scope.categories[$scope.categoryIndex].mealDuplicateError = false;
+
+        if(_.compact($scope.menuPreBuild[categoryName]).length > _.compact(_.uniq($scope.menuPreBuild[categoryName])).length){
+            //console.log("This is menuPreBuild", $scope.menuPreBuild[categoryName]);
+            //console.log("This is unique", _.uniq($scope.menuPreBuild[categoryName]));
+            $scope.categories[$scope.categoryIndex].mealDuplicateError = true;
+            $scope.disableButton = true;
+        }
     };
 
     $scope.createMenu = function(menu){
         //console.log(menu);
 
         // Push all objects in menuPreBuild to selectedMealArray as one array of objects
-        $scope.selectedMealArray = (_.flatten(_.values($scope.menuPreBuild)));
-        //console.log($scope.selectedMealArray);
+        $scope.selectedMealArray = _.compact(_.flatten(_.values($scope.menuPreBuild)));
+        console.log($scope.selectedMealArray);
 
         // POST to create new menu entry in menus table
         $http.post('/createmenu/newMenu', menu).then(function(){

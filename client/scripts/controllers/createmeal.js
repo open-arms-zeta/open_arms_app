@@ -114,7 +114,7 @@ myApp.controller('CreateMealController', ["$scope",  '$http', "DataService",  fu
 
     $scope.ifNoAllergen = function(allergen) {
         if (allergen.allergen_name != "No Allergen" && _.findWhere($scope.meal.allergens, {allergen_name : "No Allergen"})) {
-            console.log(_.findWhere($scope.allergens, {allergen_name : "No Allergen"}));
+            //console.log(_.findWhere($scope.allergens, {allergen_name : "No Allergen"}));
             $scope.meal.allergens = [_.findWhere($scope.allergens, {allergen_name : "No Allergen"})];
             return false;
         }

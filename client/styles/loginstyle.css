@@ -14,6 +14,7 @@ LOGIN STYLE FROM - http://codepen.io/reidark/pen/uAmey
 html, body {
     background: url('/assets/images/cooked_tagliatelle_blur.jpg') #f5eecf;
     background-size: cover;
+    background-position: center;
     width: 100%;
     height: 100%;
     font-family: 'Open Sans', sans-serif;

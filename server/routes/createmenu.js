@@ -111,6 +111,7 @@ router.post('/saveToMealMenu', function(req,res){
 
     pg.connect(connectionString, function (err, client){
 
+        console.log("SAVING to meal_menu", req.body);
 
         for(var i = 0; i < req.body.mealsArray.length; i++){
 
@@ -141,22 +142,22 @@ router.post('/saveToMealMenu', function(req,res){
     res.send("save success");
 });
 
-function save(newMealMenu) {
-    pg.connect(connectionString, function (err, client){
-
-        var q = "INSERT INTO meal_menu (menu_id, meal_id, category_id) VALUES ($1, $2, $3)";
-        //console.log("query: ", q);
-        //console.log(newMealMenu.menuId, newMealMenu.mealId ,newMealMenu.categoryId);
-        var result = client.query(q, [newMealMenu.menuId, newMealMenu.mealId, newMealMenu.categoryId]);
-
-        if(err) console.log(err);
-
-        result.on('end', function () {
-            client.end();
-        });
-
-    });
-}
+//function save(newMealMenu) {
+//    pg.connect(connectionString, function (err, client){
+//
+//        var q = "INSERT INTO meal_menu (menu_id, meal_id, category_id) VALUES ($1, $2, $3)";
+//        //console.log("query: ", q);
+//        //console.log(newMealMenu.menuId, newMealMenu.mealId ,newMealMenu.categoryId);
+//        var result = client.query(q, [newMealMenu.menuId, newMealMenu.mealId, newMealMenu.categoryId]);
+//
+//        if(err) console.log(err);
+//
+//        result.on('end', function () {
+//            client.end();
+//        });
+//
+//    });
+//}
 
 
 module.exports = router;

@@ -9,6 +9,7 @@ myApp.controller('ClientWelcomeController', ["$scope", "DataService", "$http", f
     $scope.modalShown = false;
     $scope.modalShown2 = false;
     $scope.modalShown3 = false;
+    $scope.showBasket = false;
 
     $scope.mealsChosen = false;
     $scope.customized = false;
@@ -21,6 +22,11 @@ myApp.controller('ClientWelcomeController', ["$scope", "DataService", "$http", f
     $scope.uniqueMealArray = [];
     $scope.orderToPost = [];
     $scope.orderedMealsArray = [];
+
+
+    //$scope.mealAddedMessage = false;
+    $scope.badgeNumber = 0;
+
 
     //get user
     if ($scope.user == undefined) {
@@ -189,14 +195,21 @@ myApp.controller('ClientWelcomeController', ["$scope", "DataService", "$http", f
         $scope.modalShown3 = !$scope.modalShown3;
     };
 
+    $scope.toggleBasket = function(){
+        $scope.showBasket = !$scope.showBasket;
+    }
+
     // Add Custom Meal to Picnic Basket
     $scope.addMeal = function(meal){
         $scope.addedMealArray.push(meal);
+        //$scope.mealAddedMessage = true;
+        $scope.badgeNumber = $scope.addedMealArray.length;
     };
 
     // Remove Custom Meal from Picnic Basket
     $scope.removeMeal = function(index){
         $scope.addedMealArray.splice(index, 1);
+        $scope.badgeNumber = $scope.addedMealArray.length;
     };
 
     // POST custom meals to Clients Order table
