@@ -10,6 +10,7 @@ myApp.controller('ClientWelcomeController', ["$scope", "DataService", "$http", f
     $scope.modalShown2 = false;
     $scope.modalShown3 = false;
     $scope.showBasket = false;
+    $scope.showMobileConfirmation = false;
 
     $scope.mealsChosen = false;
     $scope.customized = false;
@@ -197,7 +198,12 @@ myApp.controller('ClientWelcomeController', ["$scope", "DataService", "$http", f
 
     $scope.toggleBasket = function(){
         $scope.showBasket = !$scope.showBasket;
-    }
+    };
+
+    $scope.toggleBasketSubmission = function(){
+        $scope.showMobileConfirmation = !$scope.showMobileConfirmation;
+        $scope.showBasket = !$scope.showBasket;
+    };
 
     // Add Custom Meal to Picnic Basket
     $scope.addMeal = function(meal){
