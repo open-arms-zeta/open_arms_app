@@ -25,6 +25,8 @@ myApp.controller('ClientWelcomeController', ["$scope", "DataService", "$http", f
 
     $scope.viewSelectMeals = false;
 
+    $scope.badgeNumber = 0;
+
 
     //get user
     if ($scope.user == undefined) {
@@ -201,11 +203,13 @@ myApp.controller('ClientWelcomeController', ["$scope", "DataService", "$http", f
     // Add Custom Meal to Picnic Basket
     $scope.addMeal = function(meal){
         $scope.addedMealArray.push(meal);
+        $scope.badgeNumber = $scope.addedMealArray.length;
     };
 
     // Remove Custom Meal from Picnic Basket
     $scope.removeMeal = function(index){
         $scope.addedMealArray.splice(index, 1);
+        $scope.badgeNumber = $scope.addedMealArray.length;
     };
 
     // POST custom meals to Clients Order table

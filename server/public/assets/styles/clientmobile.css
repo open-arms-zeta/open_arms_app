@@ -10,7 +10,28 @@
 .mobile-header-icons {
     padding: 0;
     min-width: 0;
-    width: 35px;
+    width: 50px;
     margin-left: 15px;
-    margin-right: 15px;
+    margin-right: 10px;
+}
+
+.badge-position {
+    width:50px;
+    text-align:center;
+    vertical-align:middle;
+    position: relative;
+}
+
+.badge {
+    position: absolute;
+    background: rgb(230,81,0);
+    height:1rem;
+    top:0;
+    right:0.5rem;
+    width:1rem;
+    text-align: center;
+    line-height: 0.9rem;;
+    font-size: 0.7rem;
+    border-radius: 50%;
+    color:white;
 }
