@@ -10,9 +10,9 @@ myApp.controller('AdminWelcomeController', ["$scope", "DataService", "$http", "$
 
     //uses the active day (activeWeek variable pulled from factory) to calculate a week range used for calculation
     $scope.initSelectedWeek = function(){
-        $scope.selectedStartDate = $scope.activeWeek;
-        var newDate = new Date($scope.selectedStartDate);
-        $scope.selectedEndDate = newDate.setDate(newDate.getDate()+6);
+        var startDate = new Date($scope.activeWeek);
+        $scope.selectedStartDate = new Date(startDate.setDate($scope.activeWeek.getDate()- 7));
+
     };
 
     //Moves the selected week forward or backward based on an input

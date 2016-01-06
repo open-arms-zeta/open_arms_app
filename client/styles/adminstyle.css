@@ -21,7 +21,7 @@ html, body {
 }
 
 /*HEADERS STYLING*/
-.admin-header{
+.admin-header, .modal-head{
     font-family: "Arvo", serif;
     color: #5a1616;
     padding-bottom: 2px;
@@ -35,7 +35,7 @@ html, body {
 }
 
 
-.lead, .btn, .custom-button, .dark-button, .category, label{
+.lead, .btn, .custom-button, .dark-button, .category, label, .modal-lead{
     font-family: 'Varela Round', sans-serif;
 }
 
@@ -311,6 +311,90 @@ input[type=number]::-webkit-outer-spin-button {
     color: #ffffff
 }
 
+/*MODAL STYLING*/
+.modal-group * {
+    /*display: inline-block;*/
+    min-width: 50%;
+    margin: 0 auto;
+}
+/*.modal-lead{*/
+    /*margin-bottom: 10px;*/
+/*}*/
+
+.modal-header{
+    border-bottom: none;
+    padding-bottom: 5px;
+}
+.modal-container{
+    overflow: auto;
+}
+
+
+
+.meal-lead{
+    /*float: left;*/
+    /*margin-top: 0;*/
+    /*margin-left: 15px;*/
+    font-size: 20px;
+}
+
+.modal-text{
+    /*float: right;*/
+    /*margin-right: 15px;*/
+    font-size: 16px;
+    /*text-align: right;*/
+}
+/*.modal-text *{*/
+    /*text-align: right;*/
+/*}*/
+
+.custom-modal{
+    padding: 5px;
+}
+
+.modal-buttons{
+    padding-top: 10px;
+}
+
+.close-button{
+    float: right;
+    padding: 5px;
+    border-radius: 50%;
+    border: none;
+    background-color: #ffffff;
+    color: #5a1616;
+    transition: background .3s, color .3s;
+    margin-top: -10px;
+    margin-right: -5px;
+
+}
+/*.close-button-icon{*/
+    /*!*color: #5a1616;*!*/
+    /*transition: color .3s;*/
+/*}*/
+
+/*.close-button-icon:hover{*/
+    /*!*color: #ffffff;*!*/
+/*}*/
+
+.close-button:hover{
+    color: #ffffff;
+    float: right;
+    border-radius: 50%;
+    background-color: #5a1616;
+}
+
+/*.close-button.active.focus, .close-button.active:focus, .close-button.focus,*/
+/*.close-button:active.focus, .close-button:active:focus, .close-button:focus {*/
+
+    /*background-color: #757575;*/
+/*}*/
+
+
+.close-button.active, .close-button.active,
+.close-button:active, .close-button:active {
+    background-color: #4e1515;
+}
 
 
 
@@ -373,6 +457,11 @@ input[type=number]::-webkit-outer-spin-button {
 .meal-form{
     display: block
 }
+
+/*.meal-entry{*/
+    /*width: 50%;*/
+    /*margin: 0 auto 0 0;*/
+/*}*/
 
 /*!*SPLASH*!*/
 

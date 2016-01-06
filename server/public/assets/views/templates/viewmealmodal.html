@@ -1,32 +1,41 @@
-<div>
+<div class="custom-modal">
     <div class="modal-header">
-        <h3 class="modal-title">Meal</h3>
+        <button ng-click="close()" class="close-button"><i class="fa fa-times close-button-icon fa-2x"></i></button>
+        <h2 class="modal-head">Selected Meal</h2>
     </div>
-    <div class="modal-body">
+    <div class="modal-container">
 
-        <div>
-            <h3>Entree</h3>
-            <p>{{displayData[0].entree}}</p>
-            <h3>Sides</h3>
-            <p>{{displayData[0].side_1}}</p>
-            <p>{{displayData[0].side_2}}</p>
+        <div class="modal-group col-md-3">
+            <h3 class="lead modal-lead meal-lead">Entree: </h3>
+            <p class="modal-text">{{displayData[0].entree}}</p>
+
         </div>
-        <div>
-            <h3>Allergens</h3>
-            <div ng-repeat="meals in displayData | unique: 'allergen_specific'">
-                <p>{{meals.allergen_name}}<span ng-if="meals.allergen_specific"> - {{meals.allergen_specific}}</span></p>
 
+        <div class="modal-group col-md-3">
+            <h3 class="lead modal-lead meal-lead">Sides: </h3>
+            <div class="modal-text">
+                <p class="">{{displayData[0].side_1}}</p>
+                <p class="">{{displayData[0].side_2}}</p>
+            </div>
+        </div>
+        <div class="modal-group col-md-3">
+            <h3 class="lead modal-lead meal-lead">Allergens: </h3>
+            <div class="modal-text">
+                <p ng-repeat="meals in displayData | unique: 'allergen_specific'" class="">
+                {{meals.allergen_name}}<span ng-if="meals.allergen_specific"> - {{meals.allergen_specific}}</span></p>
             </div>
         </div>
 
-        <h3>Categories</h3>
-        <div ng-repeat="meals in displayData | unique: 'category_name'">
-            <p>{{meals.category_name}}</p>
+        <div class="modal-group col-md-3">
+            <h3 class="lead modal-lead meal-lead">Categories: </h3>
+            <div class="modal-text">
+                <p ng-repeat="meals in displayData | unique: 'category_name'" class="">{{meals.category_name}}</p>
+            </div>
+
         </div>
 
-
     </div>
-    <div class="modal-footer">
-        <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
-    </div>
+    <!--<div class="modal-footer">-->
+        <!--<button class="btn btn-primary" type="button" ng-click="ok()">OK</button>-->
+    <!--</div>-->
 </div>

@@ -65,7 +65,7 @@ myApp.controller('CalculateMealsController', ["$scope", "DataService", "$http", 
 
     //pulls in menu
     if ($scope.menu == undefined) {
-        $scope.dataService.retrieveMenuByWeek($scope.selectedStartDate, $scope.selectedEndDate).then(function(){
+        $scope.dataService.retrieveMenuByWeek($scope.selectedStartDate).then(function(){
             $scope.menu = $scope.dataService.getMenu();
         });
 
@@ -75,7 +75,7 @@ myApp.controller('CalculateMealsController', ["$scope", "DataService", "$http", 
 
     //pull in client orders
     if ($scope.clientOrders == undefined){
-        $scope.dataService.retrieveClientOrders($scope.selectedStartDate, $scope.selectedEndDate).then(function(){
+        $scope.dataService.retrieveClientOrders($scope.selectedStartDate).then(function(){
             $scope.clientOrders = $scope.dataService.getClientOrders();
         });
     }else {

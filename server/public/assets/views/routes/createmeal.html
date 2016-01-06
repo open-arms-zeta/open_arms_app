@@ -18,26 +18,31 @@
             <!--</div>-->
         <!--</div>-->
 
-        <div class="form-group" ng-class="{ 'has-error': createMeal.entree.$invalid && !createMeal.entree.$pristine}">
-            <label class="lead label-lead">Entree</label>
-            <input class="form-control" type="text" name="entree" placeholder="Enter an Entree" required ng-model="meal.entree">
-            <div ng-messages="createMeal.entree.$error" ng-if="createMeal.entree.$touched">
-                <div ng-message="required" class="warning-message">Entree is required</div>
+        <div class="row">
+            <div class="form-group meal-entry col-md-6" ng-class="{ 'has-error': createMeal.entree.$invalid && !createMeal.entree.$pristine}">
+                <label class="lead label-lead">Entree</label>
+                <input class="form-control" type="text" name="entree" placeholder="Enter an Entree" required ng-model="meal.entree">
+                <div ng-messages="createMeal.entree.$error" ng-if="createMeal.entree.$touched">
+                    <div ng-message="required" class="warning-message">Entree is required</div>
+                </div>
             </div>
         </div>
-
-        <div class="form-group" ng-class="{ 'has-error': createMeal.side1.$invalid && !createMeal.side1.$pristine}">
-            <label class="lead label-lead">Side 1</label>
-            <input class="form-control" type="text" name="side1" placeholder="Side #1" required ng-model="meal.side_1">
-            <div ng-messages="createMeal.side1.$error" ng-if="createMeal.side1.$touched">
-                <div ng-message="required" class="warning-message">At least one side is required</div>
+        <div class="row">
+            <div class="form-group meal-entry col-md-6" ng-class="{ 'has-error': createMeal.side1.$invalid && !createMeal.side1.$pristine}">
+                <label class="lead label-lead">Side 1</label>
+                <input class="form-control" type="text" name="side1" placeholder="Side #1" required ng-model="meal.side_1">
+                <div ng-messages="createMeal.side1.$error" ng-if="createMeal.side1.$touched">
+                    <div ng-message="required" class="warning-message">At least one side is required</div>
+                </div>
             </div>
         </div>
-        <div class="form-group">
-            <label class="lead label-lead">Side 2</label>
-            <input class="form-control" type="text" name="side2" placeholder="Side #2" ng-model="meal.side_2">
-        </div>
+        <div class="row">
+            <div class="form-group meal-entry  col-md-6">
+                <label class="lead label-lead">Side 2</label>
+                <input class="form-control" type="text" name="side2" placeholder="Side #2" ng-model="meal.side_2">
+            </div>
 
+        </div>
         <div class="form-group row checkbox-group">
             <p class="lead label-lead">Categories</p>
             <!--ng-class="{'has-error': createMeal.categoryCheckbox.$invalid && !createMeal.categoryCheckbox.$pristine}"-->

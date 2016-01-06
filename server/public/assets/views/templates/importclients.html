@@ -1,26 +1,35 @@
-<div>
-    <div class="modal-header">CSV Client Upload</div>
-    <div class="instructions">Select a csv or spreadsheet file to add clients to the database</div>
-    <label>Select File:</label>
-    <form  name="csvForm">
-    <div class="btn btn-default btn-file">
-    Browse... <input type="file" accept=".csv" custom-on-change="uploadFile"/>
+<div class="custom-modal">
+    <div class="modal-header">
+        <button ng-click="close()" class="close-button"><i class="fa fa-times close-button-icon fa-2x"></i></button>
+        <h2 class="modal-head">CSV Client Upload</h2>
+        <div class="instructions">Instructions: Select a csv or spreadsheet file to add clients to the database</div>
     </div>
-    </form>
+    <div class="modal-body">
 
-    <div ng-if="csvClients">
-        <!--<div>yo</div>-->
-        <div ui-grid="gridOptions" ui-grid-edit class="table-responsive ui-grid"></div>
-        <div>
-            These are the clients listed in the csv file, if you would like to add these clients to the database,
-            press select.  Otherwise, press remove.
+        <div ng-if="!csvClients">
+            <label>Select File:</label>
+            <form  name="csvForm">
+                <div class="btn btn-default btn-file">
+                    Browse... <input type="file" accept=".csv" custom-on-change="uploadFile"/>
+                </div>
+            </form>
         </div>
-        <div>
-            <button class="btn dark-button" ng-click="post()">Accept</button>
-            <button class="btn custom-button" ng-click="remove()">Remove</button>
+
+
+        <div ng-if="csvClients">
+            <!--<div>yo</div>-->
+            <div ui-grid="gridOptions" ui-grid-edit class="table-responsive ui-grid"></div>
+            <div>
+                These are the clients listed in the csv file, if you would like to add these clients to the database,
+                press Accept.  Otherwise, press Remove to clear the table.
+            </div>
+            <div class="modal-buttons">
+                <button class="btn dark-button" ng-click="post()">Accept</button>
+                <button class="btn custom-button" ng-click="remove()">Remove</button>
+            </div>
         </div>
-    </div>
-    <div ng-if="clientsAdded">
-        <div>Clients added to the database!</div>
+        <div ng-if="clientsAdded">
+            <div>Clients added to the database!</div>
+        </div>
     </div>
 </div>
