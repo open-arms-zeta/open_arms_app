@@ -11,7 +11,9 @@ myApp.controller('AdminWelcomeController', ["$scope", "DataService", "$http", "$
     //uses the active day (activeWeek variable pulled from factory) to calculate a week range used for calculation
     $scope.initSelectedWeek = function(){
         var startDate = new Date($scope.activeWeek);
+        console.log(startDate);
         $scope.selectedStartDate = new Date(startDate.setDate($scope.activeWeek.getDate()- 7));
+        console.log($scope.selectedStartDate);
 
     };
 
@@ -40,8 +42,10 @@ myApp.controller('AdminWelcomeController', ["$scope", "DataService", "$http", "$
     //gets meal count for a given week
     $scope.getMealCount = function(){
         var startDate = new Date($scope.selectedStartDate);
-        var endDate = new Date($scope.selectedEndDate);
-        $http.get('/mealcount', {params: {startDate: startDate, endDate: endDate}}).then(function(response){
+        console.log('start date', startDate);
+        //var endDate = new Date($scope.selectedEndDate);
+        //console.log('end dat', endDate);
+        $http.get('/mealcount', {params: {startDate: startDate}}).then(function(response){
             //console.log(response.data);
             $scope.selectedMealCount = response.data;
         });
