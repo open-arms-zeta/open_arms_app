@@ -107,8 +107,8 @@
     <!--PICNIC BASKET (MOBILE VERSION)-->
     <div ng-if="showBasket" class="mobile-picnic-basket">
             <div class="picnic-basket-header">
-                <h2>Meals Selected</h2>
-                <md-button class="md-raised md-accent md-hue-3 submit-meal-button" ng-disabled="!addedMealArray[0]" ng-click="toggleModal2()">Submit Meal Selection</md-button>
+                <h1>Meals Selected</h1>
+                <md-button class="md-raised md-accent md-hue-3 submit-meal-button" ng-disabled="!addedMealArray[0]" ng-click="toggleBasketSubmission()">Submit Meal Selection</md-button>
             </div>
             <div class="meal-info" ng-repeat="meal in addedMealArray track by $index" layout="row" layout-align-gt-xs="space-between start">
 
@@ -122,12 +122,29 @@
                 </div>
 
             </div>
+    </div>
 
-            <!--<md-button class="md-raised md-warn" ng-click="showBasket=!showBasket">Close</md-button>-->
+    <!--PICNIC BASKET CONFIRMATION (MOBILE VERSION)-->
+    <div class="mobile-picnic-basket" ng-if="showMobileConfirmation">
 
+        <div class="picnic-basket-header">
+            <h1>Meal Confirmation for the week of: {{activeWeek | date: 'longDate'}}</h1>
+            <h2>You have selected:</h2>
+        </div>
+
+        <ol>
+            <li class="meal-info" ng-repeat="meal in addedMealArray track by $index">
+                <h3>{{meal.entree}} with {{meal.side_1}}<span ng-if="meal.side_2"> and {{meal.side_2}}</span></h3>
+                <p class="allergen-text" ng-repeat="allergen in meal.allergen">  Allergen: {{allergen}}</p>
+            </li>
+        </ol>
+
+        <md-button class="md-raised" ng-click="postCustomMeal()">Confirm Meal Selection</md-button>
+        <md-button class="md-raised md-warn" ng-click="toggleBasketSubmission()">No - Go Back</md-button>
 
     </div>
 
+    <!--CUSTOMIZE MEAL CONTAINER-->
     <div flex-gt-sm="90" flex-offset-gt-sm="5" class="customize-meals-container md-whiteframe-2dp">
 
         <div layout-gt-sm="row" layout-align-gt-sm="space-between center">
@@ -149,9 +166,9 @@
                     <div ng-init="accordion.current = user.default_meal">
 
                         <h2 class="accordion {{category.category_name}}" ng-class="{active:accordion.current == category.category_name}">
-                            <a href ng-click="accordion.current = category.category_name">
+                            <md-button class="accordion-header" href ng-click="accordion.current = category.category_name">
                                 {{category.category_name}}
-                            </a>
+                            </md-button>
                         </h2>
 
                         <div ng-show="accordion.current == category.category_name" ng-repeat="meal in category.mealInfo"

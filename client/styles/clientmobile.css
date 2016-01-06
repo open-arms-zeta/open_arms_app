@@ -44,6 +44,11 @@
     .ng-modal-dialog {
         width: 70%;
     }
+
+    .submit-meal-button {
+        font-size: 11px;
+        padding: 0 5px 0 5px;
+    }
 }
 
 @media (max-width:959px) {
@@ -63,10 +68,6 @@
         font-size: 14px;
     }
 
-    .ng-modal-dialog {
-        width: 70%;
-    }
-
     .customize-meals-container {
         padding: 50px 30px;
     }
@@ -75,7 +76,8 @@
         padding-top: 0;
     }
 
-    .picnic-basket-header h2 {
+    .picnic-basket-header h1, .picnic-basket-header h2 {
+        font-size: 24px;
         margin: 10px;
     }
 
@@ -117,6 +119,10 @@
 
     .customize-meals-content {
         padding-top: 0;
+    }
+
+    .ng-modal-dialog {
+        width: 80%;
     }
 
 }

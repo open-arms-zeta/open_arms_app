@@ -6,7 +6,7 @@
         <span class="lead date-display">{{selectedStartDate | date: 'fullDate'}}</span>
         <button class="switch-week btn dark-button" ng-click="nextWeek()">Next Week <i class="fa fa-chevron-right"></i></button>
     </div>
-    <div ng-if="selectedMealCount" class="csv-buttons">
+    <div class="csv-buttons">
         <button type="button"  class="btn dark-button" ng-csv="printMealCount()" csv-header="['Entree', 'Side 1', 'Side 2', 'Category', 'Start Date','Number of Meals']"
                 csv-column-order="['entree', 'side_1', 'side_2', 'category_name', 'start_date', 'end_date','count']" filename="mealCount.csv">Export Meal Count</button>
         <!--<button class="print" ng-click="printMealCount()">Print Meal Count Quantity</button>-->
@@ -35,20 +35,6 @@
         </div>
 
     </div>
-</div>
 
-
-
-
-
-    <!--<div>-->
-        <!--<div ng-repeat="meal in selectedMealCount track by $index">-->
-            <!--<h3>Meal {{$index+1}}: {{meal.entree}}</h3>-->
-            <!--<p>Side 1: {{meal.side_1}}</p>-->
-            <!--<p>Side 2: {{meal.side_2}}</p>-->
-            <!--<p>Category: {{meal.category_name}}</p>-->
-            <!--<p>Number of orders: {{meal.count}} order(s)</p>-->
-        <!--</div>-->
-    <!--</div>-->
 </div>
 

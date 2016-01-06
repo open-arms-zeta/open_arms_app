@@ -1,4 +1,5 @@
 myApp.controller('ImportClientController', ["$scope", "$uibModalInstance", "$http", "DataService", function($scope, $uibModalInstance, $http, DataService){
+    console.log('controller on');
     $scope.csvClients = undefined;
     $scope.clients = undefined;
     $scope.clientsAdded = false;
@@ -28,9 +29,11 @@ myApp.controller('ImportClientController', ["$scope", "$uibModalInstance", "$htt
     $scope.uploadFile = function(files){
         //var filename = files[0].name;
         //$scope.csvClients = ['stuff'];
+        console.log('doing stuff')
         var config = {
             header: true,
             complete: function(results){
+                console.log('alkjsdf')
                 $scope.csvClients = formatData(results.data);
                 console.log('finished', $scope.csvClients);
                 $scope.$apply();
@@ -99,4 +102,26 @@ myApp.controller('ImportClientController', ["$scope", "$uibModalInstance", "$htt
         });
     }
 
+    $scope.close = function () {
+        $uibModalInstance.close('close');
+    };
+
 }]);
+
+myApp.directive('customOnChange', function() {
+    return {
+        restrict: 'A',
+        link: function (scope, element, attrs) {
+            var onChangeFunc = scope.$eval(attrs.customOnChange);
+            element.bind('change', function(event){
+                var files = event.target.files;
+                onChangeFunc(files);
+            });
+
+            element.bind('click', function(){
+                element.val('');
+            });
+        }
+    };
+});
+

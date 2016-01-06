@@ -10,7 +10,7 @@ myApp.controller('ViewMealModalController', ["$scope", "$http", "$uibModalInstan
         $scope.displayData = response.data;
     });
 
-    $scope.ok = function () {
+    $scope.close = function () {
         $uibModalInstance.close('close');
     };
 

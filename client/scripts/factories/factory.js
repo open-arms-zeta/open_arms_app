@@ -18,16 +18,13 @@ myApp.factory('DataService', ['$http', function($http){
     //array
     var clientOrders = undefined;
     // clients
-    var clients = undefined;
-    var isUnique = undefined;
+    var allEmails = undefined;
 
 
-    var checkUniqueEmails = function(email){
+    var getAllEmails = function(){
         return $http.get('/register/all').then(function(response){
-            clients = response.data;
+            allEmails = response.data;
             console.log('clients in db', $scope.clients);
-        }).then(function(){
-            isUnique = _.findWhere(clients, {email: email})
         })
     };
     var retrieveCategories = function(){
@@ -110,11 +107,11 @@ myApp.factory('DataService', ['$http', function($http){
         getUser: function(){
             return user;
         },
-        checkUniqueEmails: function(email){
-            return checkUniqueEmails(email)
+        getAllEmails: function(){
+            return getAllEmails()
         },
-        isUniqueEmail: function(){
-            return isUnique;
+        allEmails: function(){
+            return allEmails;
         }
     };
 
