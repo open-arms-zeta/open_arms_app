@@ -34,7 +34,7 @@ myApp.controller('AddClientController', ["$scope", "DataService", "$http", "$uib
     $scope.submit = function(){
         if($scope.addClientForm.$valid){
             console.log($scope.newClient);
-            //$scope.newClient.password = $scope.newClient.phone.toString();
+            $scope.newClient.password = $scope.newClient.phone.toString();
             $http.post('/register',$scope.newClient).then(function(response){
                 console.log(response.data);
             });
