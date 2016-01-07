@@ -4,8 +4,8 @@ myApp.controller('AdminWelcomeController', ["$scope", "DataService", "$http", "$
     $scope.dataService = DataService;
     $scope.activeWeek = undefined;
     $scope.selectedStartDate = undefined;
-    $scope.selectedEndDate = undefined;
-    $scope.selectedMealCount = undefined;
+    //$scope.selectedEndDate = undefined;
+    $scope.l = undefined;
     $scope.clientOrders = undefined;
 
     //uses the active day (activeWeek variable pulled from factory) to calculate a week range used for calculation
@@ -21,22 +21,18 @@ myApp.controller('AdminWelcomeController', ["$scope", "DataService", "$http", "$
     $scope.moveSelectedWeek = function(numDays){
         var startDate = new Date($scope.selectedStartDate);
         $scope.selectedStartDate = startDate.setDate(startDate.getDate()+ numDays);
-        var endDate = new Date($scope.selectedEndDate);
-        $scope.selectedEndDate = endDate.setDate(endDate.getDate()+ numDays);
+        $scope.getMealCount();
+        $scope.getClientOrders();
     };
 
     //moves back a week, meal count is updatedd
     $scope.previousWeek = function(){
         $scope.moveSelectedWeek(-7);
-        $scope.getMealCount();
-        $scope.getClientOrders();
     };
 
     //moves forward a week, meal count is updated
     $scope.nextWeek = function(){
         $scope.moveSelectedWeek(7);
-        $scope.getMealCount();
-        $scope.getClientOrders()
     };
 
     //gets meal count for a given week
@@ -47,15 +43,16 @@ myApp.controller('AdminWelcomeController', ["$scope", "DataService", "$http", "$
         //console.log('end dat', endDate);
         $http.get('/mealcount', {params: {startDate: startDate}}).then(function(response){
             //console.log(response.data);
-            $scope.selectedMealCount = response.data;
+            //$scope.selectedMealCount = response.data;
+            $scope.selectedMealCount = $scope.formatForDisplay(response.data);
         });
     };
 
     //gets client orders from the factory for a given date range
     $scope.getClientOrders = function(){
         var startDate = new Date($scope.selectedStartDate);
-        var endDate = new Date($scope.selectedEndDate);
-        $scope.dataService.retrieveClientOrders(startDate, endDate).then(function(){
+        //var endDate = new Date($scope.selectedEndDate);
+        $scope.dataService.retrieveClientOrders(startDate).then(function(){
             $scope.clientOrders = $scope.dataService.getClientOrders();
         });
 
@@ -82,6 +79,22 @@ myApp.controller('AdminWelcomeController', ["$scope", "DataService", "$http", "$
             //$scope.clientOrders[i].end_date = $filter('date')($scope.clientOrders[i].end_date, 'fullDate');
         }
         return $scope.clientOrders;
+    };
+
+    //format for display
+    $scope.formatForDisplay = function(data){
+        console.log(data);
+        var groupedObject = _.groupBy(data , 'entree');
+        console.log(groupedObject, 'goaspfasdf');
+        var returnArray = [];
+        for(var key in groupedObject){
+            console.log('key', key);
+            returnArray.push(groupedObject[key][0]);
+            for (var i = 1; i<groupedObject[key].length; i++){
+                returnArray[returnArray.length-1].count += groupedObject[key][i].count;
+            }
+        }
+        return returnArray;
     };
 
     //$scope.print = function(){
