@@ -44,7 +44,6 @@ myApp.controller('CalculateMealsController', ["$scope", "DataService", "$http", 
         $scope.whenSubmit = true;
         $scope.displayResults = true;
         $scope.postMealCount();
-        $scope.menu = $scope.formatForDisplay($scope.menu);
     };
 
     //pull in categories
@@ -88,7 +87,8 @@ myApp.controller('CalculateMealsController', ["$scope", "DataService", "$http", 
     $scope.postMealCount = function(){
         console.log('post', $scope.menu);
         $http.post('/mealcount', $scope.menu).then(function(response){
-            console.log(response)
+            console.log(response);
+            $scope.menu = $scope.formatForDisplay($scope.menu);
         });
     };
 

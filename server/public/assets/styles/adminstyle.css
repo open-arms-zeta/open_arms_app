@@ -145,9 +145,9 @@ html, body {
     overflow:scroll;
 }
 
-/*.route-body{*/
-    /*padding-bottom: 10px;*/
-/*}*/
+.route-body{
+    padding-bottom: 25px;
+}
 
 
 /*BUTTONS*/
@@ -184,7 +184,7 @@ html, body {
 
 
 .dark-button{
-    border: 3px solid #d78119;
+    border: 1px solid #d78119;
     background-color: #ffffff;
     color: #d78119;
     -webkit-transition: background-color .3s, color .3s;
@@ -197,7 +197,7 @@ html, body {
 .dark-button:hover {
     background-color: #d78119;
     color: #ffffff;
-    border: 3px solid #d78119;
+    border-color: #d78119;
 }
 
 .dark-button.active.focus, .dark-button.active:focus, .dark-button.focus, .dark-button:active.focus,
@@ -281,7 +281,7 @@ input[type=number]::-webkit-outer-spin-button {
 .custom-button-ui-grid{
     border-radius: 5px;
     padding: 1px 4px;
-    border: 3px solid #d78119;
+    border: 1px solid #d78119;
     background-color: #ffffff;
     color: #d78119;
     -webkit-transition: background-color .3s, color .3s;
@@ -294,7 +294,7 @@ input[type=number]::-webkit-outer-spin-button {
 .custom-button-ui-grid:hover {
     background-color: #d78119;
     color: #ffffff;
-    border: 3px solid #d78119;
+    border-color: #d78119;
 }
 
 .custom-button-ui-grid.active.focus, .custom-button-ui-grid.active:focus, .custom-button-ui-grid.focus,
@@ -481,6 +481,10 @@ input[type=number]::-webkit-outer-spin-button {
     display: block
 }
 
+/*.meal-entry{*/
+    /*width: 50%;*/
+    /*margin: 0 auto 0 0;*/
+/*}*/
 /*.meal-entry{*/
     /*width: 50%;*/
     /*margin: 0 auto 0 0;*/
