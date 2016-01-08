@@ -1,29 +1,121 @@
-<h1>Instructions</h1>
+<h1 class="modal-header-text">Instructions</h1>
 
-<h2>Welcome Page</h2>
-<h3>On the Welcome Page, your Five (5) Default Meals are listed for your approval.</h3>
+<i class="fa fa-chevron-left fa-4x nav-button" ng-click="prevInstruction()"></i>
+<div class="image-box">
+    <img ng-src="{{loadedImage}}" width="600px" class="modal-image">
+</div>
+<i class="fa fa-chevron-right fa-4x nav-button" ng-click="nextInstruction()"></i>
 
-<ul>
-    <h3>If you are satisfied with the default selection for the week:</h3>
-    <li>Click the "I Prefer The Default Options Listed Above" button</li>
-    <li>On the confirmation pop-up, click the "Confirm Meal Selection" button and you are DONE!</li>
-</ul>
+<div ng-if="instructionNumber==0">
+    <h3>Welcome Page</h3>
+    <div class="icon-container">
+        <i class="fa fa-info fa-icon fa-2x" style="color: #4288dc"></i>
+        <p class="icon-text">This is the welcome message. The meals you are ordering on the
+            website are for the week starting on the date listed in the welcome message</p>
+    </div>
+    <div class="icon-container">
+        <i class="fa fa-info fa-icon fa-2x" style="color: #ff5a0a"></i>
+        <p class="icon-text">These are your default meals.  They are the meals
+            in the current menu which correspond to the meal package which you are assigned to</p>
+    </div>
+    <div class="icon-container">
+        <i class="fa fa-info fa-icon fa-2x" style="color: #5cc200"></i>
+        <p class="icon-text">If you are happy with your default options, click the
+            "I Prefer the Default Options Listed Above" button.  If you would like to customize your meals for the week,
+            select the "I Would Like To Customize Meals" button</p>
+    </div>
 
-<ul>
-    <h3>If you would like to customize your meals for the week:</h3>
-    <li>Click the "I Would Like To Customize Meals" button</li>
-    <li>You will be sent to the Customize Meal Selection Page</li>
-</ul>
 
-<h2>Customize Meal Selection Page</h2>
+</div>
 
-<h3>On the Customize Meal Selection Page you may customize meal options for the specified week</h3>
-<ul>
-    <li>You may view meal options in each Category by clicking on the Category name</li>
-    <li>You may select specific meals simply by clicking the "Add Meal" button.</li>
-    <!--<li>The meals you have selected are displayed on the right of the screen (desktop).</li>-->
-    <li>You may select up to five (5) meals for the week</li>
-    <li>Once you are satisfied with your meal selection for the week, click the "Submit Meal Selection" button.</li>
-    <li>On the confirmation pop-up, click the "Confirm Meal Selection button" and you are DONE!</li>
-</ul>
+<div ng-if="instructionNumber==1">
+    <h3>Meal Selection Page</h3>
+    <div class="icon-container">
+        <i class="fa fa-info fa-icon fa-2x" style="color: #4288dc"></i>
+        <p class="icon-text">This is a category header.  You can click on this to view the meals in the menu
+        for that category</p>
+    </div>
+    <div class="icon-container">
+        <i class="fa fa-info fa-icon fa-2x" style="color: #ff5a0a"></i>
+        <p class="icon-text">Underneath each category header is a list of the meals for that category.  When the page
+         loads the list of meals for your default category will be visible.  Clicking any of the other category headers
+        will make those meals visible.</p>
+    </div>
+    <div class="icon-container">
+        <i class="fa fa-info fa-icon fa-2x" style="color: #5cc200"></i>
+        <p class="icon-text">If you want to add a meal to your weekly selection, press the "Add to Meal" button to add it.</p>
+    </div>
+    <div class="icon-container">
+        <i class="fa fa-info fa-icon fa-2x" style="color: #ef7eff"></i>
+        <p class="icon-text">If you would like to go back to the main page, press the back button</p>
+    </div>
+
+</div>
+
+<div ng-if="instructionNumber==2">
+    <h3>Meal Selection Page (Continued)</h3>
+    <!--<div class="icon-container">-->
+        <!--<i class="fa fa-info fa-icon fa-2x" style="color: #4288dc"></i>-->
+        <!--<p class="icon-text">The category Header</p>-->
+    <!--</div>-->
+    <!--<div class="icon-container">-->
+        <!--<i class="fa fa-info fa-icon fa-2x" style="color: #ff5a0a"></i>-->
+        <!--<p class="icon-text">Underneath each category header is a list of the meals for that category.  When the page-->
+            <!--loads the list of meals for your default category will be visible.  Clicking any of the other category headers-->
+            <!--will make those meals visible.</p>-->
+    <!--</div>-->
+    <div class="icon-container">
+        <i class="fa fa-info fa-icon fa-2x" style="color: #5cc200"></i>
+        <p class="icon-text">This is the list of selected meal items.  Meals will appear here
+            as you add items form the menu. If you wish to remove a meal, press the "Remove Meal" button</p>
+    </div>
+    <div class="icon-container">
+        <i class="fa fa-info fa-icon fa-2x" style="color: #ef7eff"></i>
+        <p class="icon-text">When you are happy with your selection, press the "Submit Meal Selection" button to
+        submit your custom meal pack</p>
+    </div>
+
+</div>
+
+<div ng-if="instructionNumber==3">
+    <h3>Confirmation Page</h3>
+    <i class="fa fa-info fa-icon fa-2x"></i>
+    <p class="icon-text">Once you have selected your meals, you will see a confirmation message containing the list of
+    meals you ordered for the week.  These selections are final and cannot be changed.
+        You will not be able to select future meals until the following monday.</p>
+</div>
+
+<div ng-if="instructionNumber==4">
+    <h3>InactivePage Page</h3>
+    <i class="fa fa-info fa-icon fa-2x"></i>
+    <p class="icon-text">If your account has been inactivated you will see this message, and will not be able to
+        select a meal pack.  Call client services for more information</p>
+</div>
+<!--<h2>Welcome Page</h2>-->
+<!--<h3>On the Welcome Page, your Five (5) Default Meals are listed for your approval.</h3>-->
+
+<!--<ul>-->
+    <!--<h3>If you are satisfied with the default selection for the week:</h3>-->
+    <!--<li>Click the "I Prefer The Default Options Listed Above" button</li>-->
+    <!--<li>On the confirmation pop-up, click the "Confirm Meal Selection" button and you are DONE!</li>-->
+<!--</ul>-->
+
+<!--<ul>-->
+    <!--<h3>If you would like to customize your meals for the week:</h3>-->
+    <!--<li>Click the "I Would Like To Customize Meals" button</li>-->
+    <!--<li>You will be sent to the Customize Meal Selection Page</li>-->
+<!--</ul>-->
+
+
+<!--<h2>Customize Meal Selection Page</h2>-->
+
+<!--<h3>On the Customize Meal Selection Page you may customize meal options for the specified week</h3>-->
+<!--<ul>-->
+    <!--<li>You may view meal options in each Category by clicking on the Category name</li>-->
+    <!--<li>You may select specific meals simply by clicking the "Add Meal" button.</li>-->
+    <!--&lt;!&ndash;<li>The meals you have selected are displayed on the right of the screen (desktop).</li>&ndash;&gt;-->
+    <!--<li>You may select up to five (5) meals for the week</li>-->
+    <!--<li>Once you are satisfied with your meal selection for the week, click the "Submit Meal Selection" button.</li>-->
+    <!--<li>On the confirmation pop-up, click the "Confirm Meal Selection button" and you are DONE!</li>-->
+<!--</ul>-->
 

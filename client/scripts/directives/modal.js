@@ -21,7 +21,7 @@ myApp.directive('modalDialog', function() {
         },
         template: "<div class='ng-modal' ng-show='show'>" +
         "<div class='ng-modal-overlay'></div>" +
-        "<md-content class='ng-modal-dialog' ng-style='dialogStyle'>" +
+        "<md-content class='ng-modal-dialog'>" +
         //"<div class='ng-modal-close' ng-click='hideModal()'>X</div>" +
         "<div class='ng-modal-dialog-content' ng-transclude></div></md-content>" +
         "</div>"

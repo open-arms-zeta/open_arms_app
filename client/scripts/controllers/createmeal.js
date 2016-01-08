@@ -53,6 +53,12 @@ myApp.controller('CreateMealController', ["$scope",  '$http', "DataService",  fu
 
     $scope.refreshForm = function() {
         $scope.mealEntrySuccess = false;
+        $scope.meal = {
+            categories: [],
+            allergens: [],
+            status: true
+        };
+
     };
 
     $scope.refreshForm();

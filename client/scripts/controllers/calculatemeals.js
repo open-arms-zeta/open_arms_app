@@ -44,6 +44,7 @@ myApp.controller('CalculateMealsController', ["$scope", "DataService", "$http", 
         $scope.whenSubmit = true;
         $scope.displayResults = true;
         $scope.postMealCount();
+        $scope.menu = $scope.formatForDisplay($scope.menu);
     };
 
     //pull in categories
@@ -85,15 +86,25 @@ myApp.controller('CalculateMealsController', ["$scope", "DataService", "$http", 
     }
 
     $scope.postMealCount = function(){
-        console.log('post', $scope.menu)
+        console.log('post', $scope.menu);
         $http.post('/mealcount', $scope.menu).then(function(response){
             console.log(response)
         });
-        //for(var i = 0; i<$scope.menu.length; i++){
-        //    console.log('posts', $scope.menu[i]);
-        //    $http.post('/mealcount', $scope.menu[i]).then(function(response){
-        //        console.log(response);
-        //    })
-        //}
-    }
+    };
+
+    //format for display
+    $scope.formatForDisplay = function(data){
+        console.log(data);
+        var groupedObject = _.groupBy(data , 'entree');
+        console.log(groupedObject, 'goaspfasdf');
+        var returnArray = [];
+        for(var key in groupedObject){
+            console.log('key', key);
+            returnArray.push(groupedObject[key][0]);
+            for (var i = 1; i<groupedObject[key].length; i++){
+                returnArray[returnArray.length-1].count += groupedObject[key][i].count;
+            }
+        }
+        return returnArray;
+    };
 }]);
