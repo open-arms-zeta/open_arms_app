@@ -39,7 +39,7 @@
             <p ng-show="showCategoryHeadings" class="lead message-lead">Week Number: {{weekNumber}}</p>
 
             <div class="row">
-                <div ng-repeat="category in categories" ng-show="showCategoryHeadings" class="col-md-4 col-sm-6 col-xs-12">
+                <div ng-repeat="category in categories" ng-show="showCategoryHeadings" class="col-md-4 col-sm-6 col-xs-12 dropdown-container">
                     <h2>{{category.category_name}}</h2>
 
                     <div ng-class="{'has-error': category.mealDuplicateError}">

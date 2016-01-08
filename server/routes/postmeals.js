@@ -64,27 +64,27 @@ router.get('/getNewMealID', function(req,res){
 
 
 
-router.post('/', function(req, res){
-    var mealAllergenAllergenspecific = {
-        "meal_id": req.body.meal_id,
-        "allergen_id": req.body.allergen_id
-    };
-    console.log("post request", mealAllergenAllergenspecific);
-
-    pg.connect(connectionString, function(err, client){
-        client.query("INSERT INTO meal_allergen (meal_id, allergen_id) VALUES ($1, $2)",
-            [mealAllergenAllergenspecific.meal_id, mealAllergenAllergenspecific.allergen_id, mealAllergenAllergenspecific.allergenspecific_id],
-            function(err, result) {
-                if (err) {
-                    console.log("error with inserting data", err);
-                    res.send(false);
-                }
-
-                res.send(true);
-            })
-    });
-
-});
+//router.post('/', function(req, res){
+//    var mealAllergenAllergenspecific = {
+//        "meal_id": req.body.meal_id,
+//        "allergen_id": req.body.allergen_id
+//    };
+//    console.log("post request", mealAllergenAllergenspecific);
+//
+//    pg.connect(connectionString, function(err, client){
+//        client.query("INSERT INTO meal_allergen (meal_id, allergen_id) VALUES ($1, $2)",
+//            [mealAllergenAllergenspecific.meal_id, mealAllergenAllergenspecific.allergen_id, mealAllergenAllergenspecific.allergenspecific_id],
+//            function(err, result) {
+//                if (err) {
+//                    console.log("error with inserting data", err);
+//                    res.send(false);
+//                }
+//
+//                res.send(true);
+//            })
+//    });
+//
+//});
 
 router.post('/postToMealCategory', function(req, res){
 

@@ -79,7 +79,7 @@ myApp.controller('ViewMenuController', ["$scope", "$http", "DataService", functi
 
         if($scope.menu.startDate <= $scope.activeWeek){
             //console.log("Hi");
-            //$scope.disableDropDown = true;
+            $scope.disableDropDown = true;
             $scope.oldMenuMessage = true;
 
         }
@@ -231,7 +231,7 @@ myApp.controller('ViewMenuController', ["$scope", "$http", "DataService", functi
     $scope.toggleMin = function() {
         $scope.minDate = $scope.minDate ? null : new Date();
     };
-    $scope.toggleMin();
+    //$scope.toggleMin();
     $scope.maxDate = new Date(2020, 5, 22);
 
     $scope.open = function($event) {
