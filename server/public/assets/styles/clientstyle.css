@@ -12,7 +12,7 @@
     width: 100%;
     background-size: cover;
     background-position: center;
-    background-attachment: fixed;
+    /*background-attachment: fixed;*/
 }
 
 
@@ -107,10 +107,18 @@ h1, h2, h3, h4, h5, h6, p {
     /* A centered div above the overlay with a box shadow. */
     z-index:10;
     position: absolute;
+    flex: 66%;
     width: 70%;
+    height: 65%;
 
     /* Center the dialog */
+<<<<<<< HEAD
     top: 40%;
+=======
+    /*top: 40%;*/
+
+    top: 37%;
+>>>>>>> master
     left: 50%;
     transform: translate(-50%, -50%);
     -webkit-transform: translate(-50%, -50%);
@@ -137,10 +145,66 @@ h1, h2, h3, h4, h5, h6, p {
     font-family: 'arial', 'sans-serif';
 }
 
+<<<<<<< HEAD
 .default-confirmation-modal .ng-modal-dialog {
     top: 40%;
 }
 
+=======
+
+/*.default-confirmation-modal .ng-modal-dialog {*/
+    /*top: 40%;*/
+/*}*/
+
+.modal-image{
+    /* margin: 0 auto; */
+    /* position: inherit; */
+    display: block;
+    margin: 0 auto;
+    /* text-align: center; */
+    max-width: 100%;
+    height: auto;
+}
+
+.modal-header-text{
+    text-align: center;
+}
+.image-box{
+    display: inline-block;
+    width: 85%;
+}
+.nav-button{
+    /*position: absolute;*/
+    margin-top: 10%;
+    width: 7%;
+    display: inline-block;
+}
+
+.fa-chevron-left{
+    float:left;
+    left: 0;
+}
+
+.fa-chevron-right{
+    float:right;
+    right: 0;
+}
+
+.fa-icon{
+    width: 5%;
+    position: relative;
+    /*top: -19px;*/
+}
+
+.icon-container{
+    overflow: auto;
+    padding: 3px 0;
+}
+.icon-text{
+    width: 95%;
+    float: right;
+}
+>>>>>>> master
 /* ------ CUSTOMIZE MEALS ------ */
 .customize-meals {
     padding-top: 40px;
@@ -223,3 +287,10 @@ h1, h2, h3, h4, h5, h6, p {
 .not-active h1, h2 {
     margin: 22px 0;
 }
+
+
+/*!*MODAL*!*/
+/*md-content.ng-modal-dialog{*/
+    /*height: 80%;*/
+/*}*/
+

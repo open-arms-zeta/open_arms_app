@@ -109,13 +109,14 @@ router.post('/postToMealCategory', function(req, res){
 
         if(err) console.log(err);
 
-        result.on('end', function () {
-            client.end();
-        });
+        //res.send('entered');
+        //result.on('end', function () {
+        //    client.end();
+        //});
 
     });
 
-    res.send("save success");
+    res.send("entered into categories");
 
 });
 
@@ -143,13 +144,14 @@ router.post('/postToAllergens', function(req, res){
 
         if(err) console.log(err);
 
-        result.on('end', function () {
-            client.end();
-        });
+        //res.send('entered into allergens table')
+        //result.on('end', function () {
+        //    client.end();
+        //});
 
     });
 
-    res.send("save success");
+    res.send("entered into allergens");
 
 });
 

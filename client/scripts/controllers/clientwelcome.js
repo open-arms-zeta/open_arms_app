@@ -28,6 +28,57 @@ myApp.controller('ClientWelcomeController', ["$scope", "DataService", "$http", f
     //$scope.mealAddedMessage = false;
     $scope.badgeNumber = 0;
 
+    //modal vars
+    $scope.instructionNumber = 0;
+    $scope.loadedImage = undefined;
+    $scope.instructionImages = {
+        confirmation: "http://res.cloudinary.com/dhro0fkhc/image/upload/v1452127817/screen_confirm_ybfmmf.png",
+        welcome: "http://res.cloudinary.com/dhro0fkhc/image/upload/v1452127818/screen_welcome_highlight_nbd9sp.png",
+        inactive: "http://res.cloudinary.com/dhro0fkhc/image/upload/v1452127817/screen_inactive_oqfgvc.png",
+        selection1: "http://res.cloudinary.com/dhro0fkhc/image/upload/v1452127813/screen_chose_meals_1_highlight_ziqrxl.png",
+        selection2: "http://res.cloudinary.com/dhro0fkhc/image/upload/v1452127813/screen_choose_meals_2_highlight_fhh4a4.png"
+    };
+
+    $scope.nextInstruction = function(){
+        if($scope.instructionNumber ==4){
+            $scope.instructionNumber = 0;
+        }else{
+            $scope.instructionNumber++;
+        }
+        $scope.setImage()
+
+    };
+
+    $scope.prevInstruction = function(){
+        if($scope.instructionNumber ==0){
+            $scope.instructionNumber = 4;
+        }else{
+            $scope.instructionNumber--;
+        }
+        $scope.setImage()
+    };
+
+    $scope.setImage = function(){
+        switch($scope.instructionNumber){
+            case 0:
+                $scope.loadedImage = $scope.instructionImages.welcome;
+                break;
+            case 1:
+                $scope.loadedImage = $scope.instructionImages.selection1;
+                break;
+            case 2:
+                $scope.loadedImage = $scope.instructionImages.selection2;
+                break;
+            case 3:
+                $scope.loadedImage = $scope.instructionImages.confirmation;
+                break;
+            case 4:
+                $scope.loadedImage = $scope.instructionImages.inactive;
+                break;
+        }
+    };
+
+    $scope.setImage();
 
     //get user
     if ($scope.user == undefined) {
@@ -134,7 +185,7 @@ myApp.controller('ClientWelcomeController', ["$scope", "DataService", "$http", f
 
             // PUT to change new_user to false
             $http.put('/getclients/updateNewUser', {id: user.id}).then(function(){
-               console.log("Change new_user to false");
+                console.log("Change new_user to false");
             });
         }
     };
@@ -143,6 +194,7 @@ myApp.controller('ClientWelcomeController', ["$scope", "DataService", "$http", f
     $scope.checkHasOrdered = function(){
 
         return $http.get('/getclients/checkOrdered', {params: {clientId: $scope.user.id, menuId: $scope.menu[0].menu_id}}).then(function(response){
+
            if (response.data[0]) {
                console.log("This person ordered...", response.data);
                $scope.orderedMealsArray = (response.data);
@@ -150,6 +202,7 @@ myApp.controller('ClientWelcomeController', ["$scope", "DataService", "$http", f
                $scope.mealsChosen = true;
                $scope.customized = false;
            }
+
         });
     };
 
