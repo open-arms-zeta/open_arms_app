@@ -66,7 +66,7 @@
         </div>
 
         <!--Modal for meal confirmation for default meal selection-->
-        <modal-dialog class="confirmation-modal" show='modalShown' ng-if="!mealsChosen && !customized && !notActive">
+        <modal-dialog class="default-confirmation-modal" show='modalShown' ng-if="!mealsChosen && !customized && !notActive">
             <md-content flex-offset="5">
                 <h1>Meal Confirmation for the week of: {{activeWeek | date: 'longDate'}}</h1>
                 <h2>You have selected:</h2>

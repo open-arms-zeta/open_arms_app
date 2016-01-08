@@ -185,7 +185,7 @@ myApp.controller('ClientWelcomeController', ["$scope", "DataService", "$http", f
 
             // PUT to change new_user to false
             $http.put('/getclients/updateNewUser', {id: user.id}).then(function(){
-               console.log("Change new_user to false");
+                console.log("Change new_user to false");
             });
         }
     };
@@ -193,12 +193,14 @@ myApp.controller('ClientWelcomeController', ["$scope", "DataService", "$http", f
     // Check if client has already ordered!
     $scope.checkHasOrdered = function(){
 
-        $http.get('/getclients/checkOrdered', {params: {clientId: $scope.user.id, menuId: $scope.menu[0].menu_id}}).then(function(response){
-           if (response.data[0]) {
-               //console.log("This person ordered...", response.data);
-               $scope.mealsChosen = true;
-               $scope.orderedMealsArray = (response.data);
-           }
+        return $http.get('/getclients/checkOrdered', {params: {clientId: $scope.user.id, menuId: $scope.menu[0].menu_id}}).then(function(response){
+            if (response.data[0]) {
+                console.log("This person ordered...", response.data);
+                $scope.orderedMealsArray = (response.data);
+                console.log("This is orderedMealsArray", $scope.orderedMealsArray);
+                $scope.mealsChosen = true;
+                $scope.customized = false;
+            }
         });
     };
 
@@ -212,6 +214,8 @@ myApp.controller('ClientWelcomeController', ["$scope", "DataService", "$http", f
     //  This function runs when client confirms default meal selection
     $scope.postDefaultMeal = function(){
 
+        $scope.modalShown = !$scope.modalShown;
+
         for(var i = 0; i < $scope.menu.length; i++){
             if($scope.user.category_id == $scope.menu[i].category_id){
                 $scope.orderToPost.push({
@@ -224,12 +228,10 @@ myApp.controller('ClientWelcomeController', ["$scope", "DataService", "$http", f
             }
         }
 
-        $http.post('/postclientorders/saveClientOrders', $scope.orderToPost).then(function(){
-            $scope.mealsChosen = true;
+        return $http.post('/postclientorders/saveClientOrders', $scope.orderToPost).then(function(){
             $scope.checkHasOrdered();
         });
 
-        $scope.modalShown = !$scope.modalShown;
     };
 
     // Modal for default
@@ -301,8 +303,6 @@ myApp.controller('ClientWelcomeController', ["$scope", "DataService", "$http", f
         }
 
         $http.post('/postclientorders/saveClientOrders', $scope.orderToPost).then(function(){
-            $scope.mealsChosen = true;
-            $scope.customized = false;
             $scope.checkHasOrdered();
         });
 

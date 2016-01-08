@@ -113,6 +113,8 @@ h1, h2, h3, h4, h5, h6, p {
     height: 65%;
 
     /* Center the dialog */
+    /*top: 40%;*/
+
     top: 37%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -139,6 +141,11 @@ h1, h2, h3, h4, h5, h6, p {
     font-weight: bold;
     font-family: 'arial', 'sans-serif';
 }
+
+
+/*.default-confirmation-modal .ng-modal-dialog {*/
+    /*top: 40%;*/
+/*}*/
 
 .modal-image{
     /* margin: 0 auto; */
@@ -215,6 +222,10 @@ h1, h2, h3, h4, h5, h6, p {
     padding: 5px 0 10px 0;
 }
 
+.confirmation-modal .ng-modal-dialog {
+    top: 20%;
+}
+
 /* ------ ACCORDION ------ */
 
 .accordion {
@@ -272,3 +283,4 @@ h1, h2, h3, h4, h5, h6, p {
 /*md-content.ng-modal-dialog{*/
     /*height: 80%;*/
 /*}*/
+
