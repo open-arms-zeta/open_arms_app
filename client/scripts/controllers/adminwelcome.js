@@ -3,6 +3,7 @@ myApp.controller('AdminWelcomeController', ["$scope", "DataService", "$http", "$
 
     $scope.dataService = DataService;
     $scope.activeWeek = undefined;
+    $scope.orderDate = undefined;
     $scope.selectedStartDate = undefined;
     $scope.selectedMealCount = undefined;
     $scope.clientOrders = undefined;
@@ -11,7 +12,7 @@ myApp.controller('AdminWelcomeController', ["$scope", "DataService", "$http", "$
     $scope.initSelectedWeek = function(){
         var startDate = new Date($scope.activeWeek);
         console.log(startDate);
-        $scope.selectedStartDate = new Date(startDate.setDate($scope.activeWeek.getDate()- 7));
+        $scope.selectedStartDate = $scope.orderDate = new Date(startDate.setDate($scope.activeWeek.getDate()- 7));
         console.log($scope.selectedStartDate);
 
     };
@@ -94,6 +95,19 @@ myApp.controller('AdminWelcomeController', ["$scope", "DataService", "$http", "$
             }
         }
         return returnArray;
+    };
+
+    $scope.disableNext = function() {
+        if(typeof $scope.selectedEndDate === 'object'){
+            return $scope.orderDate<=$scope.selectedStartDate.getTime()
+        }else{
+            console.log(typeof $scope.orderDate);
+            console.log(typeof $scope.selectedStartDate);
+            return $scope.orderDate<=$scope.selectedStartDate;
+        }
+        //console.log(typeof $scope.orderDate);
+        //console.log(typeof $scope.selectedStartDate);
+        //console.log($scope.orderDate>$scope.selectedStartDate);
     };
 
     //$scope.print = function(){

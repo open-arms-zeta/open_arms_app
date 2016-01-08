@@ -4,7 +4,7 @@
         <p class="lead">Displaying information for the week of:</p>
         <button class="switch-week btn dark-button" ng-click="previousWeek()"><i class="fa fa-chevron-left"></i> Previous Week</button>
         <span class="lead date-display">{{selectedStartDate | date: 'fullDate'}}</span>
-        <button class="switch-week btn dark-button" ng-click="nextWeek()">Next Week <i class="fa fa-chevron-right"></i></button>
+        <button class="switch-week btn dark-button" ng-click="nextWeek()" ng-disabled="disableNext()">Next Week <i class="fa fa-chevron-right"></i></button>
     </div>
     <div class="csv-buttons">
         <button type="button"  class="btn dark-button" ng-csv="printMealCount()" csv-header="['Entree', 'Side 1', 'Side 2', 'Category', 'Start Date','Number of Meals']"
