@@ -89,7 +89,16 @@ myApp.controller('CalculateMealsController', ["$scope", "DataService", "$http", 
         $http.post('/mealcount', $scope.menu).then(function(response){
             console.log(response);
             $scope.menu = $scope.formatForDisplay($scope.menu);
+            $scope.categories = $scope.clearCount($scope.categories)
         });
+    };
+
+    //clear count
+    $scope.clearCount = function(categories){
+        for(var i = 0; i<categories.length; i++){
+            categories[i].formCount = "";
+        }
+        return categories;
     };
 
     //format for display
