@@ -7,7 +7,7 @@
 <i class="fa fa-chevron-right fa-4x nav-button" ng-click="nextInstruction()"></i>
 
 <div ng-if="instructionNumber==0">
-    <h3>Welcome Page</h3>
+    <h3 class="instruction-title">Welcome Page</h3>
     <div class="icon-container">
         <i class="fa fa-info fa-icon fa-2x" style="color: #4288dc"></i>
         <p class="icon-text">This is the welcome message. The meals you are ordering on the
@@ -29,7 +29,7 @@
 </div>
 
 <div ng-if="instructionNumber==1">
-    <h3>Meal Selection Page</h3>
+    <h3 class="instruction-title">Meal Selection Page</h3>
     <div class="icon-container">
         <i class="fa fa-info fa-icon fa-2x" style="color: #4288dc"></i>
         <p class="icon-text">This is a category header.  You can click on this to view the meals in the menu
@@ -53,7 +53,7 @@
 </div>
 
 <div ng-if="instructionNumber==2">
-    <h3>Meal Selection Page (Continued)</h3>
+    <h3 class="instruction-title">Meal Selection Page (Continued)</h3>
     <!--<div class="icon-container">-->
         <!--<i class="fa fa-info fa-icon fa-2x" style="color: #4288dc"></i>-->
         <!--<p class="icon-text">The category Header</p>-->
@@ -78,7 +78,7 @@
 </div>
 
 <div ng-if="instructionNumber==3">
-    <h3>Confirmation Page</h3>
+    <h3 class="instruction-title">Confirmation Page</h3>
     <i class="fa fa-info fa-icon fa-2x"></i>
     <p class="icon-text">Once you have selected your meals, you will see a confirmation message containing the list of
     meals you ordered for the week.  These selections are final and cannot be changed.
@@ -86,7 +86,7 @@
 </div>
 
 <div ng-if="instructionNumber==4">
-    <h3>Inactive Page</h3>
+    <h3 class="instruction-title">Inactive Page</h3>
     <i class="fa fa-info fa-icon fa-2x"></i>
     <p class="icon-text">If your account has been inactivated you will see this message, and will not be able to
         select a meal pack.  Call client services for more information</p>
