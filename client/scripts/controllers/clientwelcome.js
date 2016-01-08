@@ -194,13 +194,15 @@ myApp.controller('ClientWelcomeController', ["$scope", "DataService", "$http", f
     $scope.checkHasOrdered = function(){
 
         return $http.get('/getclients/checkOrdered', {params: {clientId: $scope.user.id, menuId: $scope.menu[0].menu_id}}).then(function(response){
-            if (response.data[0]) {
-                console.log("This person ordered...", response.data);
-                $scope.orderedMealsArray = (response.data);
-                console.log("This is orderedMealsArray", $scope.orderedMealsArray);
-                $scope.mealsChosen = true;
-                $scope.customized = false;
-            }
+
+           if (response.data[0]) {
+               console.log("This person ordered...", response.data);
+               $scope.orderedMealsArray = (response.data);
+               console.log("This is orderedMealsArray", $scope.orderedMealsArray);
+               $scope.mealsChosen = true;
+               $scope.customized = false;
+           }
+
         });
     };
 

@@ -56,6 +56,7 @@ router.get('/checkOrdered', function(req,res){
         // Stream results back one row at a time, push into results array
         query.on('row', function (row) {
             results.push(row);
+            console.log("This is row", row);
         });
 
         // After all data is returned, close connection and return results

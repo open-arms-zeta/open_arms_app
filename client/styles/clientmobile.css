@@ -98,6 +98,11 @@
         width: 60%;
     }
 
+    .default-confirmation-modal .ng-modal-dialog {
+        top: 50%;
+    }
+
+
 }
 
 @media (max-width:736px) {
@@ -124,6 +129,8 @@
     .ng-modal-dialog {
         width: 80%;
     }
+
+
 
 }
 
@@ -170,22 +177,30 @@
         width: 90%;
     }
 
-    /*CONFIRMATION MODAL*/
+    /*DEFAULT CONFIRMATION MODAL*/
 
-    .confirmation-modal .ng-modal-dialog-content {
-        padding: 30px;
+    .default-confirmation-modal .ng-modal-dialog {
+        top: 45%;
     }
 
-    .confirmation-modal h1 {
-        font-size: 26px;
+    .default-confirmation-modal .ng-modal-dialog-content {
+        padding: 25px;
     }
 
-    .confirmation-modal h2 {
+    .default-confirmation-modal h1 {
         font-size: 22px;
     }
 
+    .default-confirmation-modal h2 {
+        font-size: 18px;
+    }
+
+    .default-confirmation-modal li {
+        font-size: 14px;
+    }
+
     .confirmation-modal-button {
-        font-size: 12px;
+        font-size: 11px;
     }
 
     /*CUSTOMIZE MEAL PAGE*/
@@ -214,10 +229,6 @@
 
     .mobile-picnic-basket {
         width: 85%;
-    }
-
-    .customize-meals .ng-modal-dialog {
-        top: 25%;
     }
 
 }

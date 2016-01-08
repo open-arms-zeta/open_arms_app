@@ -110,12 +110,13 @@ h1, h2, h3, h4, h5, h6, p {
     position: absolute;
     flex: 66%;
     width: 70%;
-    height: 65%;
+    height: 87%;
 
     /* Center the dialog */
+
     /*top: 40%;*/
 
-    top: 37%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     -webkit-transform: translate(-50%, -50%);
@@ -159,6 +160,8 @@ h1, h2, h3, h4, h5, h6, p {
 
 .modal-header-text{
     text-align: center;
+    margin-bottom: 20px;
+    font-size: 42px;
 }
 .image-box{
     display: inline-block;
@@ -174,11 +177,13 @@ h1, h2, h3, h4, h5, h6, p {
 .fa-chevron-left{
     float:left;
     left: 0;
+    outline: none;
 }
 
 .fa-chevron-right{
     float:right;
     right: 0;
+    outline: none;
 }
 
 .fa-icon{
@@ -187,14 +192,20 @@ h1, h2, h3, h4, h5, h6, p {
     /*top: -19px;*/
 }
 
+.instruction-title {
+    padding: 5px 60px;
+    font-size: 28px;
+}
+
 .icon-container{
     overflow: auto;
-    padding: 3px 0;
+    padding: 5px 60px;
 }
 .icon-text{
     width: 95%;
     float: right;
 }
+
 /* ------ CUSTOMIZE MEALS ------ */
 .customize-meals {
     padding-top: 40px;
@@ -223,7 +234,7 @@ h1, h2, h3, h4, h5, h6, p {
 }
 
 /*.confirmation-modal .ng-modal-dialog {*/
-    /*top: 20%;*/
+
 /*}*/
 
 /* ------ ACCORDION ------ */
