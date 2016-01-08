@@ -112,13 +112,10 @@ h1, h2, h3, h4, h5, h6, p {
     height: 65%;
 
     /* Center the dialog */
-<<<<<<< HEAD
-    top: 40%;
-=======
+
     /*top: 40%;*/
 
     top: 37%;
->>>>>>> master
     left: 50%;
     transform: translate(-50%, -50%);
     -webkit-transform: translate(-50%, -50%);
@@ -144,13 +141,6 @@ h1, h2, h3, h4, h5, h6, p {
     font-weight: bold;
     font-family: 'arial', 'sans-serif';
 }
-
-<<<<<<< HEAD
-.default-confirmation-modal .ng-modal-dialog {
-    top: 40%;
-}
-
-=======
 
 /*.default-confirmation-modal .ng-modal-dialog {*/
     /*top: 40%;*/
@@ -204,7 +194,7 @@ h1, h2, h3, h4, h5, h6, p {
     width: 95%;
     float: right;
 }
->>>>>>> master
+
 /* ------ CUSTOMIZE MEALS ------ */
 .customize-meals {
     padding-top: 40px;

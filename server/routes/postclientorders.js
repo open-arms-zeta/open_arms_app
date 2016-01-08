@@ -9,7 +9,7 @@ var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/op
 router.post('/saveClientOrders', function(req, res){
 
     //pg.connect(connectionString, function (err, client){
-<<<<<<< HEAD
+
 
         for(var i = 0; i < req.body.length; i++){
 
@@ -29,27 +29,6 @@ router.post('/saveClientOrders', function(req, res){
             //var result = client.query(q, [clientOrder.clientId, clientOrder.menuId, clientOrder.mealId, clientOrder.categoryId, clientOrder.count]);
             //
             //if(err) console.log(err);
-=======
-
-    for(var i = 0; i < req.body.length; i++){
-
-        var clientOrder = {
-            "clientId": req.body[i].clientId,
-            "menuId": req.body[i].menuId,
-            "mealId": req.body[i].mealId,
-            "categoryId": req.body[i].categoryId,
-            "count": req.body[i].count
-        };
-
-        //console.log(clientOrder);
-        save(clientOrder);
-
-        //var q = "INSERT INTO client_orders (client_id, menu_id, meal_id, category_id, count) VALUES ($1, $2, $3, $4, $5)";
-        //
-        //var result = client.query(q, [clientOrder.clientId, clientOrder.menuId, clientOrder.mealId, clientOrder.categoryId, clientOrder.count]);
-        //
-        //if(err) console.log(err);
->>>>>>> master
 
     }
 
