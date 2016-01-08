@@ -143,9 +143,9 @@ h1, h2, h3, h4, h5, h6, p {
 }
 
 
-/*.default-confirmation-modal .ng-modal-dialog {*/
-    /*top: 40%;*/
-/*}*/
+.default-confirmation-modal .ng-modal-dialog {
+    top: 40%;
+}
 
 .modal-image{
     /* margin: 0 auto; */
@@ -222,9 +222,9 @@ h1, h2, h3, h4, h5, h6, p {
     padding: 5px 0 10px 0;
 }
 
-.confirmation-modal .ng-modal-dialog {
-    top: 20%;
-}
+/*.confirmation-modal .ng-modal-dialog {*/
+    /*top: 20%;*/
+/*}*/
 
 /* ------ ACCORDION ------ */
 

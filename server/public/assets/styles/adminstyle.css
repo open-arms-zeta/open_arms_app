@@ -125,8 +125,11 @@ html, body {
     text-decoration: none;
 }
 
-
+#sign-out-button{
+    border: 3px solid #5a1616;
+}
 .sign-out{
+
     width: 60%;
     position: absolute;
     margin-left: auto;
@@ -153,14 +156,15 @@ html, body {
 /*BUTTONS*/
 
 .btn.active.focus, .btn.active:focus, .btn.focus, .btn:active.focus, .btn:active:focus, .btn:focus {
-    outline: 0;
+    outline: none;
 }
 
 
 .custom-button{
-    border: 3px solid #5a1616;
+    outline: none;
+    border: 1px solid #5a1616;
     padding: 5px 10px;
-    background-color: #f1f3eb;
+    background-color: #ffffff;
     color: #5a1616;
     text-align: center;
     -webkit-transition: background-color .3s, color .3s;
@@ -184,6 +188,7 @@ html, body {
 
 
 .dark-button{
+    outline: none;
     border: 1px solid #d78119;
     background-color: #ffffff;
     color: #d78119;
@@ -279,6 +284,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .custom-button-ui-grid{
+    outline: none;
     border-radius: 5px;
     padding: 1px 4px;
     border: 1px solid #d78119;
@@ -352,18 +358,24 @@ input[type=number]::-webkit-outer-spin-button {
     padding: 5px;
 }
 
+.meal-modal{
+    padding-bottom: 20px;
+}
+
 .modal-buttons{
     padding-top: 10px;
 }
 
 .close-button{
+    outline: none;
+    font-size: 1.5em;
     float: right;
     padding: 5px;
     border-radius: 50%;
     border: none;
-    background-color: #ffffff;
+    background: none;
     color: #5a1616;
-    transition: background .3s, color .3s;
+    transition: color .3s;
     margin-top: -10px;
     margin-right: -5px;
 
@@ -378,10 +390,7 @@ input[type=number]::-webkit-outer-spin-button {
 /*}*/
 
 .close-button:hover{
-    color: #ffffff;
-    float: right;
-    border-radius: 50%;
-    background-color: #5a1616;
+    color: #ae7b87;
 }
 
 /*.close-button.active.focus, .close-button.active:focus, .close-button.focus,*/
@@ -393,7 +402,7 @@ input[type=number]::-webkit-outer-spin-button {
 
 .close-button.active, .close-button.active,
 .close-button:active, .close-button:active {
-    background-color: #4e1515;
+    color: #ae7b87;
 }
 
 
