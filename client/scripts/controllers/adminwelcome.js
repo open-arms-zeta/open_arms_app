@@ -4,8 +4,7 @@ myApp.controller('AdminWelcomeController', ["$scope", "DataService", "$http", "$
     $scope.dataService = DataService;
     $scope.activeWeek = undefined;
     $scope.selectedStartDate = undefined;
-    //$scope.selectedEndDate = undefined;
-    $scope.l = undefined;
+    $scope.selectedMealCount = undefined;
     $scope.clientOrders = undefined;
 
     //uses the active day (activeWeek variable pulled from factory) to calculate a week range used for calculation
@@ -111,4 +110,5 @@ myApp.controller('AdminWelcomeController', ["$scope", "DataService", "$http", "$
     }
     $scope.initSelectedWeek();
     $scope.getMealCount();
+    $scope.getClientOrders();
 }]);
