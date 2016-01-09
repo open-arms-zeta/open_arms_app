@@ -88,10 +88,11 @@
 
         <!--Modal for Instructions-->
         <modal-dialog show='modalShown3' ng-if="!mealsChosen && !customized && !notActive">
+            <i class="fa fa-close fa-2x close-button" ng-click="toggleModal3()"></i>
             <md-content>
                 <instructions></instructions>
 
-                <md-button class="md-raised" ng-click="toggleModal3()">Close</md-button>
+                <!--<md-button class="md-raised" ng-click="toggleModal3()">Close</md-button>-->
 
             </md-content>
         </modal-dialog>

@@ -30,55 +30,77 @@ myApp.controller('ClientWelcomeController', ["$scope", "DataService", "$http", f
 
     //modal vars
     $scope.instructionNumber = 0;
-    $scope.loadedImage = undefined;
-    $scope.instructionImages = {
-        confirmation: "http://res.cloudinary.com/dhro0fkhc/image/upload/v1452127817/screen_confirm_ybfmmf.png",
-        welcome: "http://res.cloudinary.com/dhro0fkhc/image/upload/v1452127818/screen_welcome_highlight_nbd9sp.png",
-        inactive: "http://res.cloudinary.com/dhro0fkhc/image/upload/v1452127817/screen_inactive_oqfgvc.png",
-        selection1: "http://res.cloudinary.com/dhro0fkhc/image/upload/v1452127813/screen_chose_meals_1_highlight_ziqrxl.png",
-        selection2: "http://res.cloudinary.com/dhro0fkhc/image/upload/v1452127813/screen_choose_meals_2_highlight_fhh4a4.png"
-    };
+    //$scope.loadedImage = undefined;
+    $scope.instructionImages = [
+    {
+        title: 'Welcome Screen',
+        url: "http://res.cloudinary.com/dhro0fkhc/image/upload/v1452359700/screen_welcome_highlight_qhrw5z.png"
+    },
+    {
+        title: 'Meal Selection',
+            url: "http://res.cloudinary.com/dhro0fkhc/image/upload/v1452359701/screen_chose_meals_1_highlight_s1iy0v.png"
+    },
+    {
+        title: 'Meal Selection (Continued)',
+            url: "http://res.cloudinary.com/dhro0fkhc/image/upload/v1452363827/screen_choose_meals_2_highlight_fl3wkj.png"
+    },
+    {
+        title: 'Confirmation Window',
+            url: "http://res.cloudinary.com/dhro0fkhc/image/upload/v1452359801/confirmation_window.png"
+    },
+    {
+        title: 'Order Complete',
+        url: "http://res.cloudinary.com/dhro0fkhc/image/upload/v1452359701/screen_confirm_uxx2s0.png"
+    },
+    {
+        title: 'Inactive User',
+        url: "http://res.cloudinary.com/dhro0fkhc/image/upload/v1452359700/screen_inactive_ggwf3r.png"
+    }
+    ];
 
     $scope.nextInstruction = function(){
-        if($scope.instructionNumber ==4){
+        if($scope.instructionNumber == Object.keys($scope.instructionImages).length - 1){
             $scope.instructionNumber = 0;
         }else{
             $scope.instructionNumber++;
         }
-        $scope.setImage()
+        //$scope.setImage()
 
     };
 
     $scope.prevInstruction = function(){
         if($scope.instructionNumber ==0){
-            $scope.instructionNumber = 4;
+            $scope.instructionNumber = Object.keys($scope.instructionImages).length - 1;
         }else{
             $scope.instructionNumber--;
         }
-        $scope.setImage()
+        //$scope.setImage()
     };
 
-    $scope.setImage = function(){
-        switch($scope.instructionNumber){
-            case 0:
-                $scope.loadedImage = $scope.instructionImages.welcome;
-                break;
-            case 1:
-                $scope.loadedImage = $scope.instructionImages.selection1;
-                break;
-            case 2:
-                $scope.loadedImage = $scope.instructionImages.selection2;
-                break;
-            case 3:
-                $scope.loadedImage = $scope.instructionImages.confirmation;
-                break;
-            case 4:
-                $scope.loadedImage = $scope.instructionImages.inactive;
-                break;
-        }
-    };
+    //$scope.setImage = function(){
+    //    switch($scope.instructionNumber){
+    //        case 0:
+    //            $scope.loadedImage = $scope.instructionImages.welcome;
+    //            break;
+    //        case 1:
+    //            $scope.loadedImage = $scope.instructionImages.selection1;
+    //            break;
+    //        case 2:
+    //            $scope.loadedImage = $scope.instructionImages.selection2;
+    //            break;
+    //        case 3:
+    //            $scope.loadedImage = $scope.instructionImages.confirmationWindow;
+    //            break;
+    //        case 4:
+    //            $scope.loadedImage = $scope.instructionImages.confirmation;
+    //            break;
+    //        case 5:
+    //            $scope.loadedImage = $scope.instructionImages.inactive;
+    //            break;
+    //    }
+    //};
 
-    $scope.setImage();
+    //$scope.setImage();
 
     //get user
     if ($scope.user == undefined) {
@@ -248,6 +270,8 @@ myApp.controller('ClientWelcomeController', ["$scope", "DataService", "$http", f
 
     // Modal for Instructions
     $scope.toggleModal3 = function(){
+
+        $scope.instructionNumber = 0;
         $scope.modalShown3 = !$scope.modalShown3;
     };
 

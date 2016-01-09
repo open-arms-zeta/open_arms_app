@@ -156,6 +156,7 @@ h1, h2, h3, h4, h5, h6, p {
     /* text-align: center; */
     max-width: 100%;
     height: auto;
+    padding-bottom: 15px;
 }
 
 .modal-header-text{
@@ -167,13 +168,34 @@ h1, h2, h3, h4, h5, h6, p {
     display: inline-block;
     width: 85%;
 }
+
+.close-button{
+    outline: none;
+    position: absolute;
+    float: right;
+    right: 5px;
+    top: 5px;
+    color: black;
+    transition: color .3s;
+}
+
+.close-button:hover{
+    cursor: pointer;
+    color: #e4521b;
+}
 .nav-button{
     /*position: absolute;*/
     margin-top: 10%;
+    color: black;
     width: 7%;
     display: inline-block;
+    transition: color .3s;
 }
 
+.nav-button:hover{
+    cursor: pointer;
+    color: #e4521b;
+}
 .fa-chevron-left{
     float:left;
     left: 0;

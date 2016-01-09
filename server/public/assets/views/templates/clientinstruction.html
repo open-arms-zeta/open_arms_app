@@ -1,13 +1,14 @@
-<h1 class="modal-header-text">Instructions</h1>
+<h1 class="modal-header-text">{{instructionImages[instructionNumber].title}}</h1>
+<!--<md-button class="md-raised" ng-click="toggleModal3()">Close</md-button>-->
 
 <i class="fa fa-chevron-left fa-4x nav-button" ng-click="prevInstruction()"></i>
 <div class="image-box">
-    <img ng-src="{{loadedImage}}" width="600px" class="modal-image">
+    <img ng-src="{{instructionImages[instructionNumber].url}}" width="750px" class="modal-image">
 </div>
 <i class="fa fa-chevron-right fa-4x nav-button" ng-click="nextInstruction()"></i>
 
 <div ng-if="instructionNumber==0">
-    <h3 class="instruction-title">Welcome Page</h3>
+    <!--<h3 class="instruction-title">Welcome Page</h3>-->
     <div class="icon-container">
         <i class="fa fa-info fa-icon fa-2x" style="color: #4288dc"></i>
         <p class="icon-text">This is the welcome message. The meals you are ordering on the
@@ -29,7 +30,7 @@
 </div>
 
 <div ng-if="instructionNumber==1">
-    <h3 class="instruction-title">Meal Selection Page</h3>
+    <!--<h3 class="instruction-title">Meal Selection Page</h3>-->
     <div class="icon-container">
         <i class="fa fa-info fa-icon fa-2x" style="color: #4288dc"></i>
         <p class="icon-text">This is a category header.  You can click on this to view the meals in the menu
@@ -53,7 +54,7 @@
 </div>
 
 <div ng-if="instructionNumber==2">
-    <h3 class="instruction-title">Meal Selection Page (Continued)</h3>
+    <!--<h3 class="instruction-title">Meal Selection Page (Continued)</h3>-->
     <!--<div class="icon-container">-->
         <!--<i class="fa fa-info fa-icon fa-2x" style="color: #4288dc"></i>-->
         <!--<p class="icon-text">The category Header</p>-->
@@ -67,10 +68,14 @@
     <div class="icon-container">
         <i class="fa fa-info fa-icon fa-2x" style="color: #5cc200"></i>
         <p class="icon-text">This is the list of selected meal items.  Meals will appear here
-            as you add items form the menu. If you wish to remove a meal, press the "Remove Meal" button</p>
+            as you add items form the menu</p>
     </div>
     <div class="icon-container">
-        <i class="fa fa-info fa-icon fa-2x" style="color: #ef7eff"></i>
+        <i class="fa fa-info fa-icon fa-2x" style="color: #ff2600"></i>
+        <p class="icon-text">If you wish to remove a meal, press the "Remove Meal" button</p>
+    </div>
+    <div class="icon-container">
+        <i class="fa fa-info fa-icon fa-2x" style="color: #0433ff"></i>
         <p class="icon-text">When you are happy with your selection, press the "Submit Meal Selection" button to
         submit your custom meal pack</p>
     </div>
@@ -78,7 +83,18 @@
 </div>
 
 <div ng-if="instructionNumber==3">
-    <h3 class="instruction-title">Confirmation Page</h3>
+    <!--<h3 class="instruction-title">Confirmation Window</h3>-->
+    <div class="icon-container">
+        <i class="fa fa-info fa-icon fa-2x"></i>
+        <p class="icon-text">Once you hit the "Submit Meal Selection" button, a window will appear showing you your meal
+        selection. If you are happy with your choice, press the "Confirm Meal Selection" button.  If you would like to
+        make additional changes, press the "No - Go Back" button</p>
+    </div>
+
+</div>
+
+<div ng-if="instructionNumber==4">
+    <!--<h3 class="instruction-title">Confirmed Order</h3>-->
     <div class="icon-container">
         <i class="fa fa-info fa-icon fa-2x"></i>
         <p class="icon-text">Once you have selected your meals, you will see a confirmation message containing the list of
@@ -88,8 +104,8 @@
 
 </div>
 
-<div ng-if="instructionNumber==4">
-    <h3 class="instruction-title">Inactive Page</h3>
+<div ng-if="instructionNumber==5">
+    <!--<h3 class="instruction-title">Inactive Page</h3>-->
     <div class="icon-container">
         <i class="fa fa-info fa-icon fa-2x"></i>
         <p class="icon-text">If your account has been inactivated you will see this message, and will not be able to
