@@ -448,8 +448,10 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .admin-welcome-meal-calc-data {
-    margin-bottom: 0px;
+    margin-bottom: 0;
     /*text-align: center;*/
+    padding-top: 7px;
+    padding-bottom: 7px;
 }
 .calcResults{
     padding-top: 7px;
