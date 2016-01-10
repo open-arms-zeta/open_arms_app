@@ -37,12 +37,12 @@ myApp.controller('AdminWelcomeController', ["$scope", "DataService", "$http", "$
 
     //gets meal count for a given week
     $scope.getMealCount = function(){
-        var startDate = new Date($scope.selectedStartDate);
+        var startDate = new Date($scope.selectedStartDate.setHours(0,0,0,0));
         console.log('start date', startDate);
         //var endDate = new Date($scope.selectedEndDate);
         //console.log('end dat', endDate);
         $http.get('/mealcount', {params: {startDate: startDate}}).then(function(response){
-            //console.log(response.data);
+            console.log("This is response.data", response.data);
             //$scope.selectedMealCount = response.data;
             $scope.selectedMealCount = $scope.formatForDisplay(response.data);
         });
@@ -83,7 +83,7 @@ myApp.controller('AdminWelcomeController', ["$scope", "DataService", "$http", "$
 
     //format for display
     $scope.formatForDisplay = function(data){
-        console.log(data);
+        console.log("This is data", data);
         var groupedObject = _.groupBy(data , 'entree');
         console.log(groupedObject, 'goaspfasdf');
         var returnArray = [];

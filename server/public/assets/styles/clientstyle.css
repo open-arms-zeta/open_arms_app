@@ -145,6 +145,7 @@ h1, h2, h3, h4, h5, h6, p {
 
 
 .default-confirmation-modal .ng-modal-dialog {
+    height: 70%;
     top: 50%;
 }
 
@@ -255,9 +256,10 @@ h1, h2, h3, h4, h5, h6, p {
     padding: 5px 0 10px 0;
 }
 
-/*.confirmation-modal .ng-modal-dialog {*/
-
-/*}*/
+.confirmation-modal .ng-modal-dialog {
+    height: 40%;
+    top: 25%;
+}
 
 /* ------ ACCORDION ------ */
 
