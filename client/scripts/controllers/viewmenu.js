@@ -170,6 +170,8 @@ myApp.controller('ViewMenuController', ["$scope", "$http", "DataService", functi
     // Check if duplicate meals are selected for a category
     $scope.checkMealDuplicates = function(categoryName, category){
 
+        $scope.disableButton = false;
+
         $scope.categoryIndex = _.indexOf($scope.categories, category);
 
         $scope.categories[$scope.categoryIndex].mealDuplicateError = false;
