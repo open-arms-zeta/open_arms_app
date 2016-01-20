@@ -1,11 +1,15 @@
 var express = require('express');
 var router = express.Router();
+var timezone = require('moment-timezone');
 var pg = require('pg');
 
 var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/open_arms_db';
 
 router.get('/', function(req,res){
     var results = [];
+    console.log('unformatted date', req.query.startDate);
+    var startDate = timezone(req.query.startDate).tz('America/Chicago').format();
+    console.log('formatted date', startDate);
 
     pg.connect(connectionString, function (err, client) {
         var query = client.query("SELECT menus.start_date, menus.end_date, meals.entree, meals.side_1, meals.side_2, categories.category_name, meal_count.count\
@@ -14,7 +18,7 @@ router.get('/', function(req,res){
        JOIN meals ON meals.meal_id = meal_count.meal_id\
        JOIN categories ON categories.category_id = meal_count.category_id\
        WHERE menus.start_date = $1",
-            [req.query.startDate]);
+            [startDate]);
 
 
         // Stream results back one row at a time, push into results array
