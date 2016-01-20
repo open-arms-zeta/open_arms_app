@@ -1,4 +1,5 @@
 var express = require('express');
+var timezone = require('moment-timezone');
 var router = express.Router();
 var pg = require('pg');
 
@@ -6,6 +7,10 @@ var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/op
 
 router.get('/', function(req,res){
     var results = [];
+
+    console.log('unformatted date', req.query.startDate);
+    var startDate = timezone(req.query.startDate).tz('America/Chicago').format();
+    console.log('formatted date', startDate);
 
     pg.connect(connectionString, function (err, client) {
         var query = client.query("SELECT users.first_name, users.last_name, meals.entree, meals.side_1, \
@@ -21,7 +26,7 @@ router.get('/', function(req,res){
         ON categories.category_id = client_orders.category_id\
         WHERE users.role = 'client' AND menus.start_date = $1\
         ORDER BY menus.start_date, users.last_name ASC",
-            [req.query.startDate]);
+            [startDate]);
 
 
         // Stream results back one row at a time, push into results array

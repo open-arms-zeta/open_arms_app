@@ -1,4 +1,5 @@
 var express = require('express');
+var timezone = require('moment-timezone');
 var router = express.Router();
 var pg = require('pg');
 
@@ -38,16 +39,18 @@ router.get('/meals', function(req,res){
 // POST call to create new menu in menus table
 router.post('/newMenu', function(req,res){
 
+    console.log('unformatted date', req.body.startDate);
+    var startDate = timezone(req.body.startDate).tz('America/Chicago').format();
+    console.log('formatted date', startDate);
+
     var newMenu = {
-        "startDate": req.body.startDate,
-        "endDate":req.body.endDate,
-        "weekNumber": req.body.weekNumber,
-        "status": false
+        "startDate": startDate,
+        "weekNumber": req.body.weekNumber
     };
 
     pg.connect(connectionString, function(err, client){
         client.query("INSERT INTO menus (start_date, end_date, week_number, status) VALUES ($1, $2, $3, $4)",
-            [newMenu.startDate, newMenu.endDate, newMenu.weekNumber, newMenu.status],
+            [newMenu.startDate, newMenu.weekNumber],
             function (err, result) {
                 if (err) {
                     console.log("Error inserting data: ", err);
