@@ -1,0 +1,26 @@
+<md-dialog aria-label="mealConfirmation" ng-cloak>
+    <md-toolbar class="md-accent md-hue-3">
+        <div class="md-toolbar-tools">
+            <h1>Meal Confirmation for the week of: {{activeWeek | date: 'longDate'}}</h1>
+            <span flex flex-offset="15"></span>
+            <md-button class="md-icon-button" ng-click="cancel()">
+                <i class="fa fa-times fa-lg"></i>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-dialog-content class="meal-confirmation-modal-content" flex-offset="5">
+
+        <h2>You have selected:</h2>
+
+        <ol>
+            <li class="meal-info" ng-repeat="meal in addedMealArray track by $index">
+                <h3>{{meal.entree}} with {{meal.side_1}}<span ng-if="meal.side_2"> and {{meal.side_2}}</span></h3>
+                <p class="allergen-text" ng-repeat="allergen in meal.allergen">  Allergen: {{allergen}}</p>
+            </li>
+        </ol>
+
+        <md-button class="md-raised confirmation-modal-button" ng-click="postCustomMeal()">Confirm Meal Selection</md-button>
+        <md-button class="md-raised md-warn confirmation-modal-button" ng-click="cancel()">No - Go Back</md-button>
+
+    </md-dialog-content>
+</md-dialog>

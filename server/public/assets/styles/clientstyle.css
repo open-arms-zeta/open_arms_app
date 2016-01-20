@@ -188,7 +188,7 @@ h1, h2, h3, h4, h5, h6, p {
     /*position: absolute;*/
     margin-top: 10%;
     color: black;
-    width: 7%;
+    /*width: 7%;*/
     display: inline-block;
     transition: color .3s;
 }
@@ -198,14 +198,14 @@ h1, h2, h3, h4, h5, h6, p {
     color: #e4521b;
 }
 .fa-chevron-left{
-    float:left;
-    left: 0;
+    /*float:left;*/
+    /*left: 0;*/
     outline: none;
 }
 
 .fa-chevron-right{
-    float:right;
-    right: 0;
+    /*float:right;*/
+    /*right: 0;*/
     outline: none;
 }
 
@@ -227,6 +227,10 @@ h1, h2, h3, h4, h5, h6, p {
 .icon-text{
     width: 95%;
     float: right;
+}
+
+.instruction-modal-content, .meal-confirmation-modal-content{
+    padding: 35px;
 }
 
 /* ------ CUSTOMIZE MEALS ------ */
