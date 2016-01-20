@@ -20,7 +20,7 @@ router.post('/saveToMealsTable', function(req, res){
     console.log("post request", postMeals);
 
     pg.connect(connectionString, function(err, client){
-        client.query("INSERT INTO meals (entree, side_1, side_2, status) VALUES ($1, $2, $3, $4)",
+        var query = client.query("INSERT INTO meals (entree, side_1, side_2, status) VALUES ($1, $2, $3, $4)",
             [postMeals.entree, postMeals.side_1, postMeals.side_2, postMeals.status],
             function(err, result) {
                 if (err) {
@@ -30,6 +30,11 @@ router.post('/saveToMealsTable', function(req, res){
 
                 res.send(result);
             });
+
+        query.on('end', function(){
+            client.end();
+        });
+
     });
 
 });
@@ -110,9 +115,9 @@ router.post('/postToMealCategory', function(req, res){
         if(err) console.log(err);
 
         //res.send('entered');
-        //result.on('end', function () {
-        //    client.end();
-        //});
+        result.on('end', function () {
+            client.end();
+        });
 
     });
 
@@ -145,9 +150,9 @@ router.post('/postToAllergens', function(req, res){
         if(err) console.log(err);
 
         //res.send('entered into allergens table')
-        //result.on('end', function () {
-        //    client.end();
-        //});
+        result.on('end', function () {
+            client.end();
+        });
 
     });
 

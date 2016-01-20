@@ -124,7 +124,7 @@ router.post('/saveToMealMenu', function(req,res){
             var q = "INSERT INTO meal_menu (menu_id, meal_id, category_id) VALUES ($1, $2, $3)";
             //console.log("query: ", q);
             //console.log(newMealMenu.menuId, newMealMenu.mealId ,newMealMenu.categoryId);
-            client.query(q, [newMealMenu.menuId, newMealMenu.mealId, newMealMenu.categoryId]);
+            var result = client.query(q, [newMealMenu.menuId, newMealMenu.mealId, newMealMenu.categoryId]);
 
             if(err) console.log(err);
 
@@ -133,9 +133,9 @@ router.post('/saveToMealMenu', function(req,res){
         }
 
         //client.end();
-        //result.on('end', function () {
-        //    client.end();
-        //});
+        result.on('end', function () {
+            client.end();
+        });
     });
 
 
