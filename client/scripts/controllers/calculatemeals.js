@@ -15,7 +15,7 @@ myApp.controller('CalculateMealsController', ["$scope", "DataService", "$http", 
     //Calculates the range (monday to sunday) for the most recent week of completed orders, this is used for determining
     //meal quantities.
     $scope.getOrderWeek = function(){
-        var startDate = new Date($scope.activeWeek.setHours(0,0,0,0));
+        var startDate = new Date($scope.activeWeek);
         $scope.selectedStartDate = new Date(startDate.setDate($scope.activeWeek.getDate()- 7));
         var endDate = new Date($scope.activeWeek);
         $scope.selectedEndDate = endDate.setDate($scope.activeWeek.getDate() - 1);

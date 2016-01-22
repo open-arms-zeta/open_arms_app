@@ -17,7 +17,7 @@
 
     <div>
         <div class="row admin-welcome-meal-calc-header-div">
-            <p class="col-xs-1 admin-welcome-meal-calc-header">Meal</p>
+            <p class="col-xs-1 col-xs-offset-1 admin-welcome-meal-calc-header">Meal</p>
             <p class="col-xs-3 admin-welcome-meal-calc-header">Entree</p>
             <p class="col-xs-2 admin-welcome-meal-calc-header">Side 1</p>
             <p class="col-xs-2 admin-welcome-meal-calc-header">Side 2</p>
@@ -26,7 +26,7 @@
         </div>
 
         <div class="calcResults row" ng-repeat="meal in selectedMealCount track by $index">
-            <p class="col-xs-1 admin-welcome-meal-calc-data">{{$index+1}}</p>
+            <p class="col-xs-1 col-xs-offset-1 admin-welcome-meal-calc-data">{{$index+1}}</p>
             <p class="col-xs-3 admin-welcome-meal-calc-data">{{meal.entree}}</p>
             <p class="col-xs-2 admin-welcome-meal-calc-data">{{meal.side_1}}</p>
             <p class="col-xs-2 admin-welcome-meal-calc-data">{{meal.side_2}}</p>

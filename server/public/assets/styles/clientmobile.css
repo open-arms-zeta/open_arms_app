@@ -126,8 +126,16 @@
         padding-top: 0;
     }
 
-    .ng-modal-dialog {
-        width: 80%;
+    /*.ng-modal-dialog {*/
+        /*width: 80%;*/
+    /*}*/
+
+    .instruction-modal-content {
+        padding: 10px;
+    }
+
+    .icon-container{
+        padding: 5px 10px;
     }
 
 
@@ -173,35 +181,35 @@
     }
 
 
-    .ng-modal-dialog {
-        width: 90%;
-    }
+    /*.ng-modal-dialog {*/
+        /*width: 90%;*/
+    /*}*/
 
     /*DEFAULT CONFIRMATION MODAL*/
 
-    .default-confirmation-modal .ng-modal-dialog {
-        top: 45%;
-    }
+    /*.default-confirmation-modal .ng-modal-dialog {*/
+        /*top: 45%;*/
+    /*}*/
 
-    .default-confirmation-modal .ng-modal-dialog-content {
-        padding: 25px;
-    }
+    /*.default-confirmation-modal .ng-modal-dialog-content {*/
+        /*padding: 25px;*/
+    /*}*/
 
-    .default-confirmation-modal h1 {
-        font-size: 22px;
-    }
+    /*.default-confirmation-modal h1 {*/
+        /*font-size: 22px;*/
+    /*}*/
 
-    .default-confirmation-modal h2 {
-        font-size: 18px;
-    }
+    /*.default-confirmation-modal h2 {*/
+        /*font-size: 18px;*/
+    /*}*/
 
-    .default-confirmation-modal li {
-        font-size: 14px;
-    }
+    /*.default-confirmation-modal li {*/
+        /*font-size: 14px;*/
+    /*}*/
 
-    .confirmation-modal-button {
-        font-size: 11px;
-    }
+    /*.confirmation-modal-button {*/
+        /*font-size: 11px;*/
+    /*}*/
 
     /*CUSTOMIZE MEAL PAGE*/
 

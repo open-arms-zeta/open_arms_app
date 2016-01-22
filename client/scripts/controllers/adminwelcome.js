@@ -37,7 +37,7 @@ myApp.controller('AdminWelcomeController', ["$scope", "DataService", "$http", "$
 
     //gets meal count for a given week
     $scope.getMealCount = function(){
-        var startDate = new Date($scope.selectedStartDate.setHours(0,0,0,0));
+        var startDate = new Date($scope.selectedStartDate);
         console.log('start date', startDate);
         //var endDate = new Date($scope.selectedEndDate);
         //console.log('end dat', endDate);

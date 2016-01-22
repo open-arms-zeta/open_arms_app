@@ -16,11 +16,13 @@
         <!--<md-button class="md-raised" ng-click="toggleModal3()">Close</md-button>-->
 
         <div layout="row" layout-align="space-between">
-            <i class="fa fa-chevron-left fa-4x nav-button" ng-click="prevInstruction()"></i>
+            <i class="fa fa-chevron-left fa-3x nav-button" hide show-gt-sm ng-click="prevInstruction()"></i>
+            <i class="fa fa-chevron-left fa-2x nav-button" hide-gt-sm ng-click="prevInstruction()"></i>
             <div class="image-box">
                 <img ng-src="{{instructionImages[instructionNumber].url}}" width="725px" class="modal-image">
             </div>
-            <i class="fa fa-chevron-right fa-4x nav-button" ng-click="nextInstruction()"></i>
+            <i class="fa fa-chevron-right fa-3x nav-button" hide show-gt-sm ng-click="nextInstruction()"></i>
+            <i class="fa fa-chevron-right fa-2x nav-button" hide-gt-sm ng-click="nextInstruction()"></i>
         </div>
 
         <div ng-if="instructionNumber==0">
@@ -128,6 +130,9 @@
                 select a meal pack.  Call client services for more information</p>
             </div>
         </div>
+
+        <md-button class="md-raised" ng-click="cancel()">Close</md-button>
+
     </md-dialog-content>
 </md-dialog>
 
