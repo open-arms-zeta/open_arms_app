@@ -18,7 +18,7 @@
     "angular-messages": "^1.4.8",
     "angular-route": "^1.4.8",
     "angular-sanitize": "^1.4.8",
-    "bcrypt": "^0.8.5",
+    "bcrypt": "^5.0.0",
     "body-parser": "^1.14.1",
     "bootstrap": "^3.3.6",
     "express": "^4.13.3",
